@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-19T14:57:16.228Z</updated>
+  <updated>2018-09-20T10:21:26.690Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>The statement of this website</title>
-    <link href="http://yoursite.com/2018/09/19/First-Article/"/>
-    <id>http://yoursite.com/2018/09/19/First-Article/</id>
-    <published>2018-09-19T12:30:00.000Z</published>
-    <updated>2018-09-19T14:57:16.228Z</updated>
+    <title>Use Atom as a powerful and elegant Markdown editor</title>
+    <link href="http://yoursite.com/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/"/>
+    <id>http://yoursite.com/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/</id>
+    <published>2018-09-20T07:12:10.000Z</published>
+    <updated>2018-09-20T10:21:26.690Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>I built this personal website in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
     
     <summary type="html">
     
@@ -34,7 +34,34 @@
     
     </summary>
     
-      <category term="statement" scheme="http://yoursite.com/categories/statement/"/>
+      <category term="tech" scheme="http://yoursite.com/categories/tech/"/>
+    
+    
+      <category term="Atom" scheme="http://yoursite.com/tags/Atom/"/>
+    
+      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>The statement of this website</title>
+    <link href="http://yoursite.com/2018/09/19/First-Article/"/>
+    <id>http://yoursite.com/2018/09/19/First-Article/</id>
+    <published>2018-09-19T12:30:00.000Z</published>
+    <updated>2018-09-20T07:27:54.385Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="other" scheme="http://yoursite.com/categories/other/"/>
     
     
       <category term="statement" scheme="http://yoursite.com/tags/statement/"/>

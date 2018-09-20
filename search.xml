@@ -3,16 +3,41 @@
   
     
     <entry>
-      <title>The statement of this website</title>
-      <link href="/2018/09/19/First-Article/"/>
-      <url>/2018/09/19/First-Article/</url>
+      <title>Use Atom as a powerful and elegant Markdown editor</title>
+      <link href="/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/"/>
+      <url>/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>I built this personal website in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
       
       
       <categories>
           
-          <category> statement </category>
+          <category> tech </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Atom </tag>
+            
+            <tag> Markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>The statement of this website</title>
+      <link href="/2018/09/19/First-Article/"/>
+      <url>/2018/09/19/First-Article/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
           
       </categories>
       
