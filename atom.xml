@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-20T10:21:26.690Z</updated>
+  <updated>2018-09-21T05:41:12.117Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Use Atom as a powerful and elegant Markdown editor</title>
-    <link href="http://yoursite.com/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/"/>
-    <id>http://yoursite.com/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/</id>
-    <published>2018-09-20T07:12:10.000Z</published>
-    <updated>2018-09-20T10:21:26.690Z</updated>
+    <title>Use Atom as an elegant Markdown editor</title>
+    <link href="http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/"/>
+    <id>http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/</id>
+    <published>2018-09-21T05:13:40.000Z</published>
+    <updated>2018-09-21T05:41:12.117Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub.</p><p>Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor.</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537506574/atom_1.png" alt="atom_1"></p><p>In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10.</p><p><br></p><p><br></p><h4 id="Markdown-Preview-Enhanced"><a href="#Markdown-Preview-Enhanced" class="headerlink" title="Markdown Preview Enhanced"></a>Markdown Preview Enhanced</h4><p>markdown-preview-enhanced is an extension that provide some useful functions, including</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537507880/samples/food/markdown-preview-enhanceed.png" alt="markdown-preview-enhanced"></p>]]></content>
     
     <summary type="html">
     
@@ -48,7 +48,7 @@
     <link href="http://yoursite.com/2018/09/19/First-Article/"/>
     <id>http://yoursite.com/2018/09/19/First-Article/</id>
     <published>2018-09-19T12:30:00.000Z</published>
-    <updated>2018-09-20T07:27:54.385Z</updated>
+    <updated>2018-09-21T05:51:28.839Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
     

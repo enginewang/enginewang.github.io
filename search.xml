@@ -1,55 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>Use Atom as a powerful and elegant Markdown editor</title>
-      <link href="/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/"/>
-      <url>/2018/09/20/Use-Atom-as-a-powerful-and-beautiful-Markdown-editor/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
-      
-      
+<search>
+  <entry>
+    <title><![CDATA[Use Atom as an elegant Markdown editor]]></title>
+    <url>%2F2018%2F09%2F21%2FUse-Atom-as-an-elegant-Markdown-editor%2F</url>
+    <content type="text"><![CDATA[Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub. Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor. In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10. Markdown Preview Enhancedmarkdown-preview-enhanced is an extension that provide some useful functions, including]]></content>
       <categories>
-          
-          <category> tech </category>
-          
+        <category>tech</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Atom </tag>
-            
-            <tag> Markdown </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>The statement of this website</title>
-      <link href="/2018/09/19/First-Article/"/>
-      <url>/2018/09/19/First-Article/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><div class="aplayer" data-id="32272663" data-server="netease" data-type="song" data-mode="single"></div><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.</p>]]></content>
-      
-      
+      <tags>
+        <tag>Atom</tag>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[The statement of this website]]></title>
+    <url>%2F2018%2F09%2F19%2FFirst-Article%2F</url>
+    <content type="text"><![CDATA[This personal website was built in Sep 19th, 2018, aiming to store and share my notes. Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.]]></content>
       <categories>
-          
-          <category> other </category>
-          
+        <category>other</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> statement </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>statement</tag>
+      </tags>
+  </entry>
 </search>
