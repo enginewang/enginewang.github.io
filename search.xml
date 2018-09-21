@@ -15,7 +15,7 @@
   <entry>
     <title><![CDATA[The statement of this website]]></title>
     <url>%2F2018%2F09%2F19%2FFirst-Article%2F</url>
-    <content type="text"><![CDATA[This personal website was built in Sep 19th, 2018, aiming to store and share my notes. Whoever you are, thanks for visiting my website. I hope some of these notes can be useful to you.]]></content>
+    <content type="text"><![CDATA[This personal website was built in Sep 19th, 2018, aiming to store and share my notes. At first, I planed to set up a personal website by using Django frame + jQuery + MySQL + Apache, however, I find it so tough for me to design style and database. I can’t spend so much time to learn these knowledge of front end, and the cost for a damain name and web server is too high for a student. That’s the reason why I give up this idea.(But in the future I will build a dynamic page) Then I thought of building my blog on Github Page, it’s free and easy to set up. Hexo is chosed to be the static website’s generator rather than Jekell or Hugo. After reading some relative documents, this website was set up as my personal blog page. Whoever you are, thanks for visiting my blog. I hope some of my articles can be useful to you.]]></content>
       <categories>
         <category>other</category>
       </categories>
