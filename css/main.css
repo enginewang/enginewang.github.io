@@ -1078,12 +1078,14 @@ pre .javascript .function {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .back-to-top {
-    display: none !important;
+    right: 20px;
+    opacity: 0.8;
   }
 }
 @media (max-width: 767px) {
   .back-to-top {
-    display: none !important;
+    right: 20px;
+    opacity: 0.8;
   }
 }
 .back-to-top.back-to-top-on {
@@ -1640,126 +1642,6 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
-#rewardButton {
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  letter-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-}
-#rewardButton span {
-  display: inline-block;
-  width: 80px;
-  height: 35px;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: 400;
-  font-style: normal;
-  font-variant: normal;
-  font-stretch: normal;
-  font-size: 18px;
-  font-family: "Microsoft Yahei";
-  background: #f44336;
-}
-#rewardButton span:hover {
-  background: #f7877f;
-}
-#QR {
-  padding-top: 20px;
-}
-#QR a {
-  border: 0;
-}
-#QR img {
-  width: 180px;
-  max-width: 100%;
-  display: inline-block;
-  margin: 0.8em 2em 0 2em;
-}
-#wechat:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-#alipay:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-#bitcoin:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-@-moz-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@-webkit-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@-o-keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
-@keyframes roll {
-  from {
-    -webkit-transform: rotateZ(30deg);
-    -moz-transform: rotateZ(30deg);
-    -ms-transform: rotateZ(30deg);
-    -o-transform: rotateZ(30deg);
-    transform: rotateZ(30deg);
-  }
-  to {
-    -webkit-transform: rotateZ(-30deg);
-    -moz-transform: rotateZ(-30deg);
-    -ms-transform: rotateZ(-30deg);
-    -o-transform: rotateZ(-30deg);
-    transform: rotateZ(-30deg);
-  }
-}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1795,16 +1677,6 @@ pre .javascript .function {
 .sidebar a:hover {
   color: #eee;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .sidebar {
-    display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  .sidebar {
-    display: none !important;
-  }
-}
 .sidebar-inner {
   position: relative;
   padding: 20px 10px;
@@ -1833,12 +1705,14 @@ pre .javascript .function {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar-toggle {
-    display: none !important;
+    right: 20px;
+    opacity: 0.8;
   }
 }
 @media (max-width: 767px) {
   .sidebar-toggle {
-    display: none !important;
+    right: 20px;
+    opacity: 0.8;
   }
 }
 .sidebar-toggle-line {
@@ -1940,7 +1814,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f2a7f1;
+  background: #6625ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2059,6 +1933,32 @@ pre .javascript .function {
 }
 .post-toc .nav .active-current > a:hover {
   color: #87daff;
+}
+.sidebar-active #sidebar-dimmer {
+  opacity: 0.7;
+  -webkit-transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+  -moz-transform: translateX(-150%);
+  -ms-transform: translateX(-150%);
+  -o-transform: translateX(-150%);
+  transform: translateX(-150%);
+  transition: opacity 0.2s;
+}
+#sidebar-dimmer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200%;
+  height: 100%;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0s 0.2s;
+}
+@media (max-width: 767px) {
+  #sidebar-dimmer {
+    display: block;
+  }
 }
 .footer {
   font-size: 14px;
@@ -2722,7 +2622,7 @@ hr {
   height: 2px;
 }
 .main-inner {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 .header {
   background: #f5f5f5;
@@ -2780,8 +2680,8 @@ hr {
 .logo-line-after {
   display: block;
   overflow: hidden;
-  margin: 0 auto;
-  width: 75%;
+  margin: 5px auto;
+  width: 80%;
 }
 @media (max-width: 767px) {
   .logo-line-before,
@@ -2958,6 +2858,10 @@ hr {
 .post-button a:hover {
   border-bottom-color: #222;
 }
+.posts-expand .post {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
@@ -3013,8 +2917,8 @@ hr {
   color: #666;
 }
 .footer-inner {
-  margin: 0 auto;
-  text-align: left;
+  margin: 10px auto;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .footer-inner {
@@ -3023,9 +2927,20 @@ hr {
   }
 }
 .post {
+  border-radius: 10px;
+  background: rgba(255,255,255,0.5) none repeat scroll !important;
   margin-top: 0px;
   margin-bottom: 60px;
   padding: 25px;
-  -webkit-box-shadow: 0 0 8px rgba(202,203,203,0.5);
-  -moz-box-shadow: 0 0 8px rgba(202,203,204,0.5);
+}
+.post {
+  transition: 900ms;
+}
+.post:hover {
+  -webkit-transform: translate3d(0, -2px, 0);
+  -moz-transform: translate3d(0, -2px, 0);
+  -ms-transform: translate3d(0, -2px, 0);
+  -o-transform: translate3d(0, -2px, 0);
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 1px 5px 20px 0 rgba(0,0,0,0.19);
 }
