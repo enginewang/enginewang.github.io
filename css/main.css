@@ -1814,7 +1814,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5709bb;
+  background: #fffcff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2859,8 +2859,8 @@ hr {
   border-bottom-color: #222;
 }
 .posts-expand .post {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
@@ -2929,18 +2929,19 @@ hr {
 .post {
   border-radius: 10px;
   background: rgba(255,255,255,0.5) none repeat scroll !important;
-  margin-top: 0px;
+  margin-top: 20px;
   margin-bottom: 60px;
-  padding: 25px;
+  padding: 10px 30px 30px 30px;
+  box-shadow: 0px 0px 1px 0 rgba(0,0,0,0.19);
 }
 .post {
-  transition: 900ms;
+  transition: 666ms;
 }
 .post:hover {
-  -webkit-transform: translate3d(0, -2px, 0);
-  -moz-transform: translate3d(0, -2px, 0);
-  -ms-transform: translate3d(0, -2px, 0);
-  -o-transform: translate3d(0, -2px, 0);
-  transform: translate3d(0, -2px, 0);
-  box-shadow: 1px 5px 20px 0 rgba(0,0,0,0.19);
+  -webkit-transform: translate3d(0, -5px, 20px);
+  -moz-transform: translate3d(0, -5px, 20px);
+  -ms-transform: translate3d(0, -5px, 20px);
+  -o-transform: translate3d(0, -5px, 20px);
+  transform: translate3d(0, -5px, 20px);
+  box-shadow: 3px 5px 20px 0 rgba(0,0,0,0.19);
 }
