@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-21T05:41:12.117Z</updated>
+  <updated>2018-09-22T00:57:09.864Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Some issues and their solutions about coursera</title>
+    <link href="http://yoursite.com/2018/09/22/Some-issues-and-their-solutions-about-coursera/"/>
+    <id>http://yoursite.com/2018/09/22/Some-issues-and-their-solutions-about-coursera/</id>
+    <published>2018-09-22T00:38:40.000Z</published>
+    <updated>2018-09-22T00:57:09.864Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Coursera is one of the most famous online learning platforms. However, some frustrating things could occur either, here are some issues I met and the solutions of them.</p><p><br></p><p><br></p><h4 id="Problem1-the-video-is-loading-all-the-time"><a href="#Problem1-the-video-is-loading-all-the-time" class="headerlink" title="Problem1: the video is loading all the time:"></a>Problem1: the video is loading all the time:</h4><p><br></p><h5 id="method"><a href="#method" class="headerlink" title="method:"></a>method:</h5><p>open your <code>hosts</code> file, for most windows users, it’s in <code>C:\Windows\System32\drivers\etc</code></p><p>add these lines to the bottom of your hosts file and save it</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">52.84.246.90    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.252    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.144    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.72    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.106    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.135    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.114    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.90    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.227    d3c33hcgiwev3.cloudfront.net</span><br></pre></td></tr></table></figure><p>run cmd.exe, input <code>ipconfig/flushdns</code> then press <code>Enter</code></p><p>refresh your coursera page, the video will play out successfully.</p><p><br></p><p><br></p><p>####Problem2: the subtitles are too big/small<br><br></p><p>#####method:</p><p>inspect the page(by right click to choose or press F12), add <code>video::-webkit-media-text-track-display {font-size: xx%;}</code> to head-&gt;<code>&lt;style class=&quot;vjs-styles-defaults&gt;&quot;</code> just like this:<br><br><br><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537606039/coursera_1.png" alt="untitle"></p><p>(you can change the percentage value to find your perfect subtitle size)</p><p><br></p><p>to be continued…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="jotting" scheme="http://yoursite.com/categories/jotting/"/>
+    
+    
+      <category term="coursera" scheme="http://yoursite.com/tags/coursera/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Use Atom as an elegant Markdown editor</title>
     <link href="http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/"/>
     <id>http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/</id>
     <published>2018-09-21T05:13:40.000Z</published>
-    <updated>2018-09-21T05:41:12.117Z</updated>
+    <updated>2018-09-21T07:58:44.182Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub.</p><p>Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor.</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537506574/atom_1.png" alt="atom_1"></p><p>In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10.</p><p><br></p><p><br></p><h4 id="Markdown-Preview-Enhanced"><a href="#Markdown-Preview-Enhanced" class="headerlink" title="Markdown Preview Enhanced"></a>Markdown Preview Enhanced</h4><p>markdown-preview-enhanced is an extension that provide some useful functions, including</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537507880/samples/food/markdown-preview-enhanceed.png" alt="markdown-preview-enhanced"></p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub.</p><p>Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor.</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537506574/atom_1.png" alt="atom_1"></p><p>In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10.</p><p><br></p><h4 id="Markdown-Preview-Enhanced"><a href="#Markdown-Preview-Enhanced" class="headerlink" title="Markdown Preview Enhanced"></a>Markdown Preview Enhanced</h4><p>markdown-preview-enhanced is an extension that provide some useful functions, including</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537507880/samples/food/markdown-preview-enhanceed.png" alt="markdown-preview-enhanced"></p><p><br></p>]]></content>
     
     <summary type="html">
     
@@ -44,11 +69,11 @@
   </entry>
   
   <entry>
-    <title>The statement of this website</title>
+    <title>Welcome to my Github Page</title>
     <link href="http://yoursite.com/2018/09/19/First-Article/"/>
     <id>http://yoursite.com/2018/09/19/First-Article/</id>
     <published>2018-09-19T12:30:00.000Z</published>
-    <updated>2018-09-21T07:18:33.028Z</updated>
+    <updated>2018-09-21T11:42:47.624Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>At first, I planed to set up a personal website by using Django frame + jQuery + MySQL +  Apache, however, I find it so tough for me to design style and database. I can’t spend so much time to learn these knowledge of front end, and the cost for a damain name and web server is too high for a student. That’s the reason why I give up this idea.(But in the future I will build a dynamic page)</p><p>Then I thought of building my blog on Github Page, it’s free and easy to set up. Hexo is chosed to be the static website’s generator rather than Jekell or Hugo. After reading some relative  documents, this website was set up as my personal blog page.</p><p>Whoever you are, thanks for visiting my blog. I hope some of my articles can be useful to you.</p>]]></content>
     
