@@ -1814,7 +1814,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffedff;
+  background: #ff5bb4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2932,10 +2932,10 @@ hr {
   margin-top: 20px;
   margin-bottom: 60px;
   padding: 10px 30px 30px 30px;
-  box-shadow: 0px 0px 0.2px 0 rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 0px 0 rgba(0,0,0,0.1);
 }
 .post {
-  transition: all 900ms;
+  transition: all 1200ms;
 }
 .post:hover {
   -webkit-transform: translate3d(0px, -10px, 20px);
@@ -2943,11 +2943,11 @@ hr {
   -ms-transform: translate3d(0px, -10px, 20px);
   -o-transform: translate3d(0px, -10px, 20px);
   transform: translate3d(0px, -10px, 20px);
-  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.1);
-  -webkit-transform: scale(1.01);
-  -moz-transform: scale(1.01);
-  -ms-transform: scale(1.01);
-  -o-transform: scale(1.01);
-  transform: scale(1.01);
-  background: rgba(253,253,253,0.8);
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,0.1);
+  -webkit-transform: scale(1.008);
+  -moz-transform: scale(1.008);
+  -ms-transform: scale(1.008);
+  -o-transform: scale(1.008);
+  transform: scale(1.008);
+  background: rgba(255,255,255,0.8);
 }
