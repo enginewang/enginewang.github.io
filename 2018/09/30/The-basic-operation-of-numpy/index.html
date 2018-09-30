@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a">
+<meta name="description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
 <meta name="keywords" content="numpy,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The basic operation of numpy">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/index.html">
 <meta property="og:site_name" content="Yicheng&#39;s Blog">
-<meta property="og:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a">
+<meta property="og:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-30T07:08:20.312Z">
+<meta property="og:updated_time" content="2018-09-30T07:13:32.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The basic operation of numpy">
-<meta name="twitter:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a">
+<meta name="twitter:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
 
 
 
@@ -387,8 +387,7 @@
       
 
       
-        <p><br></p>
-<p>What is numpy?&nbsp;&nbsp;Here is the definition of numpy library in wikipedia:</p>
+        <p>What is numpy?&nbsp;&nbsp;Here is the definition of numpy library in wikipedia:</p>
 <blockquote>
 <p>NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.</p>
 </blockquote>
@@ -398,35 +397,30 @@
 <p>Typing <code>numpy</code> for many times is a waste, so we usually <code>import numpy as np</code></p>
 <p><br></p>
 <h3 id="Numpy-Array-amp-Matrix"><a href="#Numpy-Array-amp-Matrix" class="headerlink" title="Numpy Array &amp; Matrix"></a>Numpy Array &amp; Matrix</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create arrays</span></span><br><span class="line">arr1 = np.array([i <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])</span><br><span class="line">arr2 = np.zeros(shape=(row_size, col_size), dtype=int)</span><br><span class="line">arr3 = np.ones(shape=(row, col))</span><br><span class="line">arr4 = np.full(shape=(row, col), fill_value=v)</span><br><span class="line">arr5 = np.arange(head, end, step_length)</span><br><span class="line">arr6 = np.linspace(head, end, divide_numbers)</span><br><span class="line">arr7 = np.random.randint(head, end)  <span class="comment"># Right open interval</span></span><br><span class="line">np.random.seed()  <span class="comment"># set the seed, if seed is equal then random nums are the same</span></span><br><span class="line">np.random.random(size=(<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line">np.random.normal(mean_value, variance, size)  <span class="comment"># random distribution</span></span><br></pre></td></tr></table></figure>
-<p><br></p>
 <h4 id="propeties"><a href="#propeties" class="headerlink" title="propeties"></a>propeties</h4><ul>
 <li>ndim</li>
 <li>shape</li>
 <li>size</li>
 </ul>
-<p>you can use slide operation to visit elements in an array, such as <code>arr[:2,:4,2]</code><br><br></p>
-<h4 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h4><p>arr.reshape(row, col)<br>[annotation]: if one of the params is determined, another can be set as -1 (means auto distribute)</p>
-<h5 id="combination"><a href="#combination" class="headerlink" title="combination"></a>combination</h5><p>np.concatenate([arr1, arr2], axis=0/1)<br>np.vstack()  pile vertically<br>np.hstack()  pile horizontally</p>
-<h5 id="devide"><a href="#devide" class="headerlink" title="devide"></a>devide</h5><p>arr1, arr2 = np.split(arr, [n], &lt;axis=1&gt;)<br>split arr (position is n)<br>np.vsplit()<br>np.hsplit()</p>
-<p><br></p>
+<p>you can use slide operation to visit elements in an array, such as <code>arr[:2,:4,2]</code></p>
+<h4 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reshape(row, col)</span><br></pre></td></tr></table></figure>
+<p>[annotation]: if one of the params is determined, another can be set as -1 (means auto distribute)</p>
+<h5 id="combination"><a href="#combination" class="headerlink" title="combination"></a>combination</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.concatenate([arr1, arr2], axis=0/1)</span><br><span class="line">np.vstack()  pile vertically</span><br><span class="line">np.hstack()  pile horizontally</span><br></pre></td></tr></table></figure>
+<h5 id="devide"><a href="#devide" class="headerlink" title="devide"></a>devide</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr1, arr2 = np.split(arr, [n], &lt;axis=1&gt;)</span><br><span class="line">split arr (position is n)</span><br><span class="line">np.vsplit()</span><br><span class="line">np.hsplit()</span><br></pre></td></tr></table></figure>
 <h4 id="Built-in-mathematical-operations"><a href="#Built-in-mathematical-operations" class="headerlink" title="Built-in mathematical operations"></a>Built-in mathematical operations</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">np.sin(arr)</span><br><span class="line">np.exp(arr)</span><br><span class="line">np.abs(arr)</span><br><span class="line">np.log&lt;num&gt;(arr) <span class="comment">#log(arr) means napierian logarithm</span></span><br><span class="line">np.exp(<span class="number">3</span>, arr) <span class="comment">#means e^x</span></span><br></pre></td></tr></table></figure>
 <p>Arithmatics are aimming at each elements in the array/matrix</p>
-<p>A*B: means every elements in A multiply corresponding elements in B</p>
-<p>A.dot(B)：means the normal multiplication for matrics, A*B</p>
-<p>A.T： the transposition</p>
-<p>np.linalg.inv(arr)：inverse matrix of arr</p>
-<p><br></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A*B: means every elements <span class="keyword">in</span> A multiply corresponding elements <span class="keyword">in</span> B</span><br><span class="line">A.dot(B)：means the normal multiplication <span class="keyword">for</span> matrics, A*B</span><br><span class="line">A.T： the transposition</span><br><span class="line">np.linalg.inv(arr)：inverse matrix of arr</span><br></pre></td></tr></table></figure>
 <h4 id="Aggregation-operation"><a href="#Aggregation-operation" class="headerlink" title="Aggregation operation"></a>Aggregation operation</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.sum(arr)</span><br><span class="line">np.max(arr)</span><br><span class="line">np.min(arr)</span><br><span class="line"><span class="comment"># also support for axis</span></span><br><span class="line">np.prod(arr): multiplication of all the elements</span><br><span class="line">np.mean(arr): mean value</span><br><span class="line">np.median(arr): median value</span><br><span class="line">np.precentile(arr, q=n): the value which position <span class="keyword">is</span> at n%</span><br><span class="line">np.var(): variance</span><br><span class="line">np.std(): standard diviation</span><br></pre></td></tr></table></figure>
-<h5 id="Index"><a href="#Index" class="headerlink" title="Index:"></a>Index:</h5><p>np.argmin(arr): return the index of the mininum<br>np.argmax(arr):</p>
-<h5 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h5><p>np.random.shuffle(arr)：make arr disordered<br>np.sort(arr)：sort<br>np.partion(arr, n): quicksort of arr</p>
-<p>you can add <code>arg</code> tag before the method’s name (e.g. argpartition, argsort), in this way it will return the array/matrix consist of indexs nums<br>It alse support <code>axis</code> param<br><br></p>
+<h5 id="Index"><a href="#Index" class="headerlink" title="Index:"></a>Index:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.argmin(arr): return the index of the mininum</span><br><span class="line">np.argmax(arr):</span><br></pre></td></tr></table></figure>
+<h5 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.random.shuffle(arr)：make arr disordered</span><br><span class="line">np.sort(arr)：sort</span><br><span class="line">np.partion(arr, n): quicksort of arr</span><br></pre></td></tr></table></figure>
+<p>you can add <code>arg</code> tag before the method’s name (e.g. argpartition, argsort), in this way it will return the array/matrix consist of indexs nums</p>
+<p>It alse support <code>axis</code> param</p>
 <h5 id="fancy-indexing"><a href="#fancy-indexing" class="headerlink" title="fancy indexing:"></a>fancy indexing:</h5><p>using slice to select regular eles is enough, using fancy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ind = np.array([<span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">               [<span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">arr[ind]  <span class="comment"># return corresponding index</span></span><br><span class="line">row = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">col = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">arr[row, col]  <span class="comment">#return values of (0, 3),(1, 4),(2, 5)</span></span><br></pre></td></tr></table></figure></p>
 <p>logic operations between arrays or matrices will return its bool type</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np.sum(x &lt; <span class="number">3</span>)  <span class="comment"># x&lt;3 will return a bool matrix</span></span><br><span class="line"><span class="comment"># this states means returning the nums of elems who &lt; 3</span></span><br><span class="line">np.count_nonzero</span><br><span class="line"><span class="comment"># literal meaning</span></span><br><span class="line">np.any(logical operation)  <span class="comment"># return true if any one is true</span></span><br><span class="line">ny.all(logical operation)  <span class="comment"># retunr true only when all is true</span></span><br></pre></td></tr></table></figure>
-<p><br></p>
 <h3 id="matplotlib-viusualization-tool"><a href="#matplotlib-viusualization-tool" class="headerlink" title="matplotlib (viusualization tool)"></a>matplotlib (viusualization tool)</h3><p><code>import matplotlib as mpl</code><br>always use its pyplot：<code>import matplotlib.pyplot as plt</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y, color=<span class="string">""</span>, linestyle=<span class="string">"--"</span>, label=<span class="string">""</span>)</span><br><span class="line">plt.xlim(min, max)</span><br><span class="line">plt.axis([xmin,xmax,ymin,ymax])</span><br><span class="line">plt.xlabel(<span class="string">"xxx"</span>)</span><br><span class="line">plt.legend()  <span class="comment"># add represantation</span></span><br><span class="line">plt.title(<span class="string">""</span>)</span><br><span class="line">plt.show  <span class="comment"># call at alst to show the pic</span></span><br></pre></td></tr></table></figure>
-<p>scatter diagram:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x, y, alpha=<span class="number">0.5</span>) <span class="comment">#alpha是不透明度</span></span><br></pre></td></tr></table></figure></p>
+<p>scatter diagram:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x, y, alpha=<span class="number">0.5</span>) <span class="comment">#alpha is the opaque degree</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>

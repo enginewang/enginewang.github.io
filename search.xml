@@ -1,103 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>The basic operation of numpy</title>
-      <link href="/2018/09/30/The-basic-operation-of-numpy/"/>
-      <url>/2018/09/30/The-basic-operation-of-numpy/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><br></p><p>What is numpy?&nbsp;&nbsp;Here is the definition of numpy library in wikipedia:</p><blockquote><p>NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.</p></blockquote><p>In a word, numpy can make it more convenient for us to operate array and matrix in Python, with high efficiency.</p><p><br></p><h3 id="Begin-to-use"><a href="#Begin-to-use" class="headerlink" title="Begin to use"></a>Begin to use</h3><p>Firstly, if you haven’t install this library please use <code>pip install numpy</code> to get it.</p><p>Typing <code>numpy</code> for many times is a waste, so we usually <code>import numpy as np</code></p><p><br></p><h3 id="Numpy-Array-amp-Matrix"><a href="#Numpy-Array-amp-Matrix" class="headerlink" title="Numpy Array &amp; Matrix"></a>Numpy Array &amp; Matrix</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create arrays</span></span><br><span class="line">arr1 = np.array([i <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])</span><br><span class="line">arr2 = np.zeros(shape=(row_size, col_size), dtype=int)</span><br><span class="line">arr3 = np.ones(shape=(row, col))</span><br><span class="line">arr4 = np.full(shape=(row, col), fill_value=v)</span><br><span class="line">arr5 = np.arange(head, end, step_length)</span><br><span class="line">arr6 = np.linspace(head, end, divide_numbers)</span><br><span class="line">arr7 = np.random.randint(head, end)  <span class="comment"># Right open interval</span></span><br><span class="line">np.random.seed()  <span class="comment"># set the seed, if seed is equal then random nums are the same</span></span><br><span class="line">np.random.random(size=(<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line">np.random.normal(mean_value, variance, size)  <span class="comment"># random distribution</span></span><br></pre></td></tr></table></figure><p><br></p><h4 id="propeties"><a href="#propeties" class="headerlink" title="propeties"></a>propeties</h4><ul><li>ndim</li><li>shape</li><li>size</li></ul><p>you can use slide operation to visit elements in an array, such as <code>arr[:2,:4,2]</code><br><br></p><h4 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h4><p>arr.reshape(row, col)<br>[annotation]: if one of the params is determined, another can be set as -1 (means auto distribute)</p><h5 id="combination"><a href="#combination" class="headerlink" title="combination"></a>combination</h5><p>np.concatenate([arr1, arr2], axis=0/1)<br>np.vstack()  pile vertically<br>np.hstack()  pile horizontally</p><h5 id="devide"><a href="#devide" class="headerlink" title="devide"></a>devide</h5><p>arr1, arr2 = np.split(arr, [n], &lt;axis=1&gt;)<br>split arr (position is n)<br>np.vsplit()<br>np.hsplit()</p><p><br></p><h4 id="Built-in-mathematical-operations"><a href="#Built-in-mathematical-operations" class="headerlink" title="Built-in mathematical operations"></a>Built-in mathematical operations</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">np.sin(arr)</span><br><span class="line">np.exp(arr)</span><br><span class="line">np.abs(arr)</span><br><span class="line">np.log&lt;num&gt;(arr) <span class="comment">#log(arr) means napierian logarithm</span></span><br><span class="line">np.exp(<span class="number">3</span>, arr) <span class="comment">#means e^x</span></span><br></pre></td></tr></table></figure><p>Arithmatics are aimming at each elements in the array/matrix</p><p>A*B: means every elements in A multiply corresponding elements in B</p><p>A.dot(B)：means the normal multiplication for matrics, A*B</p><p>A.T： the transposition</p><p>np.linalg.inv(arr)：inverse matrix of arr</p><p><br></p><h4 id="Aggregation-operation"><a href="#Aggregation-operation" class="headerlink" title="Aggregation operation"></a>Aggregation operation</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.sum(arr)</span><br><span class="line">np.max(arr)</span><br><span class="line">np.min(arr)</span><br><span class="line"><span class="comment"># also support for axis</span></span><br><span class="line">np.prod(arr): multiplication of all the elements</span><br><span class="line">np.mean(arr): mean value</span><br><span class="line">np.median(arr): median value</span><br><span class="line">np.precentile(arr, q=n): the value which position <span class="keyword">is</span> at n%</span><br><span class="line">np.var(): variance</span><br><span class="line">np.std(): standard diviation</span><br></pre></td></tr></table></figure><h5 id="Index"><a href="#Index" class="headerlink" title="Index:"></a>Index:</h5><p>np.argmin(arr): return the index of the mininum<br>np.argmax(arr):</p><h5 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h5><p>np.random.shuffle(arr)：make arr disordered<br>np.sort(arr)：sort<br>np.partion(arr, n): quicksort of arr</p><p>you can add <code>arg</code> tag before the method’s name (e.g. argpartition, argsort), in this way it will return the array/matrix consist of indexs nums<br>It alse support <code>axis</code> param<br><br></p><h5 id="fancy-indexing"><a href="#fancy-indexing" class="headerlink" title="fancy indexing:"></a>fancy indexing:</h5><p>using slice to select regular eles is enough, using fancy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ind = np.array([<span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">               [<span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">arr[ind]  <span class="comment"># return corresponding index</span></span><br><span class="line">row = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">col = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">arr[row, col]  <span class="comment">#return values of (0, 3),(1, 4),(2, 5)</span></span><br></pre></td></tr></table></figure></p><p>logic operations between arrays or matrices will return its bool type</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np.sum(x &lt; <span class="number">3</span>)  <span class="comment"># x&lt;3 will return a bool matrix</span></span><br><span class="line"><span class="comment"># this states means returning the nums of elems who &lt; 3</span></span><br><span class="line">np.count_nonzero</span><br><span class="line"><span class="comment"># literal meaning</span></span><br><span class="line">np.any(logical operation)  <span class="comment"># return true if any one is true</span></span><br><span class="line">ny.all(logical operation)  <span class="comment"># retunr true only when all is true</span></span><br></pre></td></tr></table></figure><p><br></p><h3 id="matplotlib-viusualization-tool"><a href="#matplotlib-viusualization-tool" class="headerlink" title="matplotlib (viusualization tool)"></a>matplotlib (viusualization tool)</h3><p><code>import matplotlib as mpl</code><br>always use its pyplot：<code>import matplotlib.pyplot as plt</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y, color=<span class="string">""</span>, linestyle=<span class="string">"--"</span>, label=<span class="string">""</span>)</span><br><span class="line">plt.xlim(min, max)</span><br><span class="line">plt.axis([xmin,xmax,ymin,ymax])</span><br><span class="line">plt.xlabel(<span class="string">"xxx"</span>)</span><br><span class="line">plt.legend()  <span class="comment"># add represantation</span></span><br><span class="line">plt.title(<span class="string">""</span>)</span><br><span class="line">plt.show  <span class="comment"># call at alst to show the pic</span></span><br></pre></td></tr></table></figure><p>scatter diagram:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x, y, alpha=<span class="number">0.5</span>) <span class="comment">#alpha是不透明度</span></span><br></pre></td></tr></table></figure></p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title><![CDATA[The basic operation of numpy]]></title>
+    <url>%2F2018%2F09%2F30%2FThe-basic-operation-of-numpy%2F</url>
+    <content type="text"><![CDATA[What is numpy?&nbsp;&nbsp;Here is the definition of numpy library in wikipedia: NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays. In a word, numpy can make it more convenient for us to operate array and matrix in Python, with high efficiency. Begin to useFirstly, if you haven’t install this library please use pip install numpy to get it. Typing numpy for many times is a waste, so we usually import numpy as np Numpy Array &amp; Matrix1234567891011# create arraysarr1 = np.array([i for i in range(n)])arr2 = np.zeros(shape=(row_size, col_size), dtype=int)arr3 = np.ones(shape=(row, col))arr4 = np.full(shape=(row, col), fill_value=v)arr5 = np.arange(head, end, step_length)arr6 = np.linspace(head, end, divide_numbers)arr7 = np.random.randint(head, end) # Right open intervalnp.random.seed() # set the seed, if seed is equal then random nums are the samenp.random.random(size=(3, 5))np.random.normal(mean_value, variance, size) # random distribution propeties ndim shape size you can use slide operation to visit elements in an array, such as arr[:2,:4,2] functions1arr.reshape(row, col) [annotation]: if one of the params is determined, another can be set as -1 (means auto distribute) combination123np.concatenate([arr1, arr2], axis=0/1)np.vstack() pile verticallynp.hstack() pile horizontally devide1234arr1, arr2 = np.split(arr, [n], &lt;axis=1&gt;)split arr (position is n)np.vsplit()np.hsplit() Built-in mathematical operations12345np.sin(arr)np.exp(arr)np.abs(arr)np.log&lt;num&gt;(arr) #log(arr) means napierian logarithmnp.exp(3, arr) #means e^x Arithmatics are aimming at each elements in the array/matrix 1234A*B: means every elements in A multiply corresponding elements in BA.dot(B)：means the normal multiplication for matrics, A*BA.T： the transpositionnp.linalg.inv(arr)：inverse matrix of arr Aggregation operation12345678910np.sum(arr)np.max(arr)np.min(arr)# also support for axisnp.prod(arr): multiplication of all the elementsnp.mean(arr): mean valuenp.median(arr): median valuenp.precentile(arr, q=n): the value which position is at n%np.var(): variancenp.std(): standard diviation Index:12np.argmin(arr): return the index of the mininumnp.argmax(arr): sort123np.random.shuffle(arr)：make arr disorderednp.sort(arr)：sortnp.partion(arr, n): quicksort of arr you can add arg tag before the method’s name (e.g. argpartition, argsort), in this way it will return the array/matrix consist of indexs nums It alse support axis param fancy indexing:using slice to select regular eles is enough, using fancy123456ind = np.array([0, 2] [1, 3])arr[ind] # return corresponding indexrow = np.array([0, 1, 2])col = np.array([3, 4, 5])arr[row, col] #return values of (0, 3),(1, 4),(2, 5) logic operations between arrays or matrices will return its bool type 123456np.sum(x &lt; 3) # x&lt;3 will return a bool matrix# this states means returning the nums of elems who &lt; 3np.count_nonzero# literal meaningnp.any(logical operation) # return true if any one is trueny.all(logical operation) # retunr true only when all is true matplotlib (viusualization tool)import matplotlib as mplalways use its pyplot：import matplotlib.pyplot as plt 1234567plt.plot(x, y, color="", linestyle="--", label="")plt.xlim(min, max)plt.axis([xmin,xmax,ymin,ymax])plt.xlabel("xxx")plt.legend() # add represantationplt.title("")plt.show # call at alst to show the pic scatter diagram:1plt.scatter(x, y, alpha=0.5) #alpha is the opaque degree]]></content>
       <categories>
-          
-          <category> tech </category>
-          
+        <category>tech</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> numpy </tag>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Some issues and their solutions about coursera</title>
-      <link href="/2018/09/22/Some-issues-and-their-solutions-about-coursera/"/>
-      <url>/2018/09/22/Some-issues-and-their-solutions-about-coursera/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Coursera is one of the most famous online learning platforms. However, some frustrating things could occur either, here are some issues I met and the solutions of them.</p><h4 id="Problem1-the-video-is-loading-all-the-time"><a href="#Problem1-the-video-is-loading-all-the-time" class="headerlink" title="Problem1: the video is loading all the time:"></a>Problem1: the video is loading all the time:</h4><h5 id="method"><a href="#method" class="headerlink" title="method:"></a>method:</h5><p>open your <code>hosts</code> file, for most windows users, it’s in <code>C:\Windows\System32\drivers\etc</code></p><p>add these lines to the bottom of your hosts file and save it</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">52.84.246.90    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.252    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.144    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.72    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.106    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.135    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.114    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.90    d3c33hcgiwev3.cloudfront.net</span><br><span class="line">52.84.246.227    d3c33hcgiwev3.cloudfront.net</span><br></pre></td></tr></table></figure><p>run cmd.exe, input <code>ipconfig/flushdns</code> then press <code>Enter</code></p><p>refresh your coursera page, the video will play out successfully.</p><p><br></p><h4 id="Problem2-the-subtitles-are-too-big-small"><a href="#Problem2-the-subtitles-are-too-big-small" class="headerlink" title="Problem2: the subtitles are too big/small"></a>Problem2: the subtitles are too big/small</h4><h5 id="method-1"><a href="#method-1" class="headerlink" title="method:"></a>method:</h5><p>inspect the page(by right click to choose or press F12), add <code>video::-webkit-media-text-track-display {font-size: xx%;}</code> to head-&gt;<code>&lt;style class=&quot;vjs-styles-defaults&gt;&quot;</code> just like this:<br><br><br><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537606039/coursera_1.png" alt="untitle"></p><p>(you can change the percentage value to find your perfect subtitle size)</p><p>to be continued…</p>]]></content>
-      
-      
+      <tags>
+        <tag>numpy</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Some issues and their solutions about coursera]]></title>
+    <url>%2F2018%2F09%2F22%2FSome-issues-and-their-solutions-about-coursera%2F</url>
+    <content type="text"><![CDATA[Coursera is one of the most famous online learning platforms. However, some frustrating things could occur either, here are some issues I met and the solutions of them. Problem1: the video is loading all the time:method:open your hosts file, for most windows users, it’s in C:\Windows\System32\drivers\etc add these lines to the bottom of your hosts file and save it 12345678952.84.246.90 d3c33hcgiwev3.cloudfront.net52.84.246.252 d3c33hcgiwev3.cloudfront.net52.84.246.144 d3c33hcgiwev3.cloudfront.net52.84.246.72 d3c33hcgiwev3.cloudfront.net52.84.246.106 d3c33hcgiwev3.cloudfront.net52.84.246.135 d3c33hcgiwev3.cloudfront.net52.84.246.114 d3c33hcgiwev3.cloudfront.net52.84.246.90 d3c33hcgiwev3.cloudfront.net52.84.246.227 d3c33hcgiwev3.cloudfront.net run cmd.exe, input ipconfig/flushdns then press Enter refresh your coursera page, the video will play out successfully. Problem2: the subtitles are too big/smallmethod:inspect the page(by right click to choose or press F12), add video::-webkit-media-text-track-display {font-size: xx%;} to head-&gt;&lt;style class=&quot;vjs-styles-defaults&gt;&quot; just like this: (you can change the percentage value to find your perfect subtitle size) to be continued…]]></content>
       <categories>
-          
-          <category> jotting </category>
-          
+        <category>jotting</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> coursera </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Use Atom as an elegant Markdown editor</title>
-      <link href="/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/"/>
-      <url>/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub.</p><p>Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor.</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537506574/atom_1.png" alt="atom_1"></p><p>In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10.</p><p><br></p><h4 id="Markdown-Preview-Enhanced"><a href="#Markdown-Preview-Enhanced" class="headerlink" title="Markdown Preview Enhanced"></a>Markdown Preview Enhanced</h4><p>markdown-preview-enhanced is an extension that provide some useful functions, including</p><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1537507880/samples/food/markdown-preview-enhanceed.png" alt="markdown-preview-enhanced"></p><p><br></p>]]></content>
-      
-      
+      <tags>
+        <tag>coursera</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Use Atom as an elegant Markdown editor]]></title>
+    <url>%2F2018%2F09%2F21%2FUse-Atom-as-an-elegant-Markdown-editor%2F</url>
+    <content type="text"><![CDATA[Atom, I believe most of you may know about this editor. It is a free and open-source text editor developed by GitHub. Atom is not only a source code editor, but an elegant Markdown editor. Here is the interface of my Atom when I use it as a Markdown editor. In this passage, I will show you how I change it to an excellent Markdown editor by using some useful plug-ins in Windows 10. Markdown Preview Enhancedmarkdown-preview-enhanced is an extension that provide some useful functions, including]]></content>
       <categories>
-          
-          <category> tech </category>
-          
+        <category>tech</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Atom </tag>
-            
-            <tag> Markdown </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Welcome to my Github Page</title>
-      <link href="/2018/09/19/First-Article/"/>
-      <url>/2018/09/19/First-Article/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>This personal website was built in Sep 19th, 2018, aiming to store and share my notes.</p><p>At first, I planed to set up a personal website by using Django frame + jQuery + MySQL +  Apache, however, I find it so tough for me to design style and database. I can’t spend so much time to learn these knowledge of front end, and the cost for a damain name and web server is too high for a student. That’s the reason why I give up this idea.(But in the future I will build a dynamic page)</p><p>Then I thought of building my blog on Github Page, it’s free and easy to set up. Hexo is chosed to be the static website’s generator rather than Jekell or Hugo. After reading some relative  documents, this website was set up as my personal blog page.</p><p>Whoever you are, thanks for visiting my blog. I hope some of my articles can be useful to you.</p>]]></content>
-      
-      
+      <tags>
+        <tag>Atom</tag>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Welcome to my Github Page]]></title>
+    <url>%2F2018%2F09%2F19%2FFirst-Article%2F</url>
+    <content type="text"><![CDATA[This personal website was built in Sep 19th, 2018, aiming to store and share my notes. At first, I planed to set up a personal website by using Django frame + jQuery + MySQL + Apache, however, I find it so tough for me to design style and database. I can’t spend so much time to learn these knowledge of front end, and the cost for a damain name and web server is too high for a student. That’s the reason why I give up this idea.(But in the future I will build a dynamic page) Then I thought of building my blog on Github Page, it’s free and easy to set up. Hexo is chosed to be the static website’s generator rather than Jekell or Hugo. After reading some relative documents, this website was set up as my personal blog page. Whoever you are, thanks for visiting my blog. I hope some of my articles can be useful to you.]]></content>
       <categories>
-          
-          <category> other </category>
-          
+        <category>other</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> statement </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>statement</tag>
+      </tags>
+  </entry>
 </search>
