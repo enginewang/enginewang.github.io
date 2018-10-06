@@ -1814,7 +1814,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #aab0d6;
+  background: #ffff26;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2957,11 +2957,11 @@ body {
   -o-transform: translate3d(0px, -10px, 20px);
   transform: translate3d(0px, -10px, 20px);
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.1);
-  -webkit-transform: scale(1.008);
-  -moz-transform: scale(1.008);
-  -ms-transform: scale(1.008);
-  -o-transform: scale(1.008);
-  transform: scale(1.008);
+  -webkit-transform: scale(1.002);
+  -moz-transform: scale(1.002);
+  -ms-transform: scale(1.002);
+  -o-transform: scale(1.002);
+  transform: scale(1.002);
   background: rgba(255,255,255,0.8);
 }
 .post {
@@ -2982,11 +2982,11 @@ body {
   -o-transform: translate3d(0px, -10px, 20px);
   transform: translate3d(0px, -10px, 20px);
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.1);
-  -webkit-transform: scale(1.008);
-  -moz-transform: scale(1.008);
-  -ms-transform: scale(1.008);
-  -o-transform: scale(1.008);
-  transform: scale(1.008);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
   background: rgba(255,255,255,0.8);
 }
 .posts-expand .post-title-link::before {

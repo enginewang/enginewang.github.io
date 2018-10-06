@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-03T04:23:13.097Z</updated>
+  <updated>2018-10-06T06:27:59.638Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Xpath and CSS selector</title>
+    <link href="http://yoursite.com/2018/10/06/Xpath-and-CSS-selector/"/>
+    <id>http://yoursite.com/2018/10/06/Xpath-and-CSS-selector/</id>
+    <published>2018-10-06T06:19:21.000Z</published>
+    <updated>2018-10-06T06:27:59.638Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Xpath-Selector"><a href="#Xpath-Selector" class="headerlink" title="Xpath Selector"></a>Xpath Selector</h4><p><br></p><table><thead><tr><th style="text-align:center">Expression</th><th>Description</th></tr></thead><tbody><tr><td style="text-align:center">nodename</td><td>select  nodes with the name</td></tr><tr><td style="text-align:center">.</td><td>select the current node</td></tr><tr><td style="text-align:center">..</td><td>select the parant of current node</td></tr><tr><td style="text-align:center">/</td><td>select from root node</td></tr><tr><td style="text-align:center">//</td><td>select from this node no matter where they are</td></tr><tr><td style="text-align:center">@</td><td>select attributes</td></tr><tr><td style="text-align:center">*</td><td>match any elem node</td></tr><tr><td style="text-align:center">@*</td><td>match any attribute node</td></tr></tbody></table><p><br></p><table><thead><tr><th style="text-align:center">Node predicate</th><th style="text-align:center">Description</th></tr></thead><tbody><tr><td style="text-align:center">[num]</td><td style="text-align:center">-</td></tr><tr><td style="text-align:center">[last()]</td><td style="text-align:center">-</td></tr><tr><td style="text-align:center">[position()]</td><td style="text-align:center">-</td></tr><tr><td style="text-align:center">[@id=””]</td><td style="text-align:center">-</td></tr><tr><td style="text-align:center">[@class=””]</td><td style="text-align:center">-</td></tr></tbody></table><p><br></p><p><br></p><h4 id="CSS-Selector"><a href="#CSS-Selector" class="headerlink" title="CSS Selector"></a>CSS Selector</h4><p><br></p><table><thead><tr><th style="text-align:center">Selector</th><th style="text-align:center">Example</th><th style="text-align:center">Description</th></tr></thead><tbody><tr><td style="text-align:center">.class</td><td style="text-align:center">.nav</td><td style="text-align:center">select elems whose class is “nav”</td></tr><tr><td style="text-align:center">#id</td><td style="text-align:center">#fruit</td><td style="text-align:center">select elems whose id is “fruit”</td></tr><tr><td style="text-align:center">*</td><td style="text-align:center">*</td><td style="text-align:center">select all elems</td></tr><tr><td style="text-align:center">elem</td><td style="text-align:center">p</td><td style="text-align:center">select &lt;p> elems</td></tr><tr><td style="text-align:center">elem, elem</td><td style="text-align:center">div, p</td><td style="text-align:center">select &lt;div> elems and &lt;p> elems</td></tr><tr><td style="text-align:center">elem elem</td><td style="text-align:center">div p</td><td style="text-align:center">select &lt;p> elems inside &lt;div> elems</td></tr><tr><td style="text-align:center">elem&gt;elem</td><td style="text-align:center">div &gt; p</td><td style="text-align:center">select &lt;p> elems whose parent is &lt;div></td></tr><tr><td style="text-align:center">[attribute]</td><td style="text-align:center">[target]</td><td style="text-align:center">select elems with a target attrtbute</td></tr><tr><td style="text-align:center">[attr~=v]</td><td style="text-align:center">[title~=flower]</td><td style="text-align:center">whose title contains flower</td></tr><tr><td style="text-align:center">[attr^=v]</td><td style="text-align:center">a[href^=”https”]</td><td style="text-align:center">whose href begins with “https”</td></tr><tr><td style="text-align:center">[attr$=v]</td><td style="text-align:center">a[href$=”com”]</td><td style="text-align:center">whose href ends with “com”</td></tr><tr><td style="text-align:center">[attr*=v]</td><td style="text-align:center">a[href*=”engine”]</td><td style="text-align:center">whose href contains “engine”</td></tr></tbody></table><p><br></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="Tec" scheme="http://yoursite.com/categories/Tec/"/>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/tags/Web/"/>
+    
+      <category term="Crawler" scheme="http://yoursite.com/tags/Crawler/"/>
+    
+      <category term="Selector" scheme="http://yoursite.com/tags/Selector/"/>
+    
+  </entry>
   
   <entry>
     <title>How to build a simple django project</title>
