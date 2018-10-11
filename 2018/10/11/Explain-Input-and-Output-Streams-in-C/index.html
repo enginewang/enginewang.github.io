@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Python,numpy," />
+  <meta name="keywords" content="I/O,C++," />
 
 
 
@@ -88,18 +88,21 @@
 
 
 
-<meta name="description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
-<meta name="keywords" content="Python,numpy">
+<meta name="description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
+<meta name="keywords" content="I&#x2F;O,C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The basic operation of numpy">
-<meta property="og:url" content="http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/index.html">
+<meta property="og:title" content="Explain Input and Output Streams in C++">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/index.html">
 <meta property="og:site_name" content="Yicheng&#39;s Blog">
-<meta property="og:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
+<meta property="og:description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-03T04:24:28.158Z">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/ec7ae0b299a7c1f327fe8cd7893386f1.png">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/577d52c36207df0cd3b87168461ed3ec.png">
+<meta property="og:updated_time" content="2018-10-11T10:09:49.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The basic operation of numpy">
-<meta name="twitter:description" content="What is numpy?&amp;nbsp;&amp;nbsp;Here is the definition of numpy library in wikipedia:  NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a l">
+<meta name="twitter:title" content="Explain Input and Output Streams in C++">
+<meta name="twitter:description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
+<meta name="twitter:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/ec7ae0b299a7c1f327fe8cd7893386f1.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/"/>
 
 
 
 
 
-  <title>The basic operation of numpy | Yicheng's Blog</title>
+  <title>Explain Input and Output Streams in C++ | Yicheng's Blog</title>
   
 
 
@@ -298,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yi Cheng">
@@ -315,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">The basic operation of numpy</h1>
+          <h1 class="post-title" itemprop="name headline">Explain Input and Output Streams in C++</h1>
         
 
         <div class="post-meta">
@@ -327,8 +330,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T15:06:47+08:00">
-                2018-09-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-11T16:45:54+08:00">
+                2018-10-11
               </time>
             
 
@@ -387,40 +390,87 @@
       
 
       
-        <p>What is numpy?&nbsp;&nbsp;Here is the definition of numpy library in wikipedia:</p>
-<blockquote>
-<p>NumPy/ˈnʌmpaɪ/ is a library for Python, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays.</p>
-</blockquote>
-<p>In a word, numpy can make it more convenient for us to operate array and matrix in Python, with high efficiency.</p>
+        <p>After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++.</p>
+<p>These pictures shows the relationship between some Stream Classes.</p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2016/09/ec7ae0b299a7c1f327fe8cd7893386f1.png" alt=""></p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2016/09/577d52c36207df0cd3b87168461ed3ec.png" alt=""></p>
+<h2 id="Input-Stream"><a href="#Input-Stream" class="headerlink" title="Input Stream"></a>Input Stream</h2><h3 id="use-array-form-to-asist-input"><a href="#use-array-form-to-asist-input" class="headerlink" title="use array form to asist input"></a>use array form to asist input</h3><h4 id="Input-one-item"><a href="#Input-one-item" class="headerlink" title="Input one item"></a>Input one item</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i&#123;&#125;;</span><br><span class="line">  <span class="keyword">char</span> c&#123;&#125;;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; i;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">&#125;</span><br><span class="line">-----------</span><br><span class="line"><span class="comment">//only read first two items</span></span><br></pre></td></tr></table></figure>
+<h4 id="Input-specific-number-of-items"><a href="#Input-specific-number-of-items" class="headerlink" title="Input specific number of items"></a>Input specific number of items</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span> &lt;&lt; n;</span><br><span class="line">  <span class="keyword">int</span> ints[n]&#123;&#125;;</span><br><span class="line">  <span class="keyword">char</span> chars[n]&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; ints;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; chars;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
-<h3 id="Begin-to-use"><a href="#Begin-to-use" class="headerlink" title="Begin to use"></a>Begin to use</h3><p>Firstly, if you haven’t install this library please use <code>pip install numpy</code> to get it.</p>
-<p>Typing <code>numpy</code> for many times is a waste, so we usually <code>import numpy as np</code></p>
+<h3 id="get-and-getline-method"><a href="#get-and-getline-method" class="headerlink" title="get() and getline() method"></a><code>get()</code> and <code>getline()</code> method</h3><h4 id="None-parameter"><a href="#None-parameter" class="headerlink" title="None parameter"></a>None parameter</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> c;</span><br><span class="line"><span class="keyword">while</span>((c = <span class="built_in">cin</span>.get())!=EOF)</span><br><span class="line">    <span class="built_in">cout</span>.put(c);</span><br></pre></td></tr></table></figure>
+<h4 id="One-parameter"><a href="#One-parameter" class="headerlink" title="One parameter"></a>One parameter</h4><p><code>cin.get(c)</code> read a character from istream and assign it to c;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">cin</span>.get(c))&#123;</span><br><span class="line">  <span class="built_in">cout</span>.put(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Three-parameters"><a href="#Three-parameters" class="headerlink" title="Three parameters"></a>Three parameters</h4><p><code>cin.get(array_name, length, &#39;end_char&#39;)</code> (nums means will read n-1 chars)<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch[<span class="number">20</span>];</span><br><span class="line"><span class="built_in">cin</span>.get(ch, <span class="number">10</span>, <span class="string">'\n'</span>); \\the third param <span class="keyword">default</span> is <span class="string">'\n'</span> <span class="keyword">if</span> omitted</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ch;</span><br></pre></td></tr></table></figure></p>
+<p><strong>just remember:</strong> it will end <strong><code>if(reach the length||find the endchar)</code></strong></p>
 <p><br></p>
-<h3 id="Numpy-Array-amp-Matrix"><a href="#Numpy-Array-amp-Matrix" class="headerlink" title="Numpy Array &amp; Matrix"></a>Numpy Array &amp; Matrix</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create arrays</span></span><br><span class="line">arr1 = np.array([i <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])</span><br><span class="line">arr2 = np.zeros(shape=(row_size, col_size), dtype=int)</span><br><span class="line">arr3 = np.ones(shape=(row, col))</span><br><span class="line">arr4 = np.full(shape=(row, col), fill_value=v)</span><br><span class="line">arr5 = np.arange(head, end, step_length)</span><br><span class="line">arr6 = np.linspace(head, end, divide_numbers)</span><br><span class="line">arr7 = np.random.randint(head, end)  <span class="comment"># Right open interval</span></span><br><span class="line">np.random.seed()  <span class="comment"># set the seed, if seed is equal then random nums are the same</span></span><br><span class="line">np.random.random(size=(<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line">np.random.normal(mean_value, variance, size)  <span class="comment"># random distribution</span></span><br></pre></td></tr></table></figure>
-<h4 id="propeties"><a href="#propeties" class="headerlink" title="propeties"></a>propeties</h4><ul>
-<li>ndim</li>
-<li>shape</li>
-<li>size</li>
+<h4 id="getline-method"><a href="#getline-method" class="headerlink" title="getline() method"></a><code>getline()</code> method</h4><p><code>getline()</code> can read a line of input chars, similar to <code>get(ch, num, &#39;end_char&#39;)</code></p>
+<p>diffrence between <code>getline()</code> and <code>cin</code></p>
+<ul>
+<li><code>getline()</code> can read blank characters, but cin can’t, it will end reading when meeting blanks</li>
+<li><code>getlin()</code> can only read chars, while cin can read every types.</li>
 </ul>
-<p>you can use slide operation to visit elements in an array, such as <code>arr[:2,:4,2]</code></p>
-<h4 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reshape(row, col)</span><br></pre></td></tr></table></figure>
-<p>[annotation]: if one of the params is determined, another can be set as -1 (means auto distribute)</p>
-<h5 id="combination"><a href="#combination" class="headerlink" title="combination"></a>combination</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.concatenate([arr1, arr2], axis=0/1)</span><br><span class="line">np.vstack()  pile vertically</span><br><span class="line">np.hstack()  pile horizontally</span><br></pre></td></tr></table></figure>
-<h5 id="devide"><a href="#devide" class="headerlink" title="devide"></a>devide</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr1, arr2 = np.split(arr, [n], &lt;axis=1&gt;)</span><br><span class="line">split arr (position is n)</span><br><span class="line">np.vsplit()</span><br><span class="line">np.hsplit()</span><br></pre></td></tr></table></figure>
-<h4 id="Built-in-mathematical-operations"><a href="#Built-in-mathematical-operations" class="headerlink" title="Built-in mathematical operations"></a>Built-in mathematical operations</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">np.sin(arr)</span><br><span class="line">np.exp(arr)</span><br><span class="line">np.abs(arr)</span><br><span class="line">np.log&lt;num&gt;(arr) <span class="comment">#log(arr) means napierian logarithm</span></span><br><span class="line">np.exp(<span class="number">3</span>, arr) <span class="comment">#means e^x</span></span><br></pre></td></tr></table></figure>
-<p>Arithmatics are aimming at each elements in the array/matrix</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A*B: means every elements <span class="keyword">in</span> A multiply corresponding elements <span class="keyword">in</span> B</span><br><span class="line">A.dot(B)：means the normal multiplication <span class="keyword">for</span> matrics, A*B</span><br><span class="line">A.T： the transposition</span><br><span class="line">np.linalg.inv(arr)：inverse matrix of arr</span><br></pre></td></tr></table></figure>
-<h4 id="Aggregation-operation"><a href="#Aggregation-operation" class="headerlink" title="Aggregation operation"></a>Aggregation operation</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.sum(arr)</span><br><span class="line">np.max(arr)</span><br><span class="line">np.min(arr)</span><br><span class="line"><span class="comment"># also support for axis</span></span><br><span class="line">np.prod(arr): multiplication of all the elements</span><br><span class="line">np.mean(arr): mean value</span><br><span class="line">np.median(arr): median value</span><br><span class="line">np.precentile(arr, q=n): the value which position <span class="keyword">is</span> at n%</span><br><span class="line">np.var(): variance</span><br><span class="line">np.std(): standard diviation</span><br></pre></td></tr></table></figure>
-<h5 id="Index"><a href="#Index" class="headerlink" title="Index:"></a>Index:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.argmin(arr): return the index of the mininum</span><br><span class="line">np.argmax(arr):</span><br></pre></td></tr></table></figure>
-<h5 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.random.shuffle(arr)：make arr disordered</span><br><span class="line">np.sort(arr)：sort</span><br><span class="line">np.partion(arr, n): quicksort of arr</span><br></pre></td></tr></table></figure>
-<p>you can add <code>arg</code> tag before the method’s name (e.g. argpartition, argsort), in this way it will return the array/matrix consist of indexs nums</p>
-<p>It alse support <code>axis</code> param</p>
-<h5 id="fancy-indexing"><a href="#fancy-indexing" class="headerlink" title="fancy indexing:"></a>fancy indexing:</h5><p>using slice to select regular eles is enough, using fancy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ind = np.array([<span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">               [<span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">arr[ind]  <span class="comment"># return corresponding index</span></span><br><span class="line">row = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">col = np.array([<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">arr[row, col]  <span class="comment">#return values of (0, 3),(1, 4),(2, 5)</span></span><br></pre></td></tr></table></figure></p>
-<p>logic operations between arrays or matrices will return its bool type</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">np.sum(x &lt; <span class="number">3</span>)  <span class="comment"># x&lt;3 will return a bool matrix</span></span><br><span class="line"><span class="comment"># this states means returning the nums of elems who &lt; 3</span></span><br><span class="line">np.count_nonzero</span><br><span class="line"><span class="comment"># literal meaning</span></span><br><span class="line">np.any(logical operation)  <span class="comment"># return true if any one is true</span></span><br><span class="line">ny.all(logical operation)  <span class="comment"># retunr true only when all is true</span></span><br></pre></td></tr></table></figure>
-<h3 id="matplotlib-viusualization-tool"><a href="#matplotlib-viusualization-tool" class="headerlink" title="matplotlib (viusualization tool)"></a>matplotlib (viusualization tool)</h3><p><code>import matplotlib as mpl</code><br>always use its pyplot：<code>import matplotlib.pyplot as plt</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x, y, color=<span class="string">""</span>, linestyle=<span class="string">"--"</span>, label=<span class="string">""</span>)</span><br><span class="line">plt.xlim(min, max)</span><br><span class="line">plt.axis([xmin,xmax,ymin,ymax])</span><br><span class="line">plt.xlabel(<span class="string">"xxx"</span>)</span><br><span class="line">plt.legend()  <span class="comment"># add represantation</span></span><br><span class="line">plt.title(<span class="string">""</span>)</span><br><span class="line">plt.show  <span class="comment"># call at alst to show the pic</span></span><br></pre></td></tr></table></figure>
-<p>scatter diagram:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x, y, alpha=<span class="number">0.5</span>) <span class="comment">#alpha is the opaque degree</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h3 id="Other-methods"><a href="#Other-methods" class="headerlink" title="Other methods:"></a>Other methods:</h3><h4 id="eof"><a href="#eof" class="headerlink" title="eof()"></a><code>eof()</code></h4><p><code>eof</code> means end of file, we usually use it to judge the end.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// remove blanks from a string</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> c;</span><br><span class="line">  <span class="keyword">while</span> (!<span class="built_in">cin</span>.eof()) &#123;</span><br><span class="line">    <span class="keyword">if</span>((c=<span class="built_in">cin</span>.get())!=<span class="string">' '</span>)&#123;</span><br><span class="line">      <span class="built_in">cout</span>.put(c);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="peek-and-putback"><a href="#peek-and-putback" class="headerlink" title="peek() and putback()"></a><code>peek()</code> and <code>putback()</code></h4><p><code>peek()</code> will return the next char(only observe it, pointer will not move)</p>
+<p><code>putback()</code> will insert specific char to the pointer before the current char<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Read a char from the stream then put it back</span></span><br><span class="line"><span class="keyword">char</span> c;</span><br><span class="line">c = <span class="built_in">cin</span>.get();</span><br><span class="line"><span class="built_in">cin</span>.putback(c);</span><br></pre></td></tr></table></figure></p>
+<p>★ a comprehensive example:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"iostream"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">char</span> c[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> ch;</span><br><span class="line"><span class="built_in">cin</span>.getline(c, <span class="number">15</span>, <span class="string">'/'</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"first part is: "</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">ch = <span class="built_in">cin</span>.peek();  <span class="comment">//ch is 'c'</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ch&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cin</span>.putback(c[<span class="number">3</span>]);</span><br><span class="line"><span class="built_in">cin</span>.getline(c, <span class="number">15</span>, <span class="string">'/'</span>);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"second part is: "</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">----------------------------------</span><br><span class="line"><span class="comment">//Input: I like/coding and playing badminton</span></span><br><span class="line"><span class="comment">//Output: first part is: I like</span></span><br><span class="line"><span class="comment">//        99</span></span><br><span class="line"><span class="comment">//        second part is: icoding and pl</span></span><br><span class="line">----------------------------------</span><br><span class="line"><span class="comment">//Analyse: firstly, it read '/' and stop, c is 'I like', pointer is at '/', the we use</span></span><br><span class="line"><span class="comment">//         peek to observe the next char:c, and its ASCII code is 99, the c[3]('i') is</span></span><br><span class="line"><span class="comment">//         put after the pointer, so the second part is 'icoding and pl'</span></span><br></pre></td></tr></table></figure></p>
+<p><br></p>
+<h4 id="ignore"><a href="#ignore" class="headerlink" title="ignore()"></a><code>ignore()</code></h4><p>the function of <code>ignore()</code> is to skip some chars<br><code>cin.ignore(length, &#39;end_char&#39;)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RULE</span></span><br><span class="line"><span class="keyword">if</span> (reach length||see end_char)&#123;</span><br><span class="line">  end skipping</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>e.g.<br>if we add <code>cin.ignore(4, &#39;d&#39;);</code> before the second <code>getline()</code> in the previous example, the second part will be <code>&quot;ding and playi&quot;</code></p>
+<p><br></p>
+<h2 id="Output-Stream"><a href="#Output-Stream" class="headerlink" title="Output Stream"></a>Output Stream</h2><p>Ostream definite three objects for outputting:</p>
+<table>
+<thead>
+<tr>
+<th>cout</th>
+<th>cerr</th>
+<th>clog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>standard output stream</td>
+<td>standard error stream</td>
+<td>standard error stream</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h3 id="cerr"><a href="#cerr" class="headerlink" title="cerr"></a>cerr</h3><p>the information in cerr object can only display on the screen, it won’t affact the memory file.<br>cerr is always used to output error information quickly.</p>
+<h3 id="clog"><a href="#clog" class="headerlink" title="clog"></a>clog</h3><p>information in cerr won’t go through buffer, but clog information will be put in, when the buffer is full or meet endl, clog information will be displayed.</p>
+<h3 id="cout"><a href="#cout" class="headerlink" title="cout"></a>cout</h3><p>cout has some useful function to control the output formats:</p>
+<table>
+<thead>
+<tr>
+<th>functions</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setprecision(n)</td>
+<td>set precision of nums</td>
+</tr>
+<tr>
+<td>setw(n)</td>
+<td>set width</td>
+</tr>
+<tr>
+<td>setfill(c)</td>
+<td>set the filling char</td>
+</tr>
+<tr>
+<td>setioflags()</td>
+<td>set format</td>
+</tr>
+<tr>
+<td>resetioflags()</td>
+<td>reset format</td>
+</tr>
+</tbody>
+</table>
+<p>other functions will be talked about later.</p>
 
       
     </div>
@@ -438,9 +488,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+            <a href="/tags/I-O/" rel="tag"><i class="fa fa-tag"></i> I/O</a>
           
-            <a href="/tags/numpy/" rel="tag"><i class="fa fa-tag"></i> numpy</a>
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
           
         </div>
       
@@ -453,8 +503,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/22/Some-issues-and-their-solutions-about-coursera/" rel="next" title="Some issues and their solutions about coursera">
-                <i class="fa fa-chevron-left"></i> Some issues and their solutions about coursera
+              <a href="/2018/10/06/Xpath-and-CSS-selector/" rel="next" title="Xpath and CSS selector">
+                <i class="fa fa-chevron-left"></i> Xpath and CSS selector
               </a>
             
           </div>
@@ -462,10 +512,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/03/How-to-build-a-simple-django-project/" rel="prev" title="How to build a simple django project">
-                How to build a simple django project <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -636,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Begin-to-use"><span class="nav-number">1.</span> <span class="nav-text">Begin to use</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Numpy-Array-amp-Matrix"><span class="nav-number">2.</span> <span class="nav-text">Numpy Array &amp; Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#propeties"><span class="nav-number">2.1.</span> <span class="nav-text">propeties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#functions"><span class="nav-number">2.2.</span> <span class="nav-text">functions</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#combination"><span class="nav-number">2.2.1.</span> <span class="nav-text">combination</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#devide"><span class="nav-number">2.2.2.</span> <span class="nav-text">devide</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Built-in-mathematical-operations"><span class="nav-number">2.3.</span> <span class="nav-text">Built-in mathematical operations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Aggregation-operation"><span class="nav-number">2.4.</span> <span class="nav-text">Aggregation operation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index"><span class="nav-number">2.4.1.</span> <span class="nav-text">Index:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sort"><span class="nav-number">2.4.2.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fancy-indexing"><span class="nav-number">2.4.3.</span> <span class="nav-text">fancy indexing:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matplotlib-viusualization-tool"><span class="nav-number">3.</span> <span class="nav-text">matplotlib (viusualization tool)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Stream"><span class="nav-number">1.</span> <span class="nav-text">Input Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#use-array-form-to-asist-input"><span class="nav-number">1.1.</span> <span class="nav-text">use array form to asist input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-one-item"><span class="nav-number">1.1.1.</span> <span class="nav-text">Input one item</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-specific-number-of-items"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input specific number of items</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-and-getline-method"><span class="nav-number">1.2.</span> <span class="nav-text">get() and getline() method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#None-parameter"><span class="nav-number">1.2.1.</span> <span class="nav-text">None parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-parameter"><span class="nav-number">1.2.2.</span> <span class="nav-text">One parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Three-parameters"><span class="nav-number">1.2.3.</span> <span class="nav-text">Three parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getline-method"><span class="nav-number">1.2.4.</span> <span class="nav-text">getline() method</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods"><span class="nav-number">1.3.</span> <span class="nav-text">Other methods:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eof"><span class="nav-number">1.3.1.</span> <span class="nav-text">eof()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peek-and-putback"><span class="nav-number">1.3.2.</span> <span class="nav-text">peek() and putback()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ignore"><span class="nav-number">1.3.3.</span> <span class="nav-text">ignore()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output-Stream"><span class="nav-number">2.</span> <span class="nav-text">Output Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cerr"><span class="nav-number">2.1.</span> <span class="nav-text">cerr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clog"><span class="nav-number">2.2.</span> <span class="nav-text">clog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cout"><span class="nav-number">2.3.</span> <span class="nav-text">cout</span></a></li></ol></li></ol></div>
             
 
           </div>
