@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="I/O,C++," />
+  <meta name="keywords" content="C++,I/O," />
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
-<meta name="keywords" content="I&#x2F;O,C++">
+<meta name="keywords" content="C++,I&#x2F;O">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Explain Input and Output Streams in C++">
 <meta property="og:url" content="http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/index.html">
@@ -98,7 +98,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/ec7ae0b299a7c1f327fe8cd7893386f1.png">
 <meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/577d52c36207df0cd3b87168461ed3ec.png">
-<meta property="og:updated_time" content="2018-10-11T10:09:49.110Z">
+<meta property="og:updated_time" content="2018-10-11T10:45:32.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explain Input and Output Streams in C++">
 <meta name="twitter:description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
@@ -419,7 +419,7 @@
 <h4 id="ignore"><a href="#ignore" class="headerlink" title="ignore()"></a><code>ignore()</code></h4><p>the function of <code>ignore()</code> is to skip some chars<br><code>cin.ignore(length, &#39;end_char&#39;)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RULE</span></span><br><span class="line"><span class="keyword">if</span> (reach length||see end_char)&#123;</span><br><span class="line">  end skipping</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>e.g.<br>if we add <code>cin.ignore(4, &#39;d&#39;);</code> before the second <code>getline()</code> in the previous example, the second part will be <code>&quot;ding and playi&quot;</code></p>
 <p><br></p>
-<h2 id="Output-Stream"><a href="#Output-Stream" class="headerlink" title="Output Stream"></a>Output Stream</h2><p>Ostream definite three objects for outputting:</p>
+<h2 id="Output-Stream"><a href="#Output-Stream" class="headerlink" title="Output Stream"></a>Output Stream</h2><p>Ostream define three objects for outputting:</p>
 <table>
 <thead>
 <tr>
@@ -488,9 +488,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/I-O/" rel="tag"><i class="fa fa-tag"></i> I/O</a>
-          
             <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/I-O/" rel="tag"><i class="fa fa-tag"></i> I/O</a>
           
         </div>
       
@@ -512,6 +512,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/11/Aditional-notes-about-operator-overloading/" rel="prev" title="Aditional notes about operator overloading">
+                Aditional notes about operator overloading <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -594,7 +598,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -605,7 +609,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -616,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

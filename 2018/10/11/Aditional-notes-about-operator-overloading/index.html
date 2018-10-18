@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -88,13 +88,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yicheng&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/numpy/index.html">
+<meta name="description" content="It is the additional notes about operator overloading in C++, I will skip the basic operate, just list some tips that should draw attention. Overloading I/O operatorsThe purpose is to make it easier l">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aditional notes about operator overloading">
+<meta property="og:url" content="http://yoursite.com/2018/10/11/Aditional-notes-about-operator-overloading/index.html">
 <meta property="og:site_name" content="Yicheng&#39;s Blog">
+<meta property="og:description" content="It is the additional notes about operator overloading in C++, I will skip the basic operate, just list some tips that should draw attention. Overloading I/O operatorsThe purpose is to make it easier l">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-11T14:22:42.017Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yicheng&#39;s Blog">
+<meta name="twitter:title" content="Aditional notes about operator overloading">
+<meta name="twitter:description" content="It is the additional notes about operator overloading in C++, I will skip the basic operate, just list some tips that should draw attention. Overloading I/O operatorsThe purpose is to make it easier l">
 
 
 
@@ -124,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/numpy/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/11/Aditional-notes-about-operator-overloading/"/>
 
 
 
 
 
-  <title>Tag: numpy | Yicheng's Blog</title>
+  <title>Aditional notes about operator overloading | Yicheng's Blog</title>
   
 
 
@@ -151,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,54 +284,186 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>numpy<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/Aditional-notes-about-operator-overloading/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yi Cheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yicheng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/30/The-basic-operation-of-numpy/" itemprop="url">
-              
-                <span itemprop="name">The basic operation of numpy</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Aditional notes about operator overloading</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-30T15:06:47+08:00"
-              content="2018-09-30" >
-          09-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-11T18:33:36+08:00">
+                2018-10-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index">
+                    <span itemprop="name">Tech</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>It is the additional notes about operator overloading in C++, I will skip the basic operate, just list some tips that should draw attention.</p>
+<h4 id="Overloading-I-O-operators"><a href="#Overloading-I-O-operators" class="headerlink" title="Overloading I/O operators"></a>Overloading I/O operators</h4><p>The purpose is to make it easier like basic data types when we input/output the objects from our own classes.</p>
+<p><strong>Noticed that definition is declaration minus ‘friend’, don’t  use <code>&lt;className&gt;::</code></strong></p>
+<h5 id="Overloading-gt-gt"><a href="#Overloading-gt-gt" class="headerlink" title="Overloading &gt;&gt;"></a>Overloading <code>&gt;&gt;</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//e.g. we define a class named complex</span></span><br><span class="line"><span class="keyword">friend</span> istream &amp;<span class="keyword">operator</span>&gt;&gt;(istream &amp;in, <span class="keyword">complex</span> &amp;N);  <span class="comment">//declaration</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">istream &amp;<span class="keyword">operator</span>&gt;&gt;(istream &amp;in, <span class="keyword">complex</span> &amp;N)&#123;  <span class="comment">//definition</span></span><br><span class="line">    in&gt;&gt;N.first&gt;&gt;N.second;</span><br><span class="line">    <span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Overloading-lt-lt"><a href="#Overloading-lt-lt" class="headerlink" title="Overloading &lt;&lt;"></a>Overloading <code>&lt;&lt;</code></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">istream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;out, <span class="keyword">complex</span> &amp;N)&#123;</span><br><span class="line">    out&lt;&lt;N.first&lt;&lt;N.second;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="Overloading-subscript-operator"><a href="#Overloading-subscript-operator" class="headerlink" title="Overloading subscript operator"></a>Overloading subscript operator</h4><p>To overloading <code>[]</code>, it’s better to define two formats:<br><code>&lt;type&gt; &amp;operator[](...);</code> and <code>const &lt;type&gt; &amp;operator[](...) const;</code></p>
+<p>the second one can help us to suit the const objects.</p>
+<p>e.g.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; Array::<span class="keyword">operator</span>[](<span class="keyword">int</span> i) <span class="keyword">const</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> elem[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="Overloading-auto-increasing-and-auto-decreasing"><a href="#Overloading-auto-increasing-and-auto-decreasing" class="headerlink" title="Overloading auto-increasing and auto-decreasing"></a>Overloading auto-increasing and auto-decreasing</h4><p>Overloading <code>++</code> and <code>--</code> is not complex, but you should pay attention to this tip:</p>
+<p>It has two positions: pre and post, the specific method is diffrent, as well as the definition.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// e.g. we define a class named Watch</span></span><br><span class="line">Watch <span class="keyword">operator</span>++();  <span class="comment">//pre form</span></span><br><span class="line">Watch <span class="keyword">operator</span>++(<span class="keyword">int</span>);  <span class="comment">//post form</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Watch Watch::self_add()&#123;</span><br><span class="line">    ++second;</span><br><span class="line">    <span class="keyword">return</span> \*<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Watch &amp; Watch::<span class="keyword">operator</span>++()&#123;</span><br><span class="line">    <span class="keyword">return</span> self_add();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Watch &amp; Watch::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;</span><br><span class="line">    Watch pre = \*<span class="keyword">this</span>;</span><br><span class="line">    self_add();</span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/11/Explain-Input-and-Output-Streams-in-C/" rel="next" title="Explain Input and Output Streams in C++">
+                <i class="fa fa-chevron-left"></i> Explain Input and Output Streams in C++
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/16/Disable-Double-Shift-keymap-for-everything-search-in-Jetbrains-IDE/" rel="prev" title="Disable Double-Shift keymap for everything search in Jetbrains' IDE">
+                Disable Double-Shift keymap for everything search in Jetbrains' IDE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -334,6 +471,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -356,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -454,6 +604,22 @@
 
 
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Overloading-I-O-operators"><span class="nav-number">1.</span> <span class="nav-text">Overloading I/O operators</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Overloading-gt-gt"><span class="nav-number">1.1.</span> <span class="nav-text">Overloading &gt;&gt;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Overloading-lt-lt"><span class="nav-number">1.2.</span> <span class="nav-text">Overloading &lt;&lt;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overloading-subscript-operator"><span class="nav-number">2.</span> <span class="nav-text">Overloading subscript operator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overloading-auto-increasing-and-auto-decreasing"><span class="nav-number">3.</span> <span class="nav-text">Overloading auto-increasing and auto-decreasing</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -575,6 +741,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
