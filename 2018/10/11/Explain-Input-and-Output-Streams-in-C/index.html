@@ -98,7 +98,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/ec7ae0b299a7c1f327fe8cd7893386f1.png">
 <meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2016/09/577d52c36207df0cd3b87168461ed3ec.png">
-<meta property="og:updated_time" content="2018-10-11T10:45:32.108Z">
+<meta property="og:updated_time" content="2018-10-22T11:18:40.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Explain Input and Output Streams in C++">
 <meta name="twitter:description" content="After learning the basic C++ grammar, I still confuse on some input operations, so I tried to write this note, talking about some specific things about istream and ostream in C++. These pictures shows">
@@ -419,20 +419,27 @@
 <h4 id="ignore"><a href="#ignore" class="headerlink" title="ignore()"></a><code>ignore()</code></h4><p>the function of <code>ignore()</code> is to skip some chars<br><code>cin.ignore(length, &#39;end_char&#39;)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RULE</span></span><br><span class="line"><span class="keyword">if</span> (reach length||see end_char)&#123;</span><br><span class="line">  end skipping</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>e.g.<br>if we add <code>cin.ignore(4, &#39;d&#39;);</code> before the second <code>getline()</code> in the previous example, the second part will be <code>&quot;ding and playi&quot;</code></p>
 <p><br></p>
+<h3 id="String-stream"><a href="#String-stream" class="headerlink" title="String stream"></a>String stream</h3><p><code>stringstream</code> is such a useful method, aimming at strings.<br>You should <code>include &lt;sstream&gt;</code> before using it.</p>
+<h4 id="convert-data-type"><a href="#convert-data-type" class="headerlink" title="convert data type"></a>convert data type</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// convert int to string</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line"><span class="built_in">stringstream</span> ss;</span><br><span class="line">ss &lt;&lt; a;</span><br><span class="line">ss &gt;&gt; str;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// convert string to int</span></span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"100"</span>;</span><br><span class="line"><span class="built_in">stringstream</span> ss;</span><br><span class="line">ss &lt;&lt; str;</span><br><span class="line">ss &gt;&gt; a;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// convert sentence to words(very useful)</span></span><br><span class="line"><span class="built_in">string</span> str = <span class="string">"I like C++"</span>;</span><br><span class="line"><span class="built_in">string</span> word;</span><br><span class="line"><span class="built_in">stringstream</span> ss;</span><br><span class="line">ss &lt;&lt; str;</span><br><span class="line"><span class="keyword">while</span>(ss &gt;&gt; word)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; word;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// convert words to sentence</span></span><br><span class="line"><span class="built_in">stringstream</span> ss;</span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line">ss &lt;&lt; <span class="string">"how"</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="string">"are"</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; <span class="string">"you"</span> &lt;&lt; <span class="string">"?"</span>;</span><br><span class="line">str = ss.str();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str;</span><br></pre></td></tr></table></figure>
+<p><br><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Q:</span></span><br><span class="line">Input:</span><br><span class="line"><span class="number">3</span> <span class="comment">// numbers of lines</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">20</span> <span class="number">17</span> <span class="number">23</span> <span class="number">54</span> <span class="number">77</span> <span class="number">60</span></span><br><span class="line"><span class="number">111</span> <span class="number">222</span> <span class="number">333</span> <span class="number">444</span> <span class="number">555</span> <span class="number">666</span> <span class="number">777</span> <span class="number">888</span> <span class="number">999</span></span><br><span class="line"></span><br><span class="line">Output: <span class="comment">//the sum of each lines</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">251</span></span><br><span class="line"><span class="number">4995</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Answer</span></span><br><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="built_in">stringstream</span> ss;</span><br><span class="line"><span class="keyword">int</span> n, i, sum, a;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">getline(<span class="built_in">cin</span>, s); <span class="comment">// read the line-break</span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    getline(<span class="built_in">cin</span>, s);</span><br><span class="line">    ss.clear();</span><br><span class="line">    ss.str(s);</span><br><span class="line">    sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ss &gt;&gt; a;</span><br><span class="line">        <span class="keyword">if</span> ( ss.fail() ) <span class="keyword">break</span>;</span><br><span class="line">        sum+=a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Output-Stream"><a href="#Output-Stream" class="headerlink" title="Output Stream"></a>Output Stream</h2><p>Ostream define three objects for outputting:</p>
 <table>
 <thead>
 <tr>
-<th>cout</th>
-<th>cerr</th>
-<th>clog</th>
+<th style="text-align:center">cout</th>
+<th style="text-align:center">cerr</th>
+<th style="text-align:center">clog</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>standard output stream</td>
-<td>standard error stream</td>
-<td>standard error stream</td>
+<td style="text-align:center">standard output stream</td>
+<td style="text-align:center">standard error stream</td>
+<td style="text-align:center">standard error stream</td>
 </tr>
 </tbody>
 </table>
@@ -443,30 +450,30 @@
 <table>
 <thead>
 <tr>
-<th>functions</th>
-<th>description</th>
+<th style="text-align:center">functions</th>
+<th style="text-align:center">description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>setprecision(n)</td>
-<td>set precision of nums</td>
+<td style="text-align:center">setprecision(n)</td>
+<td style="text-align:center">set precision of nums</td>
 </tr>
 <tr>
-<td>setw(n)</td>
-<td>set width</td>
+<td style="text-align:center">setw(n)</td>
+<td style="text-align:center">set width</td>
 </tr>
 <tr>
-<td>setfill(c)</td>
-<td>set the filling char</td>
+<td style="text-align:center">setfill(c)</td>
+<td style="text-align:center">set the filling char</td>
 </tr>
 <tr>
-<td>setioflags()</td>
-<td>set format</td>
+<td style="text-align:center">setioflags()</td>
+<td style="text-align:center">set format</td>
 </tr>
 <tr>
-<td>resetioflags()</td>
-<td>reset format</td>
+<td style="text-align:center">resetioflags()</td>
+<td style="text-align:center">reset format</td>
 </tr>
 </tbody>
 </table>
@@ -686,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Stream"><span class="nav-number">1.</span> <span class="nav-text">Input Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#use-array-form-to-asist-input"><span class="nav-number">1.1.</span> <span class="nav-text">use array form to asist input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-one-item"><span class="nav-number">1.1.1.</span> <span class="nav-text">Input one item</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-specific-number-of-items"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input specific number of items</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-and-getline-method"><span class="nav-number">1.2.</span> <span class="nav-text">get() and getline() method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#None-parameter"><span class="nav-number">1.2.1.</span> <span class="nav-text">None parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-parameter"><span class="nav-number">1.2.2.</span> <span class="nav-text">One parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Three-parameters"><span class="nav-number">1.2.3.</span> <span class="nav-text">Three parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getline-method"><span class="nav-number">1.2.4.</span> <span class="nav-text">getline() method</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods"><span class="nav-number">1.3.</span> <span class="nav-text">Other methods:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eof"><span class="nav-number">1.3.1.</span> <span class="nav-text">eof()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peek-and-putback"><span class="nav-number">1.3.2.</span> <span class="nav-text">peek() and putback()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ignore"><span class="nav-number">1.3.3.</span> <span class="nav-text">ignore()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output-Stream"><span class="nav-number">2.</span> <span class="nav-text">Output Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cerr"><span class="nav-number">2.1.</span> <span class="nav-text">cerr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clog"><span class="nav-number">2.2.</span> <span class="nav-text">clog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cout"><span class="nav-number">2.3.</span> <span class="nav-text">cout</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Stream"><span class="nav-number">1.</span> <span class="nav-text">Input Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#use-array-form-to-asist-input"><span class="nav-number">1.1.</span> <span class="nav-text">use array form to asist input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-one-item"><span class="nav-number">1.1.1.</span> <span class="nav-text">Input one item</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-specific-number-of-items"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input specific number of items</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-and-getline-method"><span class="nav-number">1.2.</span> <span class="nav-text">get() and getline() method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#None-parameter"><span class="nav-number">1.2.1.</span> <span class="nav-text">None parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#One-parameter"><span class="nav-number">1.2.2.</span> <span class="nav-text">One parameter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Three-parameters"><span class="nav-number">1.2.3.</span> <span class="nav-text">Three parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getline-method"><span class="nav-number">1.2.4.</span> <span class="nav-text">getline() method</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-methods"><span class="nav-number">1.3.</span> <span class="nav-text">Other methods:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#eof"><span class="nav-number">1.3.1.</span> <span class="nav-text">eof()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#peek-and-putback"><span class="nav-number">1.3.2.</span> <span class="nav-text">peek() and putback()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ignore"><span class="nav-number">1.3.3.</span> <span class="nav-text">ignore()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-stream"><span class="nav-number">1.4.</span> <span class="nav-text">String stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#convert-data-type"><span class="nav-number">1.4.1.</span> <span class="nav-text">convert data type</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Output-Stream"><span class="nav-number">2.</span> <span class="nav-text">Output Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cerr"><span class="nav-number">2.1.</span> <span class="nav-text">cerr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clog"><span class="nav-number">2.2.</span> <span class="nav-text">clog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cout"><span class="nav-number">2.3.</span> <span class="nav-text">cout</span></a></li></ol></li></ol></div>
             
 
           </div>
