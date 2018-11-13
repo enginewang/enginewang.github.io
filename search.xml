@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[回归Github Page]]></title>
     <url>%2F2018%2F11%2F13%2F%E5%9B%9E%E5%BD%92Github-Page%2F</url>
-    <content type="text"><![CDATA[前段时间都在倒腾Django框架和Linux服务器部署，希望能搭建真正意义上的动态网页，从Github Page上转过去，奈何代码写的差不多了，却碰到一些莫名其妙的备案问题：身份证地址也不在老家，户口又是学校临时户口，备案信息又是要临时居住证又是各种拍照还有随时审查，我真的是受不了（早知道就买去国外的服务器了） 所以动态网站打算干脆之后有了工作再弄，还是回归了Github Page这个静态且免费的博客托管平台（Github真的良心） 在阿里云花了九十买了wangyicheng.site这个域名的三年使用权，将它解析到了这个Github Page上，直接访问 https://wangyicheng.site 这个url就可以进入这里了。 新加了一个基于Gitment的评论服务，虽然只能用Github登录，但相比于其他的第三方评论，Gitment看起来比较舒服。这段时间比较忙，之后会继续加一点东西进来的。 这两周的内容预计以Scrapy爬虫框架、C语言和数据结构为主，敬请期待。]]></content>
+    <content type="text"><![CDATA[前段时间都在倒腾Django框架和Linux服务器部署，希望能搭建真正意义上的动态网页，从Github Page上转过去，奈何代码写的差不多了，却碰到一些莫名其妙的备案问题：身份证地址也不在老家，户口又是学校临时户口，备案信息又是要临时居住证又是各种拍照还有随时审查，我真的是受不了（早知道就买去国外的服务器了） 所以动态网站打算干脆之后有了工作再弄，还是回归了Github Page这个静态且免费的博客托管平台（Github真的良心） 在阿里云花了九十买了wangyicheng.site这个域名的三年使用权，将它解析到了这个Github Page上，直接访问 https://wangyicheng.site 这个url就可以进入这里了。 背景加了个canvas，只能说Hexo Next主题tql什么都有，还新增了一个基于Valine的评论服务，很喜欢这种简洁的风格。这段时间比较忙，之后会继续加一点东西进来的。 这两周的内容预计以Scrapy爬虫框架、C语言和C++实现的数据结构为主，敬请期待。]]></content>
       <categories>
         <category>Notice</category>
       </categories>
