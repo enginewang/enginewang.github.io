@@ -1814,7 +1814,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #142f2e;
+  background: #c68838;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2225,6 +2225,19 @@ pre .javascript .function {
 .theme-next .this_ua.browser.QQBrowser {
   background-color: #78ace9 !important;
   border-color: #4cae4c !important;
+}
+#gitment-display-button {
+  display: inline-block;
+  padding: 0 15px;
+  color: #0a9caf;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #0a9caf;
+  border-radius: 4px;
+}
+#gitment-display-button:hover {
+  color: #fff;
+  background: #0a9caf;
 }
 .post-spread {
   margin-top: 20px;
@@ -2940,15 +2953,23 @@ body {
 .article {
   width: 1400px;
 }
+#header {
+  position: fixed;
+  left: 0%;
+  top: 0px;
+  width: 1600px;
+  z-index: 50;
+}
 .menu {
   margin: 16px 0 0 0;
 }
 .header {
   background: #fafafa;
   box-shadow: 0px 2px 10px 0 rgba(0,0,0,0.1);
+  height: 12%;
 }
 .header {
-  transition: all 1200ms;
+  transition: all 2000ms;
 }
 .header:hover {
   -webkit-transform: translate3d(0px, -10px, 20px);
@@ -2963,6 +2984,9 @@ body {
   -o-transform: scale(1.002);
   transform: scale(1.002);
   background: rgba(255,255,255,0.8);
+}
+.header-inner {
+  padding: 15px 0 40px;
 }
 .post {
   border-radius: 10px;
@@ -3025,4 +3049,22 @@ body {
 }
 .posts-expand .post-title-link .fa {
   font-size: 16px;
+}
+#content-wrap {
+  padding-top: 300px;
+}
+#content {
+  padding-top: 100px;
+}
+.post {
+  z-index: 5;
+}
+.posts-collapse {
+  z-index: 40;
+}
+#sidebar {
+  z-index: 60;
+}
+.header-inner {
+  padding-right: 120px;
 }
