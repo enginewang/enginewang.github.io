@@ -347,7 +347,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/09/22/Some-issues-and-their-solutions-about-coursera/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/22/Some-issues-and-their-solutions-about-coursera/" itemprop="commentCount"></span>
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/09/22/Some-issues-and-their-solutions-about-coursera/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -458,7 +458,11 @@
 
   
     <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
     </div>
+
   
 
 
@@ -775,6 +779,43 @@
 
 
 
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'enginewang',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '77fa78acf50ac2c1d9a783c27c43158b4e56db80',
+            
+                client_id: '845cd4ba3cd23818249d'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
 
 
 
@@ -794,7 +835,7 @@
         appId: '9yEN5bmMWvQ28mhffkujVr6G-gzGzoHsz',
         appKey: '6eg4oGIz0Ha4lvOROlysk9lz',
         placeholder: '(。・ω・) 说点什么呢',
-        avatar:'mm',
+        avatar:'identicon',
         guest_info:guest,
         pageSize:'10' || 10,
     });
