@@ -5,21 +5,16 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://wangyicheng.site/"/>
   <updated>2018-10-16T07:08:53.924Z</updated>
-  <id>http://yoursite.com/</id>
-  
-  <author>
-    <name>Yi Cheng</name>
-    
-  </author>
+  <id>http://wangyicheng.site/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>Disable Double-Shift keymap for everything search in Jetbrains&#39; IDE</title>
-    <link href="http://yoursite.com/2018/10/16/Disable-Double-Shift-keymap-for-everything-search-in-Jetbrains-IDE/"/>
-    <id>http://yoursite.com/2018/10/16/Disable-Double-Shift-keymap-for-everything-search-in-Jetbrains-IDE/</id>
+    <link href="http://wangyicheng.site/2018/10/16/Disable-Double-Shift-keymap-for-everything-search-in-Jetbrains-IDE/"/>
+    <id>http://wangyicheng.site/2018/10/16/Disable-Double-Shift-keymap-for-everything-search-in-Jetbrains-IDE/</id>
     <published>2018-10-16T06:51:28.000Z</published>
     <updated>2018-10-16T07:08:53.924Z</updated>
     
@@ -34,21 +29,21 @@
     
     </summary>
     
-      <category term="tips" scheme="http://yoursite.com/categories/tips/"/>
+      <category term="tips" scheme="http://wangyicheng.site/categories/tips/"/>
     
     
-      <category term="tips" scheme="http://yoursite.com/tags/tips/"/>
+      <category term="tips" scheme="http://wangyicheng.site/tags/tips/"/>
     
-      <category term="keymap" scheme="http://yoursite.com/tags/keymap/"/>
+      <category term="keymap" scheme="http://wangyicheng.site/tags/keymap/"/>
     
-      <category term="Jetbrains" scheme="http://yoursite.com/tags/Jetbrains/"/>
+      <category term="Jetbrains" scheme="http://wangyicheng.site/tags/Jetbrains/"/>
     
   </entry>
   
   <entry>
     <title>Aditional notes about operator overloading</title>
-    <link href="http://yoursite.com/2018/10/11/Aditional-notes-about-operator-overloading/"/>
-    <id>http://yoursite.com/2018/10/11/Aditional-notes-about-operator-overloading/</id>
+    <link href="http://wangyicheng.site/2018/10/11/Aditional-notes-about-operator-overloading/"/>
+    <id>http://wangyicheng.site/2018/10/11/Aditional-notes-about-operator-overloading/</id>
     <published>2018-10-11T10:33:36.000Z</published>
     <updated>2018-10-11T14:22:42.017Z</updated>
     
@@ -63,17 +58,17 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+      <category term="C++" scheme="http://wangyicheng.site/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Explain Input and Output Streams in C++</title>
-    <link href="http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/"/>
-    <id>http://yoursite.com/2018/10/11/Explain-Input-and-Output-Streams-in-C/</id>
+    <link href="http://wangyicheng.site/2018/10/11/Explain-Input-and-Output-Streams-in-C/"/>
+    <id>http://wangyicheng.site/2018/10/11/Explain-Input-and-Output-Streams-in-C/</id>
     <published>2018-10-11T08:45:54.000Z</published>
     <updated>2018-10-22T11:18:40.072Z</updated>
     
@@ -88,19 +83,19 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+      <category term="C++" scheme="http://wangyicheng.site/tags/C/"/>
     
-      <category term="I/O" scheme="http://yoursite.com/tags/I-O/"/>
+      <category term="I/O" scheme="http://wangyicheng.site/tags/I-O/"/>
     
   </entry>
   
   <entry>
     <title>Xpath and CSS selector</title>
-    <link href="http://yoursite.com/2018/10/06/Xpath-and-CSS-selector/"/>
-    <id>http://yoursite.com/2018/10/06/Xpath-and-CSS-selector/</id>
+    <link href="http://wangyicheng.site/2018/10/06/Xpath-and-CSS-selector/"/>
+    <id>http://wangyicheng.site/2018/10/06/Xpath-and-CSS-selector/</id>
     <published>2018-10-06T06:19:21.000Z</published>
     <updated>2018-10-06T07:19:36.566Z</updated>
     
@@ -115,21 +110,21 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="Web" scheme="http://yoursite.com/tags/Web/"/>
+      <category term="Web" scheme="http://wangyicheng.site/tags/Web/"/>
     
-      <category term="Crawler" scheme="http://yoursite.com/tags/Crawler/"/>
+      <category term="Crawler" scheme="http://wangyicheng.site/tags/Crawler/"/>
     
-      <category term="Selector" scheme="http://yoursite.com/tags/Selector/"/>
+      <category term="Selector" scheme="http://wangyicheng.site/tags/Selector/"/>
     
   </entry>
   
   <entry>
     <title>How to build a simple django project</title>
-    <link href="http://yoursite.com/2018/10/03/How-to-build-a-simple-django-project/"/>
-    <id>http://yoursite.com/2018/10/03/How-to-build-a-simple-django-project/</id>
+    <link href="http://wangyicheng.site/2018/10/03/How-to-build-a-simple-django-project/"/>
+    <id>http://wangyicheng.site/2018/10/03/How-to-build-a-simple-django-project/</id>
     <published>2018-10-03T03:55:54.000Z</published>
     <updated>2018-10-06T06:35:42.603Z</updated>
     
@@ -144,21 +139,21 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="http://wangyicheng.site/tags/Python/"/>
     
-      <category term="Web" scheme="http://yoursite.com/tags/Web/"/>
+      <category term="Web" scheme="http://wangyicheng.site/tags/Web/"/>
     
-      <category term="Django" scheme="http://yoursite.com/tags/Django/"/>
+      <category term="Django" scheme="http://wangyicheng.site/tags/Django/"/>
     
   </entry>
   
   <entry>
     <title>The basic operation of numpy</title>
-    <link href="http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/"/>
-    <id>http://yoursite.com/2018/09/30/The-basic-operation-of-numpy/</id>
+    <link href="http://wangyicheng.site/2018/09/30/The-basic-operation-of-numpy/"/>
+    <id>http://wangyicheng.site/2018/09/30/The-basic-operation-of-numpy/</id>
     <published>2018-09-30T07:06:47.000Z</published>
     <updated>2018-10-03T04:24:28.158Z</updated>
     
@@ -173,19 +168,19 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="numpy" scheme="http://yoursite.com/tags/numpy/"/>
+      <category term="numpy" scheme="http://wangyicheng.site/tags/numpy/"/>
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="http://wangyicheng.site/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Some issues and their solutions about coursera</title>
-    <link href="http://yoursite.com/2018/09/22/Some-issues-and-their-solutions-about-coursera/"/>
-    <id>http://yoursite.com/2018/09/22/Some-issues-and-their-solutions-about-coursera/</id>
+    <link href="http://wangyicheng.site/2018/09/22/Some-issues-and-their-solutions-about-coursera/"/>
+    <id>http://wangyicheng.site/2018/09/22/Some-issues-and-their-solutions-about-coursera/</id>
     <published>2018-09-22T00:38:40.000Z</published>
     <updated>2018-10-03T04:25:00.966Z</updated>
     
@@ -200,17 +195,17 @@
     
     </summary>
     
-      <category term="Jotting" scheme="http://yoursite.com/categories/Jotting/"/>
+      <category term="Jotting" scheme="http://wangyicheng.site/categories/Jotting/"/>
     
     
-      <category term="coursera" scheme="http://yoursite.com/tags/coursera/"/>
+      <category term="coursera" scheme="http://wangyicheng.site/tags/coursera/"/>
     
   </entry>
   
   <entry>
     <title>Use Atom as an elegant Markdown editor</title>
-    <link href="http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/"/>
-    <id>http://yoursite.com/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/</id>
+    <link href="http://wangyicheng.site/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/"/>
+    <id>http://wangyicheng.site/2018/09/21/Use-Atom-as-an-elegant-Markdown-editor/</id>
     <published>2018-09-21T05:13:40.000Z</published>
     <updated>2018-10-03T04:24:21.374Z</updated>
     
@@ -225,19 +220,19 @@
     
     </summary>
     
-      <category term="Tech" scheme="http://yoursite.com/categories/Tech/"/>
+      <category term="Tech" scheme="http://wangyicheng.site/categories/Tech/"/>
     
     
-      <category term="Atom" scheme="http://yoursite.com/tags/Atom/"/>
+      <category term="Atom" scheme="http://wangyicheng.site/tags/Atom/"/>
     
-      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://wangyicheng.site/tags/Markdown/"/>
     
   </entry>
   
   <entry>
     <title>Welcome to my Github Page</title>
-    <link href="http://yoursite.com/2018/09/19/First-Article/"/>
-    <id>http://yoursite.com/2018/09/19/First-Article/</id>
+    <link href="http://wangyicheng.site/2018/09/19/First-Article/"/>
+    <id>http://wangyicheng.site/2018/09/19/First-Article/</id>
     <published>2018-09-19T12:30:00.000Z</published>
     <updated>2018-10-03T04:24:33.801Z</updated>
     
@@ -252,10 +247,10 @@
     
     </summary>
     
-      <category term="Other" scheme="http://yoursite.com/categories/Other/"/>
+      <category term="Other" scheme="http://wangyicheng.site/categories/Other/"/>
     
     
-      <category term="statement" scheme="http://yoursite.com/tags/statement/"/>
+      <category term="statement" scheme="http://wangyicheng.site/tags/statement/"/>
     
   </entry>
   
