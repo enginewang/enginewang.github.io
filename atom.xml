@@ -6,35 +6,10 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wangyicheng.site/"/>
-  <updated>2018-11-13T14:39:35.416Z</updated>
+  <updated>2018-10-16T07:08:53.924Z</updated>
   <id>http://wangyicheng.site/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>回归Github Page</title>
-    <link href="http://wangyicheng.site/2018/11/13/%E5%9B%9E%E5%BD%92Github-Page/"/>
-    <id>http://wangyicheng.site/2018/11/13/回归Github-Page/</id>
-    <published>2018-11-13T13:36:19.000Z</published>
-    <updated>2018-11-13T14:39:35.416Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前段时间都在倒腾Django框架和Linux服务器部署，希望能搭建真正意义上的动态网页，从Github Page上转过去，奈何代码写的差不多了，却碰到一些莫名其妙的备案问题：身份证地址也不在老家，户口又是学校临时户口，备案信息又是要临时居住证又是各种拍照还有随时审查，我真的是受不了（早知道就买去国外的服务器了）</p><p>所以动态网站打算干脆之后有了工作再弄，还是回归了Github Page这个静态且免费的博客托管平台（Github真的良心）</p><p>在阿里云花了九十买了<code>wangyicheng.site</code>这个域名的三年使用权，将它解析到了这个Github Page上，直接访问 <a href="https://wangyicheng.site">https://wangyicheng.site</a> 这个url就可以进入这里了。</p><p>背景加了个canvas，只能说Hexo Next主题tql什么都有，还新增了一个基于Valine的评论服务，很喜欢这种简洁的风格。这段时间比较忙，之后会继续加一点东西进来的。</p><p>这两周的内容预计以Scrapy爬虫框架、C语言和C++实现的数据结构为主，敬请期待。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-      <category term="Notice" scheme="http://wangyicheng.site/categories/Notice/"/>
-    
-    
-      <category term="Site Notice" scheme="http://wangyicheng.site/tags/Site-Notice/"/>
-    
-  </entry>
   
   <entry>
     <title>Disable Double-Shift keymap for everything search in Jetbrains&#39; IDE</title>
