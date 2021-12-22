@@ -1,7 +1,7 @@
 ---
 title: "分布式系统（二）：共识算法"
 date: 2021-12-19T23:18:18+08:00
-draft: true
+draft: false
 categories: ["技术"]
 tags: ["分布式", "精选"]
 ---

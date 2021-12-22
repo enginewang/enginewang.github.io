@@ -1,7 +1,7 @@
 ---
 title: "Google三驾马车（一）—— Google File System"
 date: 2021-10-12T18:00:18+08:00
-draft: true
+draft: false
 categories: ["技术"]
 tags: ["GFS", "分布式", "大数据"]
 ---

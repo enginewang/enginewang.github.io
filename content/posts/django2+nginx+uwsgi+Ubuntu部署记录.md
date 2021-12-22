@@ -1,7 +1,7 @@
 ---
 title: "Django2+nginx+uwsgi+Ubuntu部署记录"
 date: 2019-12-23T00:57:19+08:00
-draft: true
+draft: false
 ---
 
 

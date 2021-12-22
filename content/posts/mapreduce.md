@@ -1,7 +1,7 @@
 ---
 title: "Google三驾马车（二）—— MapReduce"
 date: 2021-10-19T20:21:18+08:00
-draft: true
+draft: false
 categories: ["技术"]
 tags: ["MapReduce", "分布式", "大数据"]
 ---
