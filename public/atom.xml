@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+    <title type="text">王毅诚的博客</title>
+    <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
+    <updated>2021-12-23T00:28:58&#43;08:00</updated>
+    <id>https://enginewang.github.io/</id>
+    <link rel="alternate" type="text/html" href="https://enginewang.github.io/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://enginewang.github.io/atom.xml" />
+    <author>
+            <name>王毅诚</name>
+            <uri>https://enginewang.github.io/</uri>
+            
+                <email>engine74396@gmail.com</email>
+            </author>
+    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    <generator uri="https://gohugo.io/" version="0.91.0">Hugo</generator>
+        <entry>
+            <title type="text">Hello World</title>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/hello-world/" />
+            <id>https://enginewang.github.io/posts/hello-world/</id>
+            <updated>2021-12-23T00:28:42&#43;08:00</updated>
+            <published>2021-12-22T23:08:40&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">第一次开博客应该是在大二的时候，也就是2018年，用的是Hexo。之后觉得配置太少，想要有发挥的空间，就用当时学的Django写了一个博客网站，再后来又改成了G……</summary>
+            
+                <content type="html">&lt;p&gt;第一次开博客应该是在大二的时候，也就是2018年，用的是Hexo。之后觉得配置太少，想要有发挥的空间，就用当时学的Django写了一个博客网站，再后来又改成了Go+Vue，作为一个前后端分离的单体应用，包含博客的完整的功能，还能有其他拓展。&lt;/p&gt;
+&lt;p&gt;这本来应该是博客的最终形态了，然而精力有限，不想折腾markdown渲染和其他各种功能，以及为一些前后端、运维、优化的问题所烦恼，再加上服务器成本也不少，还是希望能够纯粹的写作。&lt;/p&gt;
+&lt;p&gt;因此现在又回到了最初的起点，转回了静态网页，这次用Hugo搭建，主题用的是Meme，所谓是从简到繁，又从繁到简。&lt;/p&gt;
+&lt;p&gt;之前的博客内容会逐步迁移过来，由于静态网页发文章很方便，会增加更多的内容，敬请期待。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://enginewang.github.io/tags/hugo/" term="hugo" label="hugo" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://enginewang.github.io/tags/site/" term="site" label="site" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+</feed>
