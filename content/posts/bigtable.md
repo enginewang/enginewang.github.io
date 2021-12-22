@@ -1,6 +1,6 @@
 ---
 title: "Google三驾马车（三）—— Bigtable"
-date: 2021-10-28T00:21:18+08:00
+date: 2021-10-27T00:21:18+08:00
 draft: false
 categories: ["技术"]
 tags: ["Bigtable", "分布式", "大数据"]
