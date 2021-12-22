@@ -1,5 +1,5 @@
 ---
-title: "Hello World"
+title: "返璞归真，博客重新迁移到Hugo"
 date: 2021-12-22T23:08:40+08:00
 draft: false
 categories: ["生活"]

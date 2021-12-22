@@ -7,17 +7,14 @@ tags: ["Django", "Linux", "nginx"]
 ---
 
 
-<br>
-Django项目写好了，最后一步就是部署(deployment)了，部署十分关键，只有部署在服务器上，别人才能从互联网上通过ip地址或域名直接访问到你的网页。
-<br>
-<br>
+Django项目写好了，最后一步就是部署(deployment)，部署十分关键，只有部署在服务器上，别人才能从互联网上通过ip地址或域名直接访问到你的网页。
 
 第一步是购买vps（Virtual Private Server 虚拟服务器），这个很简单而且网上教程一大把，这里就不详述，我在vultr购买的海外服务器，这样不用浪费时间去备案了，vultr的一大特色就是按时长收费，如果你的vps出了什么问题，可以随时关停，并且它还支持微信支付宝，价格也很便宜。
 <a href="https://www.vultr.com/?ref=7617179"> （vultr官网） </a>
 
 Django的本地预览十分方便，一行`python manage.py runserver`就能搞定，但部署上线可没有这么简单。因为网上关于Django部署的教程都很杂乱，当时部署的时候就踩了很多很多坑，为了给之后一个参考，我又重新部署了一次，来记录详细的过程。
 
-##### 相关软件版本：
+#### 相关软件版本：
 Django 2.1.3
 Python 3.6.6
 nginx 1.14.0
@@ -26,7 +23,6 @@ uwsgi 2.0.17.1
 服务器：
 Ubuntu-server 18.04
 
-<br>
 #### 准备工作
 
 首先打开ssh软件，Xshell、Putty什么的都行，通过vultr上vps详情页上给的ip和root密码连接到这台vps。
@@ -47,7 +43,6 @@ sudo apt-get upgrade
 sudo apt-get install python3-pip python-setuptools python3-dev wheel
 ```
 
-<br>
 #### 放置Django项目
 
 直接在服务器端用vim什么的写Django当然可取（虽然会很酸爽），但更多的时候我们是在本地写好了Django项目，要把它挪到服务器上。
