@@ -17,7 +17,7 @@
 
     <title>分布式系统（二）：共识算法 | 王毅诚的博客</title>
 
-    <link rel="stylesheet" href="/css/meme.min.45de4f3b4723f874e694b3cb3798a75f5b59770b966a72b0f11a65f476b1cba4.css"/>
+    <link rel="stylesheet" href="/css/meme.min.2d9f1fe6575275c2c0b66b1e9393b8420d50e8187fc3591c9cec437ae1c1677f.css"/>
 
     
     
@@ -70,7 +70,7 @@
             "description": "Hello World",
             "email": "engine74396@gmail.com",
             "image": "https://enginewang.github.io/icons/apple-touch-icon.png",
-            "url": "https://io-oi.me/",
+            "url": "https://yichengme.site/",
             "name": "王毅诚"
         },
         "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
@@ -492,7 +492,7 @@ Failover：只要有半数的节点存活就可以正常运行。</p>
     
     
         <ul class="post-copyright">
-            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://io-oi.me/" class="p-author h-card" target="_blank" rel="noopener">王毅诚</a></li>
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://yichengme.site/" class="p-author h-card" target="_blank" rel="noopener">王毅诚</a></li>
             
                 
                 
@@ -791,12 +791,18 @@ Failover：只要有半数的节点存活就可以正常运行。</p>
             highlight:  true ,
             avatarForce:  false ,
             recordIP:  false ,
-            serverURLs: '',
+            serverURLs: 'https:\/\/yichengme.site',
             emojiCDN: 'https:\/\/valinecdn.bili33.top\/',
             emojiMaps: {"卖萌":"bilibili2233/[2233娘_卖萌].png","吃惊":"bilibili2233/[2233娘_吃惊].png","吐魂":"bilibili2233/[2233娘_吐魂].png","喝水":"bilibili2233/[2233娘_喝水].png","困惑":"bilibili2233/[2233娘_困惑].png","大哭":"bilibili2233/[2233娘_大哭].png","大笑":"bilibili2233/[2233娘_大笑].png","委屈":"bilibili2233/[2233娘_委屈].png","怒":"bilibili2233/[2233娘_怒].png","无言":"bilibili2233/[2233娘_无言].png","汗":"bilibili2233/[2233娘_汗].png","疑问":"bilibili2233/[2233娘_疑问].png","第一":"bilibili2233/[2233娘_第一].png","耶":"bilibili2233/[2233娘_耶].png","郁闷":"bilibili2233/[2233娘_郁闷].png"},
             enableQQ:  false ,
             requiredFields: []
         });
+        var infoEle = document.querySelector('#comments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
     }
 </script>
 

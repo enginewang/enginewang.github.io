@@ -17,7 +17,7 @@
 
     <title>生存分析基础 | 王毅诚的博客</title>
 
-    <link rel="stylesheet" href="/css/meme.min.45de4f3b4723f874e694b3cb3798a75f5b59770b966a72b0f11a65f476b1cba4.css"/>
+    <link rel="stylesheet" href="/css/meme.min.2d9f1fe6575275c2c0b66b1e9393b8420d50e8187fc3591c9cec437ae1c1677f.css"/>
 
     
     
@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2020-12-23T15:23:00+08:00",
-        "dateModified": "2021-12-23T16:42:22+08:00",
+        "dateModified": "2021-12-23T19:39:43+08:00",
         "url": "https://enginewang.github.io/posts/survival-analysis-basic/",
         "headline": "生存分析基础",
         "description": "背景与简介 在生物医学、金融保险等领域，生存分析是一种很常见而且重要的方法。 生存分析主要用在癌症等疾病的研究中，比如对某种抗癌药物做临床试验，筛选一部分癌症患者，……",
@@ -70,7 +70,7 @@
             "description": "Hello World",
             "email": "engine74396@gmail.com",
             "image": "https://enginewang.github.io/icons/apple-touch-icon.png",
-            "url": "https://io-oi.me/",
+            "url": "https://yichengme.site/",
             "name": "王毅诚"
         },
         "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640248844/survival-analysis-0.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2020-12-23T15:23:00&#43;08:00" />
-    <meta property="article:modified_time" content="2021-12-23T16:42:22&#43;08:00" />
+    <meta property="article:modified_time" content="2021-12-23T19:39:43&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -396,7 +396,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
     
     
         <ul class="post-copyright">
-            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://io-oi.me/" class="p-author h-card" target="_blank" rel="noopener">王毅诚</a></li>
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://yichengme.site/" class="p-author h-card" target="_blank" rel="noopener">王毅诚</a></li>
             
                 
                 
@@ -417,7 +417,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2021-12-23 16:42:22 CST" style="cursor:help">
+        <span title="Updated @ 2021-12-23 19:39:43 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2021-12-23</text><text x="915" y="140" textLength="650" transform="scale(.1)">2021-12-23</text></g></svg>
         </span></div>
@@ -691,12 +691,18 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             highlight:  true ,
             avatarForce:  false ,
             recordIP:  false ,
-            serverURLs: '',
+            serverURLs: 'https:\/\/yichengme.site',
             emojiCDN: 'https:\/\/valinecdn.bili33.top\/',
             emojiMaps: {"卖萌":"bilibili2233/[2233娘_卖萌].png","吃惊":"bilibili2233/[2233娘_吃惊].png","吐魂":"bilibili2233/[2233娘_吐魂].png","喝水":"bilibili2233/[2233娘_喝水].png","困惑":"bilibili2233/[2233娘_困惑].png","大哭":"bilibili2233/[2233娘_大哭].png","大笑":"bilibili2233/[2233娘_大笑].png","委屈":"bilibili2233/[2233娘_委屈].png","怒":"bilibili2233/[2233娘_怒].png","无言":"bilibili2233/[2233娘_无言].png","汗":"bilibili2233/[2233娘_汗].png","疑问":"bilibili2233/[2233娘_疑问].png","第一":"bilibili2233/[2233娘_第一].png","耶":"bilibili2233/[2233娘_耶].png","郁闷":"bilibili2233/[2233娘_郁闷].png"},
             enableQQ:  false ,
             requiredFields: []
         });
+        var infoEle = document.querySelector('#comments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
     }
 </script>
 

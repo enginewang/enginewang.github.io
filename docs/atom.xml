@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2021-12-23T19:02:31&#43;08:00</updated>
+    <updated>2021-12-23T20:01:17&#43;08:00</updated>
     <id>https://enginewang.github.io/</id>
     <link rel="alternate" type="text/html" href="https://enginewang.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://enginewang.github.io/atom.xml" />
@@ -24,7 +24,7 @@
             <published>2021-12-21T23:08:40&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">第一次开博客应该是在大二的时候，也就是2018年，用的是Hexo。之后觉得配置太少，想要有发挥的空间，就用当时学的Django写了一个博客网站，再后来又改成了G……</summary>
@@ -77,7 +77,7 @@
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">拜占庭将军问题 拜占庭将军问题是分布式领域最复杂的一个容错模型，较好地抽象了分布式系统面临的共识问题。 假如你是一位拜占庭的将军，需要与其他几个国家的军队做沟通，而……</summary>
@@ -366,7 +366,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">ACID、BASE、2PC/3PC ACID 在讲ACID之前，先讲本地事务，事务最早在数据库等课程中就接触过，简单来说，事务提供一种“要么什么也不做，要么全做完”的机制……</summary>
@@ -583,7 +583,7 @@ R + R &amp;gt; N：&lt;/p&gt;
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 为什么需要Bigtable？ 需要一个集群支持海量的随机读写，需要支持到每秒百万级别的随机读写。在Bigtable没出之前，使用MySQL集群可以解决一些问题……</summary>
@@ -793,7 +793,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
             <published>2021-10-18T20:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 MapReduce是一个用于处理和生成大型数据集的编程模型和相关实现，它是一个分布式模型，通过一个Map函数将k/v对生存一组中间态的k/v对，然后通过一个……</summary>
@@ -960,7 +960,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
             <published>2021-10-11T18:00:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 GFS，即Google File System，谷歌文件系统。 它是一种能够用于大型密集型数据的可拓展的分布式文件系统。（大型存储系统），它对于廉价硬件提供了容错机制；……</summary>
@@ -1142,11 +1142,11 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
             <title type="text">生存分析基础</title>
             <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/survival-analysis-basic/" />
             <id>https://enginewang.github.io/posts/survival-analysis-basic/</id>
-            <updated>2021-12-23T16:42:22&#43;08:00</updated>
+            <updated>2021-12-23T19:39:43&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">背景与简介 在生物医学、金融保险等领域，生存分析是一种很常见而且重要的方法。 生存分析主要用在癌症等疾病的研究中，比如对某种抗癌药物做临床试验，筛选一部分癌症患者，……</summary>
@@ -1339,7 +1339,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             <published>2020-04-20T14:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">背景 mongodb是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。它是一个介于关系数据库和非关系数据库之……</summary>
@@ -1692,7 +1692,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Django项目写好了，最后一步就是部署(deployment)，部署十分关键，只有部署在服务器上，别人才能从互联网上通过ip地址或域名直接访问到你的网页。 第一……</summary>
@@ -2070,7 +2070,7 @@ systemctl reload nginx.service
             <published>2019-09-05T14:33:07&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://io-oi.me/</uri>
+                    <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前年的时候，也就是17年年底，鉴于最低配的苏菲4性能比较羸弱，可怜的4G内存开个Chrome和Office就能吃满，分分钟卡爆，于是原来的电脑出掉了，准备更换一……</summary>
