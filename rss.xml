@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Thu, 23 Dec 2021 13:44:45 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 23 Dec 2021 14:34:09 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://enginewang.github.io/rss.xml" />
         
@@ -1133,6 +1133,350 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
             </item>
         
             <item>
+                <title>Mongodb初级教程</title>
+                <link>https://enginewang.github.io/posts/mongodb-basics/</link>
+                <guid isPermaLink="true">https://enginewang.github.io/posts/mongodb-basics/</guid>
+                <pubDate>Mon, 20 Apr 2020 14:29:14 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h4 id=&#34;背景&#34;&gt;背景&lt;/h4&gt;
+&lt;p&gt;mongodb是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。它是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。&lt;/p&gt;
+&lt;p&gt;这里简单的讲一下使用方法，不涉及底层原理&lt;/p&gt;
+&lt;h4 id=&#34;起步&#34;&gt;起步&lt;/h4&gt;
+&lt;h5 id=&#34;mac下安装mongodb&#34;&gt;Mac下安装MongoDB&lt;/h5&gt;
+&lt;p&gt;之前是
+&lt;code&gt;brew install mongodb&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;但是现在会报错：No available formula with the name “mongodb”。&lt;/p&gt;
+&lt;p&gt;先tap一个仓库 &lt;code&gt;brew tap mongodb/brew&lt;/code&gt;
+安装mongodb社区版 &lt;code&gt;brew install mongodb-community&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&#34;运行mongod&#34;&gt;运行mongod&lt;/h5&gt;
+&lt;p&gt;新建一个&lt;code&gt;/data/db&lt;/code&gt;文件夹&lt;/p&gt;
+&lt;p&gt;运行MongoDB服务
+&lt;code&gt;sudo mongod&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（注：macOS 10.15 Catalina无法在根目录下进行修改，可以在其他目录新建，启动服务时通过&lt;code&gt;sudo mongod --dbpath=new_path/data/db&lt;/code&gt;指定）&lt;/p&gt;
+&lt;p&gt;定位和启动MongoDB命令行
+&lt;code&gt;cd /usr/local/Cellar/mongodb/4.0.3_1/bin&lt;/code&gt;
+&lt;code&gt;./mongo&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;MongoDB和关系型数据库（Oracle、MySQL等）的区别：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;SQL&lt;/th&gt;
+&lt;th&gt;MongoDB&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;table&lt;/td&gt;
+&lt;td&gt;collection(集合)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;row&lt;/td&gt;
+&lt;td&gt;document(文档)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;colume&lt;/td&gt;
+&lt;td&gt;field(数据字段)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;每个文档是一组键值对（BSON）相同的字段不需要相同的数据类型&lt;/p&gt;
+&lt;h4 id=&#34;基本命令&#34;&gt;基本命令&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;show dbs&lt;/code&gt; 展示所有数据库&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;use xx&lt;/code&gt; 使用某个数据库&lt;/p&gt;
+&lt;p&gt;使用了某个数据库后：&lt;code&gt;show collections&lt;/code&gt;查看所有的集合&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.dropDatabase()&lt;/code&gt; 删除当前数据库&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.&amp;lt;col&amp;gt;.drop()&lt;/code&gt; 删除某个集合&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mongodump -o &amp;lt;output_path&amp;gt;&lt;/code&gt; 导出数据库
+（如果设置了密码，需要通过下面的命令导出）
+&lt;code&gt;sudo mongodump -o &amp;lt;output_path&amp;gt; --authenticationDatabase admin --username &amp;lt;db_username&amp;gt; --password &amp;lt;db_password&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mongorestore -d &amp;lt;dbname&amp;gt; &amp;lt;db_path&amp;gt;&lt;/code&gt; 导入数据库&lt;/p&gt;
+&lt;h5 id=&#34;验证&#34;&gt;验证&lt;/h5&gt;
+&lt;p&gt;本地的还好，如果部署到服务器上，默认是无法外网访问数据库的，倘若你想访问，就得开放端口然后在mongo的配置文件里设置0.0.0.0。然后mongo默认也没有密码&lt;/p&gt;
+&lt;p&gt;这就会产生一个很蛋疼的事，当其他人访问你服务器的ip的27017端口时，可以直接完全操作你的数据库，对于非个人弄着玩的项目，这显然是不可能接受的。&lt;/p&gt;
+&lt;p&gt;所以我们需要增加数据库验证，这里最常见的就是增加账号密码登录，方法如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;先使用&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;admin&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;创建&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;root密码&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;createUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;root&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;password&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;roles&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;root&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其他的role：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;read
+readWrite
+dbAdmin
+userAdmin
+clusterAdmin
+readAnyDatabase
+readWriteAnyDatabase
+userAdminAnyDatabase
+dbAdminAnyDatabase
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;创建用户&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;createUser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;password&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;roles&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;userAdminAnyDatabase&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;dbAdminAnyDatabase&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;readWriteAnyDatabase&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在&lt;code&gt;/etc/mongo.conf&lt;/code&gt;配置文件里，把auth=true前面的&lt;code&gt;#&lt;/code&gt;去掉，让验证生效。&lt;/p&gt;
+&lt;p&gt;重启mongodb服务&lt;code&gt;sudo service mongodb restart&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;之后的连接方式：mongo命令行连接：
+&lt;code&gt;mongo admin -u username -p password&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;本地GUI（如navicat）连接，设置账号密码即可&lt;/p&gt;
+&lt;h5 id=&#34;字段操作&#34;&gt;字段操作&lt;/h5&gt;
+&lt;p&gt;字段重命名：
+&lt;code&gt;db.col.update({},{$rename:{&amp;quot;old_field&amp;quot;:&amp;quot;new_field&amp;quot;}},false,true)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;比如：
+&lt;code&gt;db.questionnaire.update({},{$rename:{&amp;quot;questionList&amp;quot;:&amp;quot;question&amp;quot;}},false,true)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;字段增加：
+还可以指定默认值xxx
+&lt;code&gt;db.col.update({},{$set:{new_field:&#39;xxx&#39;}},{multi:true})&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;字段删除：
+&lt;code&gt;db.col.update({},{$unset:{&#39;old_field&#39;:&#39;&#39;}},false, true)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.user_questionnaire.update({},{$unset:{&#39;inputCostEstimation&#39;:&#39;&#39;}},false, true)&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&#34;查找&#34;&gt;查找&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.find()&lt;/code&gt; 列出集合信息
+&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.findOne()&lt;/code&gt; 列出第一条集合的信息（按Json排版一下）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.&amp;lt;col-name&amp;gt;.find({query}, {show})&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;query是一个查询字段。比如{&amp;quot;name&amp;quot;:&amp;quot;yicheng&amp;quot;}这种形式
+后面的参数决定field是否显示，比find({&amp;quot;name&amp;quot;:&amp;quot;yicheng&amp;quot;}, {&amp;quot;_id&amp;quot;: 0, &amp;quot;age&amp;quot;: 1}) 表示_id不会显示，age会显示&lt;/p&gt;
+&lt;p&gt;条件比较：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;操作&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;th&gt;用法&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$gt&lt;/td&gt;
+&lt;td&gt;&amp;gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$gte&lt;/td&gt;
+&lt;td&gt;&amp;gt;=&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$lt&lt;/td&gt;
+&lt;td&gt;&amp;lt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$lte&lt;/td&gt;
+&lt;td&gt;&amp;lt;=&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$eq&lt;/td&gt;
+&lt;td&gt;=&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$ne&lt;/td&gt;
+&lt;td&gt;!=&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$in&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$nin&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;增删改&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;增加
+&lt;code&gt;db.col.insert(json)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;e.g.
+&lt;code&gt;db.col.insert({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;, &amp;quot;age&amp;quot;:18})&lt;/code&gt;
+&lt;code&gt;db.articles.insert({&amp;quot;title&amp;quot;:&amp;quot;Test&amp;quot;,&amp;quot;author&amp;quot;:&amp;quot;engine&amp;quot;,&amp;quot;time&amp;quot;:&amp;quot;2020.02.27&amp;quot;,&amp;quot;kind&amp;quot;:&amp;quot;tech&amp;quot;,&amp;quot;tags&amp;quot;:&amp;quot;golang,website&amp;quot;,&amp;quot;content&amp;quot;:&amp;quot;This is a blog for test&amp;quot;,&amp;quot;comment&amp;quot;:&amp;quot;comment1&amp;quot;,&amp;quot;view&amp;quot;:10,&amp;quot;like&amp;quot;:5})&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.user.insert({&amp;quot;name&amp;quot;:&amp;quot;user1&amp;quot;,avatar:&amp;quot;https://i.loli.net/2020/03/15/XsJjRomr1dy8u4D.png&amp;quot;,&amp;quot;type&amp;quot;:0,&amp;quot;score&amp;quot;:20,&amp;quot;password&amp;quot;:&amp;quot;123456&amp;quot;,&amp;quot;todo&amp;quot;:&amp;quot;&amp;quot;})&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除
+&lt;code&gt;db.col.remove(query)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修改
+&lt;code&gt;db.mycoll.update(query, object[, upsert_bool, multi_bool])&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;第一个参数是查询条件，第二个参数是修改信息，第三个是如果没找到是否相当于插入（默认为false），第四个参数是修改一个还是所有（默认为false）&lt;/p&gt;
+&lt;p&gt;e.g.
+&lt;code&gt;db.col.update({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;}, {$set:{&amp;quot;age&amp;quot;:20}})&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quot;: 30}}, false, true)&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.getCollection(&#39;participant&#39;).find().forEach(
+   function(item){
+       db.getCollection(&#39;participant&#39;).update({&amp;quot;_id&amp;quot;:item._id},{$set:{&amp;quot;modifyTimes&amp;quot;: 3}})
+   }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;table class=&#34;reference&#34;&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;th&gt;数据类型&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;String&lt;/td&gt;&lt;td&gt;字符串。存储数据常用的数据类型。在 MongoDB 中，UTF-8 编码的字符串才是合法的。   &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Integer&lt;/td&gt;&lt;td&gt;整型数值。用于存储数值。根据你所采用的服务器，可分为 32 位或 64 位。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Boolean&lt;/td&gt;&lt;td&gt;布尔值。用于存储布尔值（真/假）。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Double&lt;/td&gt;&lt;td&gt;双精度浮点值。用于存储浮点值。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Min/Max keys&lt;/td&gt;&lt;td&gt;将一个值与 BSON（二进制的 JSON）元素的最低值和最高值相对比。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Array&lt;/td&gt;&lt;td&gt;用于将数组或列表或多个值存储为一个键。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Timestamp&lt;/td&gt;&lt;td&gt;时间戳。记录文档修改或添加的具体时间。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Object&lt;/td&gt;&lt;td&gt;用于内嵌文档。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Null&lt;/td&gt;&lt;td&gt;用于创建空值。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Symbol&lt;/td&gt;&lt;td&gt;符号。该数据类型基本上等同于字符串类型，但不同的是，它一般用于采用特殊符号类型的语言。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Date&lt;/td&gt;&lt;td&gt;日期时间。用 UNIX 时间格式来存储当前日期或时间。你可以指定自己的日期时间：创建 Date 对象，传入年月日信息。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Object ID&lt;/td&gt;&lt;td&gt;对象 ID。用于创建文档的 ID。  &lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Binary Data&lt;/td&gt;&lt;td&gt;二进制数据。用于存储二进制数据。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Code&lt;/td&gt;&lt;td&gt;代码类型。用于在文档中存储 JavaScript 代码。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Regular expression&lt;/td&gt;&lt;td&gt;正则表达式类型。用于存储正则表达式。&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;更新某个字段的值&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;db.getCollection&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;participant&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.find&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;.forEach&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
+   &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;item&lt;span class=&#34;o&#34;&gt;){&lt;/span&gt;
+       db.getCollection&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;participant&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.update&lt;span class=&#34;o&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;_id&amp;#34;&lt;/span&gt;:item._id&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$set&lt;/span&gt;:&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;modifiTimes&amp;#34;&lt;/span&gt;: 2&lt;span class=&#34;o&#34;&gt;}})&lt;/span&gt;
+   &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;golang的mongodb接口mgo&#34;&gt;Golang的MongoDB接口：mgo&lt;/h4&gt;
+&lt;p&gt;使用指南&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;  &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Phone&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// mgo.Dial核心函数，由url新建一个session
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mgo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Dial&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;mongodb://127.0.0.1:27017/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nb&#34;&gt;panic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+	&lt;span class=&#34;c1&#34;&gt;// Optional. Switch the session to a monotonic behavior.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;SetMode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mgo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Monotonic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// c就连到了对应的collection
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;DB&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;test&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;people&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// 插入数据
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Insert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Ale&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;+55 53 8116 9639&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+		&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Cla&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;+55 53 8402 8510&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Fatal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// result是一个查询结果
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bson&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Ale&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}).&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;One&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Fatal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Phone:&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Phone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/mongodb/">MongoDB</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/database/">Database</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
                 <title>Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
                 <link>https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</link>
                 <guid isPermaLink="true">https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</guid>
@@ -1500,6 +1844,111 @@ systemctl reload nginx.service
                                 
                                 
                                     <category domain="https://enginewang.github.io/tags/nginx/">nginx</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Precision5510 Hackintosh</title>
+                <link>https://enginewang.github.io/posts/precision5510-hackintosh/</link>
+                <guid isPermaLink="true">https://enginewang.github.io/posts/precision5510-hackintosh/</guid>
+                <pubDate>Thu, 05 Sep 2019 14:33:07 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;前年的时候，也就是17年年底，鉴于最低配的苏菲4性能比较羸弱，可怜的4G内存开个Chrome和Office就能吃满，分分钟卡爆，于是原来的电脑出掉了，准备更换一台高性能的电脑。&lt;/p&gt;
+&lt;p&gt;当时还在原专业读土木，某些软件只有Windows才有，上mbp显然是没想过的，另外宿舍用台式机也比较麻烦，所以只能选Windows笔记本。&lt;/p&gt;
+&lt;p&gt;预算其实并不是非常充足，但是内心有一种强烈的想法：买个配置够用的电脑多用几年。说实话五千块的电脑用三四年，真心不如一万的电脑用七八年。&lt;/p&gt;
+&lt;p&gt;卡顿是对时间的浪费，崩溃是对心血的亵渎。&lt;/p&gt;
+&lt;p&gt;一台电脑，配置固然是核心，但对我这种强迫症而言，工业设计也是一个重要因素。于是最后决定在XPS 15或者precision 5510中选择，它们的模具是一样的，主要区别在于其显卡和定位，前者是搭载游戏显卡，定位是超极本；后者搭载图形显卡，定位是移动图形工作站。&lt;/p&gt;
+&lt;p&gt;因为不玩大型游戏，所以最后选择了海淘一款官翻的precision 5510移动图形工作站，虽然买的价格不到国行新机的一半，但还是非常高。最后咬咬牙还是买了，事实证明这台precision 5510确实值这个价。&lt;/p&gt;
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1550418842/precision5510.jpg&#34; width=100%&gt;
+&lt;center&gt; *图片来源：Amazon.com*&lt;/center&gt;
+&lt;p&gt;主要部件如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;intel i7 6820HQ 处理器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;16GB 镁光 DDR4  内存条&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SK hynix 512GB 固态硬盘&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;夏普 SHP1476 屏幕&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nvidia Quadro M1000M 图形显卡&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Windows10 pro 系统&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用这台工作站，跑了一年多Windows，总的体验当然是很用得很舒服，基本没出现过卡顿的情况，除了Ae渲染时风扇会狂转，其他时候完全无压力啊。win10本身尤其是UWP应用对4k触摸屏还是比较友好的（除了Windows的遗留win7风格界面），但是一些比较老旧或者小众的软件根本没有适配4k，导致那些软件要么字体非常小，看瞎了，要么强行靠缩放来保持尺寸，导致图标和字体发虚严重。4k在windows下的体验只能打80分。&lt;/p&gt;
+&lt;p&gt;最开始没想到要装黑苹果，只是偶然在B站看到了科技美学的XPS 15顶配黑苹果评测，瞬间被折服了:
+&lt;a href=&#34;https://www.bilibili.com/video/av6079016&#34;&gt;「科技美学」戴尔XPS15顶配版体验测评 黑苹果系统安装&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;当海舟用手开始在屏幕上拖视频块来做FCP剪辑时，弹幕已经沸腾了，就算是顶配定制版MacBook Pro也没有触摸屏，不管原因是为了与ipad的交互区分开，以免造成产品线混淆（正常人理解）还是考虑到抬手触屏不方便 触控板万岁！（果粉理解）亦或只是为了节约屏幕成本 赚更多的钱（果黑理解），事实还是：mbp就是没有配置触摸屏。&lt;/p&gt;
+&lt;p&gt;然而有趣的是，Mac OS系统和软件不仅支持高分辨率屏幕触摸操作，甚至比win10还支持的更好。&lt;/p&gt;
+&lt;p&gt;前几天通过针大的教程&lt;a href=&#34;https://hyejeong.cn/hackintosh5510mojave&#34;&gt;Dell Precision 5510 Mojave Clover分享&lt;/a&gt;，花了两三天就比较顺利的装上了黑苹果，版本为Mojave 10.14.3，针大不仅写了很详细的教程和分享clover等文件，还通过私信解决了我的很多疑问，非常感激。如果有同样的precision5510想安装黑苹果的，可以去参考针大的这篇文章。&lt;/p&gt;
+&lt;p&gt;因为一些软件只能在win上运行，因此装的是双系统，512GB的SSD给Mac OS分了320GB，给win10留了剩下的一百来G。&lt;/p&gt;
+&lt;p&gt;下面对precision m5510 4k版黑苹果的各个方面做一个简单的小结，与mbp相比的优势与不足，以及黑苹果的完整程度：&lt;/p&gt;
+&lt;h4 id=&#34;屏幕&#34;&gt;屏幕&lt;/h4&gt;
+&lt;p&gt;MacBook Pro 15.4英寸的屏幕是 2880 x 1800 P3广色域 Retina视网膜屏
+Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩玻璃触屏&lt;/p&gt;
+&lt;p&gt;单论屏幕素质，Retina的校色更准确，观感更舒适，而Dell的镜面屏分辨率更高，观感更鲜艳。这两款屏幕的素质在笔记本中绝对都在第一梯队，是设计人员的福音，两款屏幕属于神仙打架。&lt;/p&gt;
+&lt;p&gt;但有着触摸屏和Mac OS的加持，Precision 4k版本实现了mbp没有加入的触屏功能，感觉像是体验到了未来的mbp。&lt;/p&gt;
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1550418841/photo_2019-02-17_23.40.37.jpg&#34; width=100%&gt;
+&lt;h4 id=&#34;触控板&#34;&gt;触控板&lt;/h4&gt;
+&lt;p&gt;mbp的触控板有目共睹，触感和手势交互甩了普通PC一条街，precision/xps的触控板在win本中属于很优秀的，说实话触感虽然和mac是两种感觉，但也十分不错，可喜的是在黑苹果中precision/xps也各种手势操作能够有效执行，比如三指上下划、五指缩放等等，虽然还有一些距离但已经有些接近mbp了。但是前者触控板做工任然有一些瑕疵，看到很多反馈是有一部分比例的x/p本触控板出现轻微的下凹或上凸。&lt;/p&gt;
+&lt;p&gt;Mac可以不需要鼠标，只用触控板做大部分工作，但是我尝试了一下搭载Mac OS的5510，还是不能完全脱离鼠标。&lt;/p&gt;
+&lt;h4 id=&#34;键盘&#34;&gt;键盘&lt;/h4&gt;
+&lt;p&gt;precision/xps的键盘键程太短，说实话敲起来完全没有感觉，而且品控有的有些问题，我的两个Shift键都失灵了，扣下键帽也按不动就很难受，必须接着外接机械键盘，这样确实没问题而且敲得爽，但是外接键盘背来背去很不方便。&lt;/p&gt;
+&lt;h4 id=&#34;续航&#34;&gt;续航&lt;/h4&gt;
+&lt;p&gt;续航是4k版本的大短板，第一次使用这台电脑时，不插电两个小时后电脑就没电自动关机了，我的内心是绝望的。一方面是电池本身不足，另一方面是屏幕和显卡等（尤其是屏幕）耗电严重，我的这台5510就算开着屏幕什么软件也不运行，也就只能撑两个来小时；中大型软件开几个，80分钟内就能耗光全部电量。平常使用一直都得插着电，电脑要背走，充电器必须跟着，没有插座的地方完全不敢开机。&lt;/p&gt;
+&lt;p&gt;也许是我的这台情况过于严重了，其他的4k屏5510可能要好一些，不过也好不到太多，续航确实是硬伤。&lt;/p&gt;
+&lt;h4 id=&#34;相关驱动&#34;&gt;相关驱动&lt;/h4&gt;
+&lt;p&gt;intel的网卡无法驱动，需要去某宝单独购买，拆机后自动识别和正常苹果没区别。丽台M1000M图形显卡无法驱动，不过i7 6820hq的集显就够用了，只要不玩大游戏就好说，设计软件无压力。其他的驱动基本都可以正常运行。&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+&lt;p&gt;总的说来，precision 5000系列/XPS 15可能是win阵营中，最适合安装黑苹果的机器之一，尤其是4k版本，触摸屏的加持更是更够体验到Mac OS别样的功能，4k下Mac的体验也比win10强太多了。&lt;/p&gt;
+&lt;p&gt;另外这个系列的模具工艺质量与工业设计很出色，也是PC本中少见的设计感与mbp有的一拼的产品。&lt;/p&gt;
+&lt;p&gt;以上便是我的Precision 5510安装黑苹果后的使用体验，若有任何疑问或错误请联系我，谢谢。&lt;/p&gt;
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1550418841/photo_2019-02-17_23.40.26.jpg&#34; width=100%&gt;
+&lt;p&gt;两天时间陆陆续续装了一些应用上去（未完待续），下一篇不鸽的话会写Mac的应用推荐与资源分享，不见不散&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/">黑苹果</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/%E6%8A%98%E8%85%BE/">折腾</category>
                                 
                             
                         
