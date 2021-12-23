@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Thu, 23 Dec 2021 14:38:32 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 23 Dec 2021 16:04:39 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://enginewang.github.io/rss.xml" />
         
@@ -340,7 +340,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E5%8E%9F%E7%90%86/">原理</category>
                                 
                             
                         
@@ -560,7 +560,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E5%8E%9F%E7%90%86/">原理</category>
                                 
                             
                         
@@ -755,7 +755,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -919,7 +919,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -1102,7 +1102,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -1125,6 +1125,196 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                                 
                                 
                                     <category domain="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>生存分析基础</title>
+                <link>https://enginewang.github.io/posts/survival-analysis-basic/</link>
+                <guid isPermaLink="true">https://enginewang.github.io/posts/survival-analysis-basic/</guid>
+                <pubDate>Wed, 23 Dec 2020 15:23:00 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245581/survival-analysis-1.png&#34; alt=&#34;survival-analysis-1&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;背景与简介&#34;&gt;背景与简介&lt;/h4&gt;
+&lt;p&gt;在生物医学、金融保险等领域，生存分析是一种很常见而且重要的方法。&lt;/p&gt;
+&lt;p&gt;生存分析主要用在癌症等疾病的研究中，比如对某种抗癌药物做临床试验，筛选一部分癌症患者，分为两组，一组服用该试验药物，一组服用对照药物，服药后开始统计每个患者从服药一直到死亡的生存时间。&lt;/p&gt;
+&lt;p&gt;生存分析可以抽象概述为，研究在不同条件下，特定事件发生与时间的关系是否存在差异。这些具体事件可以是死亡，也可以是痊愈、肿瘤转移、复发、出院、重新入院等任何可以明确识别的事件，而不同条件即为不同的分组依据，可以是年龄、性别、地域、某个基因表达量的高低、某个突变的携带与否等等。&lt;/p&gt;
+&lt;p&gt;（后面均用&amp;quot;死亡&amp;quot;来代指这个特定事件&lt;/p&gt;
+&lt;h4 id=&#34;概念与推导&#34;&gt;概念与推导&lt;/h4&gt;
+&lt;h5 id=&#34;生存时间t&#34;&gt;生存时间T&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245062/SurvivalTime.png&#34; alt=&#34;survival-time&#34;&gt;&lt;/p&gt;
+&lt;p&gt;把生存时间作为一个随机变量，用PDF（概率密度函数）和CDF（分布函数）来表达&lt;/p&gt;
+&lt;p&gt;其中CDF为$F(t) = Pr(T &amp;lt; t)$，也就是t之前死亡的概率&lt;/p&gt;
+&lt;h5 id=&#34;生存概率&#34;&gt;生存概率&lt;/h5&gt;
+&lt;p&gt;S(t)，Survival probability，研究对象从试验开始到某个特定时间点仍然存活的概率,$S(t) = pr(T &amp;gt; t)$&lt;/p&gt;
+&lt;p&gt;$S(t) = 1 - F(t)$&lt;/p&gt;
+&lt;p&gt;之后的Kaplan-Meier模型主要关注S(t)&lt;/p&gt;
+&lt;h5 id=&#34;风险概率&#34;&gt;风险概率&lt;/h5&gt;
+&lt;p&gt;$h(t): \text{Hazard function}$&lt;/p&gt;
+&lt;p&gt;$$h(t) = \lim_{\epsilon \to 0}\frac{P(T \in (t, t+\epsilon] | T \geqslant t)}{\epsilon} = \frac{f(t)}{S(t)}$$&lt;/p&gt;
+&lt;p&gt;前一个等号的意义 很明显，表示的意义就是研究对象从试验开始到某个特定时间点t之前存活，但是在t时间点发生&amp;quot;死亡&amp;quot;的概率&lt;/p&gt;
+&lt;p&gt;后面一个等号的推导过程&lt;/p&gt;
+&lt;p&gt;$$
+\begin{array}{llr}
+h(t)&amp;amp; = \lim_{\Delta t \to 0} \frac{P(t &amp;lt; T \leqslant t + \Delta t | T &amp;gt; t)}{\Delta t}\
+&amp;amp; = \lim_{\Delta t \to 0} \frac{P(t &amp;lt; T \leqslant t + \Delta t )}{\Delta t S(t)} &amp;amp; \scriptsize{S(t)的定义}\
+&amp;amp; = \lim_{\Delta t \to 0} \frac{F(t + \Delta t) - F(t)}{\Delta t S(t)} &amp;amp; \scriptsize{F(t)的定义}\
+&amp;amp; = \frac{f(t)}{S(t)}&amp;amp;  \scriptsize{f(t)是F(t)的微分}
+\end{array}
+$$&lt;/p&gt;
+&lt;p&gt;然后还可以进一步推导：&lt;/p&gt;
+&lt;p&gt;$$
+h(t) = \frac{f(t)}{S(t)} = \frac{f(t)}{1 - F(t)} = - \frac{\partial log[1 - F(t)]}{\partial t} = - \frac{\partial log[S(t)]}{\partial t}
+$$&lt;/p&gt;
+&lt;p&gt;表示了$h(t)$和$S(t)$的关系&lt;/p&gt;
+&lt;p&gt;$H(t): \text{Comulative\ Hazard\ function}$
+ 
+$$H(t) = \int_0^t h(u) du$$&lt;/p&gt;
+&lt;p&gt;进一步推导：
+$$H(t) = \int_0^t h(u) du = - \int_0^t \frac{ \partial log[S(u)]}{\partial u} du = -log[S(t)]$$&lt;/p&gt;
+&lt;p&gt;$$\to S(t) = exp[-H(t)]$$&lt;/p&gt;
+&lt;p&gt;之后的Cox比例风险模型主要关注H(t)&lt;/p&gt;
+&lt;h4 id=&#34;hazard-function理解&#34;&gt;Hazard function理解&lt;/h4&gt;
+&lt;p&gt;hazard function 本身不是概率，它描述的是一种在给定时间点的风险，$\Delta t \times h(t)$表示在$(t, t + \Delta t]$的概率&lt;/p&gt;
+&lt;p&gt;hazard function优势：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;描述给定时间点的风险，这是我们需要的信息&lt;/li&gt;
+&lt;li&gt;可以很好的处理数据缺失的情况&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;举个例子&#34;&gt;举个例子&lt;/h4&gt;
+&lt;p&gt;假设survival time服从指数分布$Exp(\lambda)$，即$f(x) = \lambda e ^{-\lambda x}, x &amp;gt; 0$&lt;/p&gt;
+&lt;p&gt;也就是$f(t) = \lambda e ^{-\lambda x}$&lt;/p&gt;
+&lt;p&gt;可以推出：&lt;/p&gt;
+&lt;p&gt;$F(t) = 1 - e ^{-\lambda x}$&lt;/p&gt;
+&lt;p&gt;$S(t) = 1 - F(t) = e ^{-\lambda x}$&lt;/p&gt;
+&lt;p&gt;$h(t) = \frac{f(t)}{S(t)} = \lambda$&lt;/p&gt;
+&lt;p&gt;$H(t) = \lambda t$&lt;/p&gt;
+&lt;p&gt;$E(T) = \frac{1}{\lambda} （指数分布的性质）= \frac{1}{h(t)}$&lt;/p&gt;
+&lt;p&gt;其他的分布同理
+Gamma distribution
+Weibull distribution
+Log-normal distribution
+generized gamma distribution...&lt;/p&gt;
+&lt;h4 id=&#34;删失数据-censoring&#34;&gt;删失数据 Censoring&lt;/h4&gt;
+&lt;p&gt;生存分析中，很常见的一种特征就是删失数据&lt;/p&gt;
+&lt;p&gt;指的是在临床试验中，出现一些数据丢失的情况，比如病人中途主动退出、无法联系到、结束时还未发生特定事件。保留了从一开始到丢失前进度的数据成为右删失，另一种称为左删失。（后面只讨论右删失）&lt;/p&gt;
+&lt;h5 id=&#34;type-i-censoring观测时间确定&#34;&gt;Type I Censoring：观测时间确定&lt;/h5&gt;
+&lt;p&gt;每一项数据增加一个表示：&lt;/p&gt;
+&lt;p&gt;$$(U_i, \delta_i) = {min (T_i, c), I(T_i \leqslant c)}, i = 1, ... , n$$&lt;/p&gt;
+&lt;p&gt;$$I(T_i \leqslant C) = \begin{cases}
+1, &amp;amp; T_i \leqslant C,\
+0, &amp;amp; T_i &amp;gt; C
+\end{cases}$$&lt;/p&gt;
+&lt;p&gt;c是实验时间，是一个常量
+也就是说如果是$(c, 0)$，则代表被删失，如果是$(T_i, 1)$，则没有被删失&lt;/p&gt;
+&lt;h5 id=&#34;type-ii-censoring观测人数确定&#34;&gt;Type II Censoring：观测人数确定&lt;/h5&gt;
+&lt;p&gt;比如观测n人，当死亡r人时停止试验
+$T_{(1, n)}, T_{(2, n)}, ..., T_{(r, n)}$&lt;/p&gt;
+&lt;h5 id=&#34;type-iii-censoring随机censoring&#34;&gt;Type III Censoring：随机Censoring&lt;/h5&gt;
+&lt;p&gt;不用常量c而是用随机变量$C_i$&lt;/p&gt;
+&lt;p&gt;$(U_i, \delta_i) = {min (T_i, C_i), I(T_i \leqslant C_i)}, i = 1, ... , n$&lt;/p&gt;
+&lt;p&gt;只考虑右删失，我们只观察$(U_i, \delta_i)$
+如果$(U_i, \delta_i) = (u_i, 1)$，则说明$T_i = u_i, C_i &amp;gt; u_i$
+如果$(U_i, \delta_i) = (u_i, 0)$，则说明$T_i \geqslant u_i, C_i = u_i$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245124/survival-analysis-2.png&#34; alt=&#34;survival-analysis-2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;(推导见https://www.bilibili.com/video/BV1WE411P78Z?p=2)&lt;/p&gt;
+&lt;h4 id=&#34;kaplan-meier模型&#34;&gt;Kaplan-Meier模型&lt;/h4&gt;
+&lt;p&gt;与生存表、Cox并列的一种生存分析的方法，也叫乘积极限(product-limit estimator)&lt;/p&gt;
+&lt;p&gt;$\hat{S}(t)=\prod_{i: t_{i} \leq t}\left(1-\frac{d_{i}}{n_{i}}\right), \quad t \geq 0$&lt;/p&gt;
+&lt;p&gt;$d_i$是在$t_i$时刻死亡的人数，$n_i$是还在风险中的人数&lt;/p&gt;
+&lt;p&gt;例子：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245203/survival-analysis-example-1.png&#34; alt=&#34;survival-analysis-example-1&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;life-table-生存表&#34;&gt;Life table 生存表&lt;/h5&gt;
+&lt;p&gt;举例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245336/life-table-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设时间点为$t_0, t_1, ... ,t_n$，那么在$t_i$时间点下的生存概率：
+$$S(t_i) = \Pi_{j=0}^{i}(1-P(t_j死亡))$$&lt;/p&gt;
+&lt;p&gt;也就是：
+$$S\left(t_{i}\right)=S\left(t_{i-1}\right)\left(1-\frac{d_{i}}{n_{i}}\right)$$&lt;/p&gt;
+&lt;p&gt;$n_i$表示$t_i$时的有效人数，$d_i$表示$t_i$时的死亡人数&lt;/p&gt;
+&lt;p&gt;$t_i$处的生存率等于$t_{i-1}$时的生存率乘以（1-$t_i$时间点的死亡率）&lt;/p&gt;
+&lt;h5 id=&#34;kaplan-meier-生存曲线&#34;&gt;Kaplan-Meier 生存曲线：&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245508/km-curve-1.png&#34; alt=&#34;&#34;&gt;
+加号表示删失数据&lt;/p&gt;
+&lt;p&gt;往往是多条线（因为是不同的组）&lt;/p&gt;
+&lt;h4 id=&#34;cox比例风险回归模型&#34;&gt;Cox比例风险回归模型&lt;/h4&gt;
+&lt;p&gt;Cox Proportional-Hazards Model是由英国统计学家D.R.Cox于1972年提出的一种半参数回归模型（半参数值既包含参数模型，又包含非参数模型）&lt;/p&gt;
+&lt;p&gt;参数模型：有限维度，有限个参数就可以表示模型分布，比如正态分布的均值和标准差
+非参数模型：属于某个无限维的空间，无法用有限个参数来表示，比如决策树、随机森林&lt;/p&gt;
+&lt;p&gt;Cox建立回归的是前面提到的$h(x)$
+Cox模型：
+$$h(t) = h_0(t) \times exp({b_1x_1 + b_2x_2 + ... b_px_p})$$&lt;/p&gt;
+&lt;p&gt;其中$h(t)$指的是不同时间的风险值（hazard），$x_i$指的是具有预测效应的变量，$b_i$指的是每个变量对应的效应值，$h_0(t)$是基准风险函数，根据不同的数据来使用不同的分布模型，是非参数模型&lt;/p&gt;
+&lt;p&gt;建模时，首先确定需要研究的可能影响生存率的因素，也就是$x_i$，我们主要要做的就是找到合适的$h_0(t)$以及所有协变量的系数$b_p$，需要用到极大似然估计等方法求解参数。&lt;/p&gt;
+&lt;h5 id=&#34;两个基本假设&#34;&gt;两个基本假设&lt;/h5&gt;
+&lt;p&gt;对公式两边取对数进行变形：&lt;/p&gt;
+&lt;p&gt;$$log(h(t)) = log(h_0(t)) + \beta X$$&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;模型中各危险因素对危险率的影响不随时间改变，且与时间无关&lt;/li&gt;
+&lt;li&gt;对数危险率与各个危险因素呈线性相关&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;参数的极大似然估计&#34;&gt;参数的极大似然估计&lt;/h5&gt;
+&lt;p&gt;通过极大似然估计来求解参数，极大似然估计的思想是，让已经发生的事件出现的可能性最大。&lt;/p&gt;
+&lt;p&gt;举个例子，有三个人$X_1, X_2, X_3$分别在三个时间点$t_1, t_2, t_3$死亡&lt;/p&gt;
+&lt;p&gt;以$t=t_1$为例，此时我们的目标是$max\ h(t_1, X_1)$和$min\ h(t_1, X_2) + h(t_1, X_3)$，统一这两个的目标：&lt;/p&gt;
+&lt;p&gt;$$max\ \frac{h(t_1, X_1)}{h(t_1, X_1) + h(t_1, X_2) + h(t_1, X_3)}$$&lt;/p&gt;
+&lt;p&gt;（分母加一个分子不影响结果，但是可以让最后一项不至于分母为0）&lt;/p&gt;
+&lt;p&gt;类推得到$t_2$的目标：
+$$max\ \frac{h(t_2, X_2)}{h(t_2, X_2) + h(t_2, X_3)}$$&lt;/p&gt;
+&lt;p&gt;$t_3$的目标：
+$$max\ \frac{h(t_3, X_3)}{h(t_3, X_3)}$$&lt;/p&gt;
+&lt;p&gt;所以似然函数是：
+$$L(\beta) = \frac{h(t_1, X_1)}{h(t_1, X_1) + h(t_1, X_2) + h(t_1, X_3)} \frac{h(t_2, X_2)}{h(t_2, X_2) + h(t_2, X_3)} \frac{h(t_3, X_3)}{h(t_3, X_3)}$$&lt;/p&gt;
+&lt;p&gt;代入$h(x)$的公式之后消掉$h_0(t)$，得到：
+$$L(\beta) = \frac{exp(\beta · X_1)}{exp(\beta · X_1) + exp(\beta · X_2) + exp(\beta · X_3)} \frac{exp(\beta · X_2)}{exp(\beta · X_2) + exp(\beta · X_3)} \frac{exp(\beta · X_3)}{exp(\beta · X_3)}$$&lt;/p&gt;
+&lt;p&gt;这里我们假设的是3个事件，再泛化到N个的情况：
+$$L(\beta)=\prod_{i=1}^{N} \frac{\exp \left(\beta \cdot X_{i}\right)}{\sum_{j: t_{j} \geq t_{i}} \exp \left(\beta \cdot X_{j}\right)}$$&lt;/p&gt;
+&lt;p&gt;对数似然函数：
+$$l(\beta)=\log L(\beta)=\sum_{i=1}^{N}\left[\beta \cdot X_{i}-\log \left(\sum_{j: t_{j} \geq t_{i}} \exp \left(\beta \cdot X_{j}\right)\right)\right]$$&lt;/p&gt;
+&lt;p&gt;梯度为：
+$$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_{j: t_{j} \geq t_{i}} X_{j} \cdot \exp \left(\beta \cdot X_{j}\right)}{\sum_{j: t_{j} \geq t_{i}} \exp \left(\beta \cdot X_{j}\right)}\right]$$&lt;/p&gt;
+&lt;p&gt;就可以采用梯度下降法来对参数进行估计&lt;/p&gt;
+&lt;h5 id=&#34;解读结果&#34;&gt;解读结果&lt;/h5&gt;
+&lt;p&gt;解得了合适的$h_0(t)$以及协变量系数之后，我们可以比较某个协变量$x_i$在不同值的时候对应的不同风险比$\frac{x_i + 1}{x_i}$。&lt;/p&gt;
+&lt;p&gt;$$hazard\ ratio = \frac{h_0(t) \times e^{b_1x_1 + b_2x_2 + ...b_i(x_i+1) + ... b_px_p}}{h_0(t) \times e^{b_1x_1 + b_2x_2  + ...b_ix_i + ... b_px_p}} = e^{b_i}$$&lt;/p&gt;
+&lt;p&gt;举个例子，假如某个指标$x_i$表示年龄，那么对于年龄x和年龄x+1的人来说，死亡风险比是$e^{b_i}$，如果$b_i&amp;gt;0$，则年龄增大，死亡风险增大。反之减小。等于0则是不起作用&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/">算法</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/">生存分析</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://enginewang.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">统计学</category>
                                 
                             
                         
@@ -1248,21 +1438,23 @@ dbAdminAnyDatabase
 &lt;code&gt;mongo admin -u username -p password&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;本地GUI（如navicat）连接，设置账号密码即可&lt;/p&gt;
 &lt;h5 id=&#34;字段操作&#34;&gt;字段操作&lt;/h5&gt;
-&lt;p&gt;字段重命名：
-&lt;code&gt;db.col.update({},{$rename:{&amp;quot;old_field&amp;quot;:&amp;quot;new_field&amp;quot;}},false,true)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;比如：
-&lt;code&gt;db.questionnaire.update({},{$rename:{&amp;quot;questionList&amp;quot;:&amp;quot;question&amp;quot;}},false,true)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;字段增加：
-还可以指定默认值xxx
-&lt;code&gt;db.col.update({},{$set:{new_field:&#39;xxx&#39;}},{multi:true})&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;字段删除：
-&lt;code&gt;db.col.update({},{$unset:{&#39;old_field&#39;:&#39;&#39;}},false, true)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;db.user_questionnaire.update({},{$unset:{&#39;inputCostEstimation&#39;:&#39;&#39;}},false, true)&lt;/code&gt;&lt;/p&gt;
-&lt;h5 id=&#34;查找&#34;&gt;查找&lt;/h5&gt;
-&lt;p&gt;&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.find()&lt;/code&gt; 列出集合信息
-&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.findOne()&lt;/code&gt; 列出第一条集合的信息（按Json排版一下）&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;db.&amp;lt;col-name&amp;gt;.find({query}, {show})&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;query是一个查询字段。比如{&amp;quot;name&amp;quot;:&amp;quot;yicheng&amp;quot;}这种形式
+&lt;p&gt;字段重命名：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.update({},{$rename:{&amp;quot;old_field&amp;quot;:&amp;quot;new_field&amp;quot;}},false,true)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;比如：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.questionnaire.update({},{$rename:{&amp;quot;questionList&amp;quot;:&amp;quot;question&amp;quot;}},false,true)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字段增加：
+还可以指定默认值xxx&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.update({},{$set:{new_field:&#39;xxx&#39;}},{multi:true})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字段删除：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.update({},{$unset:{&#39;old_field&#39;:&#39;&#39;}},false, true)
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.user_questionnaire.update({},{$unset:{&#39;inputCostEstimation&#39;:&#39;&#39;}},false, true)
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 id=&#34;查找&#34;&gt;查找&lt;/h5&gt;
+&lt;p&gt;列出集合信息：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.find()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;列出第一条集合的信息（按Json排版一下）：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.&amp;lt;collection-name&amp;gt;.findOne()
+db.&amp;lt;col-name&amp;gt;.find({query}, {show})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;query是一个查询字段。比如{&amp;quot;name&amp;quot;:&amp;quot;yicheng&amp;quot;}这种形式
 后面的参数决定field是否显示，比find({&amp;quot;name&amp;quot;:&amp;quot;yicheng&amp;quot;}, {&amp;quot;_id&amp;quot;: 0, &amp;quot;age&amp;quot;: 1}) 表示_id不会显示，age会显示&lt;/p&gt;
 &lt;p&gt;条件比较：&lt;/p&gt;
 &lt;table&gt;
@@ -1306,31 +1498,35 @@ dbAdminAnyDatabase
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;$in&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;in&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;$nin&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;not in&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;增删改&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;增加
-&lt;code&gt;db.col.insert(json)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;e.g.
-&lt;code&gt;db.col.insert({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;, &amp;quot;age&amp;quot;:18})&lt;/code&gt;
-&lt;code&gt;db.articles.insert({&amp;quot;title&amp;quot;:&amp;quot;Test&amp;quot;,&amp;quot;author&amp;quot;:&amp;quot;engine&amp;quot;,&amp;quot;time&amp;quot;:&amp;quot;2020.02.27&amp;quot;,&amp;quot;kind&amp;quot;:&amp;quot;tech&amp;quot;,&amp;quot;tags&amp;quot;:&amp;quot;golang,website&amp;quot;,&amp;quot;content&amp;quot;:&amp;quot;This is a blog for test&amp;quot;,&amp;quot;comment&amp;quot;:&amp;quot;comment1&amp;quot;,&amp;quot;view&amp;quot;:10,&amp;quot;like&amp;quot;:5})&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;db.user.insert({&amp;quot;name&amp;quot;:&amp;quot;user1&amp;quot;,avatar:&amp;quot;https://i.loli.net/2020/03/15/XsJjRomr1dy8u4D.png&amp;quot;,&amp;quot;type&amp;quot;:0,&amp;quot;score&amp;quot;:20,&amp;quot;password&amp;quot;:&amp;quot;123456&amp;quot;,&amp;quot;todo&amp;quot;:&amp;quot;&amp;quot;})&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除
-&lt;code&gt;db.col.remove(query)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;修改
-&lt;code&gt;db.mycoll.update(query, object[, upsert_bool, multi_bool])&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;第一个参数是查询条件，第二个参数是修改信息，第三个是如果没找到是否相当于插入（默认为false），第四个参数是修改一个还是所有（默认为false）&lt;/p&gt;
-&lt;p&gt;e.g.
-&lt;code&gt;db.col.update({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;}, {$set:{&amp;quot;age&amp;quot;:20}})&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quot;: 30}}, false, true)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;增加：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.insert(json)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;e.g.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.insert({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;, &amp;quot;age&amp;quot;:18})
+
+db.articles.insert({&amp;quot;title&amp;quot;:&amp;quot;Test&amp;quot;,&amp;quot;author&amp;quot;:&amp;quot;engine&amp;quot;,&amp;quot;time&amp;quot;:&amp;quot;2020.02.27&amp;quot;,&amp;quot;kind&amp;quot;:&amp;quot;tech&amp;quot;,&amp;quot;tags&amp;quot;:&amp;quot;golang,website&amp;quot;,&amp;quot;content&amp;quot;:&amp;quot;This is a blog for test&amp;quot;,&amp;quot;comment&amp;quot;:&amp;quot;comment1&amp;quot;,&amp;quot;view&amp;quot;:10,&amp;quot;like&amp;quot;:5})
+
+db.user.insert({&amp;quot;name&amp;quot;:&amp;quot;user1&amp;quot;,avatar:&amp;quot;https://i.loli.net/2020/03/15/XsJjRomr1dy8u4D.png&amp;quot;,&amp;quot;type&amp;quot;:0,&amp;quot;score&amp;quot;:20,&amp;quot;password&amp;quot;:&amp;quot;123456&amp;quot;,&amp;quot;todo&amp;quot;:&amp;quot;&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;删除：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.remove(query)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.mycoll.update(query, object[, upsert_bool, multi_bool])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第一个参数是查询条件，第二个参数是修改信息，第三个是如果没找到是否相当于插入（默认为false），第四个参数是修改一个还是所有（默认为false）&lt;/p&gt;
+&lt;p&gt;e.g.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.col.update({&amp;quot;name&amp;quot;:&amp;quot;engine&amp;quot;}, {$set:{&amp;quot;age&amp;quot;:20}})
+
+db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quot;: 30}}, false, true)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更复杂的逻辑：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;db.getCollection(&#39;participant&#39;).find().forEach(
    function(item){
        db.getCollection(&#39;participant&#39;).update({&amp;quot;_id&amp;quot;:item._id},{$set:{&amp;quot;modifyTimes&amp;quot;: 3}})
@@ -1375,7 +1571,7 @@ dbAdminAnyDatabase
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;golang的mongodb接口mgo&#34;&gt;Golang的MongoDB接口：mgo&lt;/h4&gt;
-&lt;p&gt;使用指南&lt;/p&gt;
+&lt;p&gt;简单的使用&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1452,7 +1648,7 @@ dbAdminAnyDatabase
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E5%B7%A5%E7%A8%8B/">工程</category>
                                 
                             
                         
@@ -1821,7 +2017,7 @@ systemctl reload nginx.service
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://enginewang.github.io/categories/%E5%B7%A5%E7%A8%8B/">工程</category>
                                 
                             
                         
