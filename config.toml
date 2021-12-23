@@ -1,7 +1,7 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://enginewang.github.io"
+baseURL = "https://yichengme.site"
 title = "王毅诚的博客"
 languageCode = "zh-CN"
 hasCJKLanguage = true
@@ -189,12 +189,12 @@ uglyURLs = false
 
 [menu]
     ## 菜单栏
-    # [[menu.main]]
-    #     pageref = "/"
-    #     name = "首页"
-    #     weight = 1
-    #     pre = "internal"
-    #     post = "home"
+    [[menu.main]]
+        pageref = "/"
+        name = "首页"
+        weight = 1
+        pre = "internal"
+        post = "home"
     [[menu.main]]
         pageref = "/posts/"
         name = "文章"
@@ -309,11 +309,11 @@ uglyURLs = false
     # 3. posts     文章摘要
     # 4. page      普通页面
 
-    homeLayout = "page"
+    homeLayout = "poetry"
 
     ## 「诗意人生」
     # 诗句，支持 Markdown
-    homePoetry = [""]
+    homePoetry = ["绿蚁新醅酒，红泥小火炉。<br>晚来天欲雪，能饮一杯无？"]
     # 底部链接的内间距，单位：em
     homeLinksPadding = 1
 

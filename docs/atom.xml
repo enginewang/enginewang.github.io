@@ -4,13 +4,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2021-12-23T20:14:00&#43;08:00</updated>
-    <id>https://enginewang.github.io/</id>
-    <link rel="alternate" type="text/html" href="https://enginewang.github.io/" />
-    <link rel="self" type="application/atom&#43;xml" href="https://enginewang.github.io/atom.xml" />
+    <updated>2021-12-23T20:20:03&#43;08:00</updated>
+    <id>https://yichengme.site/</id>
+    <link rel="alternate" type="text/html" href="https://yichengme.site/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
     <author>
             <name>王毅诚</name>
-            <uri>https://enginewang.github.io/</uri>
+            <uri>https://yichengme.site/</uri>
             
                 <email>engine74396@gmail.com</email>
             </author>
@@ -18,8 +18,8 @@
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
             <title type="text">返璞归真，博客重新迁移到Hugo</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/hello-world/" />
-            <id>https://enginewang.github.io/posts/hello-world/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/hello-world/" />
+            <id>https://yichengme.site/posts/hello-world/</id>
             <updated>2021-12-23T15:48:33&#43;08:00</updated>
             <published>2021-12-21T23:08:40&#43;08:00</published>
             <author>
@@ -45,7 +45,7 @@
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -55,13 +55,13 @@
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/hugo/" term="hugo" label="hugo" />
+                                <category scheme="https://yichengme.site/tags/hugo/" term="hugo" label="hugo" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/site/" term="site" label="site" />
+                                <category scheme="https://yichengme.site/tags/site/" term="site" label="site" />
                             
                         
                     
@@ -71,8 +71,8 @@
     
         <entry>
             <title type="text">分布式系统（二）：共识算法</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/distribution-system-2/" />
-            <id>https://enginewang.github.io/posts/distribution-system-2/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-2/" />
+            <id>https://yichengme.site/posts/distribution-system-2/</id>
             <updated>2021-12-23T15:48:25&#43;08:00</updated>
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
@@ -334,7 +334,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E5%8E%9F%E7%90%86/" term="原理" label="原理" />
+                                <category scheme="https://yichengme.site/categories/%E5%8E%9F%E7%90%86/" term="原理" label="原理" />
                             
                         
                     
@@ -344,13 +344,13 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E7%B2%BE%E9%80%89/" term="精选" label="精选" />
+                                <category scheme="https://yichengme.site/tags/%E7%B2%BE%E9%80%89/" term="精选" label="精选" />
                             
                         
                     
@@ -360,8 +360,8 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
     
         <entry>
             <title type="text">分布式系统（一）：CAP及基础理论</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/distribution-system-1/" />
-            <id>https://enginewang.github.io/posts/distribution-system-1/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-1/" />
+            <id>https://yichengme.site/posts/distribution-system-1/</id>
             <updated>2021-12-23T15:48:16&#43;08:00</updated>
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
@@ -557,7 +557,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E5%8E%9F%E7%90%86/" term="原理" label="原理" />
+                                <category scheme="https://yichengme.site/categories/%E5%8E%9F%E7%90%86/" term="原理" label="原理" />
                             
                         
                     
@@ -567,7 +567,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                     
@@ -577,8 +577,8 @@ R + R &amp;gt; N：&lt;/p&gt;
     
         <entry>
             <title type="text">Google三驾马车（三）—— Bigtable</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/bigtable/" />
-            <id>https://enginewang.github.io/posts/bigtable/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/bigtable/" />
+            <id>https://yichengme.site/posts/bigtable/</id>
             <updated>2021-12-23T15:48:13&#43;08:00</updated>
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
@@ -755,7 +755,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -765,19 +765,19 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/bigtable/" term="Bigtable" label="Bigtable" />
+                                <category scheme="https://yichengme.site/tags/bigtable/" term="Bigtable" label="Bigtable" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -787,8 +787,8 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
     
         <entry>
             <title type="text">Google三驾马车（二）—— MapReduce</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mapreduce/" />
-            <id>https://enginewang.github.io/posts/mapreduce/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mapreduce/" />
+            <id>https://yichengme.site/posts/mapreduce/</id>
             <updated>2021-12-23T15:47:45&#43;08:00</updated>
             <published>2021-10-18T20:21:18&#43;08:00</published>
             <author>
@@ -922,7 +922,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -932,19 +932,19 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/mapreduce/" term="MapReduce" label="MapReduce" />
+                                <category scheme="https://yichengme.site/tags/mapreduce/" term="MapReduce" label="MapReduce" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -954,8 +954,8 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
     
         <entry>
             <title type="text">Google三驾马车（一）—— Google File System</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/gfs/" />
-            <id>https://enginewang.github.io/posts/gfs/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/gfs/" />
+            <id>https://yichengme.site/posts/gfs/</id>
             <updated>2021-12-23T15:47:55&#43;08:00</updated>
             <published>2021-10-11T18:00:18&#43;08:00</published>
             <author>
@@ -1108,7 +1108,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -1118,19 +1118,19 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/gfs/" term="GFS" label="GFS" />
+                                <category scheme="https://yichengme.site/tags/gfs/" term="GFS" label="GFS" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -1140,8 +1140,8 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
     
         <entry>
             <title type="text">生存分析基础</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/survival-analysis-basic/" />
-            <id>https://enginewang.github.io/posts/survival-analysis-basic/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/survival-analysis-basic/" />
+            <id>https://yichengme.site/posts/survival-analysis-basic/</id>
             <updated>2021-12-23T19:39:43&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
@@ -1307,7 +1307,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -1317,13 +1317,13 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" term="生存分析" label="生存分析" />
+                                <category scheme="https://yichengme.site/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" term="生存分析" label="生存分析" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" term="统计学" label="统计学" />
+                                <category scheme="https://yichengme.site/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" term="统计学" label="统计学" />
                             
                         
                     
@@ -1333,8 +1333,8 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
     
         <entry>
             <title type="text">Mongodb初级教程</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mongodb-basics/" />
-            <id>https://enginewang.github.io/posts/mongodb-basics/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mongodb-basics/" />
+            <id>https://yichengme.site/posts/mongodb-basics/</id>
             <updated>2021-12-23T15:47:40&#43;08:00</updated>
             <published>2020-04-20T14:29:14&#43;08:00</published>
             <author>
@@ -1660,7 +1660,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
+                                <category scheme="https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
                             
                         
                     
@@ -1670,13 +1670,13 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/mongodb/" term="MongoDB" label="MongoDB" />
+                                <category scheme="https://yichengme.site/tags/mongodb/" term="MongoDB" label="MongoDB" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/database/" term="Database" label="Database" />
+                                <category scheme="https://yichengme.site/tags/database/" term="Database" label="Database" />
                             
                         
                     
@@ -1686,8 +1686,8 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
     
         <entry>
             <title type="text">Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
-            <id>https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
+            <id>https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
             <updated>2021-12-23T15:47:58&#43;08:00</updated>
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
@@ -2032,7 +2032,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
+                                <category scheme="https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
                             
                         
                     
@@ -2042,19 +2042,19 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/django/" term="Django" label="Django" />
+                                <category scheme="https://yichengme.site/tags/django/" term="Django" label="Django" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/nginx/" term="nginx" label="nginx" />
+                                <category scheme="https://yichengme.site/tags/nginx/" term="nginx" label="nginx" />
                             
                         
                     
@@ -2064,8 +2064,8 @@ systemctl reload nginx.service
     
         <entry>
             <title type="text">Precision5510 黑苹果使用体验</title>
-            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/precision5510-hackintosh/" />
-            <id>https://enginewang.github.io/posts/precision5510-hackintosh/</id>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/precision5510-hackintosh/" />
+            <id>https://yichengme.site/posts/precision5510-hackintosh/</id>
             <updated>2021-12-23T16:44:12&#43;08:00</updated>
             <published>2019-09-05T14:33:07&#43;08:00</published>
             <author>
@@ -2146,7 +2146,7 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -2156,13 +2156,13 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" term="黑苹果" label="黑苹果" />
+                                <category scheme="https://yichengme.site/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" term="黑苹果" label="黑苹果" />
                             
                         
                             
                             
                             
-                                <category scheme="https://enginewang.github.io/tags/%E6%8A%98%E8%85%BE/" term="折腾" label="折腾" />
+                                <category scheme="https://yichengme.site/tags/%E6%8A%98%E8%85%BE/" term="折腾" label="折腾" />
                             
                         
                     
