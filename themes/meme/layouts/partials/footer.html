@@ -1,12 +1,13 @@
 {{ if or (and .IsHome .Site.Params.displayFooterInHome) (and (not .IsHome) (.Site.Params.displayFooter | default .Site.Params.enableFooter)) }}
     <footer id="footer" class="footer">
         <div class="footer-inner">
+          {{ partial "components/socials.html" . }}
             <div class="site-info">
-              {{- if .Site.Params.displayCopyleftSymbol -}}
+              <!-- {{- if .Site.Params.displayCopyleftSymbol -}}
                   <span class="copyleft-symbol">🄯</span>&nbsp;
-              {{- end -}}
+              {{- end -}} -->
               {{- if .Site.Params.displayCopyrightSymbol -}}
-                  ©&nbsp;
+                  Copyright ©&nbsp;
               {{- end -}}
 
               {{- if .Site.Params.displaySiteCreatedYear -}}
@@ -24,7 +25,8 @@
             </div>
 
             {{- if .Site.Params.displayPoweredBy }}
-                {{- $raw := `Powered by [Hugo](https://github.com/gohugoio/hugo)`
+                {{- $raw := `[沪ICP备2020038034号](http://beian.miit.gov.cn) | All Rights Reserved.`
+
                    -}}
                 <div class="powered-by">{{ partial "utils/markdownify.html" (dict "$" $ "raw" $raw "isContent" false) }}</div>
             {{- end }}
@@ -74,8 +76,6 @@
                     </span>
                 </div>
             {{- end }}
-
-            {{ partial "components/socials.html" . }}
 
             {{ partial "custom/footer.html" . }}
         </div>

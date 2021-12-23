@@ -2,7 +2,7 @@
 title: "分布式系统（一）：CAP及基础理论"
 date: 2021-11-19T00:21:18+08:00
 draft: false
-categories: ["原理"]
+categories: ["理论"]
 tags: ["分布式"]
 ---
 
@@ -184,7 +184,7 @@ Quorum System随着Amazon与2007年发表的`Dynamo: Amazon’s Highly Available
 只要W+W>N就可以防止同时写的发生，保证不会出现最新的值不明确的情况。这个不解释。
 
 
-只要W+R>N就可以防止同时读写的发生，保证不会出现读取的值不是最新值的情况。配合timestamp之后，根据抽屉原理，读的时候至少会读到一台最新的server，从而根据timestamp可以找出它。
+只要W+R>N就可以防止同时读写的发生，保证不会出现读取的值不是最新值的情况。配合timestamp之后，根据抽屉理论，读的时候至少会读到一台最新的server，从而根据timestamp可以找出它。
 
 通过Quorum System，可以不必设置primary server、replica server的形式，直接对任一server进行读写，仍然能保证Strong Consistency。
 

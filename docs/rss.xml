@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Thu, 23 Dec 2021 20:40:26 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 23 Dec 2021 21:14:10 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -340,7 +340,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://yichengme.site/categories/%E5%8E%9F%E7%90%86/">原理</category>
+                                    <category domain="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/">理论</category>
                                 
                             
                         
@@ -502,7 +502,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
 取得R个replicas的Lock才被允许读。
 写入时搭配timestamp。&lt;/p&gt;
 &lt;p&gt;只要W+W&amp;gt;N就可以防止同时写的发生，保证不会出现最新的值不明确的情况。这个不解释。&lt;/p&gt;
-&lt;p&gt;只要W+R&amp;gt;N就可以防止同时读写的发生，保证不会出现读取的值不是最新值的情况。配合timestamp之后，根据抽屉原理，读的时候至少会读到一台最新的server，从而根据timestamp可以找出它。&lt;/p&gt;
+&lt;p&gt;只要W+R&amp;gt;N就可以防止同时读写的发生，保证不会出现读取的值不是最新值的情况。配合timestamp之后，根据抽屉理论，读的时候至少会读到一台最新的server，从而根据timestamp可以找出它。&lt;/p&gt;
 &lt;p&gt;通过Quorum System，可以不必设置primary server、replica server的形式，直接对任一server进行读写，仍然能保证Strong Consistency。&lt;/p&gt;
 &lt;p&gt;这样的话，通过使用DynamoDB，Amazon会在世界各个地方的数据中心存放你的数据，进行备份，也能通过local replica进行加速。&lt;/p&gt;
 &lt;h5 id=&#34;read-repair和anti-entropy&#34;&gt;Read-Repair和Anti-Entropy&lt;/h5&gt;
@@ -560,7 +560,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://yichengme.site/categories/%E5%8E%9F%E7%90%86/">原理</category>
+                                    <category domain="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/">理论</category>
                                 
                             
                         
@@ -1334,7 +1334,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                 
                     <description>&lt;h4 id=&#34;背景&#34;&gt;背景&lt;/h4&gt;
 &lt;p&gt;mongodb是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。它是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。&lt;/p&gt;
-&lt;p&gt;这里简单的讲一下使用方法，不涉及底层原理&lt;/p&gt;
+&lt;p&gt;这里简单的讲一下使用方法，不涉及底层理论&lt;/p&gt;
 &lt;h4 id=&#34;起步&#34;&gt;起步&lt;/h4&gt;
 &lt;h5 id=&#34;mac下安装mongodb&#34;&gt;Mac下安装MongoDB&lt;/h5&gt;
 &lt;p&gt;之前是

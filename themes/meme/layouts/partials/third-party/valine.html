@@ -41,11 +41,7 @@
             enableQQ: {{ .Site.Params.valineEnableQQ }},
             requiredFields: {{ .Site.Params.valineRequiredFields }}
         });
-        var infoEle = document.querySelector('#comments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
-      infoEle.childNodes.forEach(function(item) {
+        var infoEle = document.querySelector('.vpower');
         item.parentNode.removeChild(item);
-      });
-    }
     }
 </script>
