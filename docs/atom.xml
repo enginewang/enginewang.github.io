@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2021-12-24T23:13:15&#43;08:00</updated>
+    <updated>2021-12-27T15:50:11&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -1324,6 +1324,634 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                                 <category scheme="https://yichengme.site/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" term="统计学" label="统计学" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">计算机系统结构</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/computer-system-structure-1/" />
+            <id>https://yichengme.site/posts/computer-system-structure-1/</id>
+            <updated>2021-12-27T15:46:45&#43;08:00</updated>
+            <published>2020-06-04T15:05:09&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">第一章：导论 概念部分 第一台通用电子计算机诞生于1946年 计算机技术的飞速发展得益于：计算机制造技术的发展、计算机系统结构的创新 纷纷放弃高性能转向多核，标志着系统……</summary>
+            
+                <content type="html">&lt;h3 id=&#34;第一章导论&#34;&gt;第一章：导论&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;第一台通用电子计算机诞生于1946年&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机技术的飞速发展得益于&lt;/strong&gt;：计算机制造技术的发展、计算机系统结构的创新&lt;/p&gt;
+&lt;p&gt;纷纷放弃高性能转向多核，标志着系统结构的重大转折：&lt;strong&gt;从单纯依靠指令集并行转向开发线程级并行和数据集并行&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机系统的层次结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;L6: 应用语言虚拟机&lt;/p&gt;
+&lt;p&gt;L5: 高级语言虚拟机&lt;/p&gt;
+&lt;p&gt;L4: 汇编语言虚拟机&lt;/p&gt;
+&lt;p&gt;L3: 操作系统虚拟机&lt;/p&gt;
+&lt;p&gt;L2: 传统机器级&lt;/p&gt;
+&lt;p&gt;L1: 微程序机器级&lt;/p&gt;
+&lt;p&gt;L1-L3通常使用解释实现（一条一条来）&lt;/p&gt;
+&lt;p&gt;L4-L6通常使用翻译实现（全部翻译成下面一个低级再执行）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机系统结构定义&lt;/strong&gt;：计算机系统结构是程序员所看到的计算机属性，即概念性结构与功能特性，是计算机系统的软硬件的界面&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;广义的系统结构&lt;/strong&gt;：指令结构、组成和硬件&lt;/p&gt;
+&lt;p&gt;包括：指令系统、寻址方式、数据表示、寄存器定义、中断系统、工作状态的切换、存储系统、信息保护、I/O结构等&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机组成&lt;/strong&gt;：计算机系统结构的逻辑实现&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机实现&lt;/strong&gt;：计算机系统结构的物理实现&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;一种体系结构可以有多种组成，一种组成可以有多种物理实现&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统结构的分类&lt;/strong&gt;
+冯氏分类法：按照最大并行度（字宽×一次能处理的字数）分
+Flynn分类：按指令流和数据流的多倍性分，分为以下四类：&lt;/p&gt;
+&lt;p&gt;①单指令流单数据流（SISD）&lt;/p&gt;
+&lt;p&gt;②单指令流多数据流（SIMD）&lt;/p&gt;
+&lt;p&gt;③多指令流单数据流（MISD）&lt;/p&gt;
+&lt;p&gt;④多指令流多数据流（MIMD）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;冯诺依曼结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;最大特点：以运算器为中心&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;虚拟机&lt;/strong&gt;：用软件实现的机器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系列机&lt;/strong&gt;：同一个厂家生产的具有相同系统结构但具有不同组成和实现的一系列不同型号的计算机&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;兼容机&lt;/strong&gt;：由不同厂家生产的具有相同系统结构的计算机&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;软件兼容&lt;/strong&gt;：向上兼容、向下兼容、向前兼容和向后兼容，其中向后兼容是系列机的根本特征&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模拟&lt;/strong&gt;：用软件的方法在一台计算机上实现另一台计算机的指令集（本机要解释执行另一台机子的程序）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;仿真&lt;/strong&gt;：用一台现有计算机上的微程序去解释实现另一台计算机的指令集（本机要实现另一台机子的指令集）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并行性&lt;/strong&gt;：包括同时性（同一时刻）和并发性（同一间隔）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提高并行性的措施&lt;/strong&gt;：时间重叠、资源重复、资源共享&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;耦合度&lt;/strong&gt;：反应计算机之间物理连接的紧密程度和交互强弱，分为紧密耦合系统和松散耦合系统&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;计算机系统设计经常使用的4个定量原理&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;以经常性事件为重点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Amdahl定律&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CPU性能公式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;程序的局部性原理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;计算部分&#34;&gt;计算部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Amdahl定律&lt;/strong&gt;（P7）&lt;/p&gt;
+&lt;p&gt;$加速比 = \frac{执行时间_{改进前}}{执行时间_{改进后}} = \frac{1}{（ 1 - 可改进比例 ）+ \frac{可改进比例}{部件加速比} }$
+依赖于可改进比例和部件加速比&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CPU时间&lt;/strong&gt;（P9）&lt;/p&gt;
+&lt;p&gt;$CPU时间 = IC \times CPI \times 时钟周期时间$&lt;/p&gt;
+&lt;p&gt;$时钟周期 = \frac{1}{f}$&lt;/p&gt;
+&lt;p&gt;$MIPS速率 = \frac{f}{CPI} $&lt;/p&gt;
+&lt;p&gt;执行时间和吞吐率（P11）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;性能比较&lt;/strong&gt;（P14）&lt;/p&gt;
+&lt;h3 id=&#34;第二章指令集结构&#34;&gt;第二章：指令集结构&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-1&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;区别不同指令集结构的主要因素是&lt;strong&gt;CPU中用来储存操作数的储存单元的类型&lt;/strong&gt;，因此可以把指令集结构分为&lt;strong&gt;堆栈结构&lt;/strong&gt;、&lt;strong&gt;累加器结构&lt;/strong&gt;和&lt;strong&gt;通用寄存器结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;寻址方式&lt;/strong&gt;：
+指一种指令集结构如何确定所要访问的数据的地址&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对指令集的基本要求&lt;/strong&gt;：
+完整性、规整性、高效率和兼容性&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指令集结构设计涉及的内容&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 指令集功能设计，主要由CISC和RISC两种方向&lt;/p&gt;
+&lt;p&gt;② 寻址方式设计&lt;/p&gt;
+&lt;p&gt;③ 操作数表示和操作数类型&lt;/p&gt;
+&lt;p&gt;④ 寻址方式的表示&lt;/p&gt;
+&lt;p&gt;⑤ 指令集格式的设计，变长、固定长度、混合&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指令集三种编码格式&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;可变长度编码&lt;/p&gt;
+&lt;p&gt;固定长度编码&lt;/p&gt;
+&lt;p&gt;混合型编码&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RISC遵循的原则&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 指令条数少而简单&lt;/p&gt;
+&lt;p&gt;② 采用简单而又统一的指令格式&lt;/p&gt;
+&lt;p&gt;③ 指令的执行在单个机器周期内完成&lt;/p&gt;
+&lt;p&gt;④ 只有load和store能访问存储器&lt;/p&gt;
+&lt;p&gt;⑤ 大多数指令采用硬连逻辑&lt;/p&gt;
+&lt;p&gt;⑥ 强调优化编译器的作用&lt;/p&gt;
+&lt;p&gt;⑦ 充分利用流水线&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I类指令&lt;/strong&gt;：
+load、store等&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;0-5&lt;/th&gt;
+&lt;th&gt;6-10&lt;/th&gt;
+&lt;th&gt;11-15&lt;/th&gt;
+&lt;th&gt;16-31&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作码&lt;/td&gt;
+&lt;td&gt;rs&lt;/td&gt;
+&lt;td&gt;rt&lt;/td&gt;
+&lt;td&gt;立即数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;R类指令&lt;/strong&gt;：
+ALU等&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;0-5&lt;/th&gt;
+&lt;th&gt;6-10&lt;/th&gt;
+&lt;th&gt;11-15&lt;/th&gt;
+&lt;th&gt;16-20&lt;/th&gt;
+&lt;th&gt;21-25&lt;/th&gt;
+&lt;th&gt;26-31&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作码&lt;/td&gt;
+&lt;td&gt;rs&lt;/td&gt;
+&lt;td&gt;rt&lt;/td&gt;
+&lt;td&gt;rd&lt;/td&gt;
+&lt;td&gt;shamt&lt;/td&gt;
+&lt;td&gt;funct&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;第三章流水线技术&#34;&gt;第三章：流水线技术&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-2&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;流水线技术的概念&lt;/strong&gt;：
+把一个重复的过程分解为若干个子过程，每一个子过程用一个专门的部件来实现。多个处理过程在时间上错开依次通过各段，让每个子过程和其他过程并行，这就是流水线技术&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水线技术的特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;① 流水线把一个处理过程分解为若干个子过程，每个子过程由一个专门的功能部件来实现，依靠它们的并行工作来缩短程序的执行时间&lt;/p&gt;
+&lt;p&gt;② 流水线各段时间应该尽可能相等&lt;/p&gt;
+&lt;p&gt;③ 流水线的每一个功能部件的后面都要有一个缓冲存储器&lt;/p&gt;
+&lt;p&gt;④ 流水线适合于大量重复的时序过程&lt;/p&gt;
+&lt;p&gt;⑤ 流水线需要有通过时间和排空时间&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水线分类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;单功能流水线：只能完成一种固定功能&lt;/p&gt;
+&lt;p&gt;多功能流水线：可以实现不同的功能&lt;/p&gt;
+&lt;p&gt;静态流水线：同一时间各段只能按照同一种功能的连接方式工作&lt;/p&gt;
+&lt;p&gt;动态流水线：同一时间各段可以有不同的连接，执行多种功能&lt;/p&gt;
+&lt;p&gt;部件级流水线：把运算部件分段&lt;/p&gt;
+&lt;p&gt;处理机级流水线：把指令的解释执行过程分段&lt;/p&gt;
+&lt;p&gt;处理机间流水线：在处理机间流水&lt;/p&gt;
+&lt;p&gt;线性流水线：没有反馈回路&lt;/p&gt;
+&lt;p&gt;非线性流水线：有反馈回路&lt;/p&gt;
+&lt;p&gt;顺序流水线：任务流出流入的顺序一致&lt;/p&gt;
+&lt;p&gt;乱序流水线：任务流出的顺序和流入的顺序可以不一样&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;解决流水线瓶颈问题的方法&lt;/strong&gt;
+细分瓶颈段、重复设置瓶颈段&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;经典的五段流水线划分&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一条指令的执行过程可以划分为以下五个部分：&lt;/p&gt;
+&lt;p&gt;取指令周期（IF）&lt;/p&gt;
+&lt;p&gt;指令译码/读寄存器（ID）&lt;/p&gt;
+&lt;p&gt;执行/有效地址计算（EX）&lt;/p&gt;
+&lt;p&gt;存储器访问/分支完成（MEM）&lt;/p&gt;
+&lt;p&gt;写回周期（WB）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相关的概念&lt;/strong&gt;：相关是指两条指令之间存在某种依赖关系&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;相关的分类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;数据相关：指令之间有数据关联（有传递性）&lt;/p&gt;
+&lt;p&gt;名相关：名指的是寄存器名或存储器名，数据不关联但是用了相同的名，名相关又分为反相关（一写一读）和输出相关（都写）&lt;/p&gt;
+&lt;p&gt;控制相关：由分支指令引起的相关&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水线冲突的概念&lt;/strong&gt;：
+对于具体的流水线而言，由于相关的存在，导致指令流的下一条指令不能在指定的时钟周期执行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水线冲突的分类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;结构冲突：硬件资源无法满足重叠执行的要求&lt;br&gt;
+     — 消除结构冲突：气泡停顿、设置独立指令数据存储器、Cache分为指令Cache和数据Cache
+数据冲突：重叠执行时需要用到前面的数据&lt;br&gt;
+     — 数据冲突分为：写后读（RAW）、写后写（WAW）&lt;/p&gt;
+&lt;p&gt;     — 解决数据冲突：定向技术（直接从产生的地方送到需要的地方）、通过编译器指令调度解决
+控制冲突：分支指令等引起的冲突&lt;br&gt;
+     — 解决控制冲突：冻结或排空流水线（最简单但是分支延迟大）、尽早判断分支是否成功（提前到ID段末尾）、软件方法&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;减少分支延迟的静态方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;预测分支失败&lt;/p&gt;
+&lt;p&gt;预测分支成功&lt;/p&gt;
+&lt;p&gt;延迟分支（在延迟槽中放入有用的指令，三种调度方法：从前调度、从目标处调入、从失败处调入）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不采用单周期的原因&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;① 单周期效率低，不同指令需要的时钟周期不一样&lt;/p&gt;
+&lt;p&gt;② 单周期需要重复设置部件，而多周期可以共享&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水寄存器的作用&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;① 将各段隔开来，使之不会相互干扰&lt;/p&gt;
+&lt;p&gt;② 保存相应段的处理结果&lt;/p&gt;
+&lt;p&gt;③ 向后传递后面要用到的数据或控制信息&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;流水线的实现（P82 - P90）&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;$IF/IR$&lt;/th&gt;
+&lt;th&gt;$IR/EX$&lt;/th&gt;
+&lt;th&gt;$EX/MEM$&lt;/th&gt;
+&lt;th&gt;$MEM/WD$&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$NPC$&lt;/td&gt;
+&lt;td&gt;$NPC$&lt;/td&gt;
+&lt;td&gt;$cond$&lt;/td&gt;
+&lt;td&gt;$LMD$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$IR$&lt;/td&gt;
+&lt;td&gt;$A$&lt;/td&gt;
+&lt;td&gt;$ALU0$&lt;/td&gt;
+&lt;td&gt;$ALU0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;$B$&lt;/td&gt;
+&lt;td&gt;$B$&lt;/td&gt;
+&lt;td&gt;$IR$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;$Imm$&lt;/td&gt;
+&lt;td&gt;$IR$&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;$IR$&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;计算部分-1&#34;&gt;计算部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;吞吐率&lt;/strong&gt;：单位时间内流水线完成的任务数量&lt;/p&gt;
+&lt;p&gt;$TP = \frac{n}{T_k}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加速比&lt;/strong&gt;：不用流水线所用的时间和用流水线所用时间之比&lt;/p&gt;
+&lt;p&gt;$S = \frac{T_s}{T_k}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;效率&lt;/strong&gt;：设备实际使用时间与整个运行时间之比（画图之后即为阴影面积/完整面积）&lt;/p&gt;
+&lt;p&gt;易出大题（P61 例题3.1、P104 章后习题3.11）
+&lt;strong&gt;务必注意题目里说的是静态流水线还是动态流水线&lt;/strong&gt;，静态流水线必须一个操作做完之后 才能开另一个功能，参见P60例3.1个P60例3.2&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;第四章指令级并行&#34;&gt;第四章：指令级并行&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-3&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;指令级并行概念&lt;/strong&gt;：利用流水线使指令重叠并行执行，这种指令之间潜在并行性称为指令级并行（ILP，Instruction-Level Parallelism）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CPI&lt;/strong&gt;：（Cycles Per Instruction）每条指令所消耗的时钟周期数
+&lt;strong&gt;IPC&lt;/strong&gt;：（Instructions Per Cycle）每个时钟周期完成的指令条数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基本程序块&lt;/strong&gt;：一段除了入口和出口之外不包含其他分支的线性代码段（就是指中间没分支）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;循环级并行&lt;/strong&gt;：让一个循环中的不同循环体并行执行&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;开发循环级并行的技术&lt;/strong&gt;：循环展开技术、采用向量指令和向量数据表示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指令顺序&lt;/strong&gt;：由源程序确定的在完全串行方式下指令的执行顺序&lt;/p&gt;
+&lt;p&gt;正确执行程序&lt;strong&gt;必须保持的最关键的两个因素&lt;/strong&gt;：数据流（数据从其产生者指令到消费者指令的实际流动）和异常行为（无论怎么改变顺序，都不影响程序中异常的发生情况）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;指令调度&lt;/strong&gt;：通过在编译时让编译器重新组织指令顺序或者通过硬件在执行时调整指令顺序来消除冲突&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;静态调度与动态调度&lt;/strong&gt;：第三章为静态调度，第四章为动态调度，以下为二者区别：
+① 静态调度发生在编译过程中，动态调度发生在运行过程中
+② 动态调度相比静态有更多优点：能够处理一些编译时不明确的相关、能够套用在其他流水线上&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;精确异常和不精确异常&lt;/strong&gt;：
+精确异常：发生异常时，处理机的现场和严格按程序顺序执行时的现场相同
+不精确异常：发生异常时，处理机的现场和严格按程序顺序执行时的现场不同&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tomasulo算法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;保留栈&lt;/strong&gt;：在采用Tomasulo算法的MIPS处理器浮点部件中，在运算部件的入口设置的用来保存已经流出并等待到本功能部件执行的指令
+&lt;strong&gt;CDB&lt;/strong&gt;：公共数据总线&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ROB&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;动态分支预测技术&lt;/strong&gt;：根据分支指令过去的表现来预测其将来的行为
+&lt;strong&gt;BHT&lt;/strong&gt;：分支历史表，用于记录相关分支指令最近几次的执行情况并根据此进行预测
+&lt;strong&gt;分支目标缓冲&lt;/strong&gt;：是一种动态分支预测技术，将执行过的成功的分支指令的地址和预测的分支目标地址记录在一个硬件表中，每次取指令时比较，达到减少分支开销的作用
+&lt;strong&gt;前瞻执行&lt;/strong&gt;：解决控制相关的方法，对分支指令的结果进行预测，按照这个预测结果继续后续的过程，不过指令执行的结果不是放在寄存器或存储器中，而是放在ROB缓冲器中，相应指令确认后才将结果写到寄存器或存储器
+&lt;strong&gt;ROB&lt;/strong&gt;：前瞻执行缓冲器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;多流出处理机的两种基本风格&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;超标量：一种多指令流出技术，每个时钟周期流出的指令条数不确定，但有个上限
+超长指令字：一种多指令流出技术，每个时钟周期流出的指令条数是固定的，这些指令构成一条长指令或者指令包，通过编译器静态调度&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;超流水&lt;/strong&gt;
+一个时钟周期内分时流出多条指令&lt;/p&gt;
+&lt;h4 id=&#34;计算部分-2&#34;&gt;计算部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;实际CPI&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;$CPI_{流水线} = CPI_{理想} + 停顿_{结构冲突} + 停顿_{数据冲突} + 停顿_{控制冲突}$&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;第五章存储系统&#34;&gt;第五章：存储系统&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-4&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;人们追求的储存器特性&lt;/strong&gt;：容量大、速度快、价格低&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;走出困境的唯一方法&lt;/strong&gt;：采用多级存储层次结构&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;多级存储层次&lt;/strong&gt;：采用不同的技术实现的存储器，处在离CPU不同位置的层次上，各存储器之间一般满足包容关系，任何一层存储器中的内容都是其下一层的储存器内容的子集。目标是达到离CPU最近的存储器的速度，最远的存储器的容量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;“Cache-主存”与“主存-辅存”的区别&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Cache-主存层次&lt;/th&gt;
+&lt;th&gt;主存-辅存层次&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;目的&lt;/td&gt;
+&lt;td&gt;为了弥补主存速度的不足&lt;/td&gt;
+&lt;td&gt;为了弥补主存容量的不足&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;存储管理的实现&lt;/td&gt;
+&lt;td&gt;由专用硬件实现&lt;/td&gt;
+&lt;td&gt;由软件实现&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;访问速度的比值&lt;/td&gt;
+&lt;td&gt;几比一&lt;/td&gt;
+&lt;td&gt;几万比一&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;块/页大小&lt;/td&gt;
+&lt;td&gt;几十个字节&lt;/td&gt;
+&lt;td&gt;几百到几千字节&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPU对第二级的访问方式&lt;/td&gt;
+&lt;td&gt;可以直接访问&lt;/td&gt;
+&lt;td&gt;均通过第一级&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;不命中时是否切换&lt;/td&gt;
+&lt;td&gt;不切换&lt;/td&gt;
+&lt;td&gt;切换到其他进程&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;映像规则&lt;/strong&gt;
+全相联映像：主存中的任意一块可以被放置到Cache中的任意一个位置，空间利用率最高、冲突概率最低、实现最复杂
+直接映像：    主存中的每一块只能被放到Cache中唯一的位置，空间利用率最低、冲突概率最高、实现最简单
+组相联映像：主存中的每一块可以被放置到Cache中唯一一组中的任何一个位置，是上面二者的折中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;查找算法&lt;/strong&gt;
+查找Cache在哪，通过查找目录表实现，目录表项与储存器块对应&lt;/p&gt;
+&lt;p&gt;目录表&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;有效位&lt;/th&gt;
+&lt;th&gt;标识&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;/table&gt;
+&lt;p&gt;有效位为1表示有效，标识tag标识了存放的信息存在于哪个主存块中&lt;/p&gt;
+&lt;p&gt;主存地址&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;标识&lt;/th&gt;
+&lt;th&gt;索引&lt;/th&gt;
+&lt;th&gt;块内位移&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;替换算法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;随机法&lt;/p&gt;
+&lt;p&gt;FIFO&lt;/p&gt;
+&lt;p&gt;LRU&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LRU算法的硬件实现&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;堆栈法&lt;/p&gt;
+&lt;p&gt;比较对法&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;写策略&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;写直达法：执行写操作时，不仅写入Cache，而且也直接写入下一级存储器（易于实现）
+（不按写分配，不命中直接写入下一级而不调块）&lt;/p&gt;
+&lt;p&gt;写回法：执行写操作时，只写入Cache。仅当Cache中相应的块被替换时，才写回主存（速度快）
+（按写分配，不命中时调块）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cache对低CPI、高时钟频率的CPU来说更为重要&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;改进Cache性能&lt;/strong&gt;
+包括三个方面：&lt;/p&gt;
+&lt;p&gt;① 降低不命中率（8种）&lt;/p&gt;
+&lt;p&gt;② 减少不命中开销（5种）&lt;/p&gt;
+&lt;p&gt;③ 减少Cache命中时间（4种）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;三种类型的不命中&lt;/strong&gt;
+强制性不命中：首次访问就没命中
+容量不命中：某些块被替换了，之后又访问了这些块（原因主要是容量小了）
+冲突不命中：组相联或直接映像很多块映到了同一组（块）中，原块被替换，之后又访问了这些块&lt;/p&gt;
+&lt;p&gt;相联度越高，冲突不命中就越少（因为每块可选的位置变多了，冲突几率下降），对强制不命中和容量不命中没什么影响&lt;/p&gt;
+&lt;p&gt;Cache容量增加，容量不命中下降，对强制性不命中没影响&lt;/p&gt;
+&lt;p&gt;减少三种不命中的方法：
+强制性不命中：增加块大小，预取（本身比例很少）
+容量不命中：增加容量
+冲突不命中：提高相联度（理想情况：全相联）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;降低不命中率的八种方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 增加Cache块大小&lt;br&gt;
+            最简单，减少强制不命中，但增加了冲突不命中（因为块的个数少了），同时也会增大不命中开销&lt;/p&gt;
+&lt;p&gt;② 增加Cache容量&lt;br&gt;
+            最直接，但会增加成本和命中时间&lt;/p&gt;
+&lt;p&gt;③ 提高相联度&lt;br&gt;
+            会增加命中时间
+         （2:1Cache经验规则：容量为N的直接映像Cache的不命中率和容量为N/2的两路组相联Cache的不命中率差不多）&lt;/p&gt;
+&lt;p&gt;④ 伪相联Cache&lt;br&gt;
+            访问如果命中就和直接映像一样，如果不命中就检查另一个位置是否匹配，简单的方法是将索引的最高位取反。保持命中速度和低不命中率，会让CPU流水线的设计复杂化&lt;/p&gt;
+&lt;p&gt;⑤ 硬件预取&lt;br&gt;
+            指令和数据在处理器提出访问之前进行预取，由Cache之外的硬件完成，放入一个缓冲器中。预取应当利用存储器的空闲带宽，不能影响对正常不命中的处理，否则可能会降低性能&lt;/p&gt;
+&lt;p&gt;⑥ 编译器控制的预取&lt;br&gt;
+            由编译器在程序中加入预取指令实现预取。每次预取需要花费一条指令的开销&lt;/p&gt;
+&lt;p&gt;⑦ 编译器优化&lt;br&gt;
+            三种方法：代码和数据重组、内外循环交换、分块&lt;/p&gt;
+&lt;p&gt;⑧ 牺牲Cache&lt;br&gt;
+            在Cache和下一级之间设置一个全相联小Cache来存储被替换掉的块，减少冲突不命中很有效，尤其是小容量Cache&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;减少Cache不命中开销的五种方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 采用两级Cache（有计算）&lt;/p&gt;
+&lt;p&gt;② 让读不命中优先于写
+            会增加命中时间&lt;/p&gt;
+&lt;p&gt;③ 写缓冲合并&lt;br&gt;
+            写入的数据与缓冲器已有地址比较，如果有地址匹配的就合并&lt;/p&gt;
+&lt;p&gt;④ 请求字处理技术&lt;br&gt;
+            从下一级调入Cache的块只有一个字是立即需要的，称为请求字，两种方法：尽早重启动、请求字优先&lt;br&gt;
+            在Cache块较小或者下一条指令正好访问Cache块的另一部分时，效果不明显&lt;/p&gt;
+&lt;p&gt;⑤ 非阻塞Cache技术&lt;br&gt;
+            在Cache不命中时仍允许CPU进行其他的命中访问&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;减少Cache命中时间的四种方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;① 容量小、结构简单的Cache&lt;br&gt;
+            增大不命中率&lt;/p&gt;
+&lt;p&gt;② 虚拟Cache&lt;br&gt;
+            可以直接用虚拟地址进行访问的Cache&lt;/p&gt;
+&lt;p&gt;③ Cache访问流水化&lt;br&gt;
+            把对第一级Cache的访问按流水方式组织&lt;/p&gt;
+&lt;p&gt;④ 踪迹Cache&lt;br&gt;
+            存放CPU所执行过的动态序列，包含分支预测展开的指令&lt;br&gt;
+            地址映像机制复杂，相同的指令序列可能被重复存放，提高了Cache的空间利用率&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主存主要的性能指标&lt;/strong&gt;：延迟和带宽&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并行主存系统&lt;/strong&gt;：在一个访存周期内能并行访问多个储存字的存储器&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并行存储器结构包括&lt;/strong&gt;：
+单体多字存储器
+多体交叉存储器&lt;/p&gt;
+&lt;h4 id=&#34;计算部分-3&#34;&gt;计算部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;平均每位价格C、命中率H、平均访存时间&lt;/strong&gt;（P155）&lt;/p&gt;
+&lt;p&gt;$M_1{T_1, S_1, C_1}、M_2{T_2, S_2, C_2}$&lt;/p&gt;
+&lt;p&gt;T: 平均访存时间，S: 存储容量，C: 平均每位价格&lt;/p&gt;
+&lt;p&gt;平均每位价格 = $\frac{M_1C_1 + M_2C_2}{M_1 + M_2}$&lt;/p&gt;
+&lt;p&gt;命中率 = $\frac{N_1}{N_1+N_2}$&lt;/p&gt;
+&lt;p&gt;平均访存时间 = $HT_1 + (1-H)(T_1+T_M) = T_1 + (1-H)T_M = T_1 + FT_M$
+不命中开销 $T_M = T_2 + T_B$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cache的容量&lt;/strong&gt;（P163）&lt;/p&gt;
+&lt;p&gt;Cache容量 = $2^{index} \times$ 相联度 $\times$ 块大小&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;程序执行时间&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$CPU$时间 = $IC \times (CPI + $每条指令的平均访存次数$\times $不命中率$ \times $不命中开销$) \times $时钟周期时间&lt;/p&gt;
+&lt;p&gt;（P172例题）&lt;/p&gt;
+&lt;h3 id=&#34;第六章输入输出系统&#34;&gt;第六章：输入输出系统&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-5&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;I/O系统包括&lt;/strong&gt;：I/O设备、I/O设备与处理机的连接&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统的响应时间&lt;/strong&gt;：从用户输入命令开始，到得到结果所花费的时间（等于I/O系统的响应时间+CPU的处理时间）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I/O系统的三个性能指标&lt;/strong&gt;
+可靠性：一直连续提供服务的能力，用平均无故障时间MTTF衡量，其倒数为失效率（计算时失效率可累加，倒数相加再倒）
+可用性：正常工作的时间在连续两次正常服务间隔中的比例    可用性=$\frac{MTTF}{MTTF+MTTR}$
+可信性：服务的质量（无法度量）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;磁盘阵列&lt;/strong&gt;：使用多个磁盘的组合来代替一个大容量的磁盘
+阵列的并行性包括：多个请求可以由多个盘来并行处理、一个请求访问多个块也可以多个块合作地并行处理&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;各种RAID&lt;/strong&gt;
+（检测盘个数是数据盘个数为8个时所需要的检测盘个数）&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;th&gt;可容忍故障&lt;/th&gt;
+&lt;th&gt;检测盘个数&lt;/th&gt;
+&lt;th&gt;优点&lt;/th&gt;
+&lt;th&gt;缺点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID0&lt;/td&gt;
+&lt;td&gt;非冗余阵列，没有冗余信息&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;无空间开销&lt;/td&gt;
+&lt;td&gt;无纠错能力&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID1&lt;/td&gt;
+&lt;td&gt;镜像盘，每个磁盘都有备份&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;计算少，快&lt;/td&gt;
+&lt;td&gt;空间开销大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID2&lt;/td&gt;
+&lt;td&gt;汉明纠错码位交叉&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;不依靠故障盘诊断&lt;/td&gt;
+&lt;td&gt;空间开销log&lt;sub&gt;2&lt;/sub&gt;n&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID3&lt;/td&gt;
+&lt;td&gt;位交叉奇偶校验磁盘阵列&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;空间开销小，大规模I/O带宽高&lt;/td&gt;
+&lt;td&gt;小规模I/O支持不好&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID4&lt;/td&gt;
+&lt;td&gt;块交叉奇偶校验磁盘阵列&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;空间开销小，小规模I/O带宽高&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID5&lt;/td&gt;
+&lt;td&gt;块交叉分布奇偶校验磁盘阵列&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;空间开销小，小规模I/O带宽高&lt;/td&gt;
+&lt;td&gt;小规模读写需要访问4次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RAID6&lt;/td&gt;
+&lt;td&gt;P+Q双校验磁盘阵列&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;容忍两个磁盘出错&lt;/td&gt;
+&lt;td&gt;小规模读写需要访问6次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;实现盘阵列的方式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;软件方式&lt;/p&gt;
+&lt;p&gt;阵列卡方式&lt;/p&gt;
+&lt;p&gt;子系统方式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通道处理机&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;专门负责整个计算机的输入输出工作，通道处理机只能执行有限的一组输入输出指令&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入输出系统的层次&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;CPU-&amp;gt;通道-&amp;gt;设备控制器-&amp;gt;外设&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通道的主要硬件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;寄存器&lt;/p&gt;
+&lt;p&gt;控制逻辑&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通道的工作过程&lt;/strong&gt;（3步）&lt;/p&gt;
+&lt;p&gt;① 在用户程序中启动一个访管指令，由管理程序来编制一个通道程序，并启动通道&lt;/p&gt;
+&lt;p&gt;② 通道处理机执行通道程序，完成指定的数据的输入输出工作&lt;/p&gt;
+&lt;p&gt;③ 通道程序结束后向CPU发出中断请求&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通道的种类&lt;/strong&gt;（3种）&lt;/p&gt;
+&lt;p&gt;① 字节多路通道，为多台低中速外设服务，以字节交叉的方式分时轮流服务，可以包含多个子通道，每个子通道连接一台设备控制器&lt;/p&gt;
+&lt;p&gt;② 选择通道，为多台高速外围设备服务，一段时间内只为一条高速外设独占&lt;/p&gt;
+&lt;p&gt;③ 数组多路通道，适用于高速设备，每次选择一个高速设备后传送一个数据块，轮流为多台外围设备服务&lt;/p&gt;
+&lt;h4 id=&#34;计算部分-4&#34;&gt;计算部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;通道流量分析（P238）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;字节多路通道：（连一个外设，传一个字节，再连一个外设，传一个字节...）&lt;/p&gt;
+&lt;p&gt;p台设备传输n个数据所需时间：$T_{BYTE}=(T_S+T_D)\times p\times n$&lt;/p&gt;
+&lt;p&gt;最大流量：$f_{MAX-BYTE} = \frac{1}{T_S+T_D}$&lt;/p&gt;
+&lt;p&gt;选择通道：（一台设备的数据传输工作全部结束后通道才为另一台设备服务）&lt;/p&gt;
+&lt;p&gt;p台设备传输n个数据所需时间：$T_{SELECT}=(\frac{T_S}{n}+T_D)\times p\times n$&lt;/p&gt;
+&lt;p&gt;最大流量：$f_{MAX-SELECT} = \frac{1}{\frac{T_S}{n}+T_D}$&lt;/p&gt;
+&lt;p&gt;数组多路通道：（连一个外设，传一个k个字节的数据块，再连一个外设，传一个k个字节的数据块...）&lt;/p&gt;
+&lt;p&gt;p台设备传输n个数据所需时间：$T_{BLOCK}=(\frac{T_S}{k}+T_D)\times p\times n$&lt;/p&gt;
+&lt;p&gt;最大流量：$f_{MAX-BLOCK} = \frac{1}{\frac{T_S}{k}+T_D}$&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;第八章多处理机&#34;&gt;第八章：多处理机&lt;/h3&gt;
+&lt;h4 id=&#34;概念部分-6&#34;&gt;概念部分&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;MIMD的成为通用多处理机系统结构的选择的原因&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;MIMD具有灵活性&lt;/p&gt;
+&lt;p&gt;MIMD可以充分利用现有微处理机的性价比优势&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MIMD的分类&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;集中式共享存储器结构&lt;/strong&gt;（CSMA、UMA、对称式共享存储器多处理机SMP）&lt;/p&gt;
+&lt;p&gt;多个处理器共享一个集中式的物理存储器，单一主存而且主存对于各处理器而言是对等的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分布式存储器多处理机&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;存储器分布到各个处理器上，优点：&lt;/p&gt;
+&lt;p&gt;①降低对存储器和互联网络的带宽要求&lt;/p&gt;
+&lt;p&gt;②对本地存储器的访问延迟时间小；&lt;/p&gt;
+&lt;p&gt;缺点：处理器之间的通信较为复杂，访问延迟大&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两种储存器系统结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;共享地址空间：物理上分离的所有储存器作为一个统一的共享逻辑空间进行编址，不同处理器的同一个物理地址指向同一个存储单元&lt;/p&gt;
+&lt;p&gt;独立编址：每个节点的存储器编址为一个独立的地址空间，不同处理器的地址是独立的。每一个处理器-存储器模块实际上是一台单独的计算机&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;两种通信机制&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;共享存储器通信机制：处理器之间通过store-load对相同存储器地址进行读写来实现的
+优点：&lt;/p&gt;
+&lt;p&gt;① 与常用的SMP通信机制兼容&lt;/p&gt;
+&lt;p&gt;② 易于编程&lt;/p&gt;
+&lt;p&gt;③ 数据量小时开销较低&lt;/p&gt;
+&lt;p&gt;④ 可以采用cache来减少远程通信的频度&lt;/p&gt;
+&lt;p&gt;消息传递通信机制：处理器之间通过发送消息来进行通信&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;p&gt;① 硬件简单&lt;/p&gt;
+&lt;p&gt;② 通信是显式的&lt;/p&gt;
+&lt;p&gt;③ 减少不当的同步带来的可能的错误&lt;/p&gt;
+&lt;p&gt;④ 显式通信让编程者重点关注主要通信开销&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cache一致性协议&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;监听式协议&lt;/p&gt;
+&lt;p&gt;目录式协议&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cache一致性问题解决方法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;写作废协议&lt;/p&gt;
+&lt;p&gt;写更新协议&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;同时多线程技术&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;一种在多流出、动态调度的处理器上同时开发线程级并行和指令级并行的技术&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/" term="系统结构" label="系统结构" />
                             
                         
                     
