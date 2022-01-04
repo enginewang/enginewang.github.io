@@ -154,7 +154,7 @@ uglyURLs = false
 [outputs]
     page = ["HTML"]
     # home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "Algolia"]
     section = ["HTML"]
     taxonomy = ["HTML"]
     term = ["HTML"]
@@ -1350,7 +1350,7 @@ uglyURLs = false
 
     # 说明：需要开启 `SearchIndex` 的输出
 
-    enableLunrSearch = true
+    enableLunrSearch = false
     # 说明：https://lunrjs.com/
 
 
@@ -1363,9 +1363,9 @@ uglyURLs = false
 
     enableAlgoliaSearch = false
 
-    algoliaAppId = ""
-    algoliaApiKey = ""
-    algoliaIndexName = ""
+    algoliaAppId = "FQ3FDCRGP7"
+    algoliaApiKey = "8f0d93275651f032742abfce5c6c6e58"
+    algoliaIndexName = "blog"
     # 说明：https://www.algolia.com/
 
 
