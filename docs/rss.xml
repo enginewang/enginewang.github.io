@@ -23,10 +23,233 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 04 Jan 2022 20:23:38 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 05 Jan 2022 21:28:29 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
+        
+            <item>
+                <title>凸优化（一）绪论与凸集</title>
+                <link>https://yichengme.site/posts/convex-1/</link>
+                <guid isPermaLink="true">https://yichengme.site/posts/convex-1/</guid>
+                <pubDate>Mon, 27 Dec 2021 21:10:31 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;凸优化的笔记专栏，预计会分为五个部分，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;绪论与凸集&lt;/li&gt;
+&lt;li&gt;凸函数&lt;/li&gt;
+&lt;li&gt;凸优化问题&lt;/li&gt;
+&lt;li&gt;凸优化问题的求解&lt;/li&gt;
+&lt;li&gt;无约束的优化问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Stanford《convex optimization》&lt;/li&gt;
+&lt;li&gt;中科大 凌青 凸优化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;优化问题&#34;&gt;优化问题&lt;/h4&gt;
+&lt;p&gt;优化问题：从一系列可行解集合中，寻找出最优的元素&lt;/p&gt;
+&lt;p&gt;优化问题的形式：&lt;/p&gt;
+&lt;p&gt;$$
+\begin{array}{ll}
+\text{ minimize } &amp;amp; f_{0}(x) \newline
+\text { subject to } &amp;amp; f_{i}(x) \leq b_i
+\end{array}
+$$&lt;/p&gt;
+&lt;p&gt;$f_0$是目标函数（$R^n \to R$）&lt;/p&gt;
+&lt;p&gt;优化问题在现实生活中各个领域都非常常见，深度学习中也是要使Loss最小，也是优化问题。&lt;/p&gt;
+&lt;h4 id=&#34;优化问题的分类&#34;&gt;优化问题的分类&lt;/h4&gt;
+&lt;h5 id=&#34;线性优化非线性优化&#34;&gt;线性优化/非线性优化&lt;/h5&gt;
+&lt;p&gt;（有时候也叫规划，和优化是一个意思）&lt;/p&gt;
+&lt;p&gt;目标函数由多个线性函数组合成，就是线性优化问题，否则就是非线性优化问题。&lt;/p&gt;
+&lt;p&gt;线性优化问题，最优解不是在顶点就是在整条边上&lt;/p&gt;
+&lt;h5 id=&#34;凸优化非凸优化&#34;&gt;凸优化/非凸优化&lt;/h5&gt;
+&lt;p&gt;凸优化：&lt;/p&gt;
+&lt;p&gt;$$
+\begin{array}{ll}
+\text{ minimize } &amp;amp; f_{0}(x) \newline
+\text { subject to } &amp;amp; f_{i}(x) \leq 0, \quad i=1, \ldots, m \newline
+&amp;amp; a_{i}^{T} x=b_{i}, \quad i=1, \ldots, p
+\end{array}
+$$&lt;/p&gt;
+&lt;p&gt;优化问题里面，比较好求解的是凸优化问题，非凸优化问题难解决&lt;/p&gt;
+&lt;h5 id=&#34;光滑非光滑&#34;&gt;光滑/非光滑&lt;/h5&gt;
+&lt;p&gt;目标函数每个点都可微就是光滑的，否则是非光滑的&lt;/p&gt;
+&lt;h5 id=&#34;连续离散&#34;&gt;连续/离散&lt;/h5&gt;
+&lt;p&gt;按照可行域连续或者离散分类&lt;/p&gt;
+&lt;h5 id=&#34;单目标多目标&#34;&gt;单目标/多目标&lt;/h5&gt;
+&lt;p&gt;对多个目标进行优化&lt;/p&gt;
+&lt;p&gt;这门课只研究单目标连续光滑的凸优化问题&lt;/p&gt;
+&lt;p&gt;判断是否为凸问题的一个关键，就是看约束集合、目标函数是否是凸集。所以凸集是凸优化问题最基本的一个概念。&lt;/p&gt;
+&lt;h4 id=&#34;仿射集-affine-set&#34;&gt;仿射集 Affine set&lt;/h4&gt;
+&lt;p&gt;集合中任取两个点，形成的&lt;strong&gt;直线&lt;/strong&gt;，如果整条线上的点也都在集合中，那么称该集合为仿射集
+要求任意两点连成的直线在集合中，也就是说&lt;/p&gt;
+&lt;p&gt;$$x_1, x_2 \in C, \theta\in R \to \theta x_1 + (1- \theta)x_2 \in C$$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604307/convex-1.png&#34; alt=&#34;convex-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;仿射组合：不仅限两个点，而是多个点：
+$$x_1,...x_k \in C , \theta_1 + ... \theta_k = 1 \to \theta_1 x_1 + ... \theta_k x_k \in C$$&lt;/p&gt;
+&lt;p&gt;利用
+$$
+(\theta_1 + \theta_2)(\frac{\theta_1}{\theta_1 + \theta_2}x_1 + \frac{\theta_2}{\theta_1 + \theta_2}x_2) + (1-\theta_1 - \theta_2)x_3 \in C
+$$即可证明&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;任意线性方程组$Ax = b$的解集都是仿射集，任意仿射集都可以写成线性方程组的解集&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;假设该线性方程组有两个解$x_1, x_2$，则直线上的任意一点$\theta x_1+(1-\theta)x_2$代入得$A(\theta x_1+(1-\theta)x_2) = b$，说明也是该线性方程组的解&lt;/p&gt;
+&lt;p&gt;仿射包：从非仿射集合中构造一个最小的仿射集&lt;/p&gt;
+&lt;p&gt;比如两个点的集合不是仿射集，构造一个经过它们的直线，就是仿射集了，这条直线就是仿射包。三个不同直线的点，它们的最小的仿射包就是经过它们的二维平面。如果本身就是仿射集，那么仿射包就是它自己。&lt;/p&gt;
+&lt;h4 id=&#34;凸集-convex-set&#34;&gt;凸集 convex set&lt;/h4&gt;
+&lt;p&gt;凸集相比于仿射集条件放松，要求任意两点连成的&lt;strong&gt;线段&lt;/strong&gt;在集合中。凸集的定义为：&lt;/p&gt;
+&lt;p&gt;$$x_1, x_2 \in C, \theta\in[0,1] \to \theta x_1 + (1- \theta_2)x_2 \in C$$&lt;/p&gt;
+&lt;p&gt;仿射集必然是凸集，可以认为是一种特殊的凸集，凸集包含的更广。&lt;/p&gt;
+&lt;p&gt;凸组合：不仅限两个点，而是多个点：
+$$x_1,...x_k \in C , \theta_1 + ... \theta_k = 1, \theta_i\in[0,1] \to \theta_1 x_1 + ... \theta_k x_k \in C$$&lt;/p&gt;
+&lt;p&gt;凸包：包含集合S的最小凸集&lt;/p&gt;
+&lt;p&gt;下图2.2，只有左边的凸多边形是凸集。不过如果右图只少了角点，是凸集，少了边上或者内部的点就不是凸集了。&lt;/p&gt;
+&lt;p&gt;下图2.3是凸包，包括一组离散点的凸包，以及非凸形状的凸包。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604308/convex-2.png&#34; alt=&#34;convex-2&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;典型凸集&#34;&gt;典型凸集&lt;/h4&gt;
+&lt;h5 id=&#34;凸锥-convex-cone&#34;&gt;凸锥 Convex cone&lt;/h5&gt;
+&lt;p&gt;锥：$\forall x \in C, \theta \geq 0, \theta x \in C$（锥尖需要在原点）&lt;/p&gt;
+&lt;p&gt;凸锥：$x_1, x_2 \in C, \theta_1 x_1 + \theta_2 x_2 \in C, \theta_1 &amp;gt; 0, \theta_2 &amp;gt; 0$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604308/convex-cone-1.png&#34; alt=&#34;convex-cone-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;图形理解，任取两点$x_1, x_2$，如果$x_1,x_2,o$不在一条直线上，那么在$\overset{\frown}{x_1 o x_2}$的扇形区域内的所有的点都在凸锥集上&lt;/p&gt;
+&lt;p&gt;过原点的直线和原点发出的射线是凸锥&lt;/p&gt;
+&lt;p&gt;凸锥组合：$x_1,... x_k \in C, \theta_1 x_1 + ... \theta_k x_k \in C, \theta_1 &amp;gt; 0, ...  \theta_k &amp;gt; 0$&lt;/p&gt;
+&lt;p&gt;凸锥包：和前面一样，如下图所示&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604308/convex-cone-2.png&#34; alt=&#34;convex-cone-2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对比一下前面几种组合：&lt;/strong&gt;
+仿射组合：$\theta_1 + ... + \theta_k = 1$
+凸组合：$\theta_1 + ... + \theta_k = 1, \theta_1, ... , \theta_k &amp;gt; 0$
+凸锥组合：$\theta_1, ... , \theta_k \geq 0$&lt;/p&gt;
+&lt;h5 id=&#34;超平面-hyperplane&#34;&gt;超平面 Hyperplane&lt;/h5&gt;
+&lt;p&gt;${x|a^T x = b}$&lt;/p&gt;
+&lt;p&gt;是仿射集，也是凸集，不一定凸锥（除非过原点）&lt;/p&gt;
+&lt;h5 id=&#34;半空间-halfspace&#34;&gt;半空间 Halfspace&lt;/h5&gt;
+&lt;p&gt;${ x|a^T x \leq b }$&lt;/p&gt;
+&lt;p&gt;半空间是凸集，不是仿射集，不一定凸锥（除非过原点）&lt;/p&gt;
+&lt;p&gt;下图分别为超平面和半空间：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604308/convex-5.png&#34; alt=&#34;convex-5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;证明：
+假设$x_1, x_2$在空间上：
+$a^T x_1 \leq b$
+$a^T x_2 \leq b$
+对于$x_1,x_2$上的任意一点$\theta x_1 + (1-\theta) x_2$有：
+$a^T(\theta x_1 + (1-\theta) x_2) = \theta (a^T x_1 -b) + (1-\theta) (a^T x_2 - b) +b \leq b$，也在集合中，所以半空间是凸集&lt;/p&gt;
+&lt;p&gt;法线的反方向&lt;/p&gt;
+&lt;h5 id=&#34;空间球-euclidean-ball&#34;&gt;空间球 Euclidean Ball&lt;/h5&gt;
+&lt;p&gt;欧几里得球，就是一个空间球&lt;/p&gt;
+&lt;p&gt;$$
+B\left(x_{c}, r\right)=\{x |\ ||x-x_{c}||_{2}\leq r \} $$&lt;/p&gt;
+&lt;p&gt;$$=\{x |\ (x-x_{c})^{T}(x-x_{c} ) \leq r^{2}\}
+$$&lt;/p&gt;
+&lt;p&gt;证明：
+假设$x_1, x_2$在空间上：
+$|| x_1 - x_c ||_2 \leq r$
+$|| x_2 - x_c ||_2 \leq r$
+对于$x_1,x_2$上的任意一点$\theta x_1 + (1-\theta) x_2 $，（其中$\theta \in [0,1]$），有：
+$$|| \theta x_1 + (1-\theta) x_2 - x_c ||_r = || \theta (x_1 - x_c) + (1-\theta)(x_2 - x_c)||\newline
+\leq \theta ||x_1 - x_c||_2 + (1-\theta) ||x_2 - x_c||_2 \leq r
+$$
+这里用到了范数的三角不等式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;范数性质
+假设$x$的范数是$f(x)$，$f(x)\geq 0$，满足下面三条性质：
+$\text{if}\ f(x)=0 \to x=0$
+$kf(x) = |k|f(x)$
+$f(x+y) \leq f(x) + f(y)$（三角不等式）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;椭球-ellipsoids&#34;&gt;椭球 Ellipsoids&lt;/h5&gt;
+&lt;p&gt;$$\mathcal{E} = \{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \}$$&lt;/p&gt;
+&lt;p&gt;矩阵P是一个 $n\times n$ 的对称正定矩阵&lt;/p&gt;
+&lt;p&gt;（特征值，奇异值）&lt;/p&gt;
+&lt;h5 id=&#34;多面体-polyhedra&#34;&gt;多面体 Polyhedra&lt;/h5&gt;
+&lt;p&gt;多面体：有限个线性等式和不等式的解集
+多面体是有限个半空间和超平面的交集&lt;/p&gt;
+&lt;p&gt;$$
+\mathcal{P}=\{x \mid a_{j}^{T} x \leq b_{j}, j=1, \ldots, m, c_{j}^{T} x=d_{j}, j=1, \ldots, p\}
+$$&lt;/p&gt;
+&lt;h5 id=&#34;范数球-norm-ball--范数锥-norm-cone&#34;&gt;范数球 Norm Ball &amp;amp; 范数锥 Norm Cone&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;范数：满足以下条件的函数$||\cdot||$
+1、$||x||\geq 0$，$||x||=0$当且仅当$x=0$
+2、$||tx|| = t||x||$，对于任何$t\in R$成立
+3、$||x+y|| \leq ||x|| + ||y||$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$$
+C={(x, t) \mid|x| \leq t} \subseteq \mathbf{R}^{n+1}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640604308/convex-6.png&#34; alt=&#34;convex-6&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;其他的例子&#34;&gt;其他的例子&lt;/h5&gt;
+&lt;p&gt;n*n的对称矩阵组成的集合，是凸锥，也是凸集&lt;/p&gt;
+&lt;p&gt;n*n的半正定矩阵组成的集合，是凸集&lt;/p&gt;
+&lt;p&gt;n*n的正定矩阵组成的集合不是凸集（取值只能&amp;gt;=0，不属于正定了）&lt;/p&gt;
+&lt;p&gt;线性矩阵不等式的解集也是凸集&lt;/p&gt;
+&lt;h4 id=&#34;保凸运算&#34;&gt;保凸运算&lt;/h4&gt;
+&lt;p&gt;如果要证明是凸集可以用定义法，不过复杂情况会很难证明。
+另一种方法是证明集合是多个凸集的保凸运算的简单组合，保凸运算包括以下几个：&lt;/p&gt;
+&lt;h5 id=&#34;交集-intersection&#34;&gt;交集 Intersection&lt;/h5&gt;
+&lt;p&gt;$C_1$, $C_2$是凸集，其交集$C = C_1 \cap C_2$也一定是凸集。&lt;/p&gt;
+&lt;p&gt;拓展到n个也是。&lt;/p&gt;
+&lt;h5 id=&#34;仿射函数-affine&#34;&gt;仿射函数 Affine&lt;/h5&gt;
+&lt;p&gt;$f$是仿射变换：$\mathbf{R}^{n} \rightarrow \mathbf{R}^{m}$&lt;/p&gt;
+&lt;p&gt;如果有$S \in R^n$是凸集，那么$f(S)=\{f(x) \mid x \in S\}$也是凸集，用定义证明即可。
+逆函数$f^{-1}(S)=\{x \mid f(x) \in S\}$也是凸集。&lt;/p&gt;
+&lt;h5 id=&#34;透视函数-perspective-functions&#34;&gt;透视函数 Perspective functions&lt;/h5&gt;
+&lt;p&gt;透视函数 $P: \mathbf{R}^{n+1} \rightarrow \mathbf{R}^{n}$，相当于通过变换（所有元素除以最后一个元素）将最后一个维度的元素变为1，然后去掉这个维度的一种变换。降低一个维度。&lt;/p&gt;
+&lt;p&gt;$P(\mathbf{X}, t) = \mathbf{X}/t, dom P = \{(\mathbf{X}, t), t &amp;gt; 0\}$
+这里t是一个标量，X是矩阵，相当于P是dom(X)+1维度的，去掉最后一个维度t，X里的每一个元素除以t。&lt;/p&gt;
+&lt;p&gt;类比于针孔相机，3维的点$(x_1, x_2, x_3)$会通过孔映射到二维的平面 $-(x_1/x_3, x_2/x_3, 1)$ 上，就是一个透视函数的过程。&lt;/p&gt;
+&lt;p&gt;任意凸集的反透视映射也是凸集&lt;/p&gt;
+&lt;h5 id=&#34;线性分段函数-linear-fractional&#34;&gt;线性分段函数 Linear-fractional&lt;/h5&gt;
+&lt;p&gt;一个Linear-fractional function是由perspective function和一个affine function组成的&lt;/p&gt;
+&lt;p&gt;$g(x)=\left[\begin{array}{c}A \newline c^{T}\end{array}\right] x+\left[\begin{array}{l}b \newline d\end{array}\right]$&lt;/p&gt;
+&lt;h4 id=&#34;超平面分离定理与支撑超平面&#34;&gt;超平面分离定理与支撑超平面&lt;/h4&gt;
+&lt;h5 id=&#34;超平面分离定理&#34;&gt;超平面分离定理&lt;/h5&gt;
+&lt;p&gt;如果$C$和$D$是两个不相交的凸集，那么必然存在一个超平面$\{x|a^Tx = b\}$能够分离$C$和$D$，这超平面被称为分割超平面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641388051/convex-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;支撑超平面&#34;&gt;支撑超平面&lt;/h5&gt;
+&lt;p&gt;集合C边界上的点$x_0$的支撑超平面：$\{x | a^Tx = a^T x_0\}$&lt;/p&gt;
+&lt;p&gt;其中$a \neq 0$，对于所有的$x \in C$满足$a^Tx \leq a^T x_0$&lt;/p&gt;
+&lt;p&gt;如果$C$是凸的，那么C边界上的每一个点都存在一个支撑超平面。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641388051/convex-9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/">理论</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>返璞归真，博客重新迁移到Hugo</title>
