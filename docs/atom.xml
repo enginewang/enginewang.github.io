@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-05T22:05:14&#43;08:00</updated>
+    <updated>2022-01-06T17:10:59&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">凸优化（一）绪论与凸集</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-1/" />
             <id>https://yichengme.site/posts/convex-1/</id>
-            <updated>2022-01-05T21:32:06&#43;08:00</updated>
+            <updated>2022-01-06T17:02:42&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -47,7 +47,7 @@
 &lt;p&gt;优化问题的形式：&lt;/p&gt;
 &lt;p&gt;$$
 \begin{array}{ll}
-\text{ minimize } &amp;amp; f_{0}(x) \newline
+\text{ minimize } &amp;amp; f_0(x) \newline
 \text { subject to } &amp;amp; f_{i}(x) \leq b_i
 \end{array}
 $$&lt;/p&gt;
@@ -62,7 +62,7 @@ $$&lt;/p&gt;
 &lt;p&gt;凸优化：&lt;/p&gt;
 &lt;p&gt;$$
 \begin{array}{ll}
-\text{ minimize } &amp;amp; f_{0}(x) \newline
+\text{ minimize } &amp;amp; f_0(x) \newline
 \text { subject to } &amp;amp; f_{i}(x) \leq 0, \quad i=1, \ldots, m \newline
 &amp;amp; a_{i}^{T} x=b_{i}, \quad i=1, \ldots, p
 \end{array}
@@ -133,8 +133,8 @@ $a^T(\theta x_1 + (1-\theta) x_2) = \theta (a^T x_1 -b) + (1-\theta) (a^T x_2 - 
 &lt;h5 id=&#34;空间球-euclidean-ball&#34;&gt;空间球 Euclidean Ball&lt;/h5&gt;
 &lt;p&gt;欧几里得球，就是一个空间球&lt;/p&gt;
 &lt;p&gt;$$
-B\left(x_{c}, r\right)=\{x |\ ||x-x_{c}||_{2}\leq r \} $$&lt;/p&gt;
-&lt;p&gt;$$=\{x |\ (x-x_{c})^{T}(x-x_{c} ) \leq r^{2}\}
+B\left(x_{c}, r\right)=\newline{x |\ ||x-x_{c}||_2\leq r \newline} $$&lt;/p&gt;
+&lt;p&gt;$$=\newline{x |\ (x-x_{c})^{T}(x-x_{c} ) \leq r^2\newline}
 $$&lt;/p&gt;
 &lt;p&gt;证明：
 假设$x_1, x_2$在空间上：
@@ -153,14 +153,14 @@ $kf(x) = |k|f(x)$
 $f(x+y) \leq f(x) + f(y)$（三角不等式）&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5 id=&#34;椭球-ellipsoids&#34;&gt;椭球 Ellipsoids&lt;/h5&gt;
-&lt;p&gt;$$\mathcal{E} = \{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \}$$&lt;/p&gt;
+&lt;p&gt;$$\mathcal{E} = \newline{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \newline}$$&lt;/p&gt;
 &lt;p&gt;矩阵P是一个 $n\times n$ 的对称正定矩阵&lt;/p&gt;
 &lt;p&gt;（特征值，奇异值）&lt;/p&gt;
 &lt;h5 id=&#34;多面体-polyhedra&#34;&gt;多面体 Polyhedra&lt;/h5&gt;
 &lt;p&gt;多面体：有限个线性等式和不等式的解集
 多面体是有限个半空间和超平面的交集&lt;/p&gt;
 &lt;p&gt;$$
-\mathcal{P}=\{x \mid a_{j}^{T} x \leq b_{j}, j=1, \ldots, m, c_{j}^{T} x=d_{j}, j=1, \ldots, p\}
+\mathcal{P}=\newline{x \mid a_{j}^{T} x \leq b_{j}, j=1, \ldots, m, c_{j}^{T} x=d_{j}, j=1, \ldots, p\newline}
 $$&lt;/p&gt;
 &lt;h5 id=&#34;范数球-norm-ball--范数锥-norm-cone&#34;&gt;范数球 Norm Ball &amp;amp; 范数锥 Norm Cone&lt;/h5&gt;
 &lt;blockquote&gt;
@@ -186,11 +186,11 @@ $$&lt;/p&gt;
 &lt;p&gt;拓展到n个也是。&lt;/p&gt;
 &lt;h5 id=&#34;仿射函数-affine&#34;&gt;仿射函数 Affine&lt;/h5&gt;
 &lt;p&gt;$f$是仿射变换：$\mathbf{R}^{n} \rightarrow \mathbf{R}^{m}$&lt;/p&gt;
-&lt;p&gt;如果有$S \in R^n$是凸集，那么$f(S)=\{f(x) \mid x \in S\}$也是凸集，用定义证明即可。
-逆函数$f^{-1}(S)=\{x \mid f(x) \in S\}$也是凸集。&lt;/p&gt;
+&lt;p&gt;如果有$S \in R^n$是凸集，那么$f(S)=\newline{f(x) \mid x \in S\newline}$也是凸集，用定义证明即可。
+逆函数$f^{-1}(S)=\newline{x \mid f(x) \in S\newline}$也是凸集。&lt;/p&gt;
 &lt;h5 id=&#34;透视函数-perspective-functions&#34;&gt;透视函数 Perspective functions&lt;/h5&gt;
 &lt;p&gt;透视函数 $P: \mathbf{R}^{n+1} \rightarrow \mathbf{R}^{n}$，相当于通过变换（所有元素除以最后一个元素）将最后一个维度的元素变为1，然后去掉这个维度的一种变换。降低一个维度。&lt;/p&gt;
-&lt;p&gt;$P(\mathbf{X}, t) = \mathbf{X}/t, dom P = \{(\mathbf{X}, t), t &amp;gt; 0\}$
+&lt;p&gt;$P(\mathbf{X}, t) = \mathbf{X}/t, dom P = \newline{(\mathbf{X}, t), t &amp;gt; 0\newline}$
 这里t是一个标量，X是矩阵，相当于P是dom(X)+1维度的，去掉最后一个维度t，X里的每一个元素除以t。&lt;/p&gt;
 &lt;p&gt;类比于针孔相机，3维的点$(x_1, x_2, x_3)$会通过孔映射到二维的平面 $-(x_1/x_3, x_2/x_3, 1)$ 上，就是一个透视函数的过程。&lt;/p&gt;
 &lt;p&gt;任意凸集的反透视映射也是凸集&lt;/p&gt;
@@ -199,13 +199,143 @@ $$&lt;/p&gt;
 &lt;p&gt;$g(x)=\left[\begin{array}{c}A \newline c^{T}\end{array}\right] x+\left[\begin{array}{l}b \newline d\end{array}\right]$&lt;/p&gt;
 &lt;h4 id=&#34;超平面分离定理与支撑超平面&#34;&gt;超平面分离定理与支撑超平面&lt;/h4&gt;
 &lt;h5 id=&#34;超平面分离定理&#34;&gt;超平面分离定理&lt;/h5&gt;
-&lt;p&gt;如果$C$和$D$是两个不相交的凸集，那么必然存在一个超平面$\{x|a^Tx = b\}$能够分离$C$和$D$，这超平面被称为分割超平面&lt;/p&gt;
+&lt;p&gt;如果$C$和$D$是两个不相交的凸集，那么必然存在一个超平面$\newline{x|a^Tx = b\newline}$能够分离$C$和$D$，这超平面被称为分割超平面&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641388051/convex-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h5 id=&#34;支撑超平面&#34;&gt;支撑超平面&lt;/h5&gt;
-&lt;p&gt;集合C边界上的点$x_0$的支撑超平面：$\{x | a^Tx = a^T x_0\}$&lt;/p&gt;
+&lt;p&gt;集合C边界上的点$x_0$的支撑超平面：$\newline{x | a^Tx = a^T x_0\newline}$&lt;/p&gt;
 &lt;p&gt;其中$a \neq 0$，对于所有的$x \in C$满足$a^Tx \leq a^T x_0$&lt;/p&gt;
 &lt;p&gt;如果$C$是凸的，那么C边界上的每一个点都存在一个支撑超平面。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641388051/convex-9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;例题&#34;&gt;例题&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设$C \subseteq R^n$是一个凸集，证明对于任意$k$的情况，满足$\theta_i \geq 0, \theta_1 + ... \theta_k = 1$的情况下，有$\theta_1 x_1 + ... + \theta_k x_k \in C$。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;证明：使用数学归纳法，
+$k=2$时，根据凸集的定义性质可知，任取$\theta_1, \theta_2$，满足$\theta_1+\theta_2=1$，有$\theta_1 x_1 + \theta_2 x_2 \in C$&lt;/p&gt;
+&lt;p&gt;假设$k=n-1$时上式成立，即满足$\theta_1+ ... +\theta_{n-1}=1$，有$\theta_1 x_1 + ... +  \theta_{n-1} x_{n-1} \in C$&lt;/p&gt;
+&lt;p&gt;下面考虑$k=n$的情况，构造下面的式子：&lt;/p&gt;
+&lt;p&gt;$$
+(\sum_{i=1}^{k-1} \theta_i) \frac{\sum_{i=1}^{k-1} \theta_i x_i}{\sum_{i=1}^{k-1}\theta_i} + (1-\sum_{i=1}^{k-1} \theta_i)x_i
+$$&lt;/p&gt;
+&lt;p&gt;其中$\frac{\sum_{i=1}^{k-1} \theta_i x_i}{\sum_{i=1}^{k-1}\theta_i}$完全符合$n-1$的条件，所以$\frac{\sum_{i=1}^{k-1} \theta_i x_i}{\sum_{i=1}^{k-1}\theta_i} \in C$，整个式子又满足$k=2$的凸集的定义，所以有：
+$$
+(\sum_{i=1}^{k-1} \theta_i) \frac{\sum_{i=1}^{k-1} \theta_i x_i}{\sum_{i=1}^{k-1}\theta_i} + (1-\sum_{i=1}^{k-1} \theta_i)x_i \in C
+$$&lt;/p&gt;
+&lt;p&gt;即证明了只要$k=n-1$时成立，就有$k=n$时成立，数学归纳法得证&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;判断下面的哪些集合是凸集&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;（a）平板，形如$\newline{x \in \mathbf{R}^{n} \mid \alpha \leqslant a^{T} x \leqslant \beta\newline}\newline$&lt;/p&gt;
+&lt;p&gt;（b）矩形，形如$\newline{x \in \mathbf{R}^{n} \mid \alpha_i \leqslant x_i \leqslant \beta_i\ , i = 1, ..., n \newline}$&lt;/p&gt;
+&lt;p&gt;（c）楔形，形如$\newline{x \in \mathbf{R}^{n} \mid \alpha_1^T x \leqslant b_1 , \alpha_2^T x \leqslant b_2, i = 1, ..., n \newline}$&lt;/p&gt;
+&lt;p&gt;（d）距离给定点比距离给定集合近的点构成的集合：
+$ \newline{ x \mid ||x-x_0||_2 \leq ||x-y||_2, \forall y \in S \newline}$&lt;/p&gt;
+&lt;p&gt;（e）距离一个集合比另一个集合更近的点的集合：$\newline{x \mid \operatorname{dist}(x, S) \leqslant \operatorname{dist}(x, T)\newline}$&lt;/p&gt;
+&lt;p&gt;（f）集合$\newline{x \mid x + S_2 \subseteq S_1 \newline}$，其中$S_1, S_2 \subseteq R^n$，并且$S_1$是凸集&lt;/p&gt;
+&lt;p&gt;（g）到 $a$ 的距离与到 $b$ 的距离之比不超过到某一固定分数$\theta$的点的集合，即集合$\newline{x \mid|x-a|_2 \leqslant \theta |x-b|_2\newline}$&lt;/p&gt;
+&lt;p&gt;（a）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用定义证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任取$x_1, x_2 \in C$，有$\alpha \leqslant a^{T} x_1 \leqslant \beta, \alpha \leqslant a^{T} x_2 \leqslant \beta$&lt;/p&gt;
+&lt;p&gt;对于$\theta \in [0, 1]$，对于$ (\theta x_1 + (1-\theta) x_2)$，有：
+$$\alpha = \theta \alpha + (1-\theta) \alpha \leq \alpha^T (\theta x_1 + (1-\theta) x_2) \leq \theta  \beta + (1-\theta) \beta = \beta$$&lt;/p&gt;
+&lt;p&gt;即$ (\theta x_1 + (1-\theta) x_2) \in C$，是凸集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用保凸性证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为平板是两个半空间的交集，半空间是凸集，交集是保凸运算，所以平板也是凸集&lt;/p&gt;
+&lt;p&gt;（b）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用定义证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任取$x_1, x_2 \in C$，有$\alpha_i \leqslant x_1 \leqslant \beta_i, \alpha_i \leqslant x_2 \leqslant \beta_i$&lt;/p&gt;
+&lt;p&gt;对于$\theta \in [0, 1]$，对于$ (\theta x_1 + (1-\theta) x_2)$，有：
+$$\alpha_i \leq (\theta x_1 + (1-\theta) x_2) \leq \beta_i$$&lt;/p&gt;
+&lt;p&gt;即$ (\theta x_1 + (1-\theta) x_2) \in C$，是凸集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用保凸性证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;矩形是多个半空间的交集，半空间是凸集，交集是保凸运算，所以矩形也是凸集&lt;/p&gt;
+&lt;p&gt;（c）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用定义证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任取$x_1, x_2 \in C$，有$a_1^{T} x_1 \leqslant b_1, a_2^{T} x_1 \leqslant b_2$、$a_1^{T} x_2 \leqslant b_1, a_2^{T} x_2 \leqslant b_2$&lt;/p&gt;
+&lt;p&gt;对于$\theta \in [0, 1]$，对于$ (\theta x_1 + (1-\theta) x_2)$，有：
+$$a_1^T (\theta x_1 + (1-\theta) x_2) \leq \theta b_1 + (1-\theta) b_1 = b_1\newline
+a_2^T (\theta x_1 + (1-\theta) x_2) \leq \theta b_2 + (1-\theta) b_2 = b_2$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用保凸性证明：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;楔形是多个半空间的交集，半空间是凸集，交集是保凸运算，所以楔形也是凸集&lt;/p&gt;
+&lt;p&gt;（d）
+对于固定的$y$而言，有：
+$$
+\begin{array}{ll}
+&amp;amp;||x-x_0||_2 \leqslant ||x-y||_2\newline
+\Leftrightarrow &amp;amp; (x-x_0)^T(x-x_0) \leqslant (x-y)^T (x-y)\newline
+\Leftrightarrow &amp;amp; x^T x - 2x_0^T x + x_0^T x_0 \leqslant x^T x - 2y^T x + y^T y\newline
+\Leftrightarrow &amp;amp; 2(y^T - x_0^T)x \leqslant y^T y - x_0^T x_0 \newline
+\end{array}
+$$
+s
+说明该集合是多个半空间的交集，交集为保凸运算，所以该集合为凸集&lt;/p&gt;
+&lt;p&gt;（e）
+不是凸集，可以举反例，比如$S = {(x, y)|x^2 + y^2 = 1}$，$T = {(0, 0)}$，那么这个集合就是$R^2$平面挖空一个圆心在原点，半径为$\frac{1}2$的孔，比如集合上取$(0, 1),(0, -1)$两点，取$\theta=0.5$，$(0,0)$不在这个集合内，很显然它不是凸集。&lt;/p&gt;
+&lt;p&gt;（f）
+令$y \in S_2$，集合相当于是多个凸集$(S_1 - y)$的交集，交集为保凸运算，所以也是凸集。&lt;/p&gt;
+&lt;p&gt;（g）
+是凸集
+$$
+\begin{array}{ll}
+&amp;amp; ||x-a||_2 \leqslant \theta||x-b||_2\newline
+\Leftrightarrow &amp;amp; (1-\theta^2)x^Tx - 2 (a-\theta^2b)^Tx + (a^Ta - \theta^2b^Tb) \leq 0
+\end{array}
+$$&lt;/p&gt;
+&lt;p&gt;如果$\theta \leq 1$，集合是一个球
+如果$\theta = 1$，集合是半空间
+都是凸集&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一些概率分布集合，令$x$为服从分布 $\textbf{prob}(x=a_i) = p_1, i = 1, ... ,n$ 的实数随机变量，$p \in R^n$在一个标准概率单纯形$P=\{p \mid \mathbf{1}^{T} p=1, p \succeq 0\}$，下面哪些条件在$p$中是凸的？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;（a）$\alpha \leqslant \textbf{E} f(x) \leqslant \beta$&lt;/p&gt;
+&lt;p&gt;（b）$\textbf{prob}(x&amp;gt;\alpha) \leqslant \beta$&lt;/p&gt;
+&lt;p&gt;（c）$\textbf{E} |x^3| \leqslant \alpha \textbf{E} |x|$&lt;/p&gt;
+&lt;p&gt;（d）$\textbf{E} x^2 \leqslant \alpha$&lt;/p&gt;
+&lt;p&gt;（e）$\textbf{E} x^2 \geqslant \alpha$&lt;/p&gt;
+&lt;p&gt;（f）$\textbf{var} (x) \leqslant \alpha$&lt;/p&gt;
+&lt;p&gt;（g）$\textbf{var} (x) \geqslant \alpha$&lt;/p&gt;
+&lt;p&gt;（h）$\textbf{quartile} (x) \geqslant \alpha$，$\textbf{quartile} (x) = \text{inf} \{ \beta | \textbf{prob}(x\leqslant \beta) \geqslant 0.25\}$&lt;/p&gt;
+&lt;p&gt;（i）$\textbf{quartile} (x) \leqslant \alpha$&lt;/p&gt;
+&lt;p&gt;$p$的约束：$p_i \geq 0$是n个半空间，约束$\sum_{i=1}^n = 1$是超平面，也就是说$p$是一个多面体，本身为凸集。&lt;/p&gt;
+&lt;p&gt;（a）
+$\alpha \leq \sum_{i=1}^n p_i f(a_i) \leq \beta$
+增加线性不等式约束，仍为凸集&lt;/p&gt;
+&lt;p&gt;（b）
+$\textbf{prob}(x\geq \alpha) = \sum_{i, a_i \geq \alpha}p_i \leq \beta$
+增加线性不等式约束，仍为凸集&lt;/p&gt;
+&lt;p&gt;（c）
+$\mathbf{E}\left|x^{3}\right| \leq \alpha \mathbf{E}|x| \to \sum_{i=1}^{n} p_{i}\left(\left|a_{i}^{3}\right|-\alpha\left|a_{i}\right|\right) \leq 0$
+增加线性不等式约束，仍为凸集&lt;/p&gt;
+&lt;p&gt;（d）
+$\sum_{i=1}^{n} p_{i} a_{i}^2 \leq \alpha$
+增加线性不等式约束，仍为凸集&lt;/p&gt;
+&lt;p&gt;（e）
+$\sum_{i=1}^{n} p_{i} a_{i}^2 \geq \alpha$
+增加线性不等式约束，仍为凸集&lt;/p&gt;
+&lt;p&gt;（f）
+$\textbf{var}(x)=\mathbf{E} x^2-(\mathbf{E} x)^2=\sum_{i=1}^{n} p_{i} a_{i}^2-\left(\sum_{i=1}^{n} p_{i} a_{i}\right)^2 \leq \alpha$
+不是凸集。举反例，比如$a_1 = 0, a_2 = 1, \alpha = 0.2$，两个点$p_1 = (0, 1), p_2 = (1,0)$，有$\textbf{var}(x) \leq \alpha$，但是中间的点$(\frac{1}2, \frac{1}2)$明显不满足。&lt;/p&gt;
+&lt;p&gt;（g）
+$\textbf{var}(x)=\mathbf{E} x^2-(\mathbf{E} x)^2=\sum_{i=1}^{n} p_{i} a_{i}^2-\left(\sum_{i=1}^{n} p_{i} a_{i}\right)^2 = b^T p + p^T A p  \geq \alpha$
+因为$A = a a^T$是半正定的，所以是凸集&lt;/p&gt;
+&lt;p&gt;（h）
+$\textbf{prob}\left(x \leq a_{k}\right)=\sum_{i=1}^{k} p_{i}&amp;lt;0.25$
+是一个半空间，是凸集。&lt;/p&gt;
+&lt;p&gt;（i）
+$\sum_{i=k+1}^{n} p_{i} \geq 0.25$
+是一个半空间，是凸集。&lt;/p&gt;
 </content>
             
             
