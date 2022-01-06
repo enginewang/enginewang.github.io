@@ -54,7 +54,7 @@ $$p^\star  = inf\{f_0(x)|x \in X_f\}$$
 一句话说明就是反证法假设在局部最优之外还能找到一个全局最优，根据凸函数的性质，就可以在局部最优的领域内找到更低的点，从而与局部最优矛盾，具体过程如下：
 反证法：假设局部最优解x不是全局最优解y
 因为局部最优，所以一定能找到一个正数$R$，使得在$R$的范围内，$f_0(x)$是最小的，即：
-$$\exist R > 0 , f_0(x) = inf \{ f_0(z), ||x-z||_2\leq R \}$$
+$$ \exists R > 0 , f_0(x) = inf \{ f_0(z), ||x-z||_2\leq R \}$$
 假设全局最优解是$y$
 $$y \neq x, f_0(y) < f_0(x), ||y-x||_2 > R$$
 由于是凸函数，在$x、y$中间的一点$ z= (1-\theta) x + \theta y$，有:
@@ -256,10 +256,10 @@ $$
 $$
 约束有：
 $$
-\\{  \begin{array}{ll}
+\left \\{  \begin{array}{ll}
 l_{ij} \leq x_{ij} \leq u_{ij} \newline
 b_i + \sum_{j=1}^n x_{ij} - \sum_{j=1}^n x_{ji} = 0
-\end{array}
+\end{array} \right .
 $$
 
 线性规划即为：
@@ -281,10 +281,10 @@ $$
 
 约束有：
 $$
-\\{ \begin{array}{ll}
+\left \\{ \begin{array}{ll}
 \sum P_{i=1}^n = P_{tol}\newline
 \sum W_{i=1}^n = W_{tol}\newline
-\end{array}
+\end{array} \right .
 $$
 
 R的Hassain矩阵为$$
