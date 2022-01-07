@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-06T21:34:08&#43;08:00</updated>
+    <updated>2022-01-07T21:58:53&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">凸优化（三）凸优化问题</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-3/" />
             <id>https://yichengme.site/posts/convex-3/</id>
-            <updated>2022-01-06T21:33:47&#43;08:00</updated>
+            <updated>2022-01-07T21:58:33&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -57,10 +57,10 @@ $$
 $$&lt;/p&gt;
 &lt;p&gt;可行解集（feasible set），即在目标函数的定义域中的满足所有约束的解集：
 $$
-X_f = {x | x满足所有约束}
+X_f = \{x | x满足所有约束\}
 $$&lt;/p&gt;
 &lt;p&gt;问题的最优值（optimal value），如果可行解集不是空集，总能在可行解集中找到一个值，使目标函数最小，这个解就是最优解：
-$$p^\star  = inf{f_0(x)|x \in X_f}$$&lt;/p&gt;
+$$p^\star  = inf\{f_0(x)|x \in X_f\}$$&lt;/p&gt;
 &lt;p&gt;这里inf是下确界的意思，和min类似但是不完全相同。有可能有下确界但是无限趋近取不到，也就是有inf没有min。&lt;/p&gt;
 &lt;p&gt;凸优化问题的最重要性质（为什么要研究凸优化，为什么要转换为凸优化问题）：&lt;strong&gt;局部最优 = 全局最优&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -239,7 +239,7 @@ $$
 \text { subject to } &amp;amp; y \preceq b
 \end{array}
 $$&lt;/p&gt;
-&lt;p&gt;如果$A^{-T} c \preceq 0$，最优解即为$y=b$，否则y取- $\infin$，函数无下界。&lt;/p&gt;
+&lt;p&gt;如果$A^{-T} c \preceq 0$，最优解即为$y=b$，否则y取- $\infty$，函数无下界。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;网络流问题，网络总费用为$C = \sum_{1,j=1}^n c_{ij}x_{ij}$，每个边流量$x_{ij}$同时收到下界$l_{ij}$和上界$u_{ij}$的约束，流出和流入的流量守恒。建模成一个线性规划问题&lt;/p&gt;
 &lt;/blockquote&gt;
