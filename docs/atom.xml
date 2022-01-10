@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-10T19:24:22&#43;08:00</updated>
+    <updated>2022-01-10T20:11:12&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -3368,6 +3368,176 @@ ALU等&lt;/p&gt;
                                 <category scheme="https://yichengme.site/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/" term="系统结构" label="系统结构" />
                             
                         
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">同济学生服务站小程序如何每日自动打卡</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/miniprogram-auto-checkin/" />
+            <id>https://yichengme.site/posts/miniprogram-auto-checkin/</id>
+            <updated>2022-01-10T20:10:19&#43;08:00</updated>
+            <published>2020-05-10T18:44:36&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">（仅针对同济大学学生服务站小程序，本文只提供思路，需要具体代码的话可以私信。如果你一直呆在学校，可以考虑使用该方法自动签到，但是一旦离开上海，请务必向辅导员申报……</summary>
+            
+                <content type="html">&lt;p&gt;（仅针对同济大学学生服务站小程序，本文只提供思路，需要具体代码的话可以私信。如果你一直呆在学校，可以考虑使用该方法自动签到，但是一旦离开上海，请务必向辅导员申报！）&lt;/p&gt;
+&lt;p&gt;之前寒假期间的打卡用的是问卷星，直接通过Selenium自动化来模拟操作前端填写问卷和提交打卡，都是流于表面的一些js操作，实现起来很简便。但是开学之后我们更换为了小程序打卡，微信小程序虽然是类前端，但它不同于常规网页，无法直接在浏览器中打开，只能借助微信来启动，可以理解为微信给它套了一个壳，提供了一些内置组件UI、请求统一处理、微信api调用、单独的IDE等等。小程序只能借助微信才能打开，只能通过腾讯发布的Wechat DevTool才能调试。&lt;/p&gt;
+&lt;p&gt;那么问题来了，我们应该在小程序中怎么去模拟打卡的操作呢，我先试了试反编译，看看小程序的具体逻辑。&lt;/p&gt;
+&lt;h4 id=&#34;反编译&#34;&gt;反编译&lt;/h4&gt;
+&lt;p&gt;这里需要一台root过的安卓手机（推荐留个root过的安卓备用机，做很多事会比较方便，注意最好用备用机不要用主力机），没有的话也可以使用安卓模拟器先root再操作。&lt;/p&gt;
+&lt;p&gt;安装微信和支持root超级权限的文件管理器，在模拟器里用微信登陆自己的账号，打开小程序，等小程序加载完成后，通过root文件管理器前往&lt;code&gt;data/data/com.tencent.mm/MicroMsg/&amp;lt;很长的一串数字字母字符串&amp;gt;/appbrand/pkg/&lt;/code&gt;文件夹下，在里面通过时间信息找到对应的wxpkg文件（不root的话是无法操作这些文件的），可以就地压缩然后通过微信或者其他软件发送到电脑上。&lt;/p&gt;
+&lt;p&gt;最早的小程序反编译脚本是这个项目：https://github.com/qwerty472123/wxappUnpacker&lt;/p&gt;
+&lt;p&gt;作者弃坑之后可以利用另一位大佬改进的项目：
+&lt;a href=&#34;https://github.com/xuedingmiaojun/wxappUnpacker&#34;&gt;https://github.com/xuedingmiaojun/wxappUnpacker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;按照README的说明来操作，就不具体解释&lt;/p&gt;
+&lt;p&gt;中途如果遇到报错可以利用搜索引擎解决一下&lt;/p&gt;
+&lt;p&gt;最后成功的输出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Generate&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;wxss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;second&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;turn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)...&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Generate&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;wxss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;second&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;turn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Save&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;wxss&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;saveDir&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Users&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wyc&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Desktop&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_97557709_27&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Split&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;up&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Delete&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;files&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Deleted&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;File&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;done&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Total&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;3.545&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;就会生成一个小程序源项目文件夹，可以直接用Wechat Dev Tool打开：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641816256/checkin-1.png&#34; alt=&#34;checkin-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看了前端代码之后，可以看到所有的前端逻辑，签到的流程很简单，如下：&lt;/p&gt;
+&lt;p&gt;初次使用小程序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;完成学籍认证&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果学籍信息正确且该学籍没有绑定微信，则绑定学生信息到该微信id&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（注意，该小程序每个学籍只能绑定一个微信，也就是说你不可以通过其他人的微信来绑定你的学籍）&lt;/p&gt;
+&lt;p&gt;之后每次启动小程序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过微信id，后端可以查到这名学生的签到信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2-1. 如果已经签过到了，只提示“你已经签过到了”&lt;/p&gt;
+&lt;p&gt;2-2. 如果当天没有签到，显示签到表单让用户填写&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;提交表单到后端，更新用户签到记录&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;值的一提的是，这里提交的位置信息并不是显示在前端的xx市xx区xx路，而是经纬度和xx市xx区，其他位置信息没用到，并且实际上校验的时候只要市正确即可，所以签到的话只要是标在上海市都没问题。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以只需要向后端服务器发送一条包含位置信息的POST请求，不论使用的设备在哪里，只要在data里写明上海，那么就会在上海打卡。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;然而只有前端并没有实质的收获，实际上也不需要前端代码，只是想通过反编译的方式了解一下逻辑。关键的是后端接口，可以抓包来获取，然后伪造打卡请求即可。&lt;/p&gt;
+&lt;h4 id=&#34;抓包&#34;&gt;抓包&lt;/h4&gt;
+&lt;p&gt;使用常见的抓包工具，抓包工具用顺手的就行，Fidder、Charles、Proxyman...我这次使用的是Proxyman，当然这几个都是完全同理的。&lt;/p&gt;
+&lt;p&gt;微信小程序的抓包有一些不同，配置好手机和电脑连上之后，直接抓会获取不到：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641816256/checkin-2.png&#34; alt=&#34;checkin-2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;（当然这里我们知道了base url，结合之前的前端源码，可以知道所有的api的url，但是不知道header、token等信息，发送post请求会比较麻烦。）&lt;/p&gt;
+&lt;p&gt;为什么抓不到呢？这是因为微信7.0对https的证书做了限制，只有系统信任的证书才可以被允许，而我们安装的是软件的第三方证书&lt;/p&gt;
+&lt;p&gt;你需要通过下面两种方式中的一种，才可以捕获成功：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;安装微信7.0之前的版本（简单）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安卓root之后，把证书移动到系统证书目录下（会比较麻烦）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我两种方法都用过，第一种非常无脑，去豌豆荚下一个老版的微信即可，当然第二种方法会更好一些，毕竟老版本之后可能会有问题。&lt;/p&gt;
+&lt;p&gt;按照软件的教程给电脑安装证书，手机配置网络代理，然后打开打卡小程序开始抓包，这个小程序抓包很轻松，api直接明文暴露了出来&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641816256/checkin-3.png&#34; alt=&#34;checkin-3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;弄清楚这几个接口的含义、Header的信息、Auth的方式、POST数据的格式以及返回的信息含义，如果后端没有做一些处理的话，理论上就能直接伪装一个POST请求来进行签到。&lt;/p&gt;
+&lt;p&gt;这些api的含义很明显，其他的就不细说了，主要说一下要用到的两个：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用户是否签到&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;method: GET&lt;/p&gt;
+&lt;p&gt;url: &amp;quot;https://tjxsfw.chisai.tech/api/school_tjxsfw_student/yqfkLogDailyreport/hasDoneToday?studentPid=&amp;quot; + studentPid&lt;/p&gt;
+&lt;p&gt;header: 需要jwt验证&lt;/p&gt;
+&lt;p&gt;Header中需要加入&amp;quot;Bearer: &amp;lt;jwt_token&amp;gt;&amp;quot;来验证&lt;/p&gt;
+&lt;p&gt;返回一个json，如果code==200并且data=true，则表示已经签过到了，data=false表示今天还没签到&lt;/p&gt;
+&lt;p&gt;这个api用于检测你是否需要签到，以及签到是否成功&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;签到&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;method: POST&lt;/p&gt;
+&lt;p&gt;url: &amp;quot;https://tjxsfw.chisai.tech/api/school_tjxsfw_student/yqfkLogDailyreport/v2&amp;quot;&lt;/p&gt;
+&lt;p&gt;data: 签到的json，包含用户信息、签到地点、打卡时间等&lt;/p&gt;
+&lt;p&gt;header: 需要jwt验证&lt;/p&gt;
+&lt;p&gt;第二天用postman试了一下，直接从proxyman里复制请求信息，然后修改时间，发了个POST过去，打开小程序，提示已经打过卡了，说明该方法有效&lt;/p&gt;
+&lt;h4 id=&#34;构造请求反馈方式与定时任务&#34;&gt;构造请求、反馈方式与定时任务&lt;/h4&gt;
+&lt;h5 id=&#34;构建请求&#34;&gt;构建请求&lt;/h5&gt;
+&lt;p&gt;既然我们知道了具体的api，那么构造请求就非常简单了，C++、Java、C#、Python、JavaScript、Golang...基本上正常的编程语言都可以，选择自己顺手的即可。照着抓包到的请求抄一下header和token什么的，然后记得把请求的data里的日期改成现在的时间点。&lt;/p&gt;
+&lt;p&gt;如果硬是要给明天后天也签个到，我没试过，理论上后端肯定会判断时间的，大概率会失败。主要是没这个必要，只要每天定时打卡即可&lt;/p&gt;
+&lt;p&gt;（注意，同济大学学生服务站小程序会在每天的00：00-00：30分进行维护，需要绕开这个时间打卡）&lt;/p&gt;
+&lt;h5 id=&#34;反馈方式&#34;&gt;反馈方式&lt;/h5&gt;
+&lt;p&gt;我们设置了自动打卡，那么打完卡之后，小程序是不会通知你的，这时候就需要一个被通知的方式，来告诉你自动打卡成功或者失败的消息。&lt;/p&gt;
+&lt;p&gt;途径有很多，我说说几个能想到的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;QQ Bot&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;优点：部署完之后会很方便，还可以做其他事，有很全面的交互
+缺点：构建比较复杂，尤其是tx几个月前封杀了一些第三方机器人，酷q倒了之后，目前我了解到的仅mirai可用。这件事主要表明了tx想要封杀第三方机器人的态度，导致QQ Bot的未来很迷茫。
+适合人群：已经有自己的正常运行的QQ Bot，再写一个插件即可&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Telegram Bot/ Discord Bot&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;优点：和QQ Bot优点一样，不过很稳定，软件官方支持的Bot
+缺点：需要全程科学上网
+适合人群：能全程科学上网的telegram/discord重度用户&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;IFTTT&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;优点：很容易，不用写代码，不用自己买服务器或域名
+缺点：功能比较简陋（但是只是通知的话够用了）&lt;/p&gt;
+&lt;p&gt;另外还搜到了一些其他的第三方软件，用法和IFTTT类似，需要的可以自己去搜索&lt;/p&gt;
+&lt;p&gt;推荐采用IFTTT通知的方式，最容易实现。可以参考：https://zhuanlan.zhihu.com/p/103419701&lt;/p&gt;
+&lt;h5 id=&#34;定时任务&#34;&gt;定时任务&lt;/h5&gt;
+&lt;p&gt;需要设置一个定时任务来在每天的一个时间点打卡，所以不能关机。推荐使用云服务器或者是闲置的不关机电脑。&lt;/p&gt;
+&lt;p&gt;这里分windows、mac&amp;amp;linux三个平台来说&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先构造一个bat脚本来启动程序，或者也可以打包程序为exe&lt;/p&gt;
+&lt;p&gt;通过计算机管理 - 创建基本任务 - 定位bat或者exe文件 - 设置每日执行一次和执行的时间，然后就ok了&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;MacOS/Linux&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因为mac也是类Unix系统，所以和Linux都可以使用crontab来设置定时任务，具体的教程网上很多&lt;/p&gt;
+&lt;h5 id=&#34;后续&#34;&gt;后续&lt;/h5&gt;
+&lt;p&gt;设定好定时任务后，就免去了每日打卡的操作，它会自动定时打卡，成功后通过手机发送通知。每天点三下屏幕都不想做，可能就是懒癌晚期吧。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                
                     
                 
             
