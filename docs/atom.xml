@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-10T19:12:06&#43;08:00</updated>
+    <updated>2022-01-10T19:24:22&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">凸优化（四）对偶</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-4/" />
             <id>https://yichengme.site/posts/convex-4/</id>
-            <updated>2022-01-10T19:11:24&#43;08:00</updated>
+            <updated>2022-01-10T19:17:02&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -45,10 +45,10 @@ $$&lt;/p&gt;
 &lt;h4 id=&#34;拉格朗日对偶函数&#34;&gt;拉格朗日对偶函数&lt;/h4&gt;
 &lt;p&gt;拉格朗日对偶函数的形式为：&lt;/p&gt;
 &lt;p&gt;$$g(\lambda, v) = \inf_{x \in \mathcal{D}} L(x, \lambda, v) = \inf_{x \in \mathcal{D}}(f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x))$$&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. 不管原问题是什么问题，对偶函数一定是凹函数&lt;/strong&gt;
-因为是取inf的分段线性函数&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $&lt;/strong&gt;
-$p^\star $是原优化问题的最优值&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 不管原问题是什么问题，对偶函数一定是凹函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为是取inf的分段线性函数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$p^\star $是原优化问题的最优值&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;证明：
 假设最优解为$x^\star $，对应的最优值是$f_0(x^\star ) = p^\star $，最优解必然满足约束：

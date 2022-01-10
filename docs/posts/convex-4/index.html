@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-01-09T21:25:05+08:00",
-        "dateModified": "2022-01-10T19:11:24+08:00",
+        "dateModified": "2022-01-10T19:17:02+08:00",
         "url": "https://yichengme.site/posts/convex-4/",
         "headline": "凸优化（四）对偶",
         "description": "Lagrange函数 原优化问题： $$ \\begin{array}{ll} \\text{ minimize } \u0026 f_0(x) \\newline \\text { subject to } \u0026 f_{i}(x) \\leq 0, \\quad i=1, \\ldots, m \\newline \u0026 h_i(x) = 0, \\quad i=1, \\ldots, p \\end{array} $$ Lagrange函数是在优化目标中考虑约束条件，添加约束条件的加……",
@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://yichengme.site/icons/apple-touch-icon.png" />
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-01-09T21:25:05&#43;08:00" />
-    <meta property="article:modified_time" content="2022-01-10T19:11:24&#43;08:00" />
+    <meta property="article:modified_time" content="2022-01-10T19:17:02&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -281,10 +281,10 @@ $$</p>
 <h4 id="拉格朗日对偶函数"><a href="#拉格朗日对偶函数" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>拉格朗日对偶函数</h4>
 <p>拉格朗日对偶函数的形式为：</p>
 <p>$$g(\lambda, v) = \inf_{x \in \mathcal{D}} L(x, \lambda, v) = \inf_{x \in \mathcal{D}}(f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x))$$</p>
-<p><strong>1. 不管原问题是什么问题，对偶函数一定是凹函数</strong>
-因为是取inf的分段线性函数</p>
-<p><strong>2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $</strong>
-$p^\star $是原优化问题的最优值</p>
+<p><strong>1. 不管原问题是什么问题，对偶函数一定是凹函数</strong></p>
+<p>因为是取inf的分段线性函数</p>
+<p><strong>2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $</strong></p>
+<p>$p^\star $是原优化问题的最优值</p>
 <blockquote>
 <p>证明：
 假设最优解为$x^\star $，对应的最优值是$f_0(x^\star ) = p^\star $，最优解必然满足约束：
@@ -641,7 +641,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$</p>
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-01-10 19:11:24 CST" style="cursor:help">
+        <span title="Updated @ 2022-01-10 19:17:02 CST" style="cursor:help">
 
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-01-10</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-01-10</text></g></svg>
         </span></div>
@@ -772,11 +772,11 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$</p>
           
     
         <ul class="socials"><li class="socials-item">
-                    <a href="/rss.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
-                </li><li class="socials-item">
                     <a href="mailto:engine74396@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
                 </li><li class="socials-item">
                     <a href="https://github.com/enginewang" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://t.me/enginewang" target="_blank" rel="external noopener" title="Telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon social-icon"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm121.8 169.9l-40.7 191.8c-3 13.6-11.1 16.9-22.4 10.5l-62-45.7-29.9 28.8c-3.3 3.3-6.1 6.1-12.5 6.1l4.4-63.1 114.9-103.8c5-4.4-1.1-6.9-7.7-2.5l-142 89.4-61.2-19.1c-13.3-4.2-13.6-13.3 2.8-19.7l239.1-92.2c11.1-4 20.8 2.7 17.2 19.5z"/></svg></a>
                 </li></ul>
     
 

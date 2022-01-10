@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Mon, 10 Jan 2022 19:12:06 &#43;0800</lastBuildDate>
+        <lastBuildDate>Mon, 10 Jan 2022 19:24:22 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -54,10 +54,10 @@ $$&lt;/p&gt;
 &lt;h4 id=&#34;拉格朗日对偶函数&#34;&gt;拉格朗日对偶函数&lt;/h4&gt;
 &lt;p&gt;拉格朗日对偶函数的形式为：&lt;/p&gt;
 &lt;p&gt;$$g(\lambda, v) = \inf_{x \in \mathcal{D}} L(x, \lambda, v) = \inf_{x \in \mathcal{D}}(f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x))$$&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. 不管原问题是什么问题，对偶函数一定是凹函数&lt;/strong&gt;
-因为是取inf的分段线性函数&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $&lt;/strong&gt;
-$p^\star $是原优化问题的最优值&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 不管原问题是什么问题，对偶函数一定是凹函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为是取inf的分段线性函数&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;$p^\star $是原优化问题的最优值&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;证明：
 假设最优解为$x^\star $，对应的最优值是$f_0(x^\star ) = p^\star $，最优解必然满足约束：

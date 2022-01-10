@@ -34,9 +34,11 @@ $$L(x, \lambda, v) = f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(
 $$g(\lambda, v) = \inf_{x \in \mathcal{D}} L(x, \lambda, v) = \inf_{x \in \mathcal{D}}(f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x))$$
 
 **1. 不管原问题是什么问题，对偶函数一定是凹函数**
+
 因为是取inf的分段线性函数
 
 **2. 对偶函数构成了原优化问题的下界，也就是$g(\lambda, v) \leq p^\star $**
+
 $p^\star $是原优化问题的最优值
 
 > 证明：
