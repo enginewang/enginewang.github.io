@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-10T20:11:12&#43;08:00</updated>
+    <updated>2022-01-10T20:14:14&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -3377,7 +3377,7 @@ ALU等&lt;/p&gt;
             <title type="text">同济学生服务站小程序如何每日自动打卡</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/miniprogram-auto-checkin/" />
             <id>https://yichengme.site/posts/miniprogram-auto-checkin/</id>
-            <updated>2022-01-10T20:10:19&#43;08:00</updated>
+            <updated>2022-01-10T20:13:29&#43;08:00</updated>
             <published>2020-05-10T18:44:36&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3537,7 +3537,23 @@ ALU等&lt;/p&gt;
             
                 
                     
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                            
+                        
+                    
                 
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/%E8%84%9A%E6%9C%AC/" term="脚本" label="脚本" />
+                            
+                        
                     
                 
             

@@ -2,6 +2,8 @@
 title: "同济学生服务站小程序如何每日自动打卡"
 date: 2020-05-10T18:44:36+08:00
 draft: false
+categories: ["生活"]
+tags: ["脚本"]
 ---
 
 
