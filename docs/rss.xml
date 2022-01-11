@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 11 Jan 2022 12:02:13 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 11 Jan 2022 12:12:49 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -32,7 +32,7 @@
                 <title>凸优化（五）算法</title>
                 <link>https://yichengme.site/posts/convex-5/</link>
                 <guid isPermaLink="true">https://yichengme.site/posts/convex-5/</guid>
-                <pubDate>Sun, 09 Jan 2022 21:25:05 &#43;0800</pubDate>
+                <pubDate>Tue, 11 Jan 2022 01:09:12 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
                 
@@ -3205,10 +3205,18 @@ routine2
 &lt;p&gt;最多可以同時执行CPU线程数相等的Goroutine&lt;/p&gt;
 &lt;p&gt;GoRoutine的优点：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;任何函数，前面加一个go关键字就可以送给调度器运行&lt;/li&gt;
-&lt;li&gt;不需要定义函数时声明是否为异步函数&lt;/li&gt;
-&lt;li&gt;调度器会在合适的时间点进行切换&lt;/li&gt;
-&lt;li&gt;使用-race可以检测数据访问冲突&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;任何函数，前面加一个go关键字就可以送给调度器运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不需要定义函数时声明是否为异步函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调度器会在合适的时间点进行切换&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用-race可以检测数据访问冲突&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;channel&#34;&gt;channel&lt;/h4&gt;
 &lt;p&gt;通道是一个用来传递数据的数据结构&lt;/p&gt;
@@ -3302,10 +3310,10 @@ routine2
 &lt;h5 id=&#34;通道缓冲区&#34;&gt;通道缓冲区&lt;/h5&gt;
 &lt;p&gt;在创建通道的时候可以在第二个参数声明一个缓冲区，比如我们要声明一个大小为100的缓冲区&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;ch := make(chan int, 100)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;假如没有缓冲区，发送方会一直阻塞到接收方接受了通道中的值；
-假如带了缓冲区，缓冲区还没满，发送方阻塞到数据被拷贝到缓冲区内；
-假如带了缓冲区，缓冲区已经满了，则发送方会阻塞到接收方获取到一个值；
-如果运行到了接收的代码，但是通道内没有元素，则接收方会一直阻塞，直到发送方完成后代码才会继续进行。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如没有缓冲区，发送方会一直阻塞到接收方接受了通道中的值；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如带了缓冲区，缓冲区还没满，发送方阻塞到数据被拷贝到缓冲区内；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如带了缓冲区，缓冲区已经满了，则发送方会阻塞到接收方获取到一个值；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果运行到了接收的代码，但是通道内没有元素，则接收方会一直阻塞，直到发送方完成后代码才会继续进行。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们就可以同时发送多个数据，而不需要立即读取&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

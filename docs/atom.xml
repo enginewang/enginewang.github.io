@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T12:02:13&#43;08:00</updated>
+    <updated>2022-01-11T12:12:49&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,8 +20,8 @@
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-5/" />
             <id>https://yichengme.site/posts/convex-5/</id>
-            <updated>2022-01-11T12:01:28&#43;08:00</updated>
-            <published>2022-01-09T21:25:05&#43;08:00</published>
+            <updated>2022-01-11T12:11:53&#43;08:00</updated>
+            <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://yichengme.site/</uri>
@@ -3147,7 +3147,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             <title type="text">Golang并发教程</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-tutorial/" />
             <id>https://yichengme.site/posts/go-concurrency-tutorial/</id>
-            <updated>2022-01-10T20:41:35&#43;08:00</updated>
+            <updated>2022-01-11T12:12:44&#43;08:00</updated>
             <published>2020-09-15T23:35:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3232,10 +3232,18 @@ routine2
 &lt;p&gt;最多可以同時执行CPU线程数相等的Goroutine&lt;/p&gt;
 &lt;p&gt;GoRoutine的优点：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;任何函数，前面加一个go关键字就可以送给调度器运行&lt;/li&gt;
-&lt;li&gt;不需要定义函数时声明是否为异步函数&lt;/li&gt;
-&lt;li&gt;调度器会在合适的时间点进行切换&lt;/li&gt;
-&lt;li&gt;使用-race可以检测数据访问冲突&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;任何函数，前面加一个go关键字就可以送给调度器运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不需要定义函数时声明是否为异步函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调度器会在合适的时间点进行切换&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用-race可以检测数据访问冲突&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;channel&#34;&gt;channel&lt;/h4&gt;
 &lt;p&gt;通道是一个用来传递数据的数据结构&lt;/p&gt;
@@ -3329,10 +3337,10 @@ routine2
 &lt;h5 id=&#34;通道缓冲区&#34;&gt;通道缓冲区&lt;/h5&gt;
 &lt;p&gt;在创建通道的时候可以在第二个参数声明一个缓冲区，比如我们要声明一个大小为100的缓冲区&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;ch := make(chan int, 100)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;假如没有缓冲区，发送方会一直阻塞到接收方接受了通道中的值；
-假如带了缓冲区，缓冲区还没满，发送方阻塞到数据被拷贝到缓冲区内；
-假如带了缓冲区，缓冲区已经满了，则发送方会阻塞到接收方获取到一个值；
-如果运行到了接收的代码，但是通道内没有元素，则接收方会一直阻塞，直到发送方完成后代码才会继续进行。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如没有缓冲区，发送方会一直阻塞到接收方接受了通道中的值；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如带了缓冲区，缓冲区还没满，发送方阻塞到数据被拷贝到缓冲区内；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;假如带了缓冲区，缓冲区已经满了，则发送方会阻塞到接收方获取到一个值；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果运行到了接收的代码，但是通道内没有元素，则接收方会一直阻塞，直到发送方完成后代码才会继续进行。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们就可以同时发送多个数据，而不需要立即读取&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
