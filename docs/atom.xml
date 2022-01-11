@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T16:52:30&#43;08:00</updated>
+    <updated>2022-01-11T17:59:03&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -17,10 +17,203 @@
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
+            <title type="text">无线网络基础</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
+            <id>https://yichengme.site/posts/wireless-network-basic/</id>
+            <updated>2022-01-11T17:34:58&#43;08:00</updated>
+            <published>2022-01-11T17:34:00&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">信息论 信息论基础 信息是事物运动状态或存在方式的不确定性的描述 通信系统形式上传递的就是信息，需求来源于： ① 需要告知某信息给对方 ② 需要接受某种信息。通信的结果就是消……</summary>
+            
+                <content type="html">&lt;h3 id=&#34;信息论&#34;&gt;信息论&lt;/h3&gt;
+&lt;h4 id=&#34;信息论基础&#34;&gt;信息论基础&lt;/h4&gt;
+&lt;p&gt;信息是事物运动状态或存在方式的不确定性的描述&lt;/p&gt;
+&lt;p&gt;通信系统形式上传递的就是信息，需求来源于：
+① 需要告知某信息给对方
+② 需要接受某种信息。通信的结果就是消除不确定性或者获得信息。&lt;/p&gt;
+&lt;p&gt;信息论研究的目的在于：通过探索信息传输的规律，提高信息传输的有效性、可靠性和保密性，使得信息系统达到最优化。&lt;/p&gt;
+&lt;p&gt;数据：传送信息的实体
+信号：数据的电气或电磁表现，数据在传输过程中的存在形式
+（连续变化的称为模拟数据/信号，离散变化的数据称为数字数据/信号）
+码元：用一个固定时长的信号波形代表一位k进制数字&lt;/p&gt;
+&lt;p&gt;信源：产生和发送数据的源头
+信道：信号的传输媒介
+信宿：接收数据的终点&lt;/p&gt;
+&lt;p&gt;速率：数据的传输速率，表示单位时间内传输的数据量，码元传输速率单位是波特（Baud），信息运输速率单位是 比特/秒 (b/s)&lt;/p&gt;
+&lt;p&gt;$$比特/秒 = 波特 \times \log_2电平数$$&lt;/p&gt;
+&lt;p&gt;波特：每秒内信息改变的次数，一波特就表示数字通道系统一秒钟传输一个码元
+带宽：指信号具有的频带宽度，单位是赫兹（Hz），表示单位时间内从网络某一点到另一点所能通过的最高数据率，此时单位是bit/s&lt;/p&gt;
+&lt;h4 id=&#34;信息量&#34;&gt;信息量&lt;/h4&gt;
+&lt;p&gt;信息量 = 不确定性的减少量 = 收信前的不确定性 - 收信后的不确定性&lt;/p&gt;
+&lt;p&gt;某个事件发生的信息量是该事件发生的先验概率的函数：
+$$I(a_i) = f[P(a_i)]$$&lt;/p&gt;
+&lt;p&gt;有$I(a_0 = 0) = \infin, I(a_0 = 1) = 0$&lt;/p&gt;
+&lt;p&gt;独立事件的联合信息量等于各自的信息量之和&lt;/p&gt;
+&lt;p&gt;自信息量的计算公式为：
+$$
+I(a_i) = \log \frac{1}{P(a_i)}
+$$&lt;/p&gt;
+&lt;p&gt;以2为底，单位为比特；以e为底，单位为奈特；以10为底，单位为哈特。&lt;/p&gt;
+&lt;h4 id=&#34;熵&#34;&gt;熵&lt;/h4&gt;
+&lt;p&gt;反应了信源整体的不确定度&lt;/p&gt;
+&lt;p&gt;$$
+H(x) = -\sum_x p(x)\log p(x)
+$$&lt;/p&gt;
+&lt;p&gt;联合熵：
+$$
+H(X, Y) = -\sum_{x,y} p(x,y)\log p(x,y)
+$$&lt;/p&gt;
+&lt;p&gt;条件熵：
+$$
+H(X | Y) = - \sum_y H(X|Y=y) p(y) = -\sum_{y} \sum_{x} p(x \mid y) p(y) \log p(x \mid y)
+$$&lt;/p&gt;
+&lt;p&gt;互信息：
+$$
+I(X;Y) = \sum_{x,y} p(x,y) \log \frac{p(x,y)}{p(x)p(y)}
+$$&lt;/p&gt;
+&lt;p&gt;两个独立的随机变量的互信息等于0&lt;/p&gt;
+&lt;h4 id=&#34;信源编码与信道编码&#34;&gt;信源编码与信道编码&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641283110/xxl-1.png&#34; alt=&#34;xxl-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;信号先经过信源编码，然后进入信道前经过信道编码。&lt;/p&gt;
+&lt;p&gt;信源编码的作用：信息量的压缩，减少原信号的冗余&lt;/p&gt;
+&lt;p&gt;信道编码的作用：信息量的增加，用于增加可靠性&lt;/p&gt;
+&lt;p&gt;带宽受限且有高斯白噪声干扰的信道的极限、无差错的信息传输速率&lt;/p&gt;
+&lt;h3 id=&#34;无线通信系统&#34;&gt;无线通信系统&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641799607/transceiver-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;源信号依次经过信源编码、加密、信道编码、调制然后发送出去，接受时依次经过解调、信道解码、解密、信源解码然后接受。&lt;/p&gt;
+&lt;h4 id=&#34;调制&#34;&gt;调制&lt;/h4&gt;
+&lt;p&gt;调制：将某个信息嵌入到另一个信号的过程，比如模拟信号通过采样、量化、数字化编码到数字信号的过程。&lt;/p&gt;
+&lt;p&gt;之所以要调制，是为了提高频率，从而让让信号客户要传播的更远，大气层对低频段的损耗非常高。&lt;/p&gt;
+&lt;p&gt;信源的信号有很多低频或者直流成分，很多信道不能直接传输。一方面需要调制成高频信号便于天线发射，一方面可以通过多路传输不同的基带信号，如果频率一样可能会干扰（广播的频率不一样就可以同时发射互不干扰）。&lt;/p&gt;
+&lt;p&gt;载波调制就是利用载波进行调制，把基带信号的频率搬移到较高的频段。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/ba2f942c2de172e4e5e707738f3d08f4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;码元调制&#34;&gt;码元调制&lt;/h4&gt;
+&lt;p&gt;码间串扰：在接收端收到的信号波形就失去了码元和符号之间的清晰的界限。&lt;/p&gt;
+&lt;p&gt;进行码元/符号调制的目的：用一个码元代表多个比特，在码元速率一定的情况下提高数据传输速率&lt;/p&gt;
+&lt;h5 id=&#34;nyquist定理&#34;&gt;Nyquist定理&lt;/h5&gt;
+&lt;p&gt;在绝对理想的信道中，极限码元传输速率为$2W$ &lt;em&gt;Baud&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;$W$是理想低通信道的带宽，单位为Hz
+$V$是每个码元离散电平的数目，$V$个电平就需要$log_2V$个二进制位&lt;/p&gt;
+&lt;p&gt;理想状态下的极限数据传输率 = $2Wlog_2V$ （单位 &lt;em&gt;b/s&lt;/em&gt;）&lt;/p&gt;
+&lt;p&gt;超过这个界限就会出现严重的码间串扰&lt;/p&gt;
+&lt;h5 id=&#34;香农定理&#34;&gt;香农定理&lt;/h5&gt;
+&lt;p&gt;信道的极限数据传输速率 = $Wlog_2(1+S/N)$&lt;/p&gt;
+&lt;p&gt;$S$是信道传输的平均功率
+$N$为信道内部的高斯噪声功率&lt;/p&gt;
+&lt;h5 id=&#34;例子&#34;&gt;例子&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;带宽为6MHz，量化等级为4，无噪声，求最大传输速率&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解：使用Nyquist定理，$C = 2 * W * log_2V = 2 * 6 * log_24 = 24Mbps$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;带宽为3MHz，信噪比为20dB，二进制，求最大数据传输速率&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解：使用香农定理&lt;/p&gt;
+&lt;p&gt;先化$S/N$的单位，$10lg(S/N) = 20 \to S/N = 100 $&lt;/p&gt;
+&lt;p&gt;$C= W * log_2{(1+S/N)} = 3 * log_2{(1+100)} \approx 20Kbps$&lt;/p&gt;
+&lt;h4 id=&#34;无线信道&#34;&gt;无线信道&lt;/h4&gt;
+&lt;p&gt;传播的时候会遇到很多复杂的情况，造成信号的衰弱，根据信号传播的距离分为大尺度衰弱和小尺度衰弱。&lt;/p&gt;
+&lt;h5 id=&#34;大尺度衰弱&#34;&gt;大尺度衰弱&lt;/h5&gt;
+&lt;p&gt;大尺度衰弱是发射和接受信号的距离较长，数百数千米&lt;/p&gt;
+&lt;p&gt;大尺度衰弱包括路径损耗和阴影效应：
+路径损耗：随着路径长度的平方衰减，和方向等参数无关
+阴影损耗：遇到障碍物时，后面的阴影区信号场比较弱，会造成损耗&lt;/p&gt;
+&lt;h5 id=&#34;小尺度衰弱&#34;&gt;小尺度衰弱&lt;/h5&gt;
+&lt;p&gt;小尺度衰弱是数个或者数十个波长的距离&lt;/p&gt;
+&lt;p&gt;小尺度衰弱更为重要，其中造成小尺度衰弱的主要原因有多径效应和多普勒效应&lt;/p&gt;
+&lt;p&gt;包括频率选择性衰弱和时变特性&lt;/p&gt;
+&lt;p&gt;多径效应：由于电波传递的过程中有各种反射散射等，会导致到达时的信号是由多个状态叠加的，随机分布的幅度、相位、入角等合成之后使得接收到的信号删除衰弱和失真，比如极端情况刚好差半个波长然后刚好抵消（实际基本不可能，但是能说明其影响）&lt;/p&gt;
+&lt;p&gt;多普勒效应：是由于接收端和发射端之间的相对移动产生的&lt;/p&gt;
+&lt;h3 id=&#34;蜂窝网络&#34;&gt;蜂窝网络&lt;/h3&gt;
+&lt;p&gt;单基站覆盖：早期的移动通信是利用高塔上的天线大功率发射，但是业务通道很少&lt;/p&gt;
+&lt;p&gt;蜂窝通信网络：减少单个基站的发射功率，多小区覆盖，不同小区之间频率复用（频率复用是蜂窝移动通信的基石）&lt;/p&gt;
+&lt;p&gt;同频段小区之间可能会干扰，需要增加同频段小区之间的距离&lt;/p&gt;
+&lt;p&gt;不同簇之间使用相同频率的小区的最小距离$D$称为频率再用比例（就是两个相同频率的，看最接近的路径是多大）&lt;/p&gt;
+&lt;p&gt;小区切换，设定某个切换门限，低于门限值则进行切换，需要设定一个时间，持续低于这段时间再切换，从而避免乒乓球切换。&lt;/p&gt;
+&lt;p&gt;同频组网&lt;/p&gt;
+&lt;p&gt;单工：指的是只有一个方向的交互而没有反方向的交互
+半双工：双方都可以发送信息，但是不能同时发送或者接受&lt;/p&gt;
+&lt;p&gt;半双工分为FDD（频分双工）和TDD（时分双工），FDD就是在不同的频率上同时发送，TDD用时间片轮转。&lt;/p&gt;
+&lt;p&gt;全双工：双方可以同时发送和接收消息&lt;/p&gt;
+&lt;h3 id=&#34;多址接入方式&#34;&gt;多址接入方式&lt;/h3&gt;
+&lt;p&gt;复用：同样的频谱如何重复使用
+多址：同样的频谱如何分给不同用户&lt;/p&gt;
+&lt;p&gt;多址其实就是要去找一种方式来分割为多个正交的数据流，从而将它们分开。&lt;/p&gt;
+&lt;p&gt;频分多址（FDMA）：在频域复用多个数据流，用于多个用户
+时分多址（TDMA）：在时域复用多个数据流，用于多个用户
+&lt;strong&gt;码分多址（CDMA）&lt;/strong&gt;：在码域复用多个数据流，用于多个用户
+空分多址（SDMA）：在空间上用于多个用户&lt;/p&gt;
+&lt;p&gt;把每个频谱比作一个房间，FDMA就是不同的用户去不同的方向聊天，TDMA就是依次排队去房间聊天，CDMA就是一窝蜂的一起说话，但是说的语言不同，只要认准自己的语言就能分开从而交流。&lt;/p&gt;
+&lt;p&gt;码片序列，将一个比特时间划分成m个短的间隔，称为码片。每个站被指派一个唯一的m bit码片序列，1则为自己的码片，0则发送自己的反码。&lt;/p&gt;
+&lt;p&gt;每个站分配的码片序列必须各不相同且相互正交&lt;/p&gt;
+&lt;p&gt;扩频技术，之前的一个bit变成了m个bit，发送的数据率是之前的m倍，宽度也提高到m倍&lt;/p&gt;
+&lt;p&gt;扩频通信采用直接序列扩频或者跳频扩频
+直接序列扩频DSSS是通过比特率高很多的伪码序列对信号进行二次调频的技术&lt;/p&gt;
+&lt;p&gt;OFDM：正交频分复用，运行载波之间紧密相邻甚至部分重合，可以实现很高的频谱效率。通过IFFT，人为建立载波间正交性&lt;/p&gt;
+&lt;p&gt;OFDM发射机的两个核心模块：IFFT和加入循环前缀CP&lt;/p&gt;
+&lt;h3 id=&#34;mimo与波束赋型&#34;&gt;MIMO与波束赋型&lt;/h3&gt;
+&lt;h4 id=&#34;传输途径的分类&#34;&gt;传输途径的分类&lt;/h4&gt;
+&lt;p&gt;基站和终端的传输途径有SISO、MISO、SIMO、MIMO。&lt;/p&gt;
+&lt;p&gt;MISO是基站多个天线发出相同信号，在终端合成一路，是发送分集技术。&lt;/p&gt;
+&lt;p&gt;SIMO是一个天线通过两路路径发送信号，终端收到两个信号，数据也一样，是接受分集技术。
+MIMO（Multiple Input Multiple Output，多进多出）
+实现多路数据并行发送，获得空间复用增益。
+实现多个字信号的有效合并，获得空间分集增益。&lt;/p&gt;
+&lt;h4 id=&#34;分集与复用&#34;&gt;分集与复用&lt;/h4&gt;
+&lt;h5 id=&#34;分集&#34;&gt;分集&lt;/h5&gt;
+&lt;p&gt;分集就是把多个独立衰弱的副本提供给接收机，接受机将同一数据流的不同版本进行合并和恢复。减少深度衰弱的概率，从而提高性能。（提高鲁棒性）&lt;/p&gt;
+&lt;p&gt;分为空间分集（同一个信息从多根天线上发射出去）、时间分集（同一个信号以超过相干时间间隔重复发送）&lt;/p&gt;
+&lt;p&gt;频率分集就是在多个频域上对同一信号进行重复发送&lt;/p&gt;
+&lt;p&gt;分集又分为简单分集（完全相同）、编码分集（不同的版本）、选择分集（选择一个信道较好的天线发送）、波束分集等&lt;/p&gt;
+&lt;p&gt;空间分集的算法：
+空时块码（STBC，Alamouti空时分组码），各个发射天线上的码字满足正交性。因为正交，所以接收端只需要简单处理。&lt;/p&gt;
+&lt;p&gt;接收机是2路发送信号与噪声的线性叠加&lt;/p&gt;
+&lt;h5 id=&#34;复用&#34;&gt;复用&lt;/h5&gt;
+&lt;p&gt;空分复用就是在多条独立的路径上传输不同的数据，提高系统容量。（提高吞吐率）
+高速流分为几个低速数据流分别进行编码和调制，然后在不同的天线发送，接收机将不同天线上接受到的数据流进行合并&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/%E9%80%9A%E4%BF%A1/" term="通信" label="通信" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-5/" />
             <id>https://yichengme.site/posts/convex-5/</id>
-            <updated>2022-01-11T16:16:42&#43;08:00</updated>
+            <updated>2022-01-11T16:55:26&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -154,8 +347,9 @@ $$&lt;/p&gt;
 &lt;p&gt;求解无约束优化问题&lt;/p&gt;
 &lt;p&gt;牛顿法用二阶海森矩阵的逆矩阵求解，收敛更快但是每次迭代的计算时间更长&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;求目标函数$f(x) = x_1^2 + 25x_2^2$在$[2,2]^T$处的牛顿方向
-解：初始点梯度$\nabla f(x_0) = [2x_1\ 50x_2]^T = [4\ 100]^T$
+&lt;p&gt;求目标函数$f(x) = x_1^2 + 25x_2^2$在$[2,2]^T$处的牛顿方向&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解：初始点梯度$\nabla f(x_0) = [2x_1\ 50x_2]^T = [4\ 100]^T$
 $$
 \nabla^2 f(x^0)=\left[\begin{array}{cc}
 2 &amp;amp; 0 \newline
@@ -179,7 +373,6 @@ $$- [\nabla^2 f(x^k)]^{-1}\nabla f(x^k) = -\left[\begin{array}{cc}
 -2 \newline
 -2
 \end{array}\right]$$&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h5 id=&#34;阻尼牛顿法&#34;&gt;阻尼牛顿法&lt;/h5&gt;
 &lt;p&gt;增加了沿牛顿方向的一维搜索，步长$\lambda_k$由一维搜索得到，每次迭代必然下降，不过会增大计算量&lt;/p&gt;
 &lt;h5 id=&#34;共轭梯度法&#34;&gt;共轭梯度法&lt;/h5&gt;
@@ -5287,6 +5480,172 @@ systemctl reload nginx.service
                             
                             
                                 <category scheme="https://yichengme.site/tags/nginx/" term="nginx" label="nginx" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">mac软件推荐</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mac-software-recommend/" />
+            <id>https://yichengme.site/posts/mac-software-recommend/</id>
+            <updated>2022-01-11T17:58:56&#43;08:00</updated>
+            <published>2019-11-10T15:38:07&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">注：以下软件或组件只是自我记录，因为是颜控，所以包含大量主观感情色彩 本篇不含软件资源，如果有需要建议去官网购买正版 多图预警！！！流量党请慎重 本篇会不断更新，上一……</summary>
+            
+                <content type="html">&lt;p&gt;注：以下软件或组件只是自我记录，因为是颜控，所以包含大量主观感情色彩&lt;/p&gt;
+&lt;p&gt;本篇不含软件资源，如果有需要建议去官网购买正版&lt;/p&gt;
+&lt;p&gt;多图预警！！！流量党请慎重&lt;/p&gt;
+&lt;p&gt;本篇会不断更新，上一次更新时间：2021年10月28日&lt;/p&gt;
+&lt;h3 id=&#34;科研篇&#34;&gt;科研篇&lt;/h3&gt;
+&lt;h4 id=&#34;xmind&#34;&gt;Xmind&lt;/h4&gt;
+&lt;p&gt;最好用的思维导图软件，做出来的图很漂亮。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641893834/xmind-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果想放在ppt里，不要直接导出png图片，而应该导出为svg，然后拖进ppt。如果采用放大加平滑会有更好的演示效果。&lt;/p&gt;
+&lt;h4 id=&#34;ivysci&#34;&gt;IvySci&lt;/h4&gt;
+&lt;p&gt;青藤学术，论文管理软件，功能丰富，支持多端登录，比如论文管理、框选翻译、自动显示引用、笔记记录等等，比老牌的那几个论文管理软件好用。ReadPaper也不错，就是刚起步bug还比较多。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872960/IvySci-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;mathpix-snip&#34;&gt;Mathpix Snip&lt;/h4&gt;
+&lt;p&gt;区域截图，通过Ai识别返回Latex语法，每个月有免费的次数，不过还是够用的，神器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872960/mathpix-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;更新：别拿它图片做图床，过段时间后会被清理，当时图省事直接用它的图床，没保存到本地，笔记里的好几十张图片都没了 o(╥﹏╥)o&lt;/p&gt;
+&lt;p&gt;图床，我推荐cloudinary&lt;/p&gt;
+&lt;h4 id=&#34;texpad&#34;&gt;Texpad&lt;/h4&gt;
+&lt;p&gt;mac平台上最好用颜值最高的Latex编辑器，可以自动同步编译，当然云端的Overleaf也不错（如果网好的话）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872968/texpad-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;生活篇&#34;&gt;生活篇&lt;/h3&gt;
+&lt;h4 id=&#34;cleanmymac-x&#34;&gt;CleanMyMac X&lt;/h4&gt;
+&lt;p&gt;界面极其优雅，功能强大的Mac清理软件&lt;/p&gt;
+&lt;p&gt;这个软件的易用性、外观和音效颠覆了我对清理类软件的看法，用起来很舒服，比win平台的某些流氓管家不知道高到哪里去了&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1551701107/yicheng.me%20Blog/Screen_Shot_2019-02-22_at_3.29.35_PM.png&#34; width=80%&gt;
+&lt;/center&gt;
+&lt;h4 id=&#34;fantastical-2&#34;&gt;Fantastical 2&lt;/h4&gt;
+&lt;p&gt;想找个同步Google Calendar事件的Mac端日历，最后找到了找个。界面优雅且功能强大的日历应用，曾获年度设计奖，比默认日历多了很多功能，能绑定Google Calendar和Apple日历事件，在菜单栏显示，非常方便。&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1551701106/yicheng.me%20Blog/Screen_Shot_2019-02-22_at_3.25.36_PM.png&#34; width=80%&gt;
+&lt;/center&gt;
+&lt;h4 id=&#34;network--battery&#34;&gt;Network &amp;amp; Battery&lt;/h4&gt;
+&lt;p&gt;最好看的网速菜单栏显示软件，试了就知道&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872968/network-and-battery-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;网易云音乐spotify在线音乐流媒体&#34;&gt;网易云音乐、Spotify（在线音乐流媒体）&lt;/h4&gt;
+&lt;p&gt;可能对我这种找歌靠日推而不是靠歌手的人而言，不粉任何当红歌星，就听听acg、纯音乐什么的，版权基本对我没有影响。相比国内其他音乐软件而言，网易云的界面是最耐看的，日推算法很准确，评论氛围也不错。&lt;/p&gt;
+&lt;p&gt;后来接触到了spotify之后就和Spotify结合着用，Spotify的推荐算法很强，多平台播放同步和支持Google home也很酸爽。&lt;/p&gt;
+&lt;p&gt;更新：这两年网易云的版权越来越少了，杂七杂八的东西也多了起来，Spotify版权更差，而且大多数没有歌词，后面基本都是本地听无损了。当然网易云可以通过代理的方法从其他地方获取灰掉的歌，只是不太方便。&lt;/p&gt;
+&lt;h4 id=&#34;audirvana-plus本地无损音乐播放器&#34;&gt;Audirvana Plus（本地无损音乐播放器）&lt;/h4&gt;
+&lt;p&gt;本地无损音乐播放器，墙裂推荐，听起来确实和其他音乐软件的音效不一样，就不只是听个响了，配合wav、ape等无损格式食用更佳（如1G多的加州旅馆）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872958/Audirvana-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;hidden-bar&#34;&gt;Hidden Bar&lt;/h4&gt;
+&lt;p&gt;开源的菜单栏隐藏工具，可以帮助右上方的菜单栏变得干净。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872959/hidden-bar-1.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;fe-file-explorer&#34;&gt;FE File Explorer&lt;/h4&gt;
+&lt;p&gt;文件管理、nas连接都很方便&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872968/fe-file-explorer-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;iina&#34;&gt;IINA&lt;/h4&gt;
+&lt;p&gt;mac下很好用的一款开源的颜值很高的视频播放器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872960/IINA-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;uniconverter&#34;&gt;UniConverter&lt;/h4&gt;
+&lt;p&gt;万兴的文件格式转换软件（万兴真的是国产软件的清流），支持超多格式，界面干净，非常好用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/uniconverter-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;pdf-expertpdfelement&#34;&gt;PDF Expert、Pdfelement&lt;/h4&gt;
+&lt;p&gt;前者是轻量的pdf阅读软件，响应速度非常快。后者是万兴的pdf软件，功能很强大，经常拿它转换一些pdf，让它们的文字可以被搜索到。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894993/pdf-expert-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;shadowsocksx-ngclashx&#34;&gt;ShadowsocksX-NG、ClashX&lt;/h4&gt;
+&lt;p&gt;某科学的上网方法，节点不建议自己撘，还是找个靠谱的服务商比较好，一个月几十块钱，国内程序员、搞学术的必需品。就不细说了。&lt;/p&gt;
+&lt;h4 id=&#34;dropbox&#34;&gt;Dropbox&lt;/h4&gt;
+&lt;p&gt;赫赫有名的同步云盘，和国内云盘的理念不同，dropbox只是纯粹的做同步和备份工作，不限速，多平台同步、国外支持云盘导入导出的软件基本都支持dropbox，唯一的缺点就是初始空间只有2G，之后可以做任务攒到18G左右（可以去淘宝买），订阅的话很贵，但是体验是真的舒服。我是配合NAS一起食用NAS放大文件（如视频），dropbox储存一些重要的小文件（如笔记、代码）。&lt;/p&gt;
+&lt;p&gt;Dropbox的历史文档自动存储救了我好几次，好用到哭泣。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/dropbox-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;telegram&#34;&gt;Telegram&lt;/h4&gt;
+&lt;p&gt;优雅的聊天应用，Mac/Win/Android/ios全平台推荐，聊天信息完全加密，（因为不透露用户隐私，tg在老家毛子那都被墙了），另外全平台传文件非常好用，吊打QQ，因为大家都懂的原因，国内用的人确实不是很多，和QQ互补着用挺好，微信就算了吧，文件太拉胯了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/telegram-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;downie4allavsoft&#34;&gt;Downie4、Allavsoft&lt;/h4&gt;
+&lt;p&gt;都是很好用的视频下载器，可以下载很多网站的视频，比如Bilibili、Youtube等等&lt;/p&gt;
+&lt;h4 id=&#34;parallels-desktop&#34;&gt;Parallels Desktop&lt;/h4&gt;
+&lt;p&gt;macOS下的最强虚拟机软件，不过说实话，真不建议用mac开虚拟机，太浪费了，有win需求的话建议再买一台win。&lt;/p&gt;
+&lt;h3 id=&#34;程序猿篇&#34;&gt;程序猿篇&lt;/h3&gt;
+&lt;h4 id=&#34;jetbrains全家桶&#34;&gt;Jetbrains全家桶&lt;/h4&gt;
+&lt;p&gt;Pycharm、Idea、WEbstorm、Goland、Clion、Android Studio&lt;/p&gt;
+&lt;p&gt;（Jetbrains家的ide，用过的都说好）&lt;/p&gt;
+&lt;p&gt;xcode只有做ios、mac app开发的时候的挺好，毕竟垄断了，Visual Studio for mac用起来有点怪，还是乖乖的在win下用宇宙第一IDE吧。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/jetbrains-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;atomvs-code&#34;&gt;Atom/VS Code&lt;/h4&gt;
+&lt;p&gt;最开始选的Atom，中途无数次尝试VS Code（毕竟推荐的人很多），但是最后还是选择了Atom，性能确实不如vs code，但也没有感到明显的延迟（插件十来个也是秒开）。&lt;/p&gt;
+&lt;p&gt;用的是material ui的darker配色，比较耐看。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1549894263/E8F0C761-0FF4-4739-BFFB-62126E855D78_.png.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Atom：99分的界面+70分的性能&lt;/p&gt;
+&lt;p&gt;VS code：90分的界面+99分的性能&lt;/p&gt;
+&lt;p&gt;颜控当然是选择Atom了&lt;/p&gt;
+&lt;h4 id=&#34;transmit&#34;&gt;Transmit&lt;/h4&gt;
+&lt;p&gt;图形化的ftp软件，在mac与远程服务器之间传输数据，很好用&lt;/p&gt;
+&lt;h4 id=&#34;startuml&#34;&gt;StartUML&lt;/h4&gt;
+&lt;p&gt;UML分析设计应用，画UML图还不错，虽然有些方面很糟心（比如复制什么的），但是好像找不出更能打的软件了。&lt;/p&gt;
+&lt;h4 id=&#34;navicat&#34;&gt;Navicat&lt;/h4&gt;
+&lt;p&gt;数据库管理软件，比命令行直观多了&lt;/p&gt;
+&lt;h4 id=&#34;postman&#34;&gt;Postman&lt;/h4&gt;
+&lt;p&gt;大名鼎鼎的api调试神器，CRUD程序猿必备&lt;/p&gt;
+&lt;h4 id=&#34;iterm2&#34;&gt;iTerm2&lt;/h4&gt;
+&lt;p&gt;代替自带终端bash的神器，自定义很丰富。&lt;/p&gt;
+&lt;h3 id=&#34;命令行组件&#34;&gt;命令行组件&lt;/h3&gt;
+&lt;h4 id=&#34;homebrew必装&#34;&gt;HomeBrew（必装）&lt;/h4&gt;
+&lt;p&gt;Mac中类似linux的包管理工具，神器&lt;/p&gt;
+&lt;p&gt;安装Xcode命令行工具：&lt;code&gt;xcode-select --install&lt;/code&gt;
+安装HomeBrew：&lt;code&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;&lt;/code&gt;
+等待即可，如果连不上可能是wall的原因&lt;/p&gt;
+&lt;h4 id=&#34;pythongitnode&#34;&gt;python、git、node...&lt;/h4&gt;
+&lt;p&gt;这类必装组件太多了，就不单独提了&lt;/p&gt;
+&lt;h4 id=&#34;oh-my-zsh&#34;&gt;oh-my-zsh&lt;/h4&gt;
+&lt;p&gt;下载zsh
+&lt;code&gt;brew install zsh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;设置为默认shell
+&lt;code&gt;sudo sh -c &amp;quot;echo /usr/local/bin/zsh &amp;gt;&amp;gt; /etc/shells&amp;quot;&lt;/code&gt;
+&lt;code&gt;chsh -s /usr/local/bin/zsh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;zsh进一步配置及美化可以上网搜寻一些文章，我用了一圈主题最后还是回到了zsh的原版主题&lt;/p&gt;
+&lt;p&gt;功能很强大，这里不细谈了&lt;/p&gt;
+&lt;h4 id=&#34;neofetch&#34;&gt;neofetch&lt;/h4&gt;
+&lt;p&gt;显示ASCII形式的logo以及系统和硬件信息，很炫酷，华而不实hh&lt;/p&gt;
+&lt;p&gt;安装只需要&lt;code&gt;brew install neofetch&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用只需要输入&lt;code&gt;neofetch&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1551701105/yicheng.me%20Blog/Screen_Shot_2019-02-21_at_6.23.13_PM.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;设计狮篇&#34;&gt;设计狮篇&lt;/h3&gt;
+&lt;h4 id=&#34;adobe全家桶&#34;&gt;Adobe全家桶&lt;/h4&gt;
+&lt;p&gt;PS、Pr、Ae、Au、Ai...不解释了，接触设计、多媒体的应该都会用到Adobe家的软件，Adobe在Mac平台下有加成。（而office在Mac下就是被削了）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641819661/adobe-1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;sip&#34;&gt;Sip&lt;/h4&gt;
+&lt;p&gt;屏幕取色器，可以取到屏幕任意位置的颜色数值，rgb、html格式都有，做ppt、PS和前端都很方便&lt;/p&gt;
+&lt;h4 id=&#34;sketch&#34;&gt;Sketch&lt;/h4&gt;
+&lt;p&gt;mac上最好用的矢量绘图软件，适合画概念图&lt;/p&gt;
+&lt;p&gt;未完待续...&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/macos/" term="macOS" label="macOS" />
                             
                         
                     
