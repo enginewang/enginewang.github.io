@@ -16,7 +16,7 @@ tags: ["凸优化", "数学"]
 $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$
 
 该式也叫Jenson不等式：
-$$f(\theta x + (1-\theta) y) \leq \theta f(x) + (1-\theta)f(y)$$
+$$f(\theta x + (1-\thetda) y) \leq \theta f(x) + (1-\theta)f(y)$$
 
 拓展，对于任意随机变量z，有
 $$f(Ez) \leq Ef(z)$$

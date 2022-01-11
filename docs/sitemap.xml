@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yichengme.site/categories/</loc>
-    <lastmod>2022-01-10T20:13:29+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/</loc>
-    <lastmod>2022-01-10T20:13:29+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/</loc>
-    <lastmod>2022-01-10T20:13:29+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2022-01-10T19:17:02+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/convex-4/</loc>
     <lastmod>2022-01-10T19:17:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/</loc>
-    <lastmod>2022-01-10T19:17:02+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/</loc>
-    <lastmod>2022-01-10T20:13:29+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/categories/%E7%90%86%E8%AE%BA/</loc>
-    <lastmod>2022-01-10T19:17:02+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/convex-3/</loc>
     <lastmod>2022-01-07T22:02:03+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/convex-2/</loc>
-    <lastmod>2022-01-06T20:32:23+08:00</lastmod>
+    <lastmod>2022-01-10T21:29:27+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/convex-1/</loc>
     <lastmod>2022-01-10T18:43:35+08:00</lastmod>
@@ -54,7 +54,7 @@
     <lastmod>2021-12-23T21:13:53+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/%E7%B2%BE%E9%80%89/</loc>
-    <lastmod>2021-12-23T21:13:53+08:00</lastmod>
+    <lastmod>2022-01-10T20:41:35+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/about/</loc>
     <lastmod>2022-01-05T22:26:06+08:00</lastmod>
@@ -95,6 +95,18 @@
     <loc>https://yichengme.site/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/</loc>
     <lastmod>2021-12-23T19:39:43+08:00</lastmod>
   </url><url>
+    <loc>https://yichengme.site/tags/golang/</loc>
+    <lastmod>2022-01-10T20:41:35+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/posts/go-concurrency-tutorial/</loc>
+    <lastmod>2022-01-10T20:41:35+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2022-01-10T20:41:35+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2022-01-10T20:41:35+08:00</lastmod>
+  </url><url>
     <loc>https://yichengme.site/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-12-27T15:46:45+08:00</lastmod>
   </url><url>
@@ -114,9 +126,6 @@
     <lastmod>2021-12-23T21:13:53+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/mongodb-basics/</loc>
-    <lastmod>2021-12-23T21:13:53+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/</loc>
     <lastmod>2021-12-23T21:13:53+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/django/</loc>

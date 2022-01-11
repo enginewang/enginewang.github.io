@@ -1284,7 +1284,7 @@ uglyURLs = false
     # 是否开启竖直滚动
     enableOverflowY = true
     # 最大高度
-    maxHeight = 20
+    maxHeight = 60
     # 单位：em
 
     # 是否开启复制
