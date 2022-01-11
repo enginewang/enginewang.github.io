@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T17:59:03&#43;08:00</updated>
+    <updated>2022-01-11T19:40:13&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">无线网络基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
             <id>https://yichengme.site/posts/wireless-network-basic/</id>
-            <updated>2022-01-11T17:34:58&#43;08:00</updated>
+            <updated>2022-01-11T19:39:58&#43;08:00</updated>
             <published>2022-01-11T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -32,9 +32,9 @@
                 <content type="html">&lt;h3 id=&#34;信息论&#34;&gt;信息论&lt;/h3&gt;
 &lt;h4 id=&#34;信息论基础&#34;&gt;信息论基础&lt;/h4&gt;
 &lt;p&gt;信息是事物运动状态或存在方式的不确定性的描述&lt;/p&gt;
-&lt;p&gt;通信系统形式上传递的就是信息，需求来源于：
-① 需要告知某信息给对方
-② 需要接受某种信息。通信的结果就是消除不确定性或者获得信息。&lt;/p&gt;
+&lt;p&gt;通信系统形式上传递的就是信息，需求来源于：&lt;/p&gt;
+&lt;p&gt;① 需要告知某信息给对方&lt;/p&gt;
+&lt;p&gt;② 需要接受某种信息。通信的结果就是消除不确定性或者获得信息。&lt;/p&gt;
 &lt;p&gt;信息论研究的目的在于：通过探索信息传输的规律，提高信息传输的有效性、可靠性和保密性，使得信息系统达到最优化。&lt;/p&gt;
 &lt;p&gt;数据：传送信息的实体
 信号：数据的电气或电磁表现，数据在传输过程中的存在形式
@@ -49,12 +49,12 @@
 带宽：指信号具有的频带宽度，单位是赫兹（Hz），表示单位时间内从网络某一点到另一点所能通过的最高数据率，此时单位是bit/s&lt;/p&gt;
 &lt;h4 id=&#34;信息量&#34;&gt;信息量&lt;/h4&gt;
 &lt;p&gt;信息量 = 不确定性的减少量 = 收信前的不确定性 - 收信后的不确定性&lt;/p&gt;
-&lt;p&gt;某个事件发生的信息量是该事件发生的先验概率的函数：
-$$I(a_i) = f[P(a_i)]$$&lt;/p&gt;
-&lt;p&gt;有$I(a_0 = 0) = \infin, I(a_0 = 1) = 0$&lt;/p&gt;
+&lt;p&gt;某个事件发生的信息量是该事件发生的先验概率的函数：&lt;/p&gt;
+&lt;p&gt;$$I(a_i) = f[P(a_i)]$$&lt;/p&gt;
+&lt;p&gt;有$I(a_0 = 0) = \infty, I(a_0 = 1) = 0$&lt;/p&gt;
 &lt;p&gt;独立事件的联合信息量等于各自的信息量之和&lt;/p&gt;
-&lt;p&gt;自信息量的计算公式为：
-$$
+&lt;p&gt;自信息量的计算公式为：&lt;/p&gt;
+&lt;p&gt;$$
 I(a_i) = \log \frac{1}{P(a_i)}
 $$&lt;/p&gt;
 &lt;p&gt;以2为底，单位为比特；以e为底，单位为奈特；以10为底，单位为哈特。&lt;/p&gt;
