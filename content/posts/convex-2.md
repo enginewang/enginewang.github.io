@@ -55,7 +55,9 @@ $$f(Ez) \leq Ef(z)$$
 2. $\forall x \in dom(f), \triangledown f^2(x) \geq 0$，即$f$的Hessian矩阵半正定（特征值均$\geq 0$）
 
 > 如何判断矩阵的正定或负定？
-正定矩阵的顺序主子式均为正
+$$\newline$$
+方法一、正定矩阵的顺序主子式均为正
+$$\newline$$
 例：
 $$
 \begin{array}{ccc}
@@ -94,10 +96,38 @@ $$
 \right | = 10 > 0
 $$
 所以为正定矩阵
+$$\newline$$
+方法二：$x^T H x \geq 0$
+（一般用来求二阶的情况，高阶不好求。）
+$$\newline$$
+例：
+$$
+H =
+\begin{array}{ccc}
+\end{array}
+\left [
+\begin{array}{ccc}
+ 3 & 2 \newline
+ 2 & 1 \newline
+\end{array}
+\right ]
+$$
+对于任意$x$，构造
+$$
+x^T \begin{array}{ccc}
+\end{array}
+\left [
+\begin{array}{ccc}
+ 3 & 1 \newline
+ 1 & 1 \newline
+\end{array}
+\right ] x = 3x_1^2 + 2x_1 x_2 + x_2^2 = 2x_1^2 + (x_1+x_2)^2 \geq 0
+$$
+所以是半正定的
 
-注意，需要定义域是凸集，且二阶可微，比如$f(x)=\frac{1}{x^2}$，即使二阶导数$\geq0$，因为在0不连续，定义域不是凸集，所以不是凸函数。
-第一个要判断的就是定义域是否为凸集。
-然后看定义域内是否可导，比如某分段函数的某点是尖不可导，当然不能说一定凸/非凸，只是说不能用这个定义判断，要用基本定义来求。
+**注意，使用该方法时需要定义域是凸集，且二阶可微**，比如$f(x)=\frac{1}{x^2}$，即使二阶导数$\geq0$，因为在0不连续，定义域不是凸集，所以不是凸函数。
+
+第一个要判断的就是定义域是否为凸集。然后看定义域内是否可导，比如某分段函数的某点是尖不可导，当然不能说一定凸/非凸，只是说不能用这个定义判断，要用基本定义来求。
 
 如果取$>$，那么是严格凸的，但是并不是凸函数都能取$>$，比如$x^4$在0处的二阶导就是0
 
@@ -131,8 +161,10 @@ $\nabla^{2} f(x) = a^2 e^{ax} > 0$
 ##### 幂函数
 
 $f(x) = x^a$
+
 分情况讨论
-$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\{\begin{array}{ll}\geq 0 & a \geq 1, a \leq 0 & 凸\newline \leq 0 & a \in[0,1]& 凹\end{array}\right.$$
+
+$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\newline{\begin{array}{ll}\geq 0 & a \geq 1, a \leq 0 & 凸\newline \leq 0 & a \in[0,1]& 凹\end{array}\right.$$
 
 ##### 绝对值幂函数
 
@@ -157,7 +189,7 @@ $R^n$空间的范数$P(x)$
 
 ##### 极大值函数
 
-$f(x) = max\{x_1, x_2, ...x_n\}$
+$f(x) = max\newline{x_1, x_2, ...x_n\newline}$
 
 极大值函数是凸函数，所以会有极小极大问题，即极小化一个极大值函数
 
@@ -281,7 +313,9 @@ $$\int_{0}^{1} f(x+\lambda(y-x)) d \lambda \leq \int_{0}^{1}(f(x)+\lambda(f(y)-f
 然后是充分性，即满足后式，必然能保证是凸函数，使用凸函数的第一定义证明：
 任取两点$x,y$，任取$\theta \in [0,1]$，需要证明$\theta f(x) + (1-\theta) f(y) \geq f(\theta x + (1-\theta y))$
 
-用反证法，也就是说函数不是凸函数，至少能找到一个$x, y \in dom f $和$\theta \in [0,1]$，使得$\theta f(x) + (1-\theta) f(y) < f(\theta x + (1-\theta) y)$，也就是说存在$x^\*, y^\*, \theta^\*$关于$\theta$的函数：
+用反证法，也就是说函数不是凸函数，至少能找到一个$x, y \in dom f $和$\theta \in [0,1]$，使得
+$$\theta f(x) + (1-\theta) f(y) < f(\theta x + (1-\theta) y)$$
+也就是说存在$x^\*, y^\*, \theta^\*$关于$\theta$的函数：
 $$g(\theta) = f(\theta x + (1-\theta) y) - \theta f(x) - (1-\theta) f(y) >0$$
 
 由于$\theta = 0$和$1$时上式均为0。所以一定在 $\theta^*$的左右存在两点$p,q$，使得$g(p) = 0, g(q) = 0, g(i)_{p \leq i \leq q} > 0$
@@ -307,6 +341,7 @@ $$g(\theta) = f(\theta x + (1-\theta) y) - \theta f(x) - (1-\theta) f(y) >0$$
 由于原函数二阶可导
 $f''(x) = e^x > 0$
 为凸函数，凸函数也一定是拟凸函数，同时还是拟凹函数
+
 （b）
 
 Hessain矩阵为：$$
@@ -361,8 +396,11 @@ $$
 
 
 > 函数的积或比，证明以下结论：
+$$\newline$$
 （a）在某区间上的函数$f$和$g$都是凸函数，且都非减（或者都非增），二者都大于0，则函数$fg$在此区间上也是凸函数
+$$\newline$$
 （b）函数$f$和$g$都是凹函数，一个非减，一个非增，二者都大于0，则函数$fg$是凹函数
+$$\newline$$
 （c）函数$f$是凸函数，非减且大于0，$g$是凹函数，非增且大于0，那么函数$f/g$是凸函数
 
 要证明$fg$的凹凸性，根据定义，则要证明：
@@ -415,18 +453,55 @@ $f/g$为凸函数
 
 > 证明凸函数的二阶条件，也就是凸函数的充要条件是Hessian矩阵半正定
 
-先证充分性，有$\nabla^2 f(x) \geq 0$，所以：
+先证充分性，即凸函数可以推导出Hessain矩阵半正定：
+
+根据凸函数的一阶定义
 $$
-f(y) = f(x) + \nabla^T f(x)(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f(x)(y-x) \geq f(x) + \nabla^T f(x)(y-x)
+f(y) \geq f(x) + \nabla f(x)(y-x) \newline
+f(x) \geq f(y) + \nabla f(y)(x-y)
 $$
 
-根据一阶条件，满足Hessian矩阵半正定的函数为凸函数
+有：
 
-必要性：
+$$\nabla f(x) (y-x) \leq f(y) - f(x) \leq \nabla f(y)(y-x)$$
 
-凸函数满足一阶条件：
+可得
 
-$\nabla f(x) (y-x) \leq f(y) - f(x) \leq \nabla f(y)(y-x)$
+$$\frac{\nabla f(y) - \nabla f(x)}{y-x} \geq 0$$
 
-变形得$\frac{\nabla f(y) - \nabla f(x)}{y-x} \geq 0$
-取$y \to x^+$，得$\nabla^2 f(x) \geq 0$
+取$y \to x^+$，得：
+
+$$\nabla^2 f(x) \geq 0$$
+
+证明必要性，这里先考虑$n=1$的情况
+
+取$x < y$，根据分部积分法，有：
+
+$$
+\begin{array}{ll}
+0 & \leq \int_{x}^{y} f^{\prime \prime}(z)(y-z) dz \newline
+&= \left.\left(f^{\prime}(z)(y-z)\right)\right|_{z=x} ^{z=y} + \int_x^y f^{\prime}(z) dz \newline
+&=-f^{\prime}(x)(y-x)+f(y)-f(x),
+\end{array}
+$$
+
+
+注： 第一个等号是分部积分法，即
+$$f(x)g(x) = \int( f'(x)g(x) + f(x)g'(x)) \newline
+\int f'(x)g(x) = f(x)g(x) - \int f(x)g'(x)
+$$
+
+有$$
+f(y) \geq f(x) + f'(x)(y-x)
+$$
+通过一阶条件可知是凸函数
+
+然后拓展到$n>1$的情况，根据凸函数的第二定义，如果$g(t) = f(x_0 + vt)$对于每个$x_0$和$v$而言都是凸函数的话，就可以得到$f(x)$是凸函数。
+
+$g(t)$是凸函数也就是说它的二阶导大于等于0：
+
+$$
+g^{\prime \prime}(t)=v^{T} \nabla^{2} f\left(x_{0}+t v\right) v \geq 0
+$$
+
+因为有$\nabla^{2} f \geq 0$，所以上式成立，也就是说$f$是凸函数

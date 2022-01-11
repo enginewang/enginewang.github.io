@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T20:58:07&#43;08:00</updated>
+    <updated>2022-01-11T22:23:54&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -1333,7 +1333,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
             <id>https://yichengme.site/posts/convex-2/</id>
-            <updated>2022-01-11T20:58:01&#43;08:00</updated>
+            <updated>2022-01-11T22:23:48&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1382,7 +1382,9 @@ $$f(Ez) \leq Ef(z)$$&lt;/p&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;如何判断矩阵的正定或负定？
-正定矩阵的顺序主子式均为正
+$$\newline$$
+方法一、正定矩阵的顺序主子式均为正
+$$\newline$$
 例：
 $$
 \begin{array}{ccc}
@@ -1420,11 +1422,38 @@ $$
 \end{array}
 \right | = 10 &amp;gt; 0
 $$
-所以为正定矩阵&lt;/p&gt;
+所以为正定矩阵
+$$\newline$$
+方法二：$x^T H x \geq 0$
+（一般用来求二阶的情况，高阶不好求。）
+$$\newline$$
+例：
+$$
+H =
+\begin{array}{ccc}
+\end{array}
+\left [
+\begin{array}{ccc}
+3 &amp;amp; 2 \newline
+2 &amp;amp; 1 \newline
+\end{array}
+\right ]
+$$
+对于任意$x$，构造
+$$
+x^T \begin{array}{ccc}
+\end{array}
+\left [
+\begin{array}{ccc}
+3 &amp;amp; 1 \newline
+1 &amp;amp; 1 \newline
+\end{array}
+\right ] x = 3x_1^2 + 2x_1 x_2 + x_2^2 = 2x_1^2 + (x_1+x_2)^2 \geq 0
+$$
+所以是半正定的&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;注意，需要定义域是凸集，且二阶可微，比如$f(x)=\frac{1}{x^2}$，即使二阶导数$\geq0$，因为在0不连续，定义域不是凸集，所以不是凸函数。
-第一个要判断的就是定义域是否为凸集。
-然后看定义域内是否可导，比如某分段函数的某点是尖不可导，当然不能说一定凸/非凸，只是说不能用这个定义判断，要用基本定义来求。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意，使用该方法时需要定义域是凸集，且二阶可微&lt;/strong&gt;，比如$f(x)=\frac{1}{x^2}$，即使二阶导数$\geq0$，因为在0不连续，定义域不是凸集，所以不是凸函数。&lt;/p&gt;
+&lt;p&gt;第一个要判断的就是定义域是否为凸集。然后看定义域内是否可导，比如某分段函数的某点是尖不可导，当然不能说一定凸/非凸，只是说不能用这个定义判断，要用基本定义来求。&lt;/p&gt;
 &lt;p&gt;如果取$&amp;gt;$，那么是严格凸的，但是并不是凸函数都能取$&amp;gt;$，比如$x^4$在0处的二阶导就是0&lt;/p&gt;
 &lt;h5 id=&#34;凸函数拓展&#34;&gt;凸函数拓展&lt;/h5&gt;
 &lt;p&gt;如果$f(x)$是凸函数，那么凸函数的拓展&lt;/p&gt;
@@ -1441,9 +1470,9 @@ $$&lt;/p&gt;
 &lt;p&gt;$f(x) = e^{ax}$&lt;/p&gt;
 &lt;p&gt;$\nabla^{2} f(x) = a^2 e^{ax} &amp;gt; 0$&lt;/p&gt;
 &lt;h5 id=&#34;幂函数&#34;&gt;幂函数&lt;/h5&gt;
-&lt;p&gt;$f(x) = x^a$
-分情况讨论
-$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left{\begin{array}{ll}\geq 0 &amp;amp; a \geq 1, a \leq 0 &amp;amp; 凸\newline \leq 0 &amp;amp; a \in[0,1]&amp;amp; 凹\end{array}\right.$$&lt;/p&gt;
+&lt;p&gt;$f(x) = x^a$&lt;/p&gt;
+&lt;p&gt;分情况讨论&lt;/p&gt;
+&lt;p&gt;$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\newline{\begin{array}{ll}\geq 0 &amp;amp; a \geq 1, a \leq 0 &amp;amp; 凸\newline \leq 0 &amp;amp; a \in[0,1]&amp;amp; 凹\end{array}\right.$$&lt;/p&gt;
 &lt;h5 id=&#34;绝对值幂函数&#34;&gt;绝对值幂函数&lt;/h5&gt;
 &lt;p&gt;$f(x) = |x|^p$&lt;/p&gt;
 &lt;p&gt;$$
@@ -1458,7 +1487,7 @@ $$&lt;/p&gt;
 ③ $P(x) = 0 \Leftrightarrow x = 0$&lt;/p&gt;
 &lt;p&gt;范数是凸函数，按照定义用性质②即可证明（零范数除外，零范数不满足①）&lt;/p&gt;
 &lt;h5 id=&#34;极大值函数&#34;&gt;极大值函数&lt;/h5&gt;
-&lt;p&gt;$f(x) = max{x_1, x_2, ...x_n}$&lt;/p&gt;
+&lt;p&gt;$f(x) = max\newline{x_1, x_2, ...x_n\newline}$&lt;/p&gt;
 &lt;p&gt;极大值函数是凸函数，所以会有极小极大问题，即极小化一个极大值函数&lt;/p&gt;
 &lt;h5 id=&#34;共轭函数&#34;&gt;共轭函数&lt;/h5&gt;
 &lt;h4 id=&#34;保凸运算&#34;&gt;保凸运算&lt;/h4&gt;
@@ -1539,7 +1568,9 @@ $$\theta f(x) + (1-\theta) f(y) \geq f(\theta x + (1-\theta) y)$$&lt;/p&gt;
 &lt;p&gt;$$\int_{0}^{1} f(x+\lambda(y-x)) d \lambda \leq \int_{0}^{1}(f(x)+\lambda(f(y)-f(x))) d \lambda=\frac{f(x)+f(y)}{2}$$&lt;/p&gt;
 &lt;p&gt;然后是充分性，即满足后式，必然能保证是凸函数，使用凸函数的第一定义证明：
 任取两点$x,y$，任取$\theta \in [0,1]$，需要证明$\theta f(x) + (1-\theta) f(y) \geq f(\theta x + (1-\theta y))$&lt;/p&gt;
-&lt;p&gt;用反证法，也就是说函数不是凸函数，至少能找到一个$x, y \in dom f $和$\theta \in [0,1]$，使得$\theta f(x) + (1-\theta) f(y) &amp;lt; f(\theta x + (1-\theta) y)$，也就是说存在$x^*, y^*, \theta^*$关于$\theta$的函数：
+&lt;p&gt;用反证法，也就是说函数不是凸函数，至少能找到一个$x, y \in dom f $和$\theta \in [0,1]$，使得
+$$\theta f(x) + (1-\theta) f(y) &amp;lt; f(\theta x + (1-\theta) y)$$
+也就是说存在$x^*, y^*, \theta^*$关于$\theta$的函数：
 $$g(\theta) = f(\theta x + (1-\theta) y) - \theta f(x) - (1-\theta) f(y) &amp;gt;0$$&lt;/p&gt;
 &lt;p&gt;由于$\theta = 0$和$1$时上式均为0。所以一定在 $\theta^*$的左右存在两点$p,q$，使得$g(p) = 0, g(q) = 0, g(i)_{p \leq i \leq q} &amp;gt; 0$&lt;/p&gt;
 &lt;p&gt;取$x = p, y =q$，在原函数上有$\int_{0}^{1} f(p+\theta(p-q)) d \theta&amp;gt;\int_{0}^{1}(f(p)+\theta(f(p)-f(q))) d \theta=\frac{f(p)+f(q)}{2}$，与初始矛盾，所以反证法成立。&lt;/p&gt;
@@ -1555,8 +1586,8 @@ $$g(\theta) = f(\theta x + (1-\theta) y) - \theta f(x) - (1-\theta) f(y) &amp;gt
 &lt;p&gt;（a）
 由于原函数二阶可导
 $f&#39;&#39;(x) = e^x &amp;gt; 0$
-为凸函数，凸函数也一定是拟凸函数，同时还是拟凹函数
-（b）&lt;/p&gt;
+为凸函数，凸函数也一定是拟凸函数，同时还是拟凹函数&lt;/p&gt;
+&lt;p&gt;（b）&lt;/p&gt;
 &lt;p&gt;Hessain矩阵为：$$
 \nabla^{2} f(x)=\left[\begin{array}{ll}
 0 &amp;amp; 1 \newline
@@ -1602,8 +1633,11 @@ $$&lt;/p&gt;
 &lt;p&gt;是凹函数，也是拟凹函数。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;函数的积或比，证明以下结论：
+$$\newline$$
 （a）在某区间上的函数$f$和$g$都是凸函数，且都非减（或者都非增），二者都大于0，则函数$fg$在此区间上也是凸函数
+$$\newline$$
 （b）函数$f$和$g$都是凹函数，一个非减，一个非增，二者都大于0，则函数$fg$是凹函数
+$$\newline$$
 （c）函数$f$是凸函数，非减且大于0，$g$是凹函数，非增且大于0，那么函数$f/g$是凸函数&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;要证明$fg$的凹凸性，根据定义，则要证明：
@@ -1639,16 +1673,41 @@ $$\theta f(x)/g(x) + (1-\theta) f(y)/g(y) \geq f(\theta x + (1-\theta)y)/g(\thet
 &lt;blockquote&gt;
 &lt;p&gt;证明凸函数的二阶条件，也就是凸函数的充要条件是Hessian矩阵半正定&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;先证充分性，有$\nabla^2 f(x) \geq 0$，所以：
+&lt;p&gt;先证充分性，即凸函数可以推导出Hessain矩阵半正定：&lt;/p&gt;
+&lt;p&gt;根据凸函数的一阶定义
 $$
-f(y) = f(x) + \nabla^T f(x)(y-x) + \frac{1}{2}(y-x)^T \nabla^2 f(x)(y-x) \geq f(x) + \nabla^T f(x)(y-x)
+f(y) \geq f(x) + \nabla f(x)(y-x) \newline
+f(x) \geq f(y) + \nabla f(y)(x-y)
 $$&lt;/p&gt;
-&lt;p&gt;根据一阶条件，满足Hessian矩阵半正定的函数为凸函数&lt;/p&gt;
-&lt;p&gt;必要性：&lt;/p&gt;
-&lt;p&gt;凸函数满足一阶条件：&lt;/p&gt;
-&lt;p&gt;$\nabla f(x) (y-x) \leq f(y) - f(x) \leq \nabla f(y)(y-x)$&lt;/p&gt;
-&lt;p&gt;变形得$\frac{\nabla f(y) - \nabla f(x)}{y-x} \geq 0$
-取$y \to x^+$，得$\nabla^2 f(x) \geq 0$&lt;/p&gt;
+&lt;p&gt;有：&lt;/p&gt;
+&lt;p&gt;$$\nabla f(x) (y-x) \leq f(y) - f(x) \leq \nabla f(y)(y-x)$$&lt;/p&gt;
+&lt;p&gt;可得&lt;/p&gt;
+&lt;p&gt;$$\frac{\nabla f(y) - \nabla f(x)}{y-x} \geq 0$$&lt;/p&gt;
+&lt;p&gt;取$y \to x^+$，得：&lt;/p&gt;
+&lt;p&gt;$$\nabla^2 f(x) \geq 0$$&lt;/p&gt;
+&lt;p&gt;证明必要性，这里先考虑$n=1$的情况&lt;/p&gt;
+&lt;p&gt;取$x &amp;lt; y$，根据分部积分法，有：&lt;/p&gt;
+&lt;p&gt;$$
+\begin{array}{ll}
+0 &amp;amp; \leq \int_{x}^{y} f^{\prime \prime}(z)(y-z) dz \newline
+&amp;amp;= \left.\left(f^{\prime}(z)(y-z)\right)\right|_{z=x} ^{z=y} + \int_x^y f^{\prime}(z) dz \newline
+&amp;amp;=-f^{\prime}(x)(y-x)+f(y)-f(x),
+\end{array}
+$$&lt;/p&gt;
+&lt;p&gt;注： 第一个等号是分部积分法，即
+$$f(x)g(x) = \int( f&#39;(x)g(x) + f(x)g&#39;(x)) \newline
+\int f&#39;(x)g(x) = f(x)g(x) - \int f(x)g&#39;(x)
+$$&lt;/p&gt;
+&lt;p&gt;有$$
+f(y) \geq f(x) + f&#39;(x)(y-x)
+$$
+通过一阶条件可知是凸函数&lt;/p&gt;
+&lt;p&gt;然后拓展到$n&amp;gt;1$的情况，根据凸函数的第二定义，如果$g(t) = f(x_0 + vt)$对于每个$x_0$和$v$而言都是凸函数的话，就可以得到$f(x)$是凸函数。&lt;/p&gt;
+&lt;p&gt;$g(t)$是凸函数也就是说它的二阶导大于等于0：&lt;/p&gt;
+&lt;p&gt;$$
+g^{\prime \prime}(t)=v^{T} \nabla^{2} f\left(x_{0}+t v\right) v \geq 0
+$$&lt;/p&gt;
+&lt;p&gt;因为有$\nabla^{2} f \geq 0$，所以上式成立，也就是说$f$是凸函数&lt;/p&gt;
 </content>
             
             
