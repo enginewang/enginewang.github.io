@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 11 Jan 2022 20:57:00 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 11 Jan 2022 20:58:07 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -1359,7 +1359,7 @@ $$f(Ez) \leq Ef(z)$$&lt;/p&gt;
 &lt;li&gt;$f$的定义域是凸集&lt;/li&gt;
 &lt;li&gt;$\forall x \in dom\ f, \forall v, g(t) = f(x+tv)$为凸函数，$dom\ g \in dom\ f$&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;相当于从高维降到以为，可以通过证明一维的函数$g(t)$来反证原函数$f(x)$，当然这个定义用的不多&lt;/p&gt;
+&lt;p&gt;相当于从高维降到一维，可以通过证明一维的函数$g(t)$来反证原函数$f(x)$，当然这个定义用的不多&lt;/p&gt;
 &lt;h5 id=&#34;定义三凸函数的一阶条件&#34;&gt;定义三（凸函数的一阶条件）&lt;/h5&gt;
 &lt;p&gt;若$f: R^n \to R$一阶可微，则它是凸函数，当且仅当：&lt;/p&gt;
 &lt;ol&gt;

@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T20:56:59&#43;08:00</updated>
+    <updated>2022-01-11T20:58:07&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -1333,7 +1333,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
             <id>https://yichengme.site/posts/convex-2/</id>
-            <updated>2022-01-11T20:56:48&#43;08:00</updated>
+            <updated>2022-01-11T20:58:01&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1362,7 +1362,7 @@ $$f(Ez) \leq Ef(z)$$&lt;/p&gt;
 &lt;li&gt;$f$的定义域是凸集&lt;/li&gt;
 &lt;li&gt;$\forall x \in dom\ f, \forall v, g(t) = f(x+tv)$为凸函数，$dom\ g \in dom\ f$&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;相当于从高维降到以为，可以通过证明一维的函数$g(t)$来反证原函数$f(x)$，当然这个定义用的不多&lt;/p&gt;
+&lt;p&gt;相当于从高维降到一维，可以通过证明一维的函数$g(t)$来反证原函数$f(x)$，当然这个定义用的不多&lt;/p&gt;
 &lt;h5 id=&#34;定义三凸函数的一阶条件&#34;&gt;定义三（凸函数的一阶条件）&lt;/h5&gt;
 &lt;p&gt;若$f: R^n \to R$一阶可微，则它是凸函数，当且仅当：&lt;/p&gt;
 &lt;ol&gt;
