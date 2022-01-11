@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-01-11T19:40:19&#43;08:00</updated>
+    <updated>2022-01-11T20:56:59&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">无线网络基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
             <id>https://yichengme.site/posts/wireless-network-basic/</id>
-            <updated>2022-01-11T19:39:58&#43;08:00</updated>
+            <updated>2022-01-11T20:46:17&#43;08:00</updated>
             <published>2022-01-11T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -123,9 +123,9 @@ $N$为信道内部的高斯噪声功率&lt;/p&gt;
 &lt;p&gt;传播的时候会遇到很多复杂的情况，造成信号的衰弱，根据信号传播的距离分为大尺度衰弱和小尺度衰弱。&lt;/p&gt;
 &lt;h5 id=&#34;大尺度衰弱&#34;&gt;大尺度衰弱&lt;/h5&gt;
 &lt;p&gt;大尺度衰弱是发射和接受信号的距离较长，数百数千米&lt;/p&gt;
-&lt;p&gt;大尺度衰弱包括路径损耗和阴影效应：
-路径损耗：随着路径长度的平方衰减，和方向等参数无关
-阴影损耗：遇到障碍物时，后面的阴影区信号场比较弱，会造成损耗&lt;/p&gt;
+&lt;p&gt;大尺度衰弱包括路径损耗和阴影效应：&lt;/p&gt;
+&lt;p&gt;路径损耗：随着路径长度的平方衰减，和方向等参数无关&lt;/p&gt;
+&lt;p&gt;阴影损耗：遇到障碍物时，后面的阴影区信号场比较弱，会造成损耗&lt;/p&gt;
 &lt;h5 id=&#34;小尺度衰弱&#34;&gt;小尺度衰弱&lt;/h5&gt;
 &lt;p&gt;小尺度衰弱是数个或者数十个波长的距离&lt;/p&gt;
 &lt;p&gt;小尺度衰弱更为重要，其中造成小尺度衰弱的主要原因有多径效应和多普勒效应&lt;/p&gt;
@@ -1333,14 +1333,14 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
             <id>https://yichengme.site/posts/convex-2/</id>
-            <updated>2022-01-10T21:29:27&#43;08:00</updated>
+            <updated>2022-01-11T20:56:48&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">凸函数的定义 定义一（基本定义） 函数$f: R^n \to R$是凸函数，当且仅当： $f$的定义域是凸集 $\forall x_1, x_2 \in dom(f), \forall \theta \in [0,1]$ $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$ 该式也叫Jenson不等式： $$f(\theta x + (1-\thetda) y) \leq……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">凸函数的定义 定义一（基本定义） 函数$f: R^n \to R$是凸函数，当且仅当： $f$的定义域是凸集 $\forall x_1, x_2 \in dom(f), \forall \theta \in [0,1]$ $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$ 该式也叫Jenson不等式： $$f(\theta x + (1-\theta) y) \leq……</summary>
             
                 <content type="html">&lt;h4 id=&#34;凸函数的定义&#34;&gt;凸函数的定义&lt;/h4&gt;
 &lt;h5 id=&#34;定义一基本定义&#34;&gt;定义一（基本定义）&lt;/h5&gt;
@@ -1351,7 +1351,7 @@ $$&lt;/p&gt;
 $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;该式也叫Jenson不等式：
-$$f(\theta x + (1-\thetda) y) \leq \theta f(x) + (1-\theta)f(y)$$&lt;/p&gt;
+$$f(\theta x + (1-\theta) y) \leq \theta f(x) + (1-\theta)f(y)$$&lt;/p&gt;
 &lt;p&gt;拓展，对于任意随机变量z，有
 $$f(Ez) \leq Ef(z)$$&lt;/p&gt;
 &lt;p&gt;通俗来讲，就是函数上任取两点，它们之间的连线都在函数的上面&lt;/p&gt;

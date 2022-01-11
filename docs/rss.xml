@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 11 Jan 2022 19:40:19 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 11 Jan 2022 20:57:00 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -132,9 +132,9 @@ $N$为信道内部的高斯噪声功率&lt;/p&gt;
 &lt;p&gt;传播的时候会遇到很多复杂的情况，造成信号的衰弱，根据信号传播的距离分为大尺度衰弱和小尺度衰弱。&lt;/p&gt;
 &lt;h5 id=&#34;大尺度衰弱&#34;&gt;大尺度衰弱&lt;/h5&gt;
 &lt;p&gt;大尺度衰弱是发射和接受信号的距离较长，数百数千米&lt;/p&gt;
-&lt;p&gt;大尺度衰弱包括路径损耗和阴影效应：
-路径损耗：随着路径长度的平方衰减，和方向等参数无关
-阴影损耗：遇到障碍物时，后面的阴影区信号场比较弱，会造成损耗&lt;/p&gt;
+&lt;p&gt;大尺度衰弱包括路径损耗和阴影效应：&lt;/p&gt;
+&lt;p&gt;路径损耗：随着路径长度的平方衰减，和方向等参数无关&lt;/p&gt;
+&lt;p&gt;阴影损耗：遇到障碍物时，后面的阴影区信号场比较弱，会造成损耗&lt;/p&gt;
 &lt;h5 id=&#34;小尺度衰弱&#34;&gt;小尺度衰弱&lt;/h5&gt;
 &lt;p&gt;小尺度衰弱是数个或者数十个波长的距离&lt;/p&gt;
 &lt;p&gt;小尺度衰弱更为重要，其中造成小尺度衰弱的主要原因有多径效应和多普勒效应&lt;/p&gt;
@@ -1348,7 +1348,7 @@ $$&lt;/p&gt;
 $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;该式也叫Jenson不等式：
-$$f(\theta x + (1-\thetda) y) \leq \theta f(x) + (1-\theta)f(y)$$&lt;/p&gt;
+$$f(\theta x + (1-\theta) y) \leq \theta f(x) + (1-\theta)f(y)$$&lt;/p&gt;
 &lt;p&gt;拓展，对于任意随机变量z，有
 $$f(Ez) \leq Ef(z)$$&lt;/p&gt;
 &lt;p&gt;通俗来讲，就是函数上任取两点，它们之间的连线都在函数的上面&lt;/p&gt;
