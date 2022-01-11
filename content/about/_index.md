@@ -20,6 +20,6 @@ draft: false
 
 除此之外还喜欢动漫、音乐、设计、羽毛球和长跑，常常沉浸于自己的世界无法自拔。
 
-目前感兴趣的技术领域有机器学习、计算机视觉、分布式、web后端、数据库、微服务、Docker&k8s等内容，熟悉Golang和Python，会一些C++、Java、C#、R、JavaScript，目标是成为一名懂深度学习的后端架构攻城:lion:
+目前感兴趣的技术领域有机器学习、计算机视觉、分布式、web后端、数据库、微服务、Docker&k8s等内容，熟悉Golang和Python，会一些C++、Java、C#、R、JavaScript，目标是成为一名懂点Ai的全栈攻城:lion:
 
 加油！

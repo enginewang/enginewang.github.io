@@ -106,7 +106,7 @@ $f(x^0) = 104$
 $\nabla f(x^0) = [4, 100]^T$
 沿负梯度方向进行一维搜索：
 
-$$x^1 = x^0 - \alpha^0 \nabla f(x^0) = [2-4\alpha^0, 2-100\alpha^0]$$
+$$x^1 = x^0 - \alpha^0 \nabla f(x^0) = [2-4\alpha^0, 2-100\alpha^0]^T$$
 
 $\alpha^0$需要满足极值条件：
 
@@ -132,10 +132,38 @@ $x_1$一定比$x_0$更接近真实根，从而不断迭代
 
 对于最优化问题的求解
 
-一维情况的牛顿迭代公式为：
+> 牛顿法的推导
+
+当前点$v$，下降向量$v$，下降后的值为：
+
+$$
+f(x+v) \approx f(x)+\nabla f(x)^{T} v+\frac{1}2 v^{T} \nabla^2 f(x) v
+$$
+
+要使该值最小，且$x$已经固定，关于$v$求偏导：
+
+$$
+\nabla f(x)+\nabla^2 f(x) v=0
+$$
+
+得到：
+
+$$
+\Delta x_{nt} = v=-\nabla^2 f(x)^{-1} \nabla f(x)
+$$
+
+从而推出**牛顿法的迭代公式：**
+$$
+x^{k+1} = x^k + \Delta x_{nt} = x^k -\nabla^2 f(x)^{-1} \nabla f(x)
+$$
+
+$\nabla^2 f(x)$是$f(x)$的Hessian矩阵
+
+一维时有：
 $$
 x^{k+1} = x^k - \frac{f'(x^k)}{f''(x^k)}
 $$
+
 
 多元函数保留到二次项得到：
 $$
@@ -352,6 +380,7 @@ $$
 $$
 
 对数障碍法：
+
 将其转换为等式约束问题：
 $$
 \begin{array}{ll}
@@ -361,7 +390,7 @@ $$
 $$
 
 其中
-$$I_- (x) = \left \newline{  \begin{array}{ll} 0 & \text{if } x \leq 0 \newline \infty & \text{otherwise} \end{array}   \right . $$
+$$I_- (x) = \left \\{  \begin{array}{ll} 0 & \text{if } x \leq 0 \newline \infty & \text{otherwise} \end{array}   \right . $$
 
 也就是说不满足不等式约束的话，就让目标函数无限大，否则就没影响。
 但是这个函数不可导，所以采用一个对数函数来近似：
@@ -416,13 +445,13 @@ $$
 $$
 
 $$
-[\nabla^2 f(x^0)]^{-1} = \left [ \begin{array}{cc} \frac{1}{2} & 0 \newline 0 & \frac{1}{12} \end{array} \right ]
+[\nabla^2 f(x^0)]^{-1} = \left [ \begin{array}{cc} \frac{1}2 & 0 \newline 0 & \frac{1}{12} \end{array} \right ]
 $$
 
 $$
 \begin{array}{ll}
 x^1 &= x^0 + \triangle x^0_{nt} = x^0 -(\nabla^2 f(x^0))^{-1} \nabla f^T(x^0)\newline
-&=\left [ \begin{array}{cc} 0 \newline 1 \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} & 0 \newline 0 & \frac{1}{12} \end{array} \right ]  \left [ \begin{array}{cc} -8 \newline 4 \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{2}{3} \end{array} \right ]
+&=\left [ \begin{array}{cc} 0 \newline 1 \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 & 0 \newline 0 & \frac{1}{12} \end{array} \right ]  \left [ \begin{array}{cc} -8 \newline 4 \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac2{3} \end{array} \right ]
 \end{array}
 $$
 
@@ -437,13 +466,13 @@ $$
 $$
 
 $$
-[\nabla^2 f(x^1)]^{-1} = \left [ \begin{array}{cc} \frac{1}{2} & 0 \newline 0 & \frac{3}{16} \end{array} \right ]
+[\nabla^2 f(x^1)]^{-1} = \left [ \begin{array}{cc} \frac{1}2 & 0 \newline 0 & \frac{3}{16} \end{array} \right ]
 $$
 
 $$
 \begin{array}{ll}
 x^2 &= x^1 + \triangle x^1_{nt} = x^1 -(\nabla^2 f(x^1))^{-1} \nabla f^T(x^1)\newline
-&=\left [ \begin{array}{cc} 4 \newline \frac{2}{3} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} & 0 \newline 0 & \frac{3}{16} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{32}{27} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ]
+&=\left [ \begin{array}{cc} 4 \newline \frac2{3} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 & 0 \newline 0 & \frac{3}{16} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{32}{27} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ]
 \end{array}
 $$
 
@@ -452,7 +481,7 @@ $$
 $$
 \begin{array}{ll}
 x^3 &= x^2 + \triangle x^2_{nt} = x^2 -(\nabla^2 f(x^2))^{-1} \nabla f^T(x^2)\newline
-&=\left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} & 0 \newline 0 & \frac{27}{64} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{256}{729} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{8}{27} \end{array} \right ]
+&=\left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 & 0 \newline 0 & \frac{27}{64} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{256}{729} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{8}{27} \end{array} \right ]
 \end{array}
 $$
 

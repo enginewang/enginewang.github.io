@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 11 Jan 2022 12:12:49 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 11 Jan 2022 16:52:30 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -109,7 +109,7 @@ $f(x^0) = 104$
 $\nabla f(x^0) = [4, 100]^T$
 沿负梯度方向进行一维搜索：&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;$$x^1 = x^0 - \alpha^0 \nabla f(x^0) = [2-4\alpha^0, 2-100\alpha^0]$$&lt;/p&gt;
+&lt;p&gt;$$x^1 = x^0 - \alpha^0 \nabla f(x^0) = [2-4\alpha^0, 2-100\alpha^0]^T$$&lt;/p&gt;
 &lt;p&gt;$\alpha^0$需要满足极值条件：&lt;/p&gt;
 &lt;p&gt;$$
 \min_\alpha f(x^1) = \min_\alpha ((2-4\alpha)^2 + 25 (2-100\alpha)^2)
@@ -127,7 +127,27 @@ x_1 = x_0 - \frac{f(x_0)}{f&#39;(x_0)}
 $$
 $x_1$一定比$x_0$更接近真实根，从而不断迭代&lt;/p&gt;
 &lt;p&gt;对于最优化问题的求解&lt;/p&gt;
-&lt;p&gt;一维情况的牛顿迭代公式为：
+&lt;blockquote&gt;
+&lt;p&gt;牛顿法的推导&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当前点$v$，下降向量$v$，下降后的值为：&lt;/p&gt;
+&lt;p&gt;$$
+f(x+v) \approx f(x)+\nabla f(x)^{T} v+\frac{1}2 v^{T} \nabla^2 f(x) v
+$$&lt;/p&gt;
+&lt;p&gt;要使该值最小，且$x$已经固定，关于$v$求偏导：&lt;/p&gt;
+&lt;p&gt;$$
+\nabla f(x)+\nabla^2 f(x) v=0
+$$&lt;/p&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;p&gt;$$
+\Delta x_{nt} = v=-\nabla^2 f(x)^{-1} \nabla f(x)
+$$&lt;/p&gt;
+&lt;p&gt;从而推出&lt;strong&gt;牛顿法的迭代公式：&lt;/strong&gt;
+$$
+x^{k+1} = x^k + \Delta x_{nt} = x^k -\nabla^2 f(x)^{-1} \nabla f(x)
+$$&lt;/p&gt;
+&lt;p&gt;$\nabla^2 f(x)$是$f(x)$的Hessian矩阵&lt;/p&gt;
+&lt;p&gt;一维时有：
 $$
 x^{k+1} = x^k - \frac{f&#39;(x^k)}{f&#39;&#39;(x^k)}
 $$&lt;/p&gt;
@@ -302,8 +322,8 @@ $$
 &amp;amp; Ax = b
 \end{array}
 $$&lt;/p&gt;
-&lt;p&gt;对数障碍法：
-将其转换为等式约束问题：
+&lt;p&gt;对数障碍法：&lt;/p&gt;
+&lt;p&gt;将其转换为等式约束问题：
 $$
 \begin{array}{ll}
 \text{ minimize } &amp;amp; f_0(x) + \sum_{i=0}^m I_-(f_i(x)) \newline
@@ -311,7 +331,7 @@ $$
 \end{array}
 $$&lt;/p&gt;
 &lt;p&gt;其中
-$$I_- (x) = \left \newline{  \begin{array}{ll} 0 &amp;amp; \text{if } x \leq 0 \newline \infty &amp;amp; \text{otherwise} \end{array}   \right . $$&lt;/p&gt;
+$$I_- (x) = \left \{  \begin{array}{ll} 0 &amp;amp; \text{if } x \leq 0 \newline \infty &amp;amp; \text{otherwise} \end{array}   \right . $$&lt;/p&gt;
 &lt;p&gt;也就是说不满足不等式约束的话，就让目标函数无限大，否则就没影响。
 但是这个函数不可导，所以采用一个对数函数来近似：&lt;/p&gt;
 &lt;p&gt;$$I_- (x) = -\frac{1}{t} log(-x)$$&lt;/p&gt;
@@ -354,12 +374,12 @@ $$&lt;/p&gt;
 \nabla^2 f(x^0) = \left [ \begin{array}{cc} 2 &amp;amp; 0\newline 0 &amp;amp; 12x_2^2 \end{array} \right ] = \left [ \begin{array}{cc} 2 &amp;amp; 0\newline 0 &amp;amp; 12 \end{array} \right ]
 $$&lt;/p&gt;
 &lt;p&gt;$$
-[\nabla^2 f(x^0)]^{-1} = \left [ \begin{array}{cc} \frac{1}{2} &amp;amp; 0 \newline 0 &amp;amp; \frac{1}{12} \end{array} \right ]
+[\nabla^2 f(x^0)]^{-1} = \left [ \begin{array}{cc} \frac{1}2 &amp;amp; 0 \newline 0 &amp;amp; \frac{1}{12} \end{array} \right ]
 $$&lt;/p&gt;
 &lt;p&gt;$$
 \begin{array}{ll}
 x^1 &amp;amp;= x^0 + \triangle x^0_{nt} = x^0 -(\nabla^2 f(x^0))^{-1} \nabla f^T(x^0)\newline
-&amp;amp;=\left [ \begin{array}{cc} 0 \newline 1 \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} &amp;amp; 0 \newline 0 &amp;amp; \frac{1}{12} \end{array} \right ]  \left [ \begin{array}{cc} -8 \newline 4 \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{2}{3} \end{array} \right ]
+&amp;amp;=\left [ \begin{array}{cc} 0 \newline 1 \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 &amp;amp; 0 \newline 0 &amp;amp; \frac{1}{12} \end{array} \right ]  \left [ \begin{array}{cc} -8 \newline 4 \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac2{3} \end{array} \right ]
 \end{array}
 $$&lt;/p&gt;
 &lt;p&gt;第二次迭代：&lt;/p&gt;
@@ -370,12 +390,12 @@ $$&lt;/p&gt;
 \nabla^2 f(x^1) = \left [ \begin{array}{cc} 2 &amp;amp; 0\newline 0 &amp;amp; 12x_2^2 \end{array} \right ] = \left [ \begin{array}{cc} 2 &amp;amp; 0\newline 0 &amp;amp; \frac{16}{3} \end{array} \right ]
 $$&lt;/p&gt;
 &lt;p&gt;$$
-[\nabla^2 f(x^1)]^{-1} = \left [ \begin{array}{cc} \frac{1}{2} &amp;amp; 0 \newline 0 &amp;amp; \frac{3}{16} \end{array} \right ]
+[\nabla^2 f(x^1)]^{-1} = \left [ \begin{array}{cc} \frac{1}2 &amp;amp; 0 \newline 0 &amp;amp; \frac{3}{16} \end{array} \right ]
 $$&lt;/p&gt;
 &lt;p&gt;$$
 \begin{array}{ll}
 x^2 &amp;amp;= x^1 + \triangle x^1_{nt} = x^1 -(\nabla^2 f(x^1))^{-1} \nabla f^T(x^1)\newline
-&amp;amp;=\left [ \begin{array}{cc} 4 \newline \frac{2}{3} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} &amp;amp; 0 \newline 0 &amp;amp; \frac{3}{16} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{32}{27} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ]
+&amp;amp;=\left [ \begin{array}{cc} 4 \newline \frac2{3} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 &amp;amp; 0 \newline 0 &amp;amp; \frac{3}{16} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{32}{27} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ]
 \end{array}
 $$&lt;/p&gt;
 &lt;p&gt;第三次迭代：
@@ -383,7 +403,7 @@ $$&lt;/p&gt;
 $$
 \begin{array}{ll}
 x^3 &amp;amp;= x^2 + \triangle x^2_{nt} = x^2 -(\nabla^2 f(x^2))^{-1} \nabla f^T(x^2)\newline
-&amp;amp;=\left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}{2} &amp;amp; 0 \newline 0 &amp;amp; \frac{27}{64} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{256}{729} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{8}{27} \end{array} \right ]
+&amp;amp;=\left [ \begin{array}{cc} 4 \newline \frac{4}{9} \end{array} \right ] - \left [ \begin{array}{cc} \frac{1}2 &amp;amp; 0 \newline 0 &amp;amp; \frac{27}{64} \end{array} \right ]  \left [ \begin{array}{cc} 0 \newline \frac{256}{729} \end{array} \right ] = \left [ \begin{array}{cc} 4 \newline \frac{8}{27} \end{array} \right ]
 \end{array}
 $$&lt;/p&gt;
 &lt;p&gt;之后同理&lt;/p&gt;
