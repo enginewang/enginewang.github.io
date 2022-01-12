@@ -57,13 +57,13 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-01-06T21:25:05+08:00",
-        "dateModified": "2022-01-07T22:02:03+08:00",
+        "dateModified": "2022-01-11T22:38:14+08:00",
         "url": "https://yichengme.site/posts/convex-3/",
         "headline": "凸优化（三）凸优化问题",
         "description": "基本形式 一般的优化问题的形式： $$ \\begin{array}{ll} \\text { minimize } \u0026 f_0(x) \\newline \\text { subject to } \u0026 f_{i}(x) \\leq 0, \\quad i=1, \\ldots, m \\newline \u0026 h_{i}(x)=0, \\quad i=1, \\ldots, p \\end{array} $$ 其中$x$是优化变量，$f_0(x)$是目标函数 ，$f_i(x)\\l……",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
-        "wordCount":  2094 ,
+        "wordCount":  2098 ,
         "image": ["https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641474386/convex-10.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641474386/convex-11.png"],
         "author": {
             "@type": "Person",
@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641474386/convex-10.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-01-06T21:25:05&#43;08:00" />
-    <meta property="article:modified_time" content="2022-01-07T22:02:03&#43;08:00" />
+    <meta property="article:modified_time" content="2022-01-11T22:38:14&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -253,7 +253,7 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2094</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;2098</span>
     
     
         
@@ -302,8 +302,11 @@ $$p^\star  = inf\{f_0(x)|x \in X_f\}$$</p>
 <p>凸优化问题的最重要性质（为什么要研究凸优化，为什么要转换为凸优化问题）：<strong>局部最优 = 全局最优</strong></p>
 <blockquote>
 <p>证明凸优化问题的局部最优=全局最优：
+$$\newline$$
 一句话说明就是反证法假设在局部最优之外还能找到一个全局最优，根据凸函数的性质，就可以在局部最优的领域内找到更低的点，从而与局部最优矛盾，具体过程如下：
-反证法：假设局部最优解x不是全局最优解y
+$$\newline$$
+反证法：假设局部最优解x不是全局最优解y。
+$$\newline$$
 因为局部最优，所以一定能找到一个正数$R$，使得在$R$的范围内，$f_0(x)$是最小的，即：
 $$ \exists R &gt; 0 , f_0(x) = inf { f_0(z), ||x-z||_2\leq R }$$
 假设全局最优解是$y$
@@ -550,9 +553,9 @@ $$</p>
 
         
     <div class="updated-badge-container">
-        <span title="Updated @ 2022-01-07 22:02:03 CST" style="cursor:help">
+        <span title="Updated @ 2022-01-11 22:38:14 CST" style="cursor:help">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-01-07</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-01-07</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="20" class="updated-badge"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="130" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path class="updated-badge-left" d="M0 0h55v20H0z"/><path class="updated-badge-right" d="M55 0h75v20H55z"/><path fill="url(#b)" d="M0 0h130v20H0z"/></g><g fill="#fff" text-anchor="middle" font-size="110"><text x="285" y="150" fill="#010101" fill-opacity=".3" textLength="450" transform="scale(.1)">updated</text><text x="285" y="140" textLength="450" transform="scale(.1)">updated</text><text x="915" y="150" fill="#010101" fill-opacity=".3" textLength="650" transform="scale(.1)">2022-01-11</text><text x="915" y="140" textLength="650" transform="scale(.1)">2022-01-11</text></g></svg>
         </span></div>
 
 

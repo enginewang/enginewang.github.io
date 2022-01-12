@@ -164,7 +164,7 @@ $f(x) = x^a$
 
 分情况讨论
 
-$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\newline{\begin{array}{ll}\geq 0 & a \geq 1, a \leq 0 & 凸\newline \leq 0 & a \in[0,1]& 凹\end{array}\right.$$
+$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\\{\begin{array}{ll}\geq 0 & a \geq 1, a \leq 0 & 凸\newline \leq 0 & a \in[0,1]& 凹\end{array}\right.$$
 
 ##### 绝对值幂函数
 
@@ -189,7 +189,7 @@ $R^n$空间的范数$P(x)$
 
 ##### 极大值函数
 
-$f(x) = max\newline{x_1, x_2, ...x_n\newline}$
+$f(x) = max\\{x_1, x_2, ...x_n\\}$
 
 极大值函数是凸函数，所以会有极小极大问题，即极小化一个极大值函数
 

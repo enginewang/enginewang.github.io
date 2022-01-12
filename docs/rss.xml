@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 11 Jan 2022 22:26:58 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 12 Jan 2022 13:42:56 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -45,17 +45,18 @@
 &lt;p&gt;① 需要告知某信息给对方&lt;/p&gt;
 &lt;p&gt;② 需要接受某种信息。通信的结果就是消除不确定性或者获得信息。&lt;/p&gt;
 &lt;p&gt;信息论研究的目的在于：通过探索信息传输的规律，提高信息传输的有效性、可靠性和保密性，使得信息系统达到最优化。&lt;/p&gt;
-&lt;p&gt;数据：传送信息的实体
-信号：数据的电气或电磁表现，数据在传输过程中的存在形式
-（连续变化的称为模拟数据/信号，离散变化的数据称为数字数据/信号）
-码元：用一个固定时长的信号波形代表一位k进制数字&lt;/p&gt;
-&lt;p&gt;信源：产生和发送数据的源头
-信道：信号的传输媒介
+&lt;p&gt;数据：传送信息的实体&lt;/p&gt;
+&lt;p&gt;信号：数据的电气或电磁表现，数据在传输过程中的存在形式
+（连续变化的称为模拟数据/信号，离散变化的数据称为数字数据/信号）&lt;/p&gt;
+&lt;p&gt;码元：用一个固定时长的信号波形代表一位k进制数字&lt;/p&gt;
+&lt;p&gt;信源：产生和发送数据的源头&lt;/p&gt;
+&lt;p&gt;信道：信号的传输媒介
+s
 信宿：接收数据的终点&lt;/p&gt;
 &lt;p&gt;速率：数据的传输速率，表示单位时间内传输的数据量，码元传输速率单位是波特（Baud），信息运输速率单位是 比特/秒 (b/s)&lt;/p&gt;
 &lt;p&gt;$$比特/秒 = 波特 \times \log_2电平数$$&lt;/p&gt;
-&lt;p&gt;波特：每秒内信息改变的次数，一波特就表示数字通道系统一秒钟传输一个码元
-带宽：指信号具有的频带宽度，单位是赫兹（Hz），表示单位时间内从网络某一点到另一点所能通过的最高数据率，此时单位是bit/s&lt;/p&gt;
+&lt;p&gt;波特：每秒内信息改变的次数，一波特就表示数字通道系统一秒钟传输一个码元&lt;/p&gt;
+&lt;p&gt;带宽：指信号具有的频带宽度，单位是赫兹（Hz），表示单位时间内从网络某一点到另一点所能通过的最高数据率，此时单位是bit/s&lt;/p&gt;
 &lt;h4 id=&#34;信息量&#34;&gt;信息量&lt;/h4&gt;
 &lt;p&gt;信息量 = 不确定性的减少量 = 收信前的不确定性 - 收信后的不确定性&lt;/p&gt;
 &lt;p&gt;某个事件发生的信息量是该事件发生的先验概率的函数：&lt;/p&gt;
@@ -655,7 +656,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Lagrange函数是在优化目标中考虑约束条件，添加约束条件的加权和：&lt;/p&gt;
 &lt;p&gt;$$L(x, \lambda, v) = f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x)$$&lt;/p&gt;
 &lt;p&gt;其中包含三个自变量，$x$是原来优化问题的自变量，$\lambda$对应不等式约束，向量维度和不等式约束个数相同，$v$对应等式约束，向量维度和等式约束个数相同&lt;/p&gt;
-&lt;p&gt;如果x确定了，对于$\lambda$和$v$相当于线性函数&lt;/p&gt;
+&lt;p&gt;如果$x$确定了，对于$\lambda$和$v$相当于线性函数&lt;/p&gt;
 &lt;h4 id=&#34;拉格朗日对偶函数&#34;&gt;拉格朗日对偶函数&lt;/h4&gt;
 &lt;p&gt;拉格朗日对偶函数的形式为：&lt;/p&gt;
 &lt;p&gt;$$g(\lambda, v) = \inf_{x \in \mathcal{D}} L(x, \lambda, v) = \inf_{x \in \mathcal{D}}(f_0(x) + \sum^m_{i=1}\lambda_if_i(x) + \sum^p_{i=1}v_i h_i(x))$$&lt;/p&gt;
@@ -1073,8 +1074,11 @@ $$p^\star  = inf\{f_0(x)|x \in X_f\}$$&lt;/p&gt;
 &lt;p&gt;凸优化问题的最重要性质（为什么要研究凸优化，为什么要转换为凸优化问题）：&lt;strong&gt;局部最优 = 全局最优&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;证明凸优化问题的局部最优=全局最优：
+$$\newline$$
 一句话说明就是反证法假设在局部最优之外还能找到一个全局最优，根据凸函数的性质，就可以在局部最优的领域内找到更低的点，从而与局部最优矛盾，具体过程如下：
-反证法：假设局部最优解x不是全局最优解y
+$$\newline$$
+反证法：假设局部最优解x不是全局最优解y。
+$$\newline$$
 因为局部最优，所以一定能找到一个正数$R$，使得在$R$的范围内，$f_0(x)$是最小的，即：
 $$ \exists R &amp;gt; 0 , f_0(x) = inf { f_0(z), ||x-z||_2\leq R }$$
 假设全局最优解是$y$
@@ -1469,7 +1473,7 @@ $$&lt;/p&gt;
 &lt;h5 id=&#34;幂函数&#34;&gt;幂函数&lt;/h5&gt;
 &lt;p&gt;$f(x) = x^a$&lt;/p&gt;
 &lt;p&gt;分情况讨论&lt;/p&gt;
-&lt;p&gt;$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\newline{\begin{array}{ll}\geq 0 &amp;amp; a \geq 1, a \leq 0 &amp;amp; 凸\newline \leq 0 &amp;amp; a \in[0,1]&amp;amp; 凹\end{array}\right.$$&lt;/p&gt;
+&lt;p&gt;$$\nabla^{2} f(x)=a(a-1) x^{a-2}=\left\{\begin{array}{ll}\geq 0 &amp;amp; a \geq 1, a \leq 0 &amp;amp; 凸\newline \leq 0 &amp;amp; a \in[0,1]&amp;amp; 凹\end{array}\right.$$&lt;/p&gt;
 &lt;h5 id=&#34;绝对值幂函数&#34;&gt;绝对值幂函数&lt;/h5&gt;
 &lt;p&gt;$f(x) = |x|^p$&lt;/p&gt;
 &lt;p&gt;$$
@@ -1484,7 +1488,7 @@ $$&lt;/p&gt;
 ③ $P(x) = 0 \Leftrightarrow x = 0$&lt;/p&gt;
 &lt;p&gt;范数是凸函数，按照定义用性质②即可证明（零范数除外，零范数不满足①）&lt;/p&gt;
 &lt;h5 id=&#34;极大值函数&#34;&gt;极大值函数&lt;/h5&gt;
-&lt;p&gt;$f(x) = max\newline{x_1, x_2, ...x_n\newline}$&lt;/p&gt;
+&lt;p&gt;$f(x) = max\{x_1, x_2, ...x_n\}$&lt;/p&gt;
 &lt;p&gt;极大值函数是凸函数，所以会有极小极大问题，即极小化一个极大值函数&lt;/p&gt;
 &lt;h5 id=&#34;共轭函数&#34;&gt;共轭函数&lt;/h5&gt;
 &lt;h4 id=&#34;保凸运算&#34;&gt;保凸运算&lt;/h4&gt;
@@ -1875,7 +1879,7 @@ $kf(x) = |k|f(x)$
 $f(x+y) \leq f(x) + f(y)$（三角不等式）&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5 id=&#34;椭球-ellipsoids&#34;&gt;椭球 Ellipsoids&lt;/h5&gt;
-&lt;p&gt;$$\mathcal{E} = \newline{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \newline}$$&lt;/p&gt;
+&lt;p&gt;$$\mathcal{E} = \{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \}$$&lt;/p&gt;
 &lt;p&gt;矩阵P是一个 $n\times n$ 的对称正定矩阵&lt;/p&gt;
 &lt;p&gt;（特征值，奇异值）&lt;/p&gt;
 &lt;h5 id=&#34;多面体-polyhedra&#34;&gt;多面体 Polyhedra&lt;/h5&gt;
@@ -2106,8 +2110,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                 
                     <description>&lt;p&gt;第一次开博客应该是在大二的时候，也就是2018年，用的是Hexo。之后觉得配置太少，想要有发挥的空间，就用当时学的Django写了一个博客网站，再后来又改成了Go+Vue，作为一个前后端分离的单体应用，包含博客的完整的功能，还能有其他拓展。&lt;/p&gt;
 &lt;p&gt;这本来应该是博客的最终形态了，然而精力有限，不想折腾markdown渲染和其他各种功能，以及为一些前后端、运维、优化的问题所烦恼，再加上服务器成本也不少，还是希望能够纯粹的写作。&lt;/p&gt;
-&lt;p&gt;因此现在又回到了最初的起点，转回了静态网页，这次用Hugo搭建，主题用的是Meme，所谓是从简到繁，又从繁到简。&lt;/p&gt;
-&lt;p&gt;之前的博客内容会逐步迁移过来，由于静态网页发文章很方便，会增加更多的内容，敬请期待。&lt;/p&gt;
+&lt;p&gt;因此现在又回到了最初的起点，转回了静态网页，这次改用Hugo搭建（和hexo类似），之前的博客内容会逐步迁移过来，由于发布文章很方便，之后会增加更多的内容，敬请期待。&lt;/p&gt;
 </description>
                 
                 

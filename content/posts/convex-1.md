@@ -200,7 +200,7 @@ $$
 ##### 椭球 Ellipsoids
 
 
-$$\mathcal{E} = \newline{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \newline}$$
+$$\mathcal{E} = \\{ x \mid\left(x-x_{c}\right)^{T} P^{-1}\left(x-x_{c}\right) \leq 1 \\}$$
 
 
 矩阵P是一个 $n\times n$ 的对称正定矩阵
