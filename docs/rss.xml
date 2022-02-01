@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 01 Feb 2022 14:45:36 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 01 Feb 2022 14:52:22 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -38,8 +38,7 @@
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
                 
-                    <description>&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h4 id=&#34;重温计算机网络&#34;&gt;重温计算机网络&lt;/h4&gt;
+                    <description>&lt;h4 id=&#34;重温计算机网络&#34;&gt;重温计算机网络&lt;/h4&gt;
 &lt;p&gt;TCP/IP协议是目前互联网的主流协议簇，早在计算机网络中我们就已经学习过大部分的内容，现在我们从协议的角度出发再次重温计算机网络的内容，作为后续内容的基础。&lt;/p&gt;
 &lt;p&gt;在物理传输媒介的基础上的四层网络模型，自底向上分别是数据链路层、网络层、传输层、应用层，各层包含的协议如图所示：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643112994/TCP-IP-1.png&#34; alt=&#34;tcp-ip-1&#34;&gt;&lt;/p&gt;
@@ -140,7 +139,6 @@ www.a.shifen.com has address 36.152.44.95
 &lt;h5 id=&#34;tcp状态转移&#34;&gt;TCP状态转移&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643273832/TCP-IP-13.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;虚线为服务端，粗实线为客户端。&lt;/p&gt;
-&lt;h5 id=&#34;rst复位&#34;&gt;RST复位&lt;/h5&gt;
 &lt;h5 id=&#34;tcp超时重传策略&#34;&gt;TCP超时重传策略&lt;/h5&gt;
 &lt;p&gt;每个TCP报文都维护了一个重传定时器，如果超过时间没有收到对方的应答，发送方就会重传TCP报文并reset定时器。&lt;/p&gt;
 &lt;p&gt;一般每次重传都比之前的时间间隔更长（比如是上一次的两倍），并且设置最多重传次数，超过这个次数就放弃。&lt;/p&gt;
@@ -187,7 +185,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
 &lt;h5 id=&#34;http请求&#34;&gt;HTTP请求&lt;/h5&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643611443/TCP-IP-18.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h5 id=&#34;tcp应答&#34;&gt;TCP应答&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://yichengme.site/assets/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png&#34; alt=&#34;HTTP状态码&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643698156/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png&#34; alt=&#34;HTTP状态码&#34;&gt;&lt;/p&gt;
 </description>
                 
                 

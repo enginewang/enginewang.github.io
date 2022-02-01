@@ -6,7 +6,6 @@ categories: ["理论"]
 tags: ["Linux", "TCP/IP"]
 ---
 
-[toc]
 
 #### 重温计算机网络
 
@@ -181,9 +180,6 @@ TCP是全双工的，所以存在一种半关闭状态，也就是A可以接受B
 
 虚线为服务端，粗实线为客户端。
 
-##### RST复位
-
-
 
 ##### TCP超时重传策略
 
@@ -258,4 +254,4 @@ cwnd < ssthresh: 拥塞避免
 
 ##### TCP应答
 
-![HTTP状态码](/assets/HTTP状态码.png)
+![HTTP状态码](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643698156/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png)
