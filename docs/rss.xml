@@ -23,13 +23,13 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 06 Feb 2022 22:01:49 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 06 Feb 2022 22:21:14 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
         
             <item>
-                <title>Linux网络编程（二） 从TCP/IP协议开始</title>
+                <title>Linux网络编程（二） socket网络编程基础</title>
                 <link>https://yichengme.site/posts/linux-network-programming-2/</link>
                 <guid isPermaLink="true">https://yichengme.site/posts/linux-network-programming-2/</guid>
                 <pubDate>Sun, 06 Feb 2022 20:00:52 &#43;0800</pubDate>
@@ -6547,6 +6547,9 @@ systemctl reload nginx.service
 &lt;h4 id=&#34;telegram&#34;&gt;Telegram&lt;/h4&gt;
 &lt;p&gt;优雅的聊天应用，Mac/Win/Android/ios全平台推荐，聊天信息完全加密，（因为不透露用户隐私，tg在老家毛子那都被墙了），另外全平台传文件非常好用，吊打QQ，因为大家都懂的原因，国内用的人确实不是很多，和QQ互补着用挺好，微信就算了吧，文件太拉胯了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/telegram-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;paste&#34;&gt;Paste&lt;/h4&gt;
+&lt;p&gt;很方便的复制粘贴工具，可以记录历史复制的内容，提高效率&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644157207/paste-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;downie4allavsoft&#34;&gt;Downie4、Allavsoft&lt;/h4&gt;
 &lt;p&gt;都是很好用的视频下载器，可以下载很多网站的视频，比如Bilibili、Youtube等等&lt;/p&gt;
 &lt;h4 id=&#34;parallels-desktop&#34;&gt;Parallels Desktop&lt;/h4&gt;

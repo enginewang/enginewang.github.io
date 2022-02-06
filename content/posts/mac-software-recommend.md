@@ -132,6 +132,12 @@ Dropbox的历史文档自动存储救了我好几次，好用到哭泣。
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641894992/telegram-1.png)
 
+#### Paste
+
+很方便的复制粘贴工具，可以记录历史复制的内容，提高效率
+
+![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644157207/paste-1.png)
+
 #### Downie4、Allavsoft
 
 都是很好用的视频下载器，可以下载很多网站的视频，比如Bilibili、Youtube等等
