@@ -6,7 +6,7 @@ categories: ["理论"]
 tags: ["分布式", "精选"]
 ---
 
-#### 拜占庭将军问题
+## 拜占庭将军问题
 
 拜占庭将军问题是分布式领域最复杂的一个容错模型，较好地抽象了分布式系统面临的共识问题。
 
@@ -18,7 +18,7 @@ tags: ["分布式", "精选"]
 
 不过对于恶性的情况，一般只在区块链中出现，算法有PBFT、PoW等。但是我并没有打算涉足区块链相关的研究，所以这些算法不在讨论范围之内。
 
-#### 共识算法的概念
+## 共识算法的概念
 
 共识算法就是用来达成一致性的方法。
 
@@ -38,7 +38,7 @@ FLP定理：完美的共识算法不存在。在非同步的网络环境中，�
 
 任一时刻只会有一个leader，leader处理client的请求，其余server只接受leader的决策，client只可以向leader发送请求。
 
-#### Paxos算法
+## Paxos算法
 
 Paxos算法是分布式共识算法的元老，目前最流行的分布式算法都是基于Paxos改进的，所以不得不提。
 
@@ -47,7 +47,7 @@ Paxos算法是分布式共识算法的元老，目前最流行的分布式算法
 一个是Multi-Paxos，描述的是执行多个Basic Paxos实例，为一系列value达成共识。
 这一节只说Basic Paxos，Multi-Paxos下一节
 
-##### 系统角色
+### 系统角色
 
 提议者（Proposers）：向系统里的其他节点提出v=C，希望大家达成共识。
 
@@ -55,7 +55,7 @@ Paxos算法是分布式共识算法的元老，目前最流行的分布式算法
 
 学习者（Learner）：不参与投票的过程，被告知投票的结果，接受达成的共识存储保存数据。
 
-##### 算法流程
+### 算法流程
 
 分为两个流程：
 
@@ -87,7 +87,7 @@ Paxos论文描述：
 > 并不是说一个节点只能当Proposer、Acceptor、Learner中的一种，实际上，每个节点都同时具有这三种角色。
 > Basic Paxos只是对一个值形成决议，并不是多个值。
 
-##### 具体例子
+### 具体例子
 
 举一个具体的例子，两个客户端作为提议者，n分别为1和5，v分别为3和7，有三个接受者。
 
@@ -121,7 +121,7 @@ Paxos论文描述：
 
 
 
-#### Multi-Paxos
+## Multi-Paxos
 
 Multi-Paxos并不是一个具体的算法，而是一种思想。指的是基于Mulit-Paxos算法通过多个Basic Paxos实例实现一系列值的共识的算法。（比如Raft算法、ZAB协议等）
 
@@ -135,7 +135,7 @@ Leader节点作为唯一的提议者，这样就不存在提议冲突的情况�
 Leader的提案永远是最新的，所以省略掉准备阶段，直接开始接受阶段：
 ![paxos-7](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640193485/paxos-7.jpg)
 
-##### Chubby的Multi-Paxos实现
+### Chubby的Multi-Paxos实现
 
 Chubby实现了闭源的Multi-Paxos，通过引入Leader节点。Leader是通过执行Basic Paxos投票产生的。
 运行过程中会通过续租的方式延长租期，如果Leader故障，其他节点会选举出新的Leader。
@@ -147,7 +147,7 @@ Chubby的ulti-Paxos实现的一些点：
 - Leader本地的数据一定是最新的。
 - 可以容忍$\frac{n-1}{2}$个节点的故障
 
-#### Raft
+## Raft
 
 Raft算法在Multi-Paxos的思想上进行了简化和限制，是最常用的一个共识算法，也是目前分布式系统的首选共识算法。包括Etcd、Consul等。
 
@@ -155,7 +155,7 @@ Raft算法在Multi-Paxos的思想上进行了简化和限制，是最常用的�
 
 强烈推荐看一下这个可视化的Raft，可以加深理解：http://thesecretlivesofdata.com/raft/
 
-##### Leader选举
+### Leader选举
 
 服务器节点的状态分为三种：Leader（领导者）、Follower（追随者）、Candidate（候选人），其中Leader有且只有一个。
 
@@ -197,7 +197,7 @@ Raft算法总共有两类RPC，一个是请求投票RequestVote，一个是日�
 几个注意的点：
 > 只有日志最完整的节点才能当Leader，Raft中，日志必须是连续的
 
-##### 日志复制
+### 日志复制
 
 日志项包含指令、索引值、任期编号等。
 
@@ -239,7 +239,7 @@ PrevLogTerm：当前要复制的日志项的前一项的任期编号，下面例
 
 
 
-##### 成员变更
+### 成员变更
 
 在成员进行变更的时候，如何避免出现大于一个的Leader？
 比如出现了分区，节点被分为了多个簇，簇与簇之间无法沟通，那么每个簇内都会有一个Leader。
@@ -254,7 +254,7 @@ PrevLogTerm：当前要复制的日志项的前一项的任期编号，下面例
 可以看一下Raft作者讲的：
 https://www.youtube.com/watch?v=vYp4LYbnnW8
 
-#### 总结
+## 总结
 
 以这张图进行总结：
 

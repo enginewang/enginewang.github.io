@@ -14,7 +14,7 @@ Django项目写好了，最后一步就是部署(deployment)，部署十分关�
 
 Django的本地预览十分方便，一行`python manage.py runserver`就能搞定，但部署上线可没有这么简单。因为网上关于Django部署的教程都很杂乱，当时部署的时候就踩了很多很多坑，为了给之后一个参考，我又重新部署了一次，来记录详细的过程。
 
-#### 相关软件版本：
+## 相关软件版本：
 Django 2.1.3
 Python 3.6.6
 nginx 1.14.0
@@ -23,7 +23,7 @@ uwsgi 2.0.17.1
 服务器：
 Ubuntu-server 18.04
 
-#### 准备工作
+## 准备工作
 
 首先打开ssh软件，Xshell、Putty什么的都行，通过vultr上vps详情页上给的ip和root密码连接到这台vps。
 
@@ -43,7 +43,7 @@ sudo apt-get upgrade
 sudo apt-get install python3-pip python-setuptools python3-dev wheel
 ```
 
-#### 放置Django项目
+## 放置Django项目
 
 直接在服务器端用vim什么的写Django当然可取（虽然会很酸爽），但更多的时候我们是在本地写好了Django项目，要把它挪到服务器上。
 
@@ -84,7 +84,7 @@ apply之后Pycharm右下角会出现上传进度条，会有点慢，喝杯茶�
 
 在服务器上使用`pip install -r requirements.txt`来安装必要的Python packages
 <br>
-#### 安装与配置uwsgi
+## 安装与配置uwsgi
 
 使用pip3安装uwsgi（注意是pip安装，不是apt-get，否则之后会各种报错）
 ```shell
@@ -171,7 +171,7 @@ daemonize = /var/www/bangumi_project/uWSGI.log
 
 有了`uwsgi.ini`我们只需要输入`uwsgi --ini uwsgi.ini`就可以运行，浏览器输入ip地址加:8010端口（先绕过nginx因为还没配置呢），发现可以显示我们的项目了，这时css等静态文件可能没获取到，别急
 
-#### 安装和配置nginx
+## 安装和配置nginx
 
 先`sudo apt-get install nginx`安装nginx，安装后nginx会自动启动，默认端口为80端口，浏览器输入ip地址加:80，可以看到"Welcome to nginx"的欢迎界面
 
@@ -247,7 +247,7 @@ server {
 
 至此nginx配置完毕
 
-#### 后续工作
+## 后续工作
 
 服务器上的Django还没有执行数据库迁移与管理员创建，所以记得执行
 ```shell

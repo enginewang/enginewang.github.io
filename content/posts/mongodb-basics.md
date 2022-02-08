@@ -7,15 +7,15 @@ tags: ["MongoDB", "Database"]
 ---
 
 
-#### 背景
+## 背景
 
 mongodb是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。它是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。
 
 这里简单的讲一下使用方法，不涉及底层理论
 
-#### 起步
+## 起步
 
-##### Mac下安装MongoDB
+### Mac下安装MongoDB
 之前是
 `brew install mongodb`
 
@@ -24,7 +24,7 @@ mongodb是一个基于分布式文件存储的数据库。由C++语言编写。�
 先tap一个仓库 `brew tap mongodb/brew`
 安装mongodb社区版 `brew install mongodb-community`
 
-##### 运行mongod
+### 运行mongod
 
 新建一个`/data/db`文件夹
 
@@ -48,7 +48,7 @@ MongoDB和关系型数据库（Oracle、MySQL等）的区别：
 
 每个文档是一组键值对（BSON）相同的字段不需要相同的数据类型
 
-#### 基本命令
+## 基本命令
 
 `show dbs` 展示所有数据库
 
@@ -66,7 +66,7 @@ MongoDB和关系型数据库（Oracle、MySQL等）的区别：
 
 `mongorestore -d <dbname> <db_path>` 导入数据库
 
-##### 验证
+### 验证
 
 本地的还好，如果部署到服务器上，默认是无法外网访问数据库的，倘若你想访问，就得开放端口然后在mongo的配置文件里设置0.0.0.0。然后mongo默认也没有密码
 
@@ -112,7 +112,7 @@ db.createUser(
 
 本地GUI（如navicat）连接，设置账号密码即可
 
-##### 字段操作
+### 字段操作
 
 字段重命名：
 
@@ -140,7 +140,7 @@ db.col.update({},{$unset:{'old_field':''}},false, true)
 db.user_questionnaire.update({},{$unset:{'inputCostEstimation':''}},false, true)
 ```
 
-##### 查找
+### 查找
 
 列出集合信息：
 ```
@@ -247,7 +247,7 @@ db.getCollection('participant').find().forEach(
    }
 )
 ```
-#### Golang的MongoDB接口：mgo
+## Golang的MongoDB接口：mgo
 
 简单的使用
 

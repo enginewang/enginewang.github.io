@@ -7,7 +7,7 @@ tags: ["Linux", "TCP/IP"]
 ---
 
 
-#### 概述
+## 概述
 
 数据链路层、网络层和传输层的协议都是在操作系统内核中完成的，实现网络的系统调用的api目前最主流的就是socket。
 
@@ -25,7 +25,7 @@ socket是应用层与TCP/IP协议之间的软件抽象，将复杂的TCP/IP协�
 
 ![client-server-2](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643894720/client-server-2.png)
 
-#### TCP网络
+## TCP网络
 
 下图是客户端-服务端TCP网络的核心逻辑
 
@@ -48,7 +48,7 @@ TCP的三次握手相当于，客户端说：你好，我是客户端。服务�
 
 拨打电话的结束之后，挂断电话，即close。
 
-#### UDP网络
+## UDP网络
 
 UDP面向数据报，不基于连接，不保障顺序性、可靠性、没有拥塞控制、重传机制等。在IP协议的基础上增加的部分很有限。
 
@@ -58,11 +58,11 @@ UDP面向数据报，不基于连接，不保障顺序性、可靠性、没有�
 
 服务端创建和绑定socket之后，客户端和服务端之间直接通过`sendto`和`recvfrom`来传递数据，没有建立连接的过程。
 
-#### C语言补充
+## C语言补充
 
 这里只记录一些后面遇到的C语言相关的一些补充。
 
-##### 环境搭建
+### 环境搭建
 
 Linux需要安装编译环境：
 
@@ -95,7 +95,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 
 ![](https://resources.jetbrains.com/help/img/idea/2021.3/cl_toolchain_detectok.png)
 
-##### 一些C语言补充的内容
+### 一些C语言补充的内容
 
 C语言中，uintx_t表示的是有x/8个字节的数据类型。
 ```c
@@ -109,7 +109,7 @@ uint64_t
 `size_t`就是unsigned long（64位）或者unsigned int （32位）
 `ssize_t`是long或者int，有符号
 
-#### socket数据结构
+## socket数据结构
 
 首先看一下socket的通用结构：
 ```c
@@ -187,9 +187,9 @@ struct sockaddr_un {
 
 ![socket-2](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643894800/socket-2.png)
 
-#### 转换函数
+## 转换函数
 
-##### IP地址转换
+### IP地址转换
 
 平常习惯使用十进制来描述ipv4的ip，用十六进制描述ipv6的ip，然而实际计算机都要转换为二进制。如果输出日志，为了可理解性又需要转换为合适的十进制或者十六进制。
 
@@ -209,7 +209,7 @@ int inet_aton(const char*cp,struct in_addr*inp); char *inet_ntoa(struct in_addr 
 inet_pton(AF_INET, ip, &server_address.sin_addr);
 ```
 
-##### 主机地址到网络地址
+### 主机地址到网络地址
 
 计算机硬件有两种存储方式大端字节序和小端字节序，比如数值`0x1234`，用大端字节序表示符合人类习惯，就是`0x1234`，高位是`0x12`，低位是`0x34`，而用小端字节序的话，各个字节的顺序就要反过来，高位是`0x34`，低位是`0x12`。
 
@@ -233,9 +233,9 @@ uint16_t ntohs(uint16_t hostlong)
 uint32_t ntohs(uint32_t hostlong)
 ```
 
-#### socket编程api
+## socket编程api
 
-##### socket的创建
+### socket的创建
 
 通过`socket()`函数创建一个socket，具体参数如下：
 
@@ -250,7 +250,7 @@ type指的是类型，比如`SOCK_STREAM`表示字节流，对应TCP，`SOCK_DGR
 这样要创建一个ipv4的TCP socket只需要：
 `socket(PF_INET, SOCK_STREAM, 0)`
 
-##### socket绑定：bind
+### socket绑定：bind
 
 bind函数的作用是将套接字和套接字地址绑定，套接字只知道自己的具体结构类型等，并不知道具体的ip和地址。
 
@@ -293,7 +293,7 @@ struct sockaddr
 
 地址可以设置为本机的地址，但是假如说程序部署到本机，地址是本机的局域网ip 192.168.x.x，之后假如程序部署到其他机子上，需要修改为公网ip，所以需要一种通配地址的机制，来让所有目标地址是本机的请求都接收到，ipv4通过`INADDR_ANY`，ipv6通过`IN6ADDR_ANY`来设置。
 
-##### socket监听：listen
+### socket监听：listen
 
 bind函数让套接字和地址关联，但是还需要将套接字进行监听，通过调用listen让服务处于可接听的状态。
 
@@ -302,7 +302,7 @@ bind函数让套接字和地址关联，但是还需要将套接字进行监听�
 `listen(int socket, int backlog)`
 第一个参数是套接字，第二个参数是未完成连接队列的大小，决定了可以接收的并发数目
 
-##### 接受连接：accept
+### 接受连接：accept
 
 服务端的操作系统内核监听到了客户端的请求，类比于接电话就是此时听到了铃响，通过accept来接电话。
 
@@ -312,7 +312,7 @@ int accept(int listensockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
 
 第一个参数是套接字，第二个参数是连接的客户端的socket地址，第三个参数是地址长度，第二和第三个参数都是传入空然后指针改变从而获取，accept会返回一个新的已连接套接字。因为不可能一个服务端只服务一个客户端。
 
-##### 发起连接：connect
+### 发起连接：connect
 
 前面的是服务端的连接建立的方法，客户端的创建socket一样，不过之后要通过connect来主动连接服务端。
 
@@ -324,7 +324,7 @@ int connect(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen)
 
 客户端不需要调用bind，在创建完socket后就可以直接调用connect，内核会随机分配一个端口给这次连接。
 
-##### 关闭连接：close, shutdown
+### 关闭连接：close, shutdown
 
 关闭一个连接，实际上就是关闭连接对应的socket。
 
@@ -347,7 +347,7 @@ int shutdown(int sockfd, int howto)
 2. SHUT_WR：关闭写
 3. SHUT_RDWR：关闭读写
 
-##### TCP的数据发送和接收：write, send, sendmsg, read
+### TCP的数据发送和接收：write, send, sendmsg, read
 
 建立好连接后，接下来就是发送数据。常见的发送数据的函数有write, send, sendmsg
 
@@ -367,7 +367,7 @@ ssize_t read(int socketfd, void *buffer, size_t size)
 
 read将会从socket中读取最多size个字节，然后将结果存储到buffer中。
 
-##### UDP的数据发送和接收：sendto, recvfrom
+### UDP的数据发送和接收：sendto, recvfrom
 
 ```c
 ssize_t recvfrom(int sockfd, void *buff, size_t nbytes, int flags,

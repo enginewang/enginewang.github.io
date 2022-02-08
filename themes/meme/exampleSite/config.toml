@@ -1,4 +1,4 @@
-##########################################
+######################
 # Site Settings
 
 baseURL = "https://example.com/"
@@ -167,7 +167,7 @@ uglyURLs = false
 
 
 
-##########################################
+######################
 # Menu Settings
 
 # MemE supports the following four menus:
@@ -246,11 +246,11 @@ uglyURLs = false
 
 
 
-##########################################
+######################
 # Theme Settings
 
 [params]
-    ######################################
+    ####################
     # Header
 
     enableHeader = true
@@ -276,7 +276,7 @@ uglyURLs = false
     #       toggled
 
 
-    ######################################
+    ####################
     # Brand Bar (inside header)
 
     # Use SVG?
@@ -298,7 +298,7 @@ uglyURLs = false
     siteBrandFontColor = "var(--color-contrast-high)"
 
 
-    ######################################
+    ####################
     # Menu Bar
 
     enableMenu = true
@@ -315,7 +315,7 @@ uglyURLs = false
     #       the `url` of that menu item
 
 
-    ######################################
+    ####################
     # Homepage Layout
 
     # For homepage layout, MemE has the
@@ -347,7 +347,7 @@ uglyURLs = false
     homeLinksDelimiter = ""
 
 
-    ######################################
+    ####################
     # Site Info
 
     siteLogo = "/icons/apple-touch-icon.png"
@@ -365,7 +365,7 @@ uglyURLs = false
     # Note: used for Twitter Cards
 
 
-    ######################################
+    ####################
     # Category By
 
     # MemE supports category by:
@@ -403,7 +403,7 @@ uglyURLs = false
     #            file by yourself.
 
 
-    ######################################
+    ####################
     # Categories Page
 
     # Enable tree structure layout?
@@ -425,7 +425,7 @@ uglyURLs = false
     limitPostsLimit = -1
 
 
-    ######################################
+    ####################
     # Tags Page
 
     enableTagCloud = true
@@ -435,7 +435,7 @@ uglyURLs = false
     smallestFontSize = 1
 
 
-    ######################################
+    ####################
     # List Page
 
     listWidth = 36
@@ -465,7 +465,7 @@ uglyURLs = false
     i18nMonth = false
 
 
-    ######################################
+    ####################
     # Taxonomy List Page
 
     # Note: for categories page, you can
@@ -486,7 +486,7 @@ uglyURLs = false
     limitEntriesLimit = -1
 
 
-    ######################################
+    ####################
     # Post Sections
 
     # Note: the name of the section is the
@@ -496,7 +496,7 @@ uglyURLs = false
     # mainSections = ["posts"]
 
 
-    ######################################
+    ####################
     # Atom & RSS
 
     # Include full content?
@@ -524,7 +524,7 @@ uglyURLs = false
     #       MemE.
 
 
-    ######################################
+    ####################
     # Dark Mode
 
     enableDarkMode = true
@@ -551,7 +551,7 @@ uglyURLs = false
     overrideSystemPreferences = false
 
 
-    ######################################
+    ####################
     # Web App
 
     # Note: go to https://realfavicongenerator.net/
@@ -576,7 +576,7 @@ uglyURLs = false
     msApplicationTileColor = "#fff"
 
 
-    ######################################
+    ####################
     # HTML Head Meta, SEO & Social Discovery
 
     jsonLD = true
@@ -600,7 +600,7 @@ uglyURLs = false
     #       large image.
 
 
-    ######################################
+    ####################
     # Service Worker
 
     # Note: render only in production
@@ -609,7 +609,7 @@ uglyURLs = false
     enableServiceWorker = false
 
 
-    ######################################
+    ####################
     # KaTeX (chemical equation supported)
 
     enableKaTeX = false
@@ -618,7 +618,7 @@ uglyURLs = false
     #       has a higher priority than here
 
 
-    ######################################
+    ####################
     # MathJax (chemical equation supported)
 
     enableMathJax = false
@@ -629,7 +629,7 @@ uglyURLs = false
     disableMathJaxMenu = false
 
 
-    ######################################
+    ####################
     # Mermaid (https://github.com/mermaid-js/mermaid)
 
     enableMermaid = false
@@ -641,7 +641,7 @@ uglyURLs = false
     mermaidThemeDark = 'dark'
 
 
-    ######################################
+    ####################
     # Comments
 
     # Note: render only in production
@@ -707,7 +707,7 @@ uglyURLs = false
     # Note: https://github.com/gitalk/gitalk
 
 
-    ######################################
+    ####################
     # Google Analytics
 
     # Note: render only in production
@@ -721,13 +721,13 @@ uglyURLs = false
     trackingID = ""
 
 
-    ######################################
+    ####################
     # Google Site Verification
 
     googleSiteVerification = ""
 
 
-    ######################################
+    ####################
     # Google AdSense
 
     # Note: render only in production
@@ -743,7 +743,7 @@ uglyURLs = false
     googleAdSlot = ""
 
 
-    ######################################
+    ####################
     # Yandex.Metrika
     # https://metrika.yandex.ru/
 
@@ -753,7 +753,7 @@ uglyURLs = false
     yandexMetrikaId = ""
 
 
-    ######################################
+    ####################
     # Post Settings
 
     # The color change duration of the
@@ -783,13 +783,13 @@ uglyURLs = false
     #       has a higher priority than here
 
 
-    ######################################
+    ####################
     # Post Description
 
     displayPostDescription = true
 
 
-    ######################################
+    ####################
     # Post Meta Info
 
     enablePostMeta = true
@@ -833,14 +833,14 @@ uglyURLs = false
     #       https://busuanzi.ibruce.info/
 
 
-    ######################################
+    ####################
     # Markdown Related
 
     # Open external links in a new tab?
     hrefTargetBlank = true
 
 
-    ######################################
+    ####################
     # Table of Contents
 
     enableTOC = false
@@ -858,7 +858,7 @@ uglyURLs = false
     linkHeadingsToTOC = true
 
 
-    ######################################
+    ####################
     # Headings Anchor
 
     enableHeadingsAnchor = true
@@ -886,7 +886,7 @@ uglyURLs = false
     enableAnchorAutoHide = true
 
 
-    ######################################
+    ####################
     # Caption
 
     enableCaption = true
@@ -894,7 +894,7 @@ uglyURLs = false
     captionPrefix = "◎ "
 
 
-    ######################################
+    ####################
     # Image Hosting
 
     # Note: render only in production
@@ -914,7 +914,7 @@ uglyURLs = false
     headAlso = false
 
 
-    ######################################
+    ####################
     # Video Hosting
 
     # Note: render only in production
@@ -932,7 +932,7 @@ uglyURLs = false
     videoHostURL = "https://example.com/"
 
 
-    ######################################
+    ####################
     # Footnotes
 
     # Use the square brackets to wrap
@@ -960,15 +960,15 @@ uglyURLs = false
     #       in the Markdown file.
 
 
-    ######################################
+    ####################
     # Scrollbar
     customizeScrollbar = true
 
 
-    ######################################
+    ####################
     # Typography
 
-    ######################################
+    ####################
     ## Font Family
 
     # Note: any option is empty(""),
@@ -1013,24 +1013,24 @@ uglyURLs = false
     #       empty(""), web fonts will not
     #       be used.
 
-    ######################################
+    ####################
     ## Font Size (unit: px)
 
     fontSize = 18
 
-    ######################################
+    ####################
     ## Tab Size
 
     tabSize = 4
 
-    ######################################
+    ####################
     ## Line Height
 
     lineHeight = 1.618
     # Note: apply to post paragraph & toc
     #       only
 
-    ######################################
+    ####################
     ## Paragraph Indents
 
     enableParagraphIndent = true
@@ -1046,7 +1046,7 @@ uglyURLs = false
     #       `indent` in post’s Front Matter
     #       has a higher priority than here
 
-    ######################################
+    ####################
     ## Text Justification
 
     enableJustify = false
@@ -1054,7 +1054,7 @@ uglyURLs = false
     #       `align` in post’s Front Matter
     #       has a higher priority than here
 
-    ######################################
+    ####################
     ## Drop Cap
 
     enableDropCap = true
@@ -1076,7 +1076,7 @@ uglyURLs = false
     #       `deleteHrBeforeDropCap` in post’s Front Matter
     #       has a higher priority than here
 
-    ######################################
+    ####################
     ## Small Caps
 
     enableSmallCaps = true
@@ -1086,7 +1086,7 @@ uglyURLs = false
     #       `smallCaps` in post’s Front Matter
     #       has a higher priority than here
 
-    ######################################
+    ####################
     ## Emphasis Point (Chinese)
 
     # Note: new Markdown syntax created by MemE
@@ -1094,13 +1094,13 @@ uglyURLs = false
 
     enableEmphasisPoint = false
 
-    ######################################
+    ####################
     ## Chinese Punctuation Glyph Correction
 
     enableChinesePunctuationGlyphCorrection = false
 
 
-    ######################################
+    ####################
     # Post Copyright
 
     enablePostCopyright = true
@@ -1111,7 +1111,7 @@ uglyURLs = false
     #       has a higher priority than here
 
 
-    ######################################
+    ####################
     # Post Updated Badge
 
     enablePostUpdatedBadge = true
@@ -1126,7 +1126,7 @@ uglyURLs = false
     badgeTitlePrefix = "Updated @ "
 
 
-    ######################################
+    ####################
     # Post Gitinfo
 
     enablePostGitInfo = false
@@ -1154,7 +1154,7 @@ uglyURLs = false
     editText = "Edit Me?"
 
 
-    ######################################
+    ####################
     # Post Share
 
     enablePostShare = true
@@ -1178,7 +1178,7 @@ uglyURLs = false
     shareViaQRCode = true
 
 
-    ######################################
+    ####################
     # Related Posts
 
     enableRelatedPosts = true
@@ -1193,7 +1193,7 @@ uglyURLs = false
     relatedPostsIcon = "plus-circle"
 
 
-    ######################################
+    ####################
     # Post Tags
 
     enablePostTags = true
@@ -1201,7 +1201,7 @@ uglyURLs = false
     postTagsIcon = "tag"
 
 
-    ######################################
+    ####################
     # Previous/Next Post
 
     # Note: In MemE, it is designed from a
@@ -1221,7 +1221,7 @@ uglyURLs = false
     postNavInSection = true
 
 
-    ######################################
+    ####################
     # Minimal Footer
 
     enableMinimalFooter = false
@@ -1236,7 +1236,7 @@ uglyURLs = false
     enableAboutPageMinimalFooter = false
 
 
-    ######################################
+    ####################
     # Back to Top
 
     enableBackToTop = true
@@ -1250,7 +1250,7 @@ uglyURLs = false
     backToTopIcon = "arrow-up"
 
 
-    ######################################
+    ####################
     # Footer
 
     enableFooter = true
@@ -1295,7 +1295,7 @@ uglyURLs = false
     # Note: see data/Socials.toml
 
 
-    ######################################
+    ####################
     # Multilingual
 
     enableLangToggle = false
@@ -1308,7 +1308,7 @@ uglyURLs = false
     #       has a translated version
 
 
-    ######################################
+    ####################
     # Code Blocks
 
     enableHighlight = true
@@ -1321,7 +1321,7 @@ uglyURLs = false
     enableCopyAutoHide = true
 
 
-    ######################################
+    ####################
     # Fingerprinting and SRI
 
     # Note: valid for CSS and JS generated
@@ -1341,7 +1341,7 @@ uglyURLs = false
     #       Access-Control-Allow-Origin: *
 
 
-    ######################################
+    ####################
     # Force HTTPS Redirection
 
     # Note: render only in production
@@ -1354,27 +1354,27 @@ uglyURLs = false
     #       HTTPS.
 
 
-    ######################################
+    ####################
     # Smooth Scroll
 
     enableSmoothScroll = true
 
 
-    ######################################
+    ####################
     # Medium Zoom
 
     enableMediumZoom = true
     # Note: https://github.com/francoischalifour/medium-zoom
 
 
-    ######################################
+    ####################
     # Instant Page
 
     enableInstantPage = true
     # Note: https://github.com/instantpage/instant.page
 
 
-    ######################################
+    ####################
     # Lunr search
 
     # Note: This requires SearchIndex
@@ -1384,7 +1384,7 @@ uglyURLs = false
     # Note: https://lunrjs.com/
 
 
-    ######################################
+    ####################
     # Algolia search
 
     # Note: This requires Algolia
@@ -1402,7 +1402,7 @@ uglyURLs = false
     # Note: https://www.algolia.com/
 
 
-    ######################################
+    ####################
     # 404 Page
 
     fofPoster = ""

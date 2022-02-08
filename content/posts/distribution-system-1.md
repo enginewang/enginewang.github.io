@@ -6,9 +6,9 @@ categories: ["理论"]
 tags: ["分布式"]
 ---
 
-#### ACID、BASE、2PC/3PC
+## ACID、BASE、2PC/3PC
 
-##### ACID
+### ACID
 
 在讲ACID之前，先讲本地事务，事务最早在数据库等课程中就接触过，简单来说，事务提供一种“要么什么也不做，要么全做完”的机制。
 
@@ -23,7 +23,7 @@ ACID特性是数据库事务的基本特征，包括：
 然而分布式事务和本地事务不同，假设有一个操作需要多个机器上执行，要么都执行，要么都不执行。
 要保持分布式事务的ACID，方法有二阶段提交协议和TCC。
 
-##### 2PC二阶段提交协议
+### 2PC二阶段提交协议
 
 一个事务跨越多个节点，成为分布式事务，为了保持ACID，需要引入一个协调者的角色来统一掌控所有节点的结果。
 
@@ -47,7 +47,7 @@ ACID特性是数据库事务的基本特征，包括：
 
 之后有提出三阶段协议3PC，对二阶段协议进行了改进，然而由于增加了通信成本，实际用的并不多，就不细讲。
 
-##### TCC（Try-Confirm-Cancel）
+### TCC（Try-Confirm-Cancel）
 
 TCC是一个业务层面的协议，需要在业务代码中编写，包含了预留、确认或撤销三个阶段。
 核心思想是针对每个操作都要注册一个对其对应的确认操作和补偿操作。
@@ -56,7 +56,7 @@ TCC是一个业务层面的协议，需要在业务代码中编写，包含了�
 
 可以说ACID是CAP一致性的边界，也就是最强的一致性。
 
-##### BASE
+### BASE
 
 BASE则是追求可用性，是CAP中AP的拓展。
 
@@ -84,7 +84,7 @@ BASE的核心是基本可用（Basically Available）和最终一致性（Eventu
 
 BASE通过牺牲强一致性来获得高可用性。
 
-#### CAP
+## CAP
 
 分布式系统的最大难点之一就是维护各个节点之间的数据状态一致性。
 需要通过数据库或者分布式缓存来维护数据的一致性。
@@ -117,7 +117,7 @@ CAP是三个缩写的组合：
 
 
 
-#### 一致化模型Consistency Model
+## 一致化模型Consistency Model
 
 对Consistency的不同程度的要求也衍生出了多种不同的等级模型。根据不同的情况采取不同的模型。
 
@@ -131,27 +131,27 @@ k=0,1分别代表主队和客队，如果主队得了一分，记分员操作是
 
 假设目前比分是2:5
 
-##### Strong Consistency
+### Strong Consistency
 
 对于任何一个人，读到的一定是最新的
 
-##### Eventual Consistency
+### Eventual Consistency
 
 只把结果给其他Server，只能保证最后的时刻会更新到正确的最终值，但是之前读到任何小于结果的得分都有可能，甚至是完全没出现过的得分，比如2:0
 
-##### Consistent Prefix
+### Consistent Prefix
 
 连同操作一起给其他Server，从而保证读到的一定是比赛中的某个比分，历史发生过。
 
-##### Bounded Staleness
+### Bounded Staleness
 
 保证读到的一定是t以内的结果。Bounded=0则为Strong Consistency。Bounded=无穷则为Eventual Consistency。
 
-##### Monotonic Reads
+### Monotonic Reads
 
 可能返回任何结果，但是接下来会持续从同一个replica server中读取，保证每一次都至少会比之前的值新。
 
-##### Read My Writes
+### Read My Writes
 
 如果某个client对Server进行了set操作，那么之后的get必然是set的值。
 
@@ -164,7 +164,7 @@ k=0,1分别代表主队和客队，如果主队得了一分，记分员操作是
 
 银行的系统必然是Strong Consistency，只能最新。而DNS只要是Eventual Consistency就可以，因为需要快速返回结果，不是最新的也可以接受。
 
-#### Quorum System
+## Quorum System
 
 Quorum System随着Amazon与2007年发表的`Dynamo: Amazon’s Highly Available Key-value Store`论文而提出，这篇论文是NoSQL的代表之作。DynamoDB是一个NoSQL数据库，支持键值和文档数据结构，具有Strongly Consistent和Eventually Consistent。
 
@@ -190,7 +190,7 @@ Quorum System随着Amazon与2007年发表的`Dynamo: Amazon’s Highly Available
 
 这样的话，通过使用DynamoDB，Amazon会在世界各个地方的数据中心存放你的数据，进行备份，也能通过local replica进行加速。
 
-##### Read-Repair和Anti-Entropy
+### Read-Repair和Anti-Entropy
 
 如果说有几个节点瘫痪了，导致每个都无法拿到超过一半的锁。
 
@@ -198,13 +198,13 @@ Read-Repair就是在读取的时候不仅通过timestamp拿到最新的结果，
 
 另一个方法是Anti-Entropy，也就是单独创建一个process，通过检查replica的版本并将所有server都同步成最新的。适用于读取不频繁的情况。
 
-##### Hinted Handoff
+### Hinted Handoff
 
 故障的server恢复之后，系统会写回这个server，这种做法叫Hinted Handoff。
 写失败的请求会缓存到本地硬盘上，并周期性的尝试重传。
 
 
-##### Quorum NWR
+### Quorum NWR
 
 对于AP系统，可以保证最终一致性但是无法保证强一致性。如果想满足强一致性，可以借助Quorum NWR。
 
@@ -222,7 +222,7 @@ W + W <= N：可能出现不一致
 W + R <= N：可能会读不到最新的值
 R + R > N：
 
-#### 分布式系统的时间
+## 分布式系统的时间
 
 通常会采用W+W<=N来尽量保证Availablity，这种情况下如何规避并行写导致的不一致呢。
 
@@ -230,7 +230,7 @@ R + R > N：
 
 由于每台机器自身的时间并不一定准确，甚至可能会出现接受到信息的timestamp比机器当前时间还要晚的情况（收到来自“未来”的消息），这样就很离谱，明显不合理。
 
-##### Lamport Logical Clock
+### Lamport Logical Clock
 
 在消息里夹带一个timestamp，但是在传递的时候，每个结点接受到timestamp后，会比较自身时间与timestamp的大小，然后选择最大的那个置为新的timestamp，从而保证一定递增。收到的消息的timestamp比本身时间还大的话，就将自己的时间改为timestamp的时间。
 
@@ -241,7 +241,7 @@ R + R > N：
 
 （Lamport发明了Latex）
 
-##### Vector Clock
+### Vector Clock
 
 Lamport timestamp会显示两个先后的事件有因果关系，但是实际逻辑上并不一定，可能只是同时平行发生。
 

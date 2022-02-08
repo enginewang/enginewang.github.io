@@ -7,7 +7,7 @@ tags: ["Atom", "markdown", "美化"]
 ---
 
 
-#### Atom介绍
+## Atom介绍
 
 Atom是一个Github出品的一个开源的免费文本编辑器，和VS Code、Sublime Text是对标产品。
 
@@ -19,28 +19,28 @@ Atom和VS Code一样，都是用Eletron构建的，插件也基本通用，可�
 
 通过安装支持markdown插件就可以进行markdown的笔记写作，下面是一些我认为比较好的插件
 
-#### Markdown Preview Enhanced
+## Markdown Preview Enhanced
 
 Atom有原生对markdown的支持，但是毕竟简陋，Markdown Preview Enhanced可以扩展更多的功能，比如公式、图床、导出等。
 
 <img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1544349042/Annotation_2018-12-09_175025.jpg" width="90%">
 
 
-#### Material UI
+## Material UI
 
 Material UI几乎是我所有编辑器的UI（包括Atom、VS Code、Jetbrains全家桶等），这套UI非常优雅和美观。
 
 <img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1544348243/Annotation_2018-12-09_173501.jpg" width="90%">
 
 
-#### Title-bar-replacer (windows专用)
+## Title-bar-replacer (windows专用)
 
 Title-bar-replacer可以隐藏掉windows上方比较唐突的白色标题栏，使软件更加一体化。
 
 <img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1544348538/Annotation_2018-12-09_174204.jpg" width="90%">
 
 
-#### Markdown-table-editor
+## Markdown-table-editor
 
 Markdown语法写表格非常麻烦，markdown-table-editor可以使得我们在用写表格的时候更加方便，可以通过Tab、Enter等键快速排版
 
@@ -48,7 +48,7 @@ Markdown语法写表格非常麻烦，markdown-table-editor可以使得我们在
 
 ### 其他的一些操作
 
-#### 修改字体
+## 修改字体
 
 修改软件界面字体，需要手动修改`styles.less`，通过`File`->`stylesheet`来打开它
 

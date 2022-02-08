@@ -6,7 +6,7 @@ categories: ["算法"]
 tags: ["Bigtable", "分布式", "大数据"]
 ---
 
-#### 介绍
+## 介绍
 
 为什么需要Bigtable？
 需要一个集群支持海量的随机读写，需要支持到每秒百万级别的随机读写。在Bigtable没出之前，使用MySQL集群可以解决一些问题，然而一方面会放弃关系型数据库的很多特征，比如外键约束、跨行跨表的事务等。一方面在扩容的时候不得不翻倍扩容，非常浪费。缩减服务器也非常麻烦。另外，在每次故障恢复的时候也需要人工介入。
@@ -28,7 +28,7 @@ Bigtable的解决方法是：
 3. 通过Chubby分布式锁解决一致性的问题
 
 
-#### 数据模型
+## 数据模型
 
 Bigtable是一个稀疏的、分布式的永久存储的多维排序map，这个map通过row key、column key和timestamp进行索引，每个值都是一个未解释的字符串。
 
@@ -41,13 +41,13 @@ Bigtable是一个稀疏的、分布式的永久存储的多维排序map，这个
 
 ![bigtable-1](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640192906/bigtable-1.png)
 
-##### Rows
+### Rows
 
 行key是表的主键，可以是任意字符串，最大为64kb，在单行的读写都是原子的。
 由于读写总是通过行键，这样的数据库也叫做KV数据库。
 Bigtable按行key对数据进行排序，行范围动态分区，每个行的范围被称为tablet，是分布式和负载均衡的单位。
 
-##### Column Families 列族
+### Column Families 列族
 
 每一行的数据需要指定列族，每个列族下不需要指定列，每个数据都可以有自己的列，每一行的列可以不一样。这也就是为什么说Bigtable是稀疏的表：
 
@@ -59,13 +59,13 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
 比如Bigtable的开源实现HBase，每一个列族的数据存在同一个HFile文件下。
 
 
-##### Timestamp
+### Timestamp
 
 Bigtable的每个单元格可以包含相同数据的多个版本，不同的版本通过时间戳进行索引。Bigtable的时间戳是64位的整数。不同版本以递减的形式存储，以便可以首先读取最新版本。
 
 为了防止变得过于繁重，可以指定个数或过期时间，之前的版本被gc。
 
-#### API
+## API
 
 Bigtable的API包括创建、删除表和列族，以及修改簇、表、列族元数据等。
 
@@ -95,7 +95,7 @@ for (; !stream->Done(); stream->Next()) {
 ```
 
 
-#### 构建块
+## 构建块
 
 Bigtable使用GFS存储日志和数据文件，`SSTable`用于存储Bigtable数据，每个SSTable包含一个块序列（每个块64kb），并且SSTable可以被完全的映射到内存中，不需要接触磁盘就可以执行查找和扫描。
 
@@ -109,7 +109,7 @@ Bigtable通过Chubby完成以下任务：
 
 如果Chubby不可用，那么Bigtable也将不可用
 
-#### 实现
+## 实现
 
 Bigtable包含三个主要组件：
 1. 链接到每个客户端的库
@@ -131,7 +131,7 @@ Bigtable和Tablet Server都不进行数据的存储只负责在线业务，存�
 
 
 
-##### Tablet位置
+### Tablet位置
 
 通过B+树存储tablet的位置
 
@@ -151,14 +151,14 @@ Bigtable和Tablet Server都不进行数据的存储只负责在线业务，存�
 
 客户端不需要经过master，让设计更加高可用
 
-##### 动态分区
+### 动态分区
 
 Bigtable采用动态区间分区，通过自动去split的方式动态分区。
 好比是往箱子里放书，按照书名的字母顺序，一旦箱子装满，就中间一分为二，将下面一半放到一个新的空箱子里去。
 如果两个相邻的箱子都很空，就可以将其合并。
 ![bigtable-4](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640192909/bigtable-4.png)
 
-#### SSTable底层结构
+## SSTable底层结构
 
 Bigtable的写入数据的过程：
 1. tablet server先做数据验证，以及权限验证
@@ -173,7 +173,7 @@ Major Compaction机制，对SSTable进行合并，把数据压实在一起，比
 
 ![bigtable-7](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640192906/bigtable-7.png)
 
-#### 总结
+## 总结
 
 Bigtable包括四个组件：
 1. 负责存储数据的GFS

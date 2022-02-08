@@ -9,7 +9,7 @@ tags: ["生存分析", "统计学"]
 
 ![survival-analysis-1](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640248844/survival-analysis-0.png)
 
-#### 背景与简介
+## 背景与简介
 
 在生物医学、金融保险等领域，生存分析是一种很常见而且重要的方法。
 
@@ -19,9 +19,9 @@ tags: ["生存分析", "统计学"]
 
 （后面均用"死亡"来代指这个特定事件
 
-#### 概念与推导
+## 概念与推导
 
-##### 生存时间T
+### 生存时间T
 
 ![survival-time](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640248843/surv-time-1.png)
 
@@ -29,7 +29,7 @@ tags: ["生存分析", "统计学"]
 
 其中CDF为$F(t) = Pr(T < t)$，也就是t之前死亡的概率
 
-##### 生存概率
+### 生存概率
 
 S(t)，Survival probability，研究对象从试验开始到某个特定时间点仍然存活的概率,$S(t) = pr(T > t)$
 
@@ -37,7 +37,7 @@ $S(t) = 1 - F(t)$
 
 之后的Kaplan-Meier模型主要关注S(t)
 
-##### 风险概率
+### 风险概率
 
 $h(t): \text{Hazard function}$
 
@@ -76,7 +76,7 @@ $$\to S(t) = exp[-H(t)]$$
 
 之后的Cox比例风险模型主要关注H(t)
 
-#### Hazard function理解
+## Hazard function理解
 
 hazard function 本身不是概率，它描述的是一种在给定时间点的风险，$\Delta t \times h(t)$表示在$(t, t + \Delta t]$的概率
 
@@ -84,7 +84,7 @@ hazard function优势：
 1. 描述给定时间点的风险，这是我们需要的信息
 2. 可以很好的处理数据缺失的情况
 
-#### 举个例子
+## 举个例子
 
 假设survival time服从指数分布$Exp(\lambda)$，即$f(x) = \lambda e ^{-\lambda x}, x > 0$
 
@@ -108,7 +108,7 @@ Weibull distribution
 Log-normal distribution
 generized gamma distribution...
 
-#### 删失数据 Censoring
+## 删失数据 Censoring
 
 生存分析中，很常见的一种特征就是删失数据
 
@@ -116,7 +116,7 @@ generized gamma distribution...
 
 
 
-##### Type I Censoring：观测时间确定
+### Type I Censoring：观测时间确定
 
 每一项数据增加一个表示：
 
@@ -131,12 +131,12 @@ c是实验时间，是一个常量
 也就是说如果是$(c, 0)$，则代表被删失，如果是$(T_i, 1)$，则没有被删失
 
 
-##### Type II Censoring：观测人数确定
+### Type II Censoring：观测人数确定
 
 比如观测n人，当死亡r人时停止试验
 $T_{(1, n)}, T_{(2, n)}, ..., T_{(r, n)}$
 
-##### Type III Censoring：随机Censoring
+### Type III Censoring：随机Censoring
 
 不用常量c而是用随机变量$C_i$
 
@@ -150,7 +150,7 @@ $(U_i, \delta_i) = \{min (T_i, C_i), I(T_i \leqslant C_i)\}, i = 1, ... , n$
 
 (推导见https://www.bilibili.com/video/BV1WE411P78Z?p=2)
 
-#### Kaplan-Meier模型
+## Kaplan-Meier模型
 
 与生存表、Cox并列的一种生存分析的方法，也叫乘积极限(product-limit estimator)
 
@@ -164,7 +164,7 @@ $d_i$是在$t_i$时刻死亡的人数，$n_i$是还在风险中的人数
 
 ![survival-analysis-example-1](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245203/survival-analysis-example-1.png)
 
-##### Life table 生存表
+### Life table 生存表
 
 举例：
 
@@ -181,7 +181,7 @@ $n_i$表示$t_i$时的有效人数，$d_i$表示$t_i$时的死亡人数
 $t_i$处的生存率等于$t_{i-1}$时的生存率乘以（1-$t_i$时间点的死亡率）
 
 
-##### Kaplan-Meier 生存曲线：
+### Kaplan-Meier 生存曲线：
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1640245508/km-curve-1.png)
 加号表示删失数据
@@ -189,7 +189,7 @@ $t_i$处的生存率等于$t_{i-1}$时的生存率乘以（1-$t_i$时间点的�
 往往是多条线（因为是不同的组）
 
 
-#### Cox比例风险回归模型
+## Cox比例风险回归模型
 
 Cox Proportional-Hazards Model是由英国统计学家D.R.Cox于1972年提出的一种半参数回归模型（半参数值既包含参数模型，又包含非参数模型）
 
@@ -205,7 +205,7 @@ $$h(t) = h_0(t) \times exp({b_1x_1 + b_2x_2 + ... b_px_p})$$
 
 建模时，首先确定需要研究的可能影响生存率的因素，也就是$x_i$，我们主要要做的就是找到合适的$h_0(t)$以及所有协变量的系数$b_p$，需要用到极大似然估计等方法求解参数。
 
-##### 两个基本假设
+### 两个基本假设
 
 对公式两边取对数进行变形：
 
@@ -214,7 +214,7 @@ $$log(h(t)) = log(h_0(t)) + \beta X$$
 1. 模型中各危险因素对危险率的影响不随时间改变，且与时间无关
 2. 对数危险率与各个危险因素呈线性相关
 
-##### 参数的极大似然估计
+### 参数的极大似然估计
 
 通过极大似然估计来求解参数，极大似然估计的思想是，让已经发生的事件出现的可能性最大。
 
@@ -250,7 +250,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
 
 就可以采用梯度下降法来对参数进行估计
 
-##### 解读结果
+### 解读结果
 
 解得了合适的$h_0(t)$以及协变量系数之后，我们可以比较某个协变量$x_i$在不同值的时候对应的不同风险比$\frac{x_i + 1}{x_i}$。
 
