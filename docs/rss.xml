@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 06 Feb 2022 22:21:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 08 Feb 2022 17:02:51 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -64,10 +64,10 @@
 &lt;p&gt;但是在很多不需要完全可靠和完全顺序性的场景，如DNS、多人聊天、直播等。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643899709/socket-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;服务端创建和绑定socket之后，客户端和服务端之间直接通过&lt;code&gt;sendto&lt;/code&gt;和&lt;code&gt;recvfrom&lt;/code&gt;来传递数据，没有建立连接的过程。&lt;/p&gt;
-&lt;h4 id=&#34;socket编程api&#34;&gt;socket编程api&lt;/h4&gt;
-&lt;h5 id=&#34;c语言补充&#34;&gt;C语言补充&lt;/h5&gt;
+&lt;h4 id=&#34;c语言补充&#34;&gt;C语言补充&lt;/h4&gt;
 &lt;p&gt;这里只记录一些后面遇到的C语言相关的一些补充。&lt;/p&gt;
-&lt;p&gt;基于Unix（Linux、mac等，win不一定完全适用），需要安装编译环境：&lt;/p&gt;
+&lt;h5 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h5&gt;
+&lt;p&gt;Linux需要安装编译环境：&lt;/p&gt;
 &lt;p&gt;Ubuntu&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -86,7 +86,36 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo yum install gcc g++ make cmake
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;uintx_t表示的是有x/8个字节的数据类型。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;mac也可以，用clion的话，需要先安装Xcode command line developer tools（不需要完整的Xcode）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;n&#34;&gt;xcode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;表明安装成功&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&amp;gt; clang --version
+Apple clang version 12.0.0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;clang-1200.0.32.29&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+Target: x86_64-apple-darwin19.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后去clion配置好gcc（C编译器）和g++（C++编译器）的路径即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://resources.jetbrains.com/help/img/idea/2021.3/cl_toolchain_detectok.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;一些c语言补充的内容&#34;&gt;一些C语言补充的内容&lt;/h5&gt;
+&lt;p&gt;C语言中，uintx_t表示的是有x/8个字节的数据类型。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -104,7 +133,7 @@
 &lt;/div&gt;&lt;p&gt;几个表示size的类型
 &lt;code&gt;size_t&lt;/code&gt;就是unsigned long（64位）或者unsigned int （32位）
 &lt;code&gt;ssize_t&lt;/code&gt;是long或者int，有符号&lt;/p&gt;
-&lt;h5 id=&#34;socket的数据结构&#34;&gt;socket的数据结构&lt;/h5&gt;
+&lt;h4 id=&#34;socket数据结构&#34;&gt;socket数据结构&lt;/h4&gt;
 &lt;p&gt;首先看一下socket的通用结构：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -138,12 +167,10 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#define PF_LOCAL	1	&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* Local to host (pipes and file-domain).  */&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#define PF_FILE		PF_LOCAL &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* Another non-standard name for PF_LOCAL.  */&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#define PF_INET		2	&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* IP protocol family.  */&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#define PF_LOCAL	1	&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* Local to host (pipes and file-domain).  #define PF_FILE		PF_LOCAL /* Another non-standard name for PF_LOCAL
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;#define PF_INET		2	/* IP protocol family.  */&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#define PF_INET6	10	&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/* IP version 6.  */&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
 &lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
 &lt;span class=&#34;cp&#34;&gt;#define AF_LOCAL	PF_LOCAL
@@ -238,6 +265,7 @@
 &lt;/div&gt;&lt;p&gt;有一些保留端口，比如常见的ftp的21端口，ssh的22端口，http的80端口，一般来说大于5000的端口可以自己用。&lt;/p&gt;
 &lt;p&gt;下图是各个地址族的结构&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643894800/socket-2.png&#34; alt=&#34;socket-2&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;转换函数&#34;&gt;转换函数&lt;/h4&gt;
 &lt;h5 id=&#34;ip地址转换&#34;&gt;IP地址转换&lt;/h5&gt;
 &lt;p&gt;平常习惯使用十进制来描述ipv4的ip，用十六进制描述ipv6的ip，然而实际计算机都要转换为二进制。如果输出日志，为了可理解性又需要转换为合适的十进制或者十六进制。&lt;/p&gt;
 &lt;p&gt;Linux内置了二者互相转换的函数：&lt;/p&gt;
@@ -251,6 +279,46 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;inet_aton&lt;/code&gt;可以将点分十进制字符串表示的ipv4 ip转换为网络字节序表示的&lt;code&gt;in_addr&lt;/code&gt;结构&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;inet_ntoa&lt;/code&gt;则相反，将网络字节序表示的&lt;code&gt;in_addr&lt;/code&gt;结构转换为点分十进制字符串表示的ipv4 ip&lt;/p&gt;
+&lt;p&gt;一对更好的函数是&lt;code&gt;inet_pton&lt;/code&gt;和&lt;code&gt;inet_ntop&lt;/code&gt;，这个对于ipv4和ipv6通用。以inet_pton为例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;# 将string类型的十进制字符串表示的ip写成二进制的网络字节序作为server_address的sin_addr
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;inet_pton&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AF_INET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;server_address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sin_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h5 id=&#34;主机地址到网络地址&#34;&gt;主机地址到网络地址&lt;/h5&gt;
+&lt;p&gt;计算机硬件有两种存储方式大端字节序和小端字节序，比如数值&lt;code&gt;0x1234&lt;/code&gt;，用大端字节序表示符合人类习惯，就是&lt;code&gt;0x1234&lt;/code&gt;，高位是&lt;code&gt;0x12&lt;/code&gt;，低位是&lt;code&gt;0x34&lt;/code&gt;，而用小端字节序的话，各个字节的顺序就要反过来，高位是&lt;code&gt;0x34&lt;/code&gt;，低位是&lt;code&gt;0x12&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644291229/big-endian-little-endian-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;因为计算机电路先处理低位字节的效率比较高，所以计算机内部处理都是用的小端字节序，但是除了内部处理，其他场合比如网络传输、文件存储，还是使用的人类更容易理解的大端字节序。&lt;/p&gt;
+&lt;p&gt;所以主机字节序采用小端字节序和网络字节序采用大端字节序，需要进行一个转换。&lt;/p&gt;
+&lt;p&gt;转换函数如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;arpa/inet.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 16/32位的主机字节序转换为网络字节序
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 其实就是字节的高低位互换
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;htons&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostlong&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;uint32_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;htonl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint32_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostlong&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 16/32位的网络字节序转换为主机字节序
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ntohs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostlong&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;uint32_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ntohs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint32_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;hostlong&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;socket编程api&#34;&gt;socket编程api&lt;/h4&gt;
 &lt;h5 id=&#34;socket的创建&#34;&gt;socket的创建&lt;/h5&gt;
 &lt;p&gt;通过&lt;code&gt;socket()&lt;/code&gt;函数创建一个socket，具体参数如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

@@ -58,14 +58,13 @@ UDP面向数据报，不基于连接，不保障顺序性、可靠性、没有�
 
 服务端创建和绑定socket之后，客户端和服务端之间直接通过`sendto`和`recvfrom`来传递数据，没有建立连接的过程。
 
-
-#### socket编程api
-
-##### C语言补充
+#### C语言补充
 
 这里只记录一些后面遇到的C语言相关的一些补充。
 
-基于Unix（Linux、mac等，win不一定完全适用），需要安装编译环境：
+##### 环境搭建
+
+Linux需要安装编译环境：
 
 Ubuntu
 ```bash
@@ -77,7 +76,28 @@ CentOS
 sudo yum install gcc g++ make cmake
 ```
 
-uintx_t表示的是有x/8个字节的数据类型。
+mac也可以，用clion的话，需要先安装Xcode command line developer tools（不需要完整的Xcode）
+
+```c
+xcode-select --install
+```
+
+表明安装成功
+```bash
+> clang --version
+Apple clang version 12.0.0 (clang-1200.0.32.29)
+Target: x86_64-apple-darwin19.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+```
+
+然后去clion配置好gcc（C编译器）和g++（C++编译器）的路径即可
+
+![](https://resources.jetbrains.com/help/img/idea/2021.3/cl_toolchain_detectok.png)
+
+##### 一些C语言补充的内容
+
+C语言中，uintx_t表示的是有x/8个字节的数据类型。
 ```c
 uint8_t
 uint16_t
@@ -89,7 +109,7 @@ uint64_t
 `size_t`就是unsigned long（64位）或者unsigned int （32位）
 `ssize_t`是long或者int，有符号
 
-##### socket的数据结构
+#### socket数据结构
 
 首先看一下socket的通用结构：
 ```c
@@ -107,8 +127,7 @@ struct sockaddr{
 包括AF_和PF_，其中AF_是地址族，PF_是协议族，一一对应，比如ipv4的就是AF_INET和PF_INET。ipv6的就是AF_INET6和PF_INET6，本地的就是AF_LOCAL和PF_LOCAL。它们也是互相对应相等的。
 
 ```c
-#define PF_LOCAL	1	/* Local to host (pipes and file-domain).  */
-#define PF_FILE		PF_LOCAL /* Another non-standard name for PF_LOCAL.  */
+#define PF_LOCAL	1	/* Local to host (pipes and file-domain).  #define PF_FILE		PF_LOCAL /* Another non-standard name for PF_LOCAL
 #define PF_INET		2	/* IP protocol family.  */
 #define PF_INET6	10	/* IP version 6.  */
 
@@ -168,6 +187,8 @@ struct sockaddr_un {
 
 ![socket-2](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643894800/socket-2.png)
 
+#### 转换函数
+
 ##### IP地址转换
 
 平常习惯使用十进制来描述ipv4的ip，用十六进制描述ipv6的ip，然而实际计算机都要转换为二进制。如果输出日志，为了可理解性又需要转换为合适的十进制或者十六进制。
@@ -181,7 +202,38 @@ int inet_aton(const char*cp,struct in_addr*inp); char *inet_ntoa(struct in_addr 
 
 `inet_ntoa`则相反，将网络字节序表示的`in_addr`结构转换为点分十进制字符串表示的ipv4 ip
 
+一对更好的函数是`inet_pton`和`inet_ntop`，这个对于ipv4和ipv6通用。以inet_pton为例：
 
+```c
+# 将string类型的十进制字符串表示的ip写成二进制的网络字节序作为server_address的sin_addr
+inet_pton(AF_INET, ip, &server_address.sin_addr);
+```
+
+##### 主机地址到网络地址
+
+计算机硬件有两种存储方式大端字节序和小端字节序，比如数值`0x1234`，用大端字节序表示符合人类习惯，就是`0x1234`，高位是`0x12`，低位是`0x34`，而用小端字节序的话，各个字节的顺序就要反过来，高位是`0x34`，低位是`0x12`。
+
+
+![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644291229/big-endian-little-endian-1.png)
+
+因为计算机电路先处理低位字节的效率比较高，所以计算机内部处理都是用的小端字节序，但是除了内部处理，其他场合比如网络传输、文件存储，还是使用的人类更容易理解的大端字节序。
+
+所以主机字节序采用小端字节序和网络字节序采用大端字节序，需要进行一个转换。
+
+转换函数如下：
+
+```c
+#include <arpa/inet.h>
+// 16/32位的主机字节序转换为网络字节序
+// 其实就是字节的高低位互换
+uint16_t htons(uint16_t hostlong)
+uint32_t htonl(uint32_t hostlong)
+// 16/32位的网络字节序转换为主机字节序
+uint16_t ntohs(uint16_t hostlong)
+uint32_t ntohs(uint32_t hostlong)
+```
+
+#### socket编程api
 
 ##### socket的创建
 
