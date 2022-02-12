@@ -20,7 +20,8 @@ tags: ["黑苹果", "折腾"]
 因为不玩大型游戏，所以最后选择了海淘一款官翻的precision 5510移动图形工作站，虽然买的价格不到国行新机的一半，但还是非常高。最后咬咬牙还是买了，事实证明这台precision 5510确实值这个价。
 
 <img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1550418842/precision5510.jpg" width=100%>
-<center> *图片来源：Amazon.com*</center>
+
+
 
 主要部件如下：
 

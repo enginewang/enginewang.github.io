@@ -12,7 +12,7 @@ tags: ["macOS"]
 
 多图预警！！！流量党请慎重
 
-### 科研篇
+# 科研篇
 
 ## Xmind
 
@@ -44,7 +44,7 @@ mac平台上最好用颜值最高的Latex编辑器，可以自动同步编译，
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872968/texpad-1.png)
 
-### 生活篇
+# 生活篇
 
 ## CleanMyMac X
 
@@ -146,7 +146,7 @@ Dropbox的历史文档自动存储救了我好几次，好用到哭泣。
 
 macOS下的最强虚拟机软件，不过说实话，真不建议用mac开虚拟机，太浪费了，有win需求的话建议再买一台win。
 
-### 程序猿篇
+# 程序猿篇
 
 ## Jetbrains全家桶
 
@@ -194,7 +194,7 @@ UML分析设计应用，画UML图还不错，虽然有些方面很糟心（比�
 
 
 
-### 命令行组件
+# 命令行组件
 
 ## HomeBrew（必装）
 
@@ -233,7 +233,7 @@ zsh进一步配置及美化可以上网搜寻一些文章，我用了一圈主�
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1551701105/yicheng.me%20Blog/Screen_Shot_2019-02-21_at_6.23.13_PM.png)
 
 
-### 设计狮篇
+# 设计狮篇
 
 ## Adobe全家桶
 

@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-02-08T17:27:19&#43;08:00</updated>
+    <updated>2022-02-12T21:12:38&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -1062,17 +1062,16 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">无线网络基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
             <id>https://yichengme.site/posts/wireless-network-basic/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-12T21:04:15&#43;08:00</updated>
             <published>2022-01-13T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">信息论 信息论基础 信息是事物运动状态或存在方式的不确定性的描述 通信系统形式上传递的就是信息，需求来源于： ① 需要告知某信息给对方 ② 需要接受某种信息。通信的结果就是消……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">信息论基础 信息是事物运动状态或存在方式的不确定性的描述 通信系统形式上传递的就是信息，需求来源于： ① 需要告知某信息给对方 ② 需要接受某种信息。通信的结果就是消除不确……</summary>
             
-                <content type="html">&lt;h3 id=&#34;信息论&#34;&gt;信息论&lt;/h3&gt;
-&lt;h2 id=&#34;信息论基础&#34;&gt;信息论基础&lt;/h2&gt;
+                <content type="html">&lt;h2 id=&#34;信息论基础&#34;&gt;信息论基础&lt;/h2&gt;
 &lt;p&gt;信息是事物运动状态或存在方式的不确定性的描述&lt;/p&gt;
 &lt;p&gt;通信系统形式上传递的就是信息，需求来源于：&lt;/p&gt;
 &lt;p&gt;① 需要告知某信息给对方&lt;/p&gt;
@@ -6595,7 +6594,7 @@ systemctl reload nginx.service
             <title type="text">mac软件推荐</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mac-software-recommend/" />
             <id>https://yichengme.site/posts/mac-software-recommend/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-12T21:04:34&#43;08:00</updated>
             <published>2019-11-10T15:38:07&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6607,7 +6606,7 @@ systemctl reload nginx.service
                 <content type="html">&lt;p&gt;注：以下软件或组件只是自我记录，因为是颜控，所以包含大量主观感情色彩&lt;/p&gt;
 &lt;p&gt;本篇不含软件资源，如果有需要建议去官网购买正版&lt;/p&gt;
 &lt;p&gt;多图预警！！！流量党请慎重&lt;/p&gt;
-&lt;h3 id=&#34;科研篇&#34;&gt;科研篇&lt;/h3&gt;
+&lt;h1 id=&#34;科研篇&#34;&gt;科研篇&lt;/h1&gt;
 &lt;h2 id=&#34;xmind&#34;&gt;Xmind&lt;/h2&gt;
 &lt;p&gt;最好用的思维导图软件，做出来的图很漂亮。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641893834/xmind-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -6623,7 +6622,7 @@ systemctl reload nginx.service
 &lt;h2 id=&#34;texpad&#34;&gt;Texpad&lt;/h2&gt;
 &lt;p&gt;mac平台上最好用颜值最高的Latex编辑器，可以自动同步编译，当然云端的Overleaf也不错（如果网好的话）&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641872968/texpad-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;生活篇&#34;&gt;生活篇&lt;/h3&gt;
+&lt;h1 id=&#34;生活篇&#34;&gt;生活篇&lt;/h1&gt;
 &lt;h2 id=&#34;cleanmymac-x&#34;&gt;CleanMyMac X&lt;/h2&gt;
 &lt;p&gt;界面极其优雅，功能强大的Mac清理软件&lt;/p&gt;
 &lt;p&gt;这个软件的易用性、外观和音效颠覆了我对清理类软件的看法，用起来很舒服，比win平台的某些流氓管家不知道高到哪里去了&lt;/p&gt;
@@ -6676,7 +6675,7 @@ systemctl reload nginx.service
 &lt;p&gt;都是很好用的视频下载器，可以下载很多网站的视频，比如Bilibili、Youtube等等&lt;/p&gt;
 &lt;h2 id=&#34;parallels-desktop&#34;&gt;Parallels Desktop&lt;/h2&gt;
 &lt;p&gt;macOS下的最强虚拟机软件，不过说实话，真不建议用mac开虚拟机，太浪费了，有win需求的话建议再买一台win。&lt;/p&gt;
-&lt;h3 id=&#34;程序猿篇&#34;&gt;程序猿篇&lt;/h3&gt;
+&lt;h1 id=&#34;程序猿篇&#34;&gt;程序猿篇&lt;/h1&gt;
 &lt;h2 id=&#34;jetbrains全家桶&#34;&gt;Jetbrains全家桶&lt;/h2&gt;
 &lt;p&gt;Pycharm、Idea、WEbstorm、Goland、Clion、Android Studio&lt;/p&gt;
 &lt;p&gt;（Jetbrains家的ide，用过的都说好）&lt;/p&gt;
@@ -6699,7 +6698,7 @@ systemctl reload nginx.service
 &lt;p&gt;大名鼎鼎的api调试神器，CRUD程序猿必备&lt;/p&gt;
 &lt;h2 id=&#34;iterm2&#34;&gt;iTerm2&lt;/h2&gt;
 &lt;p&gt;代替自带终端bash的神器，自定义很丰富。&lt;/p&gt;
-&lt;h3 id=&#34;命令行组件&#34;&gt;命令行组件&lt;/h3&gt;
+&lt;h1 id=&#34;命令行组件&#34;&gt;命令行组件&lt;/h1&gt;
 &lt;h2 id=&#34;homebrew必装&#34;&gt;HomeBrew（必装）&lt;/h2&gt;
 &lt;p&gt;Mac中类似linux的包管理工具，神器&lt;/p&gt;
 &lt;p&gt;安装Xcode命令行工具：&lt;code&gt;xcode-select --install&lt;/code&gt;
@@ -6720,7 +6719,7 @@ systemctl reload nginx.service
 &lt;p&gt;安装只需要&lt;code&gt;brew install neofetch&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用只需要输入&lt;code&gt;neofetch&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1551701105/yicheng.me%20Blog/Screen_Shot_2019-02-21_at_6.23.13_PM.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;设计狮篇&#34;&gt;设计狮篇&lt;/h3&gt;
+&lt;h1 id=&#34;设计狮篇&#34;&gt;设计狮篇&lt;/h1&gt;
 &lt;h2 id=&#34;adobe全家桶&#34;&gt;Adobe全家桶&lt;/h2&gt;
 &lt;p&gt;PS、Pr、Ae、Au、Ai...不解释了，接触设计、多媒体的应该都会用到Adobe家的软件，Adobe在Mac平台下有加成。（而office在Mac下就是被削了）&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1641819661/adobe-1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -6763,7 +6762,7 @@ systemctl reload nginx.service
             <title type="text">Precision5510 黑苹果使用体验</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/precision5510-hackintosh/" />
             <id>https://yichengme.site/posts/precision5510-hackintosh/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-12T21:01:13&#43;08:00</updated>
             <published>2019-09-05T14:33:07&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6779,7 +6778,6 @@ systemctl reload nginx.service
 &lt;p&gt;一台电脑，配置固然是核心，但对我这种强迫症而言，工业设计也是一个重要因素。于是最后决定在XPS 15或者precision 5510中选择，它们的模具是一样的，主要区别在于其显卡和定位，前者是搭载游戏显卡，定位是超极本；后者搭载图形显卡，定位是移动图形工作站。&lt;/p&gt;
 &lt;p&gt;因为不玩大型游戏，所以最后选择了海淘一款官翻的precision 5510移动图形工作站，虽然买的价格不到国行新机的一半，但还是非常高。最后咬咬牙还是买了，事实证明这台precision 5510确实值这个价。&lt;/p&gt;
 &lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1550418842/precision5510.jpg&#34; width=100%&gt;
-&lt;center&gt; *图片来源：Amazon.com*&lt;/center&gt;
 &lt;p&gt;主要部件如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
