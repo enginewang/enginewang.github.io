@@ -23,10 +23,257 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 12 Feb 2022 21:14:56 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 13 Feb 2022 14:53:25 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
+        
+            <item>
+                <title>Linux网络编程（三）高性能网络编程</title>
+                <link>https://yichengme.site/posts/linux-network-programming-3/</link>
+                <guid isPermaLink="true">https://yichengme.site/posts/linux-network-programming-3/</guid>
+                <pubDate>Sat, 12 Feb 2022 14:51:32 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;服务器模型&#34;&gt;服务器模型&lt;/h2&gt;
+&lt;h3 id=&#34;cs模型&#34;&gt;C/S模型&lt;/h3&gt;
+&lt;p&gt;即传统的Client/Server模型，客户端通过访问服务器来获取所需的资源。&lt;/p&gt;
+&lt;p&gt;串行效率非常低下，服务器需要同时保持多个客户端的监听和提供请求。&lt;/p&gt;
+&lt;p&gt;比如通过&lt;code&gt;select&lt;/code&gt;系统调用的C/S模型工作流：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644203796/linux-io-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;p2p模型&#34;&gt;P2P模型&lt;/h3&gt;
+&lt;p&gt;C/S模型的缺点在于，如果访问量非常大，服务器会受到比较高的压力，并且如果主服务器宕机会影响整个服务，当然通过分布式可以解决这些问题，另一种解决的模型是Peer to Peer点对点模型，这种网络中每个主机的地位是等同的，每台机器在消耗服务的同时也在为他人提供服务，既是客户端也是服务端。&lt;/p&gt;
+&lt;p&gt;当然需要有一台发现服务器，用于资源的发现，有些也可以提供内容，从而使得各个客户能够查找自己所需资源的位置。&lt;/p&gt;
+&lt;h2 id=&#34;服务器编程框架&#34;&gt;服务器编程框架&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644206009/linux-io-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;模块&lt;/th&gt;
+&lt;th&gt;单服务器&lt;/th&gt;
+&lt;th&gt;服务器集群&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;I/O处理单元&lt;/td&gt;
+&lt;td&gt;处理客户连接，读写网络数据&lt;/td&gt;
+&lt;td&gt;接入服务器，实现负载均衡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;逻辑单元&lt;/td&gt;
+&lt;td&gt;业务进程&lt;/td&gt;
+&lt;td&gt;逻辑服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;网络存储单元&lt;/td&gt;
+&lt;td&gt;本地数据库、文件、缓存&lt;/td&gt;
+&lt;td&gt;数据库服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;请求队列&lt;/td&gt;
+&lt;td&gt;单元之间的通信&lt;/td&gt;
+&lt;td&gt;服务器之间的通信&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;对于I/O来说，非阻塞I/O和I/O多路复用技术是高性能网络编程的常见技术，下面聊一聊非常重要的I/O模型。&lt;/p&gt;
+&lt;h2 id=&#34;阻塞io与非阻塞io&#34;&gt;阻塞I/O与非阻塞I/O&lt;/h2&gt;
+&lt;p&gt;I/O分为阻塞I/O和非阻塞I/O，socket在创建的时候默认是阻塞的，可以通过设置&lt;code&gt;SOCK_NONBLOCK&lt;/code&gt;或者系统调用&lt;code&gt;F_SETFL&lt;/code&gt;来将其设置为非阻塞的。&lt;/p&gt;
+&lt;h3 id=&#34;阻塞io&#34;&gt;阻塞I/O&lt;/h3&gt;
+&lt;p&gt;阻塞I/O没有完成时会被系统挂起，直到等待的事件完成。可能会被阻塞的系统调用包括&lt;code&gt;accept&lt;/code&gt;、&lt;code&gt;send&lt;/code&gt;、&lt;code&gt;recv&lt;/code&gt;、&lt;code&gt;connect&lt;/code&gt;等，也就是在发送请求后没有收到返回，那么请求就会挂起，直到收到确认报文后才会唤醒该调用。&lt;/p&gt;
+&lt;h3 id=&#34;非阻塞io&#34;&gt;非阻塞I/O&lt;/h3&gt;
+&lt;p&gt;非阻塞I/O则总是立即返回，而不管事件是否已经发生。如果没有立即发生就返回error，需要通过errno来区别是没接收到立即的返回还是出错。如果只是单纯的使用非阻塞I/O是没有意义的，直接得到结果但是无法真正处理事件，所以非阻塞I/O需要配合I/O通知机制一起使用，等事件就绪了再处理，I/O通知机制包括I/O复用和SIGIO信号。在后面会详细介绍。&lt;/p&gt;
+&lt;h2 id=&#34;同步io与异步io&#34;&gt;同步I/O与异步I/O&lt;/h2&gt;
+&lt;h3 id=&#34;同步io&#34;&gt;同步I/O&lt;/h3&gt;
+&lt;p&gt;同步I/O指的是I/O的读写操作都在I/O事件发生之后，应用程序完成。同步I/O需要由用户自己来执行I/O操作。向应用程序通知的是I/O就绪事件。&lt;/p&gt;
+&lt;p&gt;前面提到的阻塞I/O、I/O复用、SIGIO信号都是同步I/O&lt;/p&gt;
+&lt;h3 id=&#34;异步io&#34;&gt;异步I/O&lt;/h3&gt;
+&lt;p&gt;异步I/O用户可以直接执行I/O读写，读写操作总是立即返回，而不管I/O是否是阻塞的。异步I/O直接由内核执行I/O操作。向应用程序通知的是I/O完成事件。&lt;/p&gt;
+&lt;h2 id=&#34;事件处理模式&#34;&gt;事件处理模式&lt;/h2&gt;
+&lt;p&gt;高效的事件处理模式包括Reactor和Proactor，其中同步I/O主要实现Reactor，异步I/O主要实现Proactor。&lt;/p&gt;
+&lt;h3 id=&#34;reactor&#34;&gt;Reactor&lt;/h3&gt;
+&lt;p&gt;主线程只负责监听I/O处理单元上是否有事件发生，有的话就通知逻辑单元上的工作线程，剩下的都交给工作线程来完成。&lt;/p&gt;
+&lt;p&gt;工作流程如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644212725/linux-io-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;同步I/O实现的Reactor模型流程如下：
+（I/O复用以epoll为例）&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;主线程向epoll事件表中注册socket的读就绪事件&lt;/li&gt;
+&lt;li&gt;主线程调用epoll_wait等待socket上有数据可读&lt;/li&gt;
+&lt;li&gt;一旦socket上有数据可读，epool_wait就通知主线程，主线程将socket可读事件放入请求队列&lt;/li&gt;
+&lt;li&gt;在请求队列上睡眠的某个对应工作线程会唤醒，然后从socket中读取数据并处理客户请求，然后向epoll事件表注册socket的写就绪事件&lt;/li&gt;
+&lt;li&gt;主线程调用epoll_wait等待socket上有数据可写&lt;/li&gt;
+&lt;li&gt;一旦socket上有数据可写，epool_wait就通知主线程，主线程将socket可写事件放入请求队列&lt;/li&gt;
+&lt;li&gt;在请求队列上睡眠的某个对应工作线程会唤醒，然后从socket中写入用户请求的结果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于一次请求流程来说，是先读取socket上的用户请求的数据，然后写回结果到socket。实际上对于主线程来说read和write也没有本质区别，只需要通过判断事件类型然后放入请求队列唤醒对应的工作线程即可。&lt;/p&gt;
+&lt;h3 id=&#34;proactor&#34;&gt;Proactor&lt;/h3&gt;
+&lt;p&gt;Proactor模式下，所有的I/O操作都交给主线程和内核来处理，工作线程只负责业务逻辑。主线程epoll_wait只监听socket的连接请求事件，不能用于检测socket的读写，之后的I/O处理都交给内核。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644212725/linux-io-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;异步I/O实现Proactive的流程：&lt;/p&gt;
+&lt;p&gt;1、 主线程调用aio_read向内核注册socket的读完成事件，并告诉内核用户读缓冲区的位置和读操作完成时的通知应用程序的方式
+2. 主线程继续处理其他逻辑
+3. socket数据读入用户缓冲区后，内核向应用程序发送信号，通知数据可用
+4. 应用程序根据已经定义好的信号处理函数选择工作线程处理用户请求，工作线程处理完后调用aio_write向内核注册socket写完成事件，并告诉内核用户写缓冲区的位置和写操作完成时的通知应用程序的方式
+5. 主线程继续处理其他逻辑
+6. 用户缓冲区数据写入socket后，内核向应用程序发送信号，通知数据已发送完
+7. 应用程序根据已经定义好的信号处理函数选择一个工作线程做善后处理，如是否关闭socket&lt;/p&gt;
+&lt;h2 id=&#34;并发编程模式&#34;&gt;并发编程模式&lt;/h2&gt;
+&lt;h3 id=&#34;半同步半异步模式&#34;&gt;半同步/半异步模式&lt;/h3&gt;
+&lt;p&gt;这里和之前的同步异步I/O完全不同，这里的同步表示程序完全按照代码的顺序执行，异步表示程序执行需要由系统事件来驱动。&lt;/p&gt;
+&lt;p&gt;同步线程逻辑简单，但是效率低、实时性差
+异步线程执行效率高、实时性强，但是逻辑复杂、不适合大量的并发&lt;/p&gt;
+&lt;p&gt;同时使用同步线程和异步线程，就能既做到有较好的实时性，也能同时处理多个客户端的请求。&lt;/p&gt;
+&lt;p&gt;同步线程用来处理客户逻辑，异步线程用来处理I/O事件。异步线程监听到客户请求后，就封装为请求对象然后插入到请求队列中，请求队列会通知运行在同步模式的工作线程来处理这个请求。&lt;/p&gt;
+&lt;p&gt;一个用的多的变体实例是半同步/半反应堆模式，主线程为唯一的异步线程，监听socket上的事件：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644218925/linux-io-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;领导者追随者模式&#34;&gt;领导者/追随者模式&lt;/h3&gt;
+&lt;p&gt;多个工作线程轮流获得事件源集合，进行轮流监听、分发和处理事件。&lt;/p&gt;
+&lt;p&gt;同时只能有一个领导者线程来复杂监听I/O事件，其他的都是追随者，如果监听到了I/O事件，就先从追随者里选出新的领导者，此时新的领导者继续监听I/O事件，然后旧的领导者开始处理之前监听到的事件。&lt;/p&gt;
+&lt;p&gt;线程的状态转移：（Processing表示正在处理事件）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1644218925/linux-io-6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;高性能编程的一些其他手段&#34;&gt;高性能编程的一些其他手段&lt;/h2&gt;
+&lt;h3 id=&#34;池&#34;&gt;池&lt;/h3&gt;
+&lt;p&gt;相比于空间，响应时间对于大多数服务来说更重要，池（Pool）就是通过空间换时间。&lt;/p&gt;
+&lt;p&gt;池是一组资源的集合，服务器启动的时候就初始化好，完成静态资源分配，之后如果需要相关的资源可以直接从池中获取，而不需要重新创建，从而节约系统资源分配的时间。&lt;/p&gt;
+&lt;p&gt;初始化时无法确定具体需要多少资源，所以就分配足够多的资源。&lt;/p&gt;
+&lt;p&gt;根据不同的资源类型，池可以分为内存池、进程池、线程池、连接池。&lt;/p&gt;
+&lt;h3 id=&#34;数据复制&#34;&gt;数据复制&lt;/h3&gt;
+&lt;p&gt;高性能服务器需要避免不必要的复制，尤其是用户代码和内核之间的复制，比如ftp服务器不需要将文件读入到应用程序缓冲区然后调用send函数发送，而是直接可以通过调用sendfile从内核直接发送给客户端。&lt;/p&gt;
+&lt;h2 id=&#34;io复用&#34;&gt;I/O复用&lt;/h2&gt;
+&lt;p&gt;I/O复用是最常见的I/O通知机制，指的是应用程序通过I/O复用函数向内核注册一系列事件，内核通过I/O复用函数将就绪的事件返回给应用程序。&lt;/p&gt;
+&lt;p&gt;I/O复用使得程序可以同时监听多个文件描述符（包括socket、用户IO等），从而提高程序性能，比如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;同时处理多个socket&lt;/li&gt;
+&lt;li&gt;同时处理用户输入和网络连接（比如聊天室）&lt;/li&gt;
+&lt;li&gt;同时监听和连接socket（使用最多的场合）&lt;/li&gt;
+&lt;li&gt;同时处理TCP和UDP连接&lt;/li&gt;
+&lt;li&gt;同时监听多个端口&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;需要注意的是，I/O复用函数本身是阻塞的，多个文件描述符就绪时也只能串行处理，I/O复用依靠同时监听多个I/O事件来达到高效率。&lt;/p&gt;
+&lt;p&gt;如果还要实现多个就绪文件描述符的并发处理，就只能采用多进程或多线程并发，这个后面再讲。&lt;/p&gt;
+&lt;p&gt;Linux中最常见的I/O复用有select、poll和epoll。&lt;/p&gt;
+&lt;h3 id=&#34;select&#34;&gt;select&lt;/h3&gt;
+&lt;p&gt;I/O多路复用指的是一个线程处理多个IO流，也就是常说的selct/epoll机制。&lt;/p&gt;
+&lt;p&gt;可以把标准输入、套接字都看作I/O的一路，多路复用就是在任何一路有I/O事件的地方通知程序去处理相应的I/O事件。
+如果有标准输入，就直接从标准输入中读取数据，如果有套接字数据可以读，就直接读出数据。&lt;/p&gt;
+&lt;p&gt;select是常见的一个I/O多路复用机制，采用事件轮询机制，最大的缺点就是，支持的文件描述符的最大个数是1024个。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int select(int nfds, fd_set *readset, fd_set *writeset, fd_set *exceptset, const struct timeval *timeout)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;nfds：被监听的文件描述符的总数
+readset：读描述符集合
+writeset：写描述符集合
+exceptset：异常描述符集合
+timeout：select函数的超时时间&lt;/p&gt;
+&lt;p&gt;描述符集合的作用是通知内核哪些数据可以读/写/异常等，理解为一个0/1构成的向量。fd_set结构体是一个整型数组，每个bit标记一个文件描述符。&lt;/p&gt;
+&lt;p&gt;通过&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;FD_ZERO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fd_set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fdset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;　　　　　　
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;FD_SET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd_set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fdset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;　　
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;FD_CLR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd_set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fdset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;　　　
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;  &lt;span class=&#34;nf&#34;&gt;FD_ISSET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd_set&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fdset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这几个宏进行设置，其中&lt;code&gt;FD_ZERO&lt;/code&gt;会将向量的所有元素设为0，&lt;code&gt;FD_SET&lt;/code&gt;会将对应fd的元素位置设为1, &lt;code&gt;FD_CLR&lt;/code&gt;将对应fd的元素位置设为0,&lt;code&gt;FD_ISSET&lt;/code&gt;会查找fd是0还是1。0代表不处理，1代表要处理。&lt;/p&gt;
+&lt;p&gt;select的返回值：成功时返回就绪文件描述符综述，如果超时还没有任何一个就绪就返回0，失败则返回-1和errno。&lt;/p&gt;
+&lt;h3 id=&#34;poll&#34;&gt;poll&lt;/h3&gt;
+&lt;p&gt;poll和select类似，也是轮询一定数量的文件描述符，查看是否有就绪状态的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int poll(struct polld *fds, nfds_t nfds, int timeout)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;fds：pollfd结构的数组，包括文件描述符的可读可写异常等事件&lt;/p&gt;
+&lt;p&gt;相比于select将三种事件描述符集合都分开作为三个参数，poll的pollfd放入了全部的文件描述符和事件，被统一处理，从而使得编程更简洁，用户通过pollfd.events传入感兴趣的事件，内核通过修改pollfd.revents反馈就绪的事件。&lt;/p&gt;
+&lt;p&gt;返回值的含义和select一样，poll不是重点。&lt;/p&gt;
+&lt;h3 id=&#34;-epoll&#34;&gt;★ epoll&lt;/h3&gt;
+&lt;p&gt;epoll是Linux特有的I/O复用函数，在2.6的内核版本才引入，是目前Linux最优秀的多路复用机制，也是本篇的重点内容。&lt;/p&gt;
+&lt;p&gt;epoll相比于select的改进：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;没有1024个线程的限制&lt;/li&gt;
+&lt;li&gt;select采用轮询的方式，效率低下，epoll使用回调函数，效率更高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;epoll使用一组函数来完成任务，将各个文件描述符的事件统一放在一个事件表里，而不是向select或者poll那样每次调用都要重复传入文件描述符或者事件集。&lt;/p&gt;
+&lt;p&gt;不过epoll需要一个额外的文件描述符来标识内核中的事件表。&lt;/p&gt;
+&lt;p&gt;首先通过&lt;code&gt;epoll_create&lt;/code&gt;来创建这个文件描述符：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;epoll_create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;size是事件表的大小，返回的描述符将被用于其他所有epoll调用的第一个参数，从而能够定位这个事件表。&lt;/p&gt;
+&lt;p&gt;通过&lt;code&gt;epoll_ctl&lt;/code&gt;函数修改事件表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;n&#34;&gt;epoll_ctl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;epfd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;op&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;epoll_event&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;event&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中第一个参数就是&lt;code&gt;epoll_create&lt;/code&gt;返回的事件表的文件描述符，因为需要对于每个文件描述符绑定响应事件。&lt;/p&gt;
+&lt;p&gt;op有三种：
+&lt;code&gt;EPOLL_CTL_ADD&lt;/code&gt;：往事件表注册fd上的事件
+&lt;code&gt;EPOLL_CTL_MOD&lt;/code&gt;：修改fd上的注册事件
+&lt;code&gt;EPOLL_CTL_DEL&lt;/code&gt;：删除fd上的注册事件&lt;/p&gt;
+&lt;p&gt;fd就是要操作的文件描述符&lt;/p&gt;
+&lt;p&gt;event是指定的事件&lt;/p&gt;
+&lt;p&gt;epoll的核心调用接口是&lt;code&gt;epoll_wait&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;epoll_wait&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;epfd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;epoll_event&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;events&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;maxevents&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;它在一段时间之内等待一组文件描述符的事件，maxevent指最多监听的事件个数。&lt;/p&gt;
+&lt;p&gt;如果检测到事件，就将就绪的事件从epfd指定的事件表中复制到events指定的数组中。&lt;/p&gt;
+&lt;p&gt;和前面采用轮询机制的的select和poll相比，epoll采用回调机制，轮询的复杂度是$O(n)$，回调是$O(1)$，不过如果活动连接较多，&lt;code&gt;epoll_wait&lt;/code&gt;的回调函数触发过于频繁，造成性能下降。所以epoll适用于连接数较多但是活动连接较少的情况。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/">理论</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/linux/">Linux</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/tcp/ip/">TCP/IP</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Linux网络编程（二） socket网络编程基础</title>
