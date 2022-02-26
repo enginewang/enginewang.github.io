@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-02-23T23:50:41&#43;08:00</updated>
+    <updated>2022-02-27T00:34:58&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -16,6 +16,226 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
+        <entry>
+            <title type="text">Go并发（一）：并发的基本原理</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-1-introduction/" />
+            <id>https://yichengme.site/posts/go-concurrency-1-introduction/</id>
+            <updated>2022-02-27T00:34:54&#43;08:00</updated>
+            <published>2022-02-24T23:46:26&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">写在前面 Go的并发所涉及的内容化很多，预计会占用比较长的篇幅。等基本更新完成后会在此处放上所有文章的链接。 首先会从一些基本概念入手，之后会谈谈基本并发原语和go……</summary>
+            
+                <content type="html">&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+&lt;p&gt;Go的并发所涉及的内容化很多，预计会占用比较长的篇幅。等基本更新完成后会在此处放上所有文章的链接。&lt;/p&gt;
+&lt;p&gt;首先会从一些基本概念入手，之后会谈谈基本并发原语和go的并发原子操作，实际上就是尽量完整的剖析&lt;code&gt;sync&lt;/code&gt;这个包下的所有内容，会尽量附带着源码讲，这部分很值得研究。&lt;/p&gt;
+&lt;p&gt;接着是最重要的goroutine，以及channel、Context等内容，会提到一些进阶写法和容易错的点。&lt;/p&gt;
+&lt;p&gt;最后会尽量深入的讲一下底层的CSP模型、线程调度MPG模型等，从而对Go并发有更深入的理解。&lt;/p&gt;
+&lt;p&gt;参考资料来源于国内外的书籍、博客、课程、论坛等，主线参考鸟窝的Go并发编程实战课，在此基础上细化了知识点，并增加了自身对相关源码和实际使用的理解。&lt;/p&gt;
+&lt;h2 id=&#34;从并发谈起&#34;&gt;从并发谈起&lt;/h2&gt;
+&lt;h3 id=&#34;什么是并发&#34;&gt;什么是并发？&lt;/h3&gt;
+&lt;p&gt;并发（Concurrent）指的是在一个时间间隔内可以处理多个任务；与之相对的概念是顺序（Sequential），即多个任务只能按顺序完成。&lt;/p&gt;
+&lt;p&gt;另一个容易混淆的概念是并行（Parallel），并行指的是在一个时刻内可以同时处理多个事件；与之相对的概念是串行（Serial），指的是物理上只能一个一个任务的执行，一个瞬间最多只能有一个任务在执行。&lt;/p&gt;
+&lt;p&gt;并发：宏观同时，微观轮换
+并行：宏观微观都是同时进行&lt;/p&gt;
+&lt;p&gt;单核多线程：并发、串行
+多核多线程：并发、并行&lt;/p&gt;
+&lt;p&gt;Erlang 之父 Joe Armstrong画的一张排队使用咖啡机的场景生动的表示了并发与并行的区别。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-674f0d37fca4fac1bd2df28a2b78e633_720w.jpg?source=1940ef5c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;为什么要并发&#34;&gt;为什么要并发？&lt;/h3&gt;
+&lt;p&gt;并发可以有效的利用多个CPU核心，从而大大提高程序的执行效率。&lt;/p&gt;
+&lt;p&gt;并发程序可以更好地处理复杂业务，进行多任务拆分、简化任务调度、同步执行任务。&lt;/p&gt;
+&lt;p&gt;当然并发也会引入额外的复杂度和风险，可能会带来不一致、死锁、饥饿、安全性等问题，而且并发程序难以调试，可能会出现诡异的结果。&lt;/p&gt;
+&lt;h3 id=&#34;并发导致的数据竞争&#34;&gt;并发导致的数据竞争&lt;/h3&gt;
+&lt;p&gt;两个或多个goroutine在没有同步措施的情况下读写同一个共享资源时，会出现数据竞争的情况。无法知晓几个goroutine代码运行的先后顺序，从而导致可能产生多种结果。&lt;/p&gt;
+&lt;p&gt;举一个具体的例子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 2
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// 3
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;由于开启了一个并发的协程，完全不知道1会在2之前还是2-3之间还是3之后执行，所以输出也不确定。&lt;/p&gt;
+&lt;p&gt;如何解决这一问题？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设置等待时间（不推荐）&lt;/li&gt;
+&lt;li&gt;加锁&lt;/li&gt;
+&lt;li&gt;channel
+...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;操作的原子性&#34;&gt;操作的原子性&lt;/h3&gt;
+&lt;p&gt;如果一件事是原子的，那么我们说它就是并发安全的，Go有单独的包&lt;code&gt;sync/atomic&lt;/code&gt;包含了语言支持的原子操作。&lt;/p&gt;
+&lt;p&gt;将在后面单独写一篇来介绍Go并发原子操作，这里暂时跳过。&lt;/p&gt;
+&lt;h2 id=&#34;死锁活锁与饥饿&#34;&gt;死锁、活锁与饥饿&lt;/h2&gt;
+&lt;h3 id=&#34;死锁&#34;&gt;死锁&lt;/h3&gt;
+&lt;p&gt;死锁是并发中一个绕不开的话题，操作系统中学过导致死锁的四个条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;互斥条件&lt;/li&gt;
+&lt;li&gt;请求和保持条件&lt;/li&gt;
+&lt;li&gt;不剥夺条件&lt;/li&gt;
+&lt;li&gt;环路等待条件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;并发编程的时候很容易出现死锁的问题，看到这种报错信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;fatal&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;all&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;goroutines&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;are&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;asleep&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;deadlock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;活锁&#34;&gt;活锁&lt;/h3&gt;
+&lt;p&gt;陷入活锁的程序并不像死锁一样陷入绝境，而是一直在进行，但是这些操作无法向前推进程序的状态。&lt;/p&gt;
+&lt;p&gt;一个例子就是网络发送数据包遇到冲突，都等待一段时间重发，结果由一起冲突。&lt;/p&gt;
+&lt;p&gt;这就像两个礼貌的司机在狭窄的桥上相遇，他们都互相礼让都调头更换了另一座桥，结果又在另一座桥上相遇。&lt;/p&gt;
+&lt;h3 id=&#34;饥饿&#34;&gt;饥饿&lt;/h3&gt;
+&lt;p&gt;饥饿指的是一个可运行的进程尽管能继续执行，但是被调度器无限忽视，导致拿不到时间片来执行的情况。&lt;/p&gt;
+&lt;p&gt;并发进程无法获得执行工作所需的所有资源。往往是由于一些并发进程比较贪婪，每次都轮到贪婪进程优先获得资源，而其他的一些难以拿到资源的进程就会饥饿。&lt;/p&gt;
+&lt;h2 id=&#34;数据竞争的检测方法race&#34;&gt;数据竞争的检测方法：race&lt;/h2&gt;
+&lt;p&gt;多个goroutine同时操作共有的变量会发生各种意想不到的问题，可以通过&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;run&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;race&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xxx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;来查看可能的竞态检测。&lt;/p&gt;
+&lt;p&gt;就以前面的为例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}()&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果直接&lt;code&gt;go run&lt;/code&gt;，无法看出是否有数据竞争，但是通过&lt;code&gt;go run -race&lt;/code&gt;，就可以看到具体那几行出现了数据竞争：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;o&#34;&gt;==================&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;WARNING&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DATA&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;RACE&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Write&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;at&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0x00c00012e058&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;by&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;goroutine&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;func1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Users&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Administrator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dropbox&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GoProject&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Concurrency&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0x5a&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;Previous&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;read&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;at&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0x00c00012e058&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;by&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;goroutine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Users&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Administrator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dropbox&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GoProject&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Concurrency&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;12&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0x92&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;Goroutine&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;running&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;created&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;at&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+      &lt;span class=&#34;nx&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Users&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Administrator&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Dropbox&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;GoProject&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Concurrency&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;0x84&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;==================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;就说了第10行goroutine7的&lt;code&gt;data++&lt;/code&gt;和第12行main goroutine的&lt;code&gt;if data == 0&lt;/code&gt;出现了数据竞争的情况。而且说明了goroutine7是第9行启动的。&lt;/p&gt;
+&lt;p&gt;一般会在测试的时候使用&lt;code&gt;go -race&lt;/code&gt;进行数据竞争的检测，从而调整代码，尽量避免数据竞争的发生。&lt;/p&gt;
+&lt;p&gt;当然还有一个问题，因为是编译完之后才能通过具体地址检测的，即使某个地方可能会有冲突但是运行的时候没有表现出来，race也检测不到。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">浅谈深度学习模型的可解释性</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/talk-about-model-interpreter/" />
@@ -182,7 +402,7 @@ $$&lt;/p&gt;
             <title type="text">Docker基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-basics/" />
             <id>https://yichengme.site/posts/docker-basics/</id>
-            <updated>2022-02-23T23:44:50&#43;08:00</updated>
+            <updated>2022-02-26T23:48:25&#43;08:00</updated>
             <published>2022-02-19T17:27:34&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -593,7 +813,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -615,7 +835,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
             <title type="text">Linux网络编程（三）高性能网络编程</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-3/" />
             <id>https://yichengme.site/posts/linux-network-programming-3/</id>
-            <updated>2022-02-13T14:53:04&#43;08:00</updated>
+            <updated>2022-02-26T23:49:50&#43;08:00</updated>
             <published>2022-02-12T14:51:32&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -837,7 +1057,7 @@ timeout：select函数的超时时间&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -865,7 +1085,7 @@ timeout：select函数的超时时间&lt;/p&gt;
             <title type="text">Linux网络编程（二） socket网络编程基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-2/" />
             <id>https://yichengme.site/posts/linux-network-programming-2/</id>
-            <updated>2022-02-08T17:27:08&#43;08:00</updated>
+            <updated>2022-02-26T23:49:48&#43;08:00</updated>
             <published>2022-02-06T20:00:52&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1353,7 +1573,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -1381,7 +1601,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
             <title type="text">Linux网络编程（一） 从TCP/IP协议开始</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-1/" />
             <id>https://yichengme.site/posts/linux-network-programming-1/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:45&#43;08:00</updated>
             <published>2022-02-01T14:44:13&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1550,7 +1770,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -1578,7 +1798,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">RPC基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/rpc-basics/" />
             <id>https://yichengme.site/posts/rpc-basics/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:50:11&#43;08:00</updated>
             <published>2022-01-20T13:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1873,7 +2093,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -1907,7 +2127,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">无线网络基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
             <id>https://yichengme.site/posts/wireless-network-basic/</id>
-            <updated>2022-02-12T21:04:15&#43;08:00</updated>
+            <updated>2022-02-26T23:50:22&#43;08:00</updated>
             <published>2022-01-13T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2078,7 +2298,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -2100,7 +2320,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-5/" />
             <id>https://yichengme.site/posts/convex-5/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:20&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2490,7 +2710,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -2518,7 +2738,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（四）对偶</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-4/" />
             <id>https://yichengme.site/posts/convex-4/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:18&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2887,7 +3107,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -2915,7 +3135,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
             <title type="text">凸优化（三）凸优化问题</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-3/" />
             <id>https://yichengme.site/posts/convex-3/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:14&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3195,7 +3415,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -3223,7 +3443,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
             <id>https://yichengme.site/posts/convex-2/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:10&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3610,7 +3830,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -3638,7 +3858,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（一）绪论与凸集</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-1/" />
             <id>https://yichengme.site/posts/convex-1/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:07&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3966,7 +4186,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -4046,7 +4266,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
             <title type="text">分布式系统（二）：共识算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-2/" />
             <id>https://yichengme.site/posts/distribution-system-2/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:31&#43;08:00</updated>
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4307,7 +4527,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -4335,7 +4555,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
             <title type="text">分布式系统（一）：CAP及基础理论</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-1/" />
             <id>https://yichengme.site/posts/distribution-system-1/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:28&#43;08:00</updated>
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4530,7 +4750,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -5308,7 +5528,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             <title type="text">计算机系统结构</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/computer-system-structure-1/" />
             <id>https://yichengme.site/posts/computer-system-structure-1/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:49:02&#43;08:00</updated>
             <published>2020-06-04T15:05:09&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -5914,7 +6134,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -5936,7 +6156,7 @@ ALU等&lt;/p&gt;
             <title type="text">同济学生服务站小程序如何每日自动打卡</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/miniprogram-auto-checkin/" />
             <id>https://yichengme.site/posts/miniprogram-auto-checkin/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:50:03&#43;08:00</updated>
             <published>2020-05-10T18:44:36&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6122,7 +6342,7 @@ ALU等&lt;/p&gt;
             <title type="text">Mongodb初级教程</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mongodb-basics/" />
             <id>https://yichengme.site/posts/mongodb-basics/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:48:32&#43;08:00</updated>
             <published>2020-04-20T14:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6447,7 +6667,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     
@@ -6475,7 +6695,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
             <title type="text">Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
             <id>https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-26T23:48:40&#43;08:00</updated>
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6819,7 +7039,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%B7%A5%E7%A8%8B/" term="工程" label="工程" />
+                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
                             
                         
                     

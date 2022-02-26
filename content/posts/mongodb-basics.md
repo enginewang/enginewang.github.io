@@ -2,7 +2,7 @@
 title: "Mongodb初级教程"
 date: 2020-04-20T14:29:14+08:00
 draft: false
-categories: ["工程"]
+categories: ["开发"]
 tags: ["MongoDB", "Database"]
 ---
 

@@ -2,7 +2,7 @@
 title: "计算机系统结构"
 date: 2020-06-04T15:05:09+08:00
 draft: false
-categories: ["理论"]
+categories: ["开发"]
 tags: ["系统结构"]
 ---
 

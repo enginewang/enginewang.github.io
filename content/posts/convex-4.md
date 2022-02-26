@@ -2,7 +2,7 @@
 title: "凸优化（四）对偶"
 date: 2022-01-09T21:25:05+08:00
 draft: false
-categories: ["理论"]
+categories: ["算法"]
 tags: ["凸优化", "数学"]
 ---
 

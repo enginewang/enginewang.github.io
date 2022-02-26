@@ -2,7 +2,7 @@
 title: "无线网络基础"
 date: 2022-01-13T17:34:00+08:00
 draft: false
-categories: ["理论"]
+categories: ["算法"]
 tags: ["通信"]
 ---
 
