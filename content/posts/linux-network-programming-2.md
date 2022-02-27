@@ -2,7 +2,7 @@
 title: "Linux网络编程（二） socket网络编程基础"
 date: 2022-02-06T20:00:52+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Linux", "TCP/IP"]
 ---
 

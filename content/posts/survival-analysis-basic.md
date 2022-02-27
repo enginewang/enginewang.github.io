@@ -2,7 +2,7 @@
 title: "生存分析基础"
 date: 2020-12-23T15:23:00+08:00
 draft: false
-categories: ["算法"]
+categories: ["技术"]
 tags: ["生存分析", "统计学"]
 ---
 

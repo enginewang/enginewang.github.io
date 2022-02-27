@@ -2,7 +2,7 @@
 title: "凸优化（三）凸优化问题"
 date: 2022-01-06T21:25:05+08:00
 draft: false
-categories: ["算法"]
+categories: ["技术"]
 tags: ["凸优化", "数学"]
 ---
 

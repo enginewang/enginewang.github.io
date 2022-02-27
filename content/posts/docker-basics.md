@@ -2,7 +2,7 @@
 title: "Docker基础"
 date: 2022-02-19T17:27:34+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Docker"]
 ---
 

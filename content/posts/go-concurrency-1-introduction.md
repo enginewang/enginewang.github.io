@@ -2,7 +2,7 @@
 title: "Go并发（一）：并发的基本原理"
 date: 2022-02-24T23:46:26+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Golang", "并发"]
 ---
 

@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-02-27T14:17:40&#43;08:00</updated>
+    <updated>2022-02-27T15:22:08&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Go并发（一）：并发的基本原理</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-1-introduction/" />
             <id>https://yichengme.site/posts/go-concurrency-1-introduction/</id>
-            <updated>2022-02-27T00:34:54&#43;08:00</updated>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2022-02-24T23:46:26&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -212,7 +212,7 @@
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -240,7 +240,7 @@
             <title type="text">浅谈深度学习模型的可解释性</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/talk-about-model-interpreter/" />
             <id>https://yichengme.site/posts/talk-about-model-interpreter/</id>
-            <updated>2022-02-23T23:50:38&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-02-22T23:41:33&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -368,7 +368,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -402,7 +402,7 @@ $$&lt;/p&gt;
             <title type="text">Docker基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-basics/" />
             <id>https://yichengme.site/posts/docker-basics/</id>
-            <updated>2022-02-26T23:48:25&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2022-02-19T17:27:34&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -813,7 +813,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -835,7 +835,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
             <title type="text">Linux网络编程（三）高性能网络编程</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-3/" />
             <id>https://yichengme.site/posts/linux-network-programming-3/</id>
-            <updated>2022-02-26T23:49:50&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2022-02-12T14:51:32&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1057,7 +1057,7 @@ timeout：select函数的超时时间&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -1085,7 +1085,7 @@ timeout：select函数的超时时间&lt;/p&gt;
             <title type="text">Linux网络编程（二） socket网络编程基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-2/" />
             <id>https://yichengme.site/posts/linux-network-programming-2/</id>
-            <updated>2022-02-26T23:49:48&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2022-02-06T20:00:52&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1573,7 +1573,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -1601,7 +1601,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
             <title type="text">Linux网络编程（一） 从TCP/IP协议开始</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-1/" />
             <id>https://yichengme.site/posts/linux-network-programming-1/</id>
-            <updated>2022-02-26T23:49:45&#43;08:00</updated>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2022-02-01T14:44:13&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1770,7 +1770,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -1798,7 +1798,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">RPC基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/rpc-basics/" />
             <id>https://yichengme.site/posts/rpc-basics/</id>
-            <updated>2022-02-26T23:50:11&#43;08:00</updated>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2022-01-20T13:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2093,7 +2093,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2127,7 +2127,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">无线网络基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
             <id>https://yichengme.site/posts/wireless-network-basic/</id>
-            <updated>2022-02-26T23:50:22&#43;08:00</updated>
+            <updated>2022-02-27T15:21:54&#43;08:00</updated>
             <published>2022-01-13T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2298,7 +2298,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2320,7 +2320,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-5/" />
             <id>https://yichengme.site/posts/convex-5/</id>
-            <updated>2022-02-26T23:49:20&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -2710,7 +2710,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2738,7 +2738,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（四）对偶</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-4/" />
             <id>https://yichengme.site/posts/convex-4/</id>
-            <updated>2022-02-26T23:49:18&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3107,7 +3107,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3135,7 +3135,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
             <title type="text">凸优化（三）凸优化问题</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-3/" />
             <id>https://yichengme.site/posts/convex-3/</id>
-            <updated>2022-02-26T23:49:14&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3415,7 +3415,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3443,7 +3443,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
             <id>https://yichengme.site/posts/convex-2/</id>
-            <updated>2022-02-26T23:49:10&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3830,7 +3830,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3858,7 +3858,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（一）绪论与凸集</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-1/" />
             <id>https://yichengme.site/posts/convex-1/</id>
-            <updated>2022-02-26T23:49:07&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4186,7 +4186,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4266,7 +4266,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
             <title type="text">分布式系统（二）：共识算法</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-2/" />
             <id>https://yichengme.site/posts/distribution-system-2/</id>
-            <updated>2022-02-26T23:49:31&#43;08:00</updated>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4527,7 +4527,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4555,7 +4555,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
             <title type="text">分布式系统（一）：CAP及基础理论</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-1/" />
             <id>https://yichengme.site/posts/distribution-system-1/</id>
-            <updated>2022-02-26T23:49:28&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4750,7 +4750,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4772,7 +4772,7 @@ R + R &amp;gt; N：&lt;/p&gt;
             <title type="text">Google三驾马车（三）—— Bigtable</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/bigtable/" />
             <id>https://yichengme.site/posts/bigtable/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4948,7 +4948,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4982,7 +4982,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
             <title type="text">Google三驾马车（二）—— MapReduce</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mapreduce/" />
             <id>https://yichengme.site/posts/mapreduce/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-18T20:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -5115,7 +5115,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5149,7 +5149,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
             <title type="text">Google三驾马车（一）—— Google File System</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/gfs/" />
             <id>https://yichengme.site/posts/gfs/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-11T18:00:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -5301,7 +5301,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5332,10 +5332,1362 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
         </entry>
     
         <entry>
+            <title type="text">操作系统基础（四）文件IO</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-io/" />
+            <id>https://yichengme.site/posts/os-basics-io/</id>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
+            <published>2021-06-10T16:01:08&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">文件基本概念 文件是记录在外存上相关信息的具名集合，对于用户而言文件是逻辑外存最小的分配单位，文件是一组有意义信息的集合 在系统运行时，计算机以进程为基本单位进行资……</summary>
+            
+                <content type="html">&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645945891/os-io-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;文件基本概念&#34;&gt;文件基本概念&lt;/h2&gt;
+&lt;p&gt;文件是记录在外存上相关信息的具名集合，对于用户而言文件是逻辑外存最小的分配单位，文件是一组有意义信息的集合&lt;/p&gt;
+&lt;p&gt;在系统运行时，计算机以进程为基本单位进行资源的调度和分配，而在用户进行输入输出时，则以文件为基本单位。&lt;/p&gt;
+&lt;p&gt;需要系统提供一个文件管理系统来让用户管理文件，文件系统由一组文件和目录结构组成&lt;/p&gt;
+&lt;h3 id=&#34;文件属性&#34;&gt;文件属性&lt;/h3&gt;
+&lt;p&gt;文件名、标志符（唯一标签，用户不可读）、类型、位置、大小、保护信息、时间、日期和用户标识&lt;/p&gt;
+&lt;p&gt;文件属于抽象数据类型&lt;/p&gt;
+&lt;h3 id=&#34;文件基本操作&#34;&gt;文件基本操作&lt;/h3&gt;
+&lt;p&gt;（操作系统应该向上提供的文件操作功能）
+创建文件、写文件、读文件、在文件内重定位、删除文件（完全删除）、截短文件（删除内容不删属性）&lt;/p&gt;
+&lt;h3 id=&#34;文件的打开与关闭&#34;&gt;文件的打开与关闭&lt;/h3&gt;
+&lt;p&gt;要读一个文件首先要用open系统调用打开该文件，open中的参数包括文件路径名和文件名，&lt;/p&gt;
+&lt;p&gt;read只需要使用open返回的文件描述符，不使用文件名作为参数&lt;/p&gt;
+&lt;p&gt;每个打开文件有以下信息：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件指针&lt;/li&gt;
+&lt;li&gt;文件打开计数器&lt;/li&gt;
+&lt;li&gt;文件磁盘位置&lt;/li&gt;
+&lt;li&gt;访问权限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;文件的逻辑结构&#34;&gt;文件的逻辑结构&lt;/h3&gt;
+&lt;p&gt;文件的逻辑结构是&lt;strong&gt;从用户观点出发看到的文件内部的组织形式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;文件按照逻辑结构分为无结构文件（流式文件）和有结构文件（记录式文件）&lt;/p&gt;
+&lt;p&gt;无结构文件（流式文件）：以字节为单位&lt;/p&gt;
+&lt;p&gt;有结构文件（记录式文件）：分为顺序文件、索引文件、顺序索引文件、散列文件&lt;/p&gt;
+&lt;p&gt;文件的目录结构（文件之间的组织形式）
+文件存放在外存中（文件的物理结构）&lt;/p&gt;
+&lt;h3 id=&#34;访问方法&#34;&gt;访问方法&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;顺序访问&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;直接访问&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;目录结构&#34;&gt;目录结构&lt;/h3&gt;
+&lt;p&gt;引入&lt;strong&gt;文件控制块(FCB)&lt;/strong&gt; 这个数据结构&lt;/p&gt;
+&lt;p&gt;FCB包括基本信息、存取控制信息和使用信息&lt;/p&gt;
+&lt;p&gt;目录相关操作有：搜索文件、创建文件、删除文件、遍历目录、重命名文件、跟踪文件系统&lt;/p&gt;
+&lt;h3 id=&#34;保护&#34;&gt;保护&lt;/h3&gt;
+&lt;p&gt;信息需要被保护，不受物理损坏（可靠性）和非法访问（保护）&lt;/p&gt;
+&lt;p&gt;口令、存取控制和用户权限表都是常见的文件保护方法&lt;/p&gt;
+&lt;p&gt;可靠性通常靠文件备份来提供&lt;/p&gt;
+&lt;p&gt;访问类型：读、写、执行、添加、删除、列表清单&lt;/p&gt;
+&lt;p&gt;为每个文件添加一个访问控制列表（ACL）&lt;/p&gt;
+&lt;p&gt;加密保护和访问控制：加密保护安全性更高，访问控制灵活性更好。访问控制需要由系统实现来保证安全性&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645945891/os-io-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;错题归纳&#34;&gt;错题归纳&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;从用户的角度看，引入文件系统的目的是实现对文件的按名存取；从系统角度看，文件系统则负责对文件储存空间进行组织分配、负责文件储存并对存入的文件进行保护和检索&lt;/li&gt;
+&lt;li&gt;FCB的有序集合称为文件目录，一个FCB就是一个文件目录项&lt;/li&gt;
+&lt;li&gt;逻辑结构的组织形式取决于用户，物理结构的组织形式取决于储存介质特性&lt;/li&gt;
+&lt;li&gt;文件目录项（FCB）不包括FCB的物理位置&lt;/li&gt;
+&lt;li&gt;对一个访问的限制，常由用户访问权限和文件属性共同限制，与优先级无关&lt;/li&gt;
+&lt;li&gt;一个文件被用户首次打开的过程中，操作系统需要将文件控制块读到内存中，不是文件内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;文件系统实现&#34;&gt;文件系统实现&lt;/h2&gt;
+&lt;h3 id=&#34;文件系统层次结构&#34;&gt;文件系统层次结构&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645945891/os-io-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用户调用接口：给用户文件操控的接口&lt;/li&gt;
+&lt;li&gt;文件目录系统：管理文件目录&lt;/li&gt;
+&lt;li&gt;存取控制模块：实现文件保护&lt;/li&gt;
+&lt;li&gt;逻辑文件系统与文件信息缓冲区：根据逻辑结构将用户要读写的逻辑记录转换成文件逻辑结构内的相应块号&lt;/li&gt;
+&lt;li&gt;物理文件系统：把相应块号转成实际物理地址&lt;/li&gt;
+&lt;li&gt;辅助分配模块：管理辅存空间，辅存空间的分配和回收&lt;/li&gt;
+&lt;li&gt;设备管理模块：管理相关设备&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;单层结构目录、双层结构目录、树状结构目录、无环图目录（同一文件可以在不同目录中）、通用图目录&lt;/p&gt;
+&lt;p&gt;物理块是分配和传输的基本单位&lt;/p&gt;
+&lt;h3 id=&#34;目录实现&#34;&gt;目录实现&lt;/h3&gt;
+&lt;p&gt;线性链表、哈希表&lt;/p&gt;
+&lt;h3 id=&#34;外存分配方式&#34;&gt;外存分配方式&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;连续分配&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;每个文件在磁盘上占有一组连续的块&lt;/p&gt;
+&lt;p&gt;分配方式可以用第一块磁盘的地址和连续块数量来确定&lt;/p&gt;
+&lt;p&gt;优点：实现简单、存取速度快
+缺点：不方便动态增加，容易产生外部碎片&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;链接分配（隐式、显式）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以离散分配的方式，消除外部碎片&lt;/p&gt;
+&lt;p&gt;隐式：除最后一个块外，每个块都有一个指向下一个盘块的指针，目录包括第一个指针和最后一个指针&lt;/p&gt;
+&lt;p&gt;显式：显式地存放在内存的一张链接表中，文件分配表（File Allocation Table, FAT）&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;索引分配（一级、二级、多级）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;每个文件设置一个索引块，是一个磁盘块地址的数组&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645945891/os-io-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645945891/os-io-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;错题归纳-1&#34;&gt;错题归纳&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;文件储存空间的管理实质上是对外存空闲区的管理和组织&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;磁盘结构&#34;&gt;磁盘结构&lt;/h2&gt;
+&lt;p&gt;概念：磁盘由表面涂有磁性物质的圆形盘片组成，每个盘片被划成一个个磁道，每个磁道被划成一个个扇区&lt;/p&gt;
+&lt;p&gt;如何读写：磁头移动到目标位置，盘片旋转，对应扇区划过磁道，完成读写&lt;/p&gt;
+&lt;p&gt;磁盘的物理地址依靠柱面号、盘面号、扇区号来确定&lt;/p&gt;
+&lt;p&gt;磁盘分类：
+活动头磁盘、固定头磁盘
+可换盘磁盘、固定盘磁盘&lt;/p&gt;
+&lt;h3 id=&#34;磁盘调度算法&#34;&gt;磁盘调度算法&lt;/h3&gt;
+&lt;p&gt;一次读/写操作需要的时间包括
+寻找时间：读写之前磁头移动到磁道花费的时间，$T_S = T_{启动磁头臂} + m_{跨越一个磁道耗时}*n_{需要跨越的磁道数}$
+延迟时间：通过旋转磁盘让磁头定位到目标扇区所需要的时间，平均延迟时间$T_R = \frac{1}{2} * \frac{1}{r}$ (r为转速)
+传输时间：从磁盘读出或向磁盘写入数据所经历的时间，转速为r，读写的字节数b，每个磁道字节数N，传输时间$T_t = \frac{1}{r} * \frac{b}{N}$&lt;/p&gt;
+&lt;p&gt;延迟时间和传输时间是硬件决定的，操作系统只能通过调度算法优化寻找时间&lt;/p&gt;
+&lt;p&gt;磁盘调度算法：
+先来先服务（FCFS）：按顺序处理
+最短寻找时间（SSTF）：先处理离目前磁头最近的请求，贪心算法（局部最优不一定是全局最优），可能导致饥饿
+扫描算法（SCAN）：只有移动到最内侧磁道才能往外侧移动，只有移动到最外侧磁道才能往内侧移动
+LOOK调度算法：扫描算法的升级，在移动方向上没有请求了就可以改变方向
+循环扫描算法（C-SCAN）：扫描算法的变形，每次扫描的移动方向一样，扫到底了直接快速移到开头，中间不管，这样解决了SCAN算法两侧与中间不均的问题
+C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和最后面，只要有请求的最前面和最后面&lt;/p&gt;
+&lt;p&gt;题目里的SCAN都默认是对应的LOOK算法&lt;/p&gt;
+&lt;h3 id=&#34;减少&#34;&gt;减少&lt;/h3&gt;
+&lt;p&gt;交替编号
+错位命名&lt;/p&gt;
+&lt;h2 id=&#34;io管理&#34;&gt;I/O管理&lt;/h2&gt;
+&lt;h3 id=&#34;io设备分类&#34;&gt;I/O设备分类&lt;/h3&gt;
+&lt;p&gt;按照使用特性：
+人机交互外部设备：比如鼠标键盘（数据传输最慢）
+储存设备：比如移动硬盘（数据传输最快）
+网络通信设备：比如路由器&lt;/p&gt;
+&lt;p&gt;按照传输速率：
+低速设备、中速设备、高速设备&lt;/p&gt;
+&lt;p&gt;按照信息交换的单位：
+块设备（传输快、可以寻址）、字符设备（不可寻址，通常用中断驱动控制）&lt;/p&gt;
+&lt;h3 id=&#34;io控制方式&#34;&gt;I/O控制方式&lt;/h3&gt;
+&lt;p&gt;程序直接控制方式：CPU不断轮询检查是否设备就绪，简单，CPU利用率低&lt;/p&gt;
+&lt;p&gt;中断驱动方式：CPU先让IO进程阻塞，之后IO设备向CPU发出中断让其执行，CPU利用率提高，但频繁中断浪费CPU时间&lt;/p&gt;
+&lt;p&gt;DMA（直接存储器存取）方式：在IO与内存之间开辟新的数据通路，仅在开始和结束时才需要CPU干预，数据传输不需要经过CPU，可以传数据块&lt;/p&gt;
+&lt;p&gt;通道控制方式：可以看成专门处理IO的阉割版CPU，完成后才向CPU发送中断&lt;/p&gt;
+&lt;p&gt;上面四个方式从上往下CPU干预程度越来越低，CPU利用率越来越高&lt;/p&gt;
+&lt;h3 id=&#34;io子系统的层次结构&#34;&gt;I/O子系统的层次结构&lt;/h3&gt;
+&lt;p&gt;用户层I/O软件：比如库函数printf
+设备独立性软件
+设备驱动程序
+中断处理程序
+硬件设备&lt;/p&gt;
+&lt;p&gt;中间三层属于I/O核心子系统&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">操作系统基础（三）内存</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-memory/" />
+            <id>https://yichengme.site/posts/os-basics-memory/</id>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
+            <published>2021-05-27T19:45:04&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">基础 程序装入和链接 编译：编译程序将源代码编译成若干目标模块 链接：链接程序把各个目标模块，包括外部库函数链接在一起 装入：由装入程序将装入模块装入内存中运行 其中链接……</summary>
+            
+                <content type="html">&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
+&lt;h3 id=&#34;程序装入和链接&#34;&gt;程序装入和链接&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;编译：编译程序将源代码编译成若干目标模块&lt;/li&gt;
+&lt;li&gt;链接：链接程序把各个目标模块，包括外部库函数链接在一起&lt;/li&gt;
+&lt;li&gt;装入：由装入程序将装入模块装入内存中运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中链接分为三种：
+静态链接
+装入时动态链接：装入时边装入边链接
+运行时动态链接：执行时才链接&lt;/p&gt;
+&lt;p&gt;装入也分为三种：
+绝对（静态）装入：在编程阶段就把物理地址计算好
+可重定位装入：有一个逻辑地址到物理地址的映射，之后不能变
+动态重定位装入：运行时才转换，之后可以变&lt;/p&gt;
+&lt;h3 id=&#34;地址绑定&#34;&gt;地址绑定&lt;/h3&gt;
+&lt;p&gt;将指令和数据绑定到内存地址有三种情况：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编译时：生成绝对代码，编译时就知道了进程在内存中的驻留地址，所生成的编译代码就可以从该位置往后扩展（开始位置发生变化就要重新编译）&lt;/li&gt;
+&lt;li&gt;加载时：生成可重定位代码&lt;/li&gt;
+&lt;li&gt;执行时：绑定延迟到执行时才进行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;物理地址: 内存地址寄存器中的地址，又叫绝对地址、实地址&lt;/p&gt;
+&lt;p&gt;逻辑地址: CPU生成的地址，又叫相对地址、虚地址（用户程序在经过汇编后目标代码常用，把首地址设为0，后面是相对地址）&lt;/p&gt;
+&lt;p&gt;编译和加载时的地址绑定方法生成相同逻辑地址和物理地址，而执行时的地址绑定方案生成不同的逻辑和物理地址，这种情况通常称逻辑地址为虚拟地址&lt;/p&gt;
+&lt;p&gt;运行时从虚拟地址到物理地址的映射由&lt;strong&gt;内存管理单元&lt;/strong&gt;来完成&lt;/p&gt;
+&lt;h3 id=&#34;内存映射与保护&#34;&gt;内存映射与保护&lt;/h3&gt;
+&lt;p&gt;内存通常分为两个区域：用于驻留操作系统和用于用户进程&lt;/p&gt;
+&lt;p&gt;为输入队列中需要调入内存的进程分配内存空间，采用连续内存分配，每个进程位于一个连续的区域&lt;/p&gt;
+&lt;p&gt;逻辑地址通过界限地址寄存器（判断是否合理）、重定位寄存器（加一个基地址）映射到物理地址，定位到内存&lt;/p&gt;
+&lt;p&gt;内存保护：&lt;/p&gt;
+&lt;p&gt;（1）界地址保护&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设置地址上界寄存器、下界寄存器的地址检查机制&lt;/li&gt;
+&lt;li&gt;基址、限长寄存器和动态地址转换机构&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;CPU所能访问的存储器只有内存和CPU内的寄存器，因此执行指令以及指令使用的数据必须在这些可访问的存储设备中，否则就要在CPU使用前把数据移到内存中&lt;/p&gt;
+&lt;p&gt;确定进程只能访问其合法范围，通过基地址寄存器和界限地址寄存器可以做到：&lt;/p&gt;
+&lt;p&gt;基地址寄存器：a
+界限地址寄存器：b
+那么程序可以访问a~a+b的所有地址&lt;/p&gt;
+&lt;p&gt;寄存器 $\to$ cache $\to$ 内存 $\to$ 外存&lt;/p&gt;
+&lt;h3 id=&#34;交换&#34;&gt;交换&lt;/h3&gt;
+&lt;p&gt;进程可以暂时从内存中交换到辅存上（换出），需要再次执行时再调回内存中（换入）&lt;/p&gt;
+&lt;p&gt;处于阻塞或者优先级低，会被换出，优先级更改会被换入&lt;/p&gt;
+&lt;h2 id=&#34;连续内存分配&#34;&gt;连续内存分配&lt;/h2&gt;
+&lt;h3 id=&#34;内存分配&#34;&gt;内存分配&lt;/h3&gt;
+&lt;p&gt;单一连续分配：分为系统区用户区，简单但是只适用于单用户
+固定分区分配：用户空间划分好多个分区（分为大小均相同分区和大小不相同分区两种）
+动态分区分配：用户空间一开始不划分，而是在装入内存时根据进程大小动态建立分区&lt;/p&gt;
+&lt;p&gt;以下都是讨论动态分区（可变分区）：&lt;/p&gt;
+&lt;p&gt;从一组可用孔中选择一个合适的空闲孔的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首次适应：分配第一个足够大的孔（空闲分区链以地址递增顺序链接）&lt;/li&gt;
+&lt;li&gt;最佳适应：分配最小的足够大的孔（空闲分区链按长度递增顺序链接）&lt;/li&gt;
+&lt;li&gt;最差适应：分配最大的孔&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;首次适应被认为既是最简单的，也是最好最快，最佳和最差容易生成小碎片（不要被最佳的名字忽悠，这家伙性能很差，会产生最多的外部碎片）&lt;/p&gt;
+&lt;p&gt;分区式存储管理优缺点：
+优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;便于动态申请内存&lt;/li&gt;
+&lt;li&gt;便于共享内存&lt;/li&gt;
+&lt;li&gt;便于动态链接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;碎片问题，内存利用率不高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;碎片&#34;&gt;碎片&lt;/h3&gt;
+&lt;p&gt;内部碎片：固定分区方法会有内部碎片，程序所占空间小于分给它的空间，内部空间的间隙为内部碎片&lt;/p&gt;
+&lt;p&gt;外部碎片：动态分区随着进程装入和移出内存，空闲内存被分为小片段，中间产生的空隙为外部碎片，首次适应和最佳适应都会有这种外部碎片问题&lt;/p&gt;
+&lt;p&gt;解决外部碎片的方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;紧缩，仅在重定位是动态并在运行时可用，把所有的孔移到一段，开销较大（可重定位分区）&lt;/li&gt;
+&lt;li&gt;允许物理地址非连续，只要有物理内存就能为进程分配，有两种互补的实现技术：分页、分段、段页&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分页&#34;&gt;分页&lt;/h2&gt;
+&lt;p&gt;以上是连续内存分配管理方式，接下来的分页和分段是非连续内存分配管理方式
+连续分配方式，比如说一个需要1GB的程序，就必须要去内存找一块连续的1G空闲区间分配给它，而非连续分配方式可以分散地给这段程序分配内存空间&lt;/p&gt;
+&lt;p&gt;分页不会产生外部碎片，每个进程平均产生半个块大小的内部碎片（很小的）&lt;/p&gt;
+&lt;p&gt;把物理内存分为固定大小的块，称为帧，也叫物理块
+把逻辑内存分为同样大小的块，称为页&lt;/p&gt;
+&lt;p&gt;每个地址分为页号p和偏移d，前面的页号经过页表变成内存块号，后面的页内偏移直接对过去&lt;/p&gt;
+&lt;p&gt;页表：为每个进程建立一张页表，将进程的每一页离散地储存在内存的物理块中（页号→块号）&lt;/p&gt;
+&lt;p&gt;举个例子：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;32 - 12&lt;/th&gt;
+&lt;th&gt;11 - 0&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;页号P&lt;/td&gt;
+&lt;td&gt;偏移量W&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;说明总共有2&lt;sup&gt;20&lt;/sup&gt;页（也就是1M页），每页2&lt;sup&gt;12&lt;/sup&gt;大小（也就是4KB）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;采用分页技术不会产生外部碎片，但是会有内部碎片，产生的原因是进程所需内存不是页的整数倍，最后一页可能装不满最后一个帧（物理块），导致产生页内碎片&lt;/p&gt;
+&lt;p&gt;分页的一个重要特点是用户视角的内存和实际物理内存的分离，用户看到的是一整块内存用于一个进程，但实际的物理内存则是分散的，逻辑地址到物理地址的映射用户不知道。&lt;/p&gt;
+&lt;p&gt;用户进程不能访问该进程非占用的内存，即无法访问页表规定之外的内存&lt;/p&gt;
+&lt;p&gt;页表的初始地址放在寄存器中&lt;/p&gt;
+&lt;h3 id=&#34;快表&#34;&gt;快表&lt;/h3&gt;
+&lt;p&gt;快表（TLB）是一种高速缓冲寄存器，加速地址变换过程，通常采用TLB + 页表的形式&lt;/p&gt;
+&lt;p&gt;每次要访存两次，为了提高速度，加入TLB（快表），本质是一个cache，可以看成是页表的子集，里面不是连续存储&lt;/p&gt;
+&lt;p&gt;TLB由键和值组成，包括页表中的一小部分条目，逻辑地址的页号提交给TLB，如果命中那么直接得到帧号，否则就访问页表（TLB失效），同时把页号和帧号加入到TLB中&lt;/p&gt;
+&lt;p&gt;快表的有效性基于局部性原理&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;页号在TLB中被查找到的几率称为命中率，有效内存访问时间要按加权计算&lt;/p&gt;
+&lt;p&gt;保护：每个帧有相关联的保护位&lt;/p&gt;
+&lt;p&gt;共享页：可以共享公共代码&lt;/p&gt;
+&lt;p&gt;二级页表和多级页表：把页表再一步离散化，用页表再映射页表&lt;/p&gt;
+&lt;h2 id=&#34;分段&#34;&gt;分段&lt;/h2&gt;
+&lt;p&gt;支持用户视角的内存管理方案，逻辑地址空间由一组段组成，分段地址中的地址包括段号和段内偏移，用户通过段号和段内偏移来指定地址 &amp;lt;segment-number, offset&amp;gt;&lt;/p&gt;
+&lt;p&gt;为每个段分配一个连续的分区&lt;/p&gt;
+&lt;p&gt;段表可以把二维数组定位到一维物理地址，每个段在段表中占一个表项，记录了该段在内存中的起始地址和段的长度（防止越界），段内地址不能大于段长&lt;/p&gt;
+&lt;p&gt;段表示例：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;段号&lt;/th&gt;
+&lt;th&gt;段首地址&lt;/th&gt;
+&lt;th&gt;段长&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;50k&lt;/td&gt;
+&lt;td&gt;20k&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;100k&lt;/td&gt;
+&lt;td&gt;60k&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;硬件支持：一对寄存器（段表基址寄存器和段表长度寄存器）&lt;/p&gt;
+&lt;p&gt;也可以加快表，逻辑和页表类似&lt;/p&gt;
+&lt;h3 id=&#34;分页和分段的比较&#34;&gt;分页和分段的比较&lt;/h3&gt;
+&lt;p&gt;页是信息的物理单位，是出于系统管理的需要；
+页的大小固定且由系统确定，由硬件实现，系统中的页只能有一种大小；
+分页的作业地址空间是一维的&lt;/p&gt;
+&lt;p&gt;段是信息的逻辑单位，是出于用户的需要；
+段的长度不固定，取决于用户编写的程序的，通常由编译程序在对源程序进行编译时，根据信息的性质来划分；
+分段的作业地址空间是二维的，除了要给出段名还要给出段长&lt;/p&gt;
+&lt;h2 id=&#34;段页式&#34;&gt;段页式&lt;/h2&gt;
+&lt;p&gt;段号+段内页号+页内地址&lt;/p&gt;
+&lt;p&gt;首先被分为若干个逻辑段，每一段都有自己的段号，然后在里面分页&lt;/p&gt;
+&lt;p&gt;段页式中，一个进程对应一张段表，每个段对应一张页表&lt;/p&gt;
+&lt;p&gt;需要三次访问：第一次访问段表，第二次访问页表，第三次访问指令/数据的实际地址&lt;/p&gt;
+&lt;p&gt;段页式的地址空间是二维的&lt;/p&gt;
+&lt;p&gt;用分段方法来分配和管理用户地址空间，用分页方法来管理物理存储空间&lt;/p&gt;
+&lt;h2 id=&#34;tips&#34;&gt;Tips：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;链接完成重定位，形成逻辑地址，装载完成从逻辑地址到物理地址的变换&lt;/li&gt;
+&lt;li&gt;内存保护需要操作系统和硬件机构合作完成&lt;/li&gt;
+&lt;li&gt;固定分区、分页、段页都有内部碎片，不过分段没有内部碎片&lt;/li&gt;
+&lt;li&gt;页式管理划分的页面大小是相等的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h3&gt;
+&lt;p&gt;引入原因：暂时不运行和运行完的程序仍然占用内存&lt;/p&gt;
+&lt;p&gt;虚拟内存技术允许执行进程不必完全在内存中，程序可以比物理内存大，将用户逻辑内存与物理内存分开&lt;/p&gt;
+&lt;p&gt;虚拟存储器：具有请求调入和置换的功能，能从逻辑上对内存容量加以扩充的一种储存系统，其运行速度接近内存，成本又接近外存&lt;/p&gt;
+&lt;p&gt;虚拟内存特征：多次性、对换性、虚拟性&lt;/p&gt;
+&lt;h3 id=&#34;局部性原理&#34;&gt;局部性原理&lt;/h3&gt;
+&lt;p&gt;时间局部性原理：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;程序中的某一条指令一旦执行，不久以后该指令可能再次执行；某个数据被访问过，不久以后该数据可能再次被访问&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;空间局部性原理：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;某个储存单元被访问，不久之后其附近的储存单元也将被访问，一段时间内访问的地址可能集中在一定的范围内&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;虚拟内存的实现&#34;&gt;虚拟内存的实现&lt;/h3&gt;
+&lt;p&gt;请求分页储存管理
+请求分段储存管理
+请求段页式储存管理&lt;/p&gt;
+&lt;h3 id=&#34;请求分页管理方式&#34;&gt;请求分页管理方式&lt;/h3&gt;
+&lt;p&gt;页表机制扩充：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态位P&lt;/li&gt;
+&lt;li&gt;访问位A&lt;/li&gt;
+&lt;li&gt;修改位M&lt;/li&gt;
+&lt;li&gt;外存地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;缺页中断&#34;&gt;缺页中断&lt;/h2&gt;
+&lt;p&gt;在请求分页系统中，每当所要访问的页面不在内存时，就会产生缺页中断&lt;/p&gt;
+&lt;h2 id=&#34;页面置换算法&#34;&gt;页面置换算法&lt;/h2&gt;
+&lt;h3 id=&#34;1-最佳置换算法opt&#34;&gt;1. 最佳置换算法（OPT）&lt;/h3&gt;
+&lt;p&gt;选择的被淘汰的页面是之后最长时间内不再访问的，可以保证最低的缺页率，但是无法预知未来所以无法实现，可以拿来测量其他算法&lt;/p&gt;
+&lt;p&gt;谁最后访问，先换掉谁&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-先进先出算法fifo&#34;&gt;2. 先进先出算法（FIFO）&lt;/h3&gt;
+&lt;p&gt;优先淘汰最早进入内存的页面，因为不符合实际规律，用的比较少&lt;/p&gt;
+&lt;p&gt;谁呆的时间最长，先换掉谁&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;-3-最近最久未使用算法lru&#34;&gt;★ 3. 最近最久未使用算法（LRU）&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944931/os-memory-10.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;选择过程：
+第一行从后往前数n个（n是物理块数），跳过重复的，那个就是要被替换的&lt;/p&gt;
+&lt;p&gt;比如上面例子第八列的4，往前数3个 0→3→2（重复的0跳过了），那么就替换2
+第十列的3，往前数3个 2-&amp;gt;4-&amp;gt;0，就替换0&lt;/p&gt;
+&lt;h3 id=&#34;4-clock算法&#34;&gt;4. Clock算法&lt;/h3&gt;
+&lt;h2 id=&#34;页面分配策略&#34;&gt;页面分配策略&lt;/h2&gt;
+&lt;h3 id=&#34;驻留集大小&#34;&gt;驻留集大小&lt;/h3&gt;
+&lt;p&gt;驻留集大小确定方式：
+固定分配：给进程分配一定空间的物理块，后面不可变，即驻留集大小不变
+可变分配：给进程分配的物理块在运行期间可以改变
+局部置换：发生缺页时只能置换自己的物理块
+全局置换：可以置换自己的，也可以置换其他进程的&lt;/p&gt;
+&lt;p&gt;有三种组合方式：
+固定分区局部置换：初始分配固定数量，缺点是很难确定初始分多少
+可变分区全局置换：只要缺页就会获得新的物理块，确定是之后缺页率会增多
+可变分区局部置换：根据发生缺页的频率来动态改变进程的物理块&lt;/p&gt;
+&lt;h3 id=&#34;调入页面的时机&#34;&gt;调入页面的时机&lt;/h3&gt;
+&lt;p&gt;预调页策略：一次调入若干个相邻的页（根据局部性原理），不过成功率不高，一般是运行前采用
+请求调页策略：在缺页时调入，每次调一页，I/O开销大，一般是运行期间采用&lt;/p&gt;
+&lt;h3 id=&#34;从何处调入页面&#34;&gt;从何处调入页面&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;有足够的对换区空间：全部从对换区调入所需页面，进程运行之前把所有有关文件从文件区复制到对换区&lt;/li&gt;
+&lt;li&gt;没有足够的对换区空间：不会修改的文件直接从文件区调入，要修改的就得先去对换区&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;抖动&#34;&gt;抖动&lt;/h3&gt;
+&lt;p&gt;页面置换中最糟糕的情况：刚换出的页面马上又要换入主存，刚换入的页面马上又要换出，这种频繁的调度称为抖动或颠簸&lt;/p&gt;
+&lt;h2 id=&#34;tips-1&#34;&gt;Tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟内存的实现只能建立在离散分配的内存管理的基础上&lt;/li&gt;
+&lt;li&gt;虚拟内存技术是补充内存逻辑空间的技术&lt;/li&gt;
+&lt;li&gt;虚拟储存器理论逻辑上的最大容量由地址长度决定，实际上可能的最大容量为理论最大容量和内存外存和之中较小的那一个&lt;/li&gt;
+&lt;li&gt;所有的调度策略都不可能完全避免抖动&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">操作系统基础（二）进程与线程</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-thread/" />
+            <id>https://yichengme.site/posts/os-basics-thread/</id>
+            <updated>2022-02-27T15:21:45&#43;08:00</updated>
+            <published>2021-05-12T14:29:59&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">本部分主要包括四个模块：进程与线程的概念、处理机调度算法、进程同步和死锁问题 一、进程与线程 进程 进程是进程实体的运行过程。是系统进行资源分配和调度的一个独立单位。……</summary>
+            
+                <content type="html">&lt;p&gt;本部分主要包括四个模块：进程与线程的概念、处理机调度算法、进程同步和死锁问题&lt;/p&gt;
+&lt;h2 id=&#34;一进程与线程&#34;&gt;一、进程与线程&lt;/h2&gt;
+&lt;h3 id=&#34;进程&#34;&gt;进程&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-0.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进程是进程实体的运行过程。是系统进行资源分配和调度的一个独立单位。&lt;/p&gt;
+&lt;p&gt;进程包含运行时的所有信息，不仅仅包含程序代码，还包括当前活动，通过程序计数器和处理器寄存器的内容来表示；另外还经常包括堆栈端和数据段，还有可能包括堆&lt;/p&gt;
+&lt;p&gt;正文段：包括全局变量、常量等
+数据栈段：局部变量、传递的实参等
+数据堆段：被分配的内存
+PCB：进程自身的一些信息&lt;/p&gt;
+&lt;p&gt;程序不是进程，程序是被动实体，进程是活动实体，当一个可执行文件被装入内存时，一个程序才可能成为进程。同一个程序也可以通过创建副本而成为多个独立的进程&lt;/p&gt;
+&lt;p&gt;进程控制块 (Process Control Block, PCB) 描述进程的基本信息和运行状态，所谓的创建进程和撤销进程，都是指对 PCB 的操作。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PCB是进程存在的唯一标志，动态性是进程最基本的特征。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（下图显示了 4 个程序创建了 4 个进程，这 4 个进程可以并发地执行。）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进程是由多程序的并发执行而提出的，和程序是截然不同的概念，进程的特点如下：
+（了解即可）&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;动态性，有动态的地址空间，有生命周期（后面有图），动态产生、变化和消亡，最基本的特征&lt;/li&gt;
+&lt;li&gt;并发性，多个进程实体能在一段时间内同时运行，引入进程的目的就是为了并发&lt;/li&gt;
+&lt;li&gt;独立性，各进程地址空间相互独立&lt;/li&gt;
+&lt;li&gt;异步性，各进程按照各自独立、不可预知的速度向前推进&lt;/li&gt;
+&lt;li&gt;结构性，程序段、数据段、PCB&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;进程和程序的区别&#34;&gt;进程和程序的区别&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;程序是静态的，进程是动态的（算一个根本区别）&lt;/li&gt;
+&lt;li&gt;程序是有序代码的集合，进程是程序的执行&lt;/li&gt;
+&lt;li&gt;程序是永久的，进程是暂时的&lt;/li&gt;
+&lt;li&gt;进程包括程序、数据和PCB&lt;/li&gt;
+&lt;li&gt;通过多次执行，一个程序可以对应多个进程；通过调用关系，一个进程可以包括多个程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;进程状态的切换-&#34;&gt;进程状态的切换 ★&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最重要的一条是从就绪到运行&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;就绪状态：等待被调度，进程已经获得了除了处理机之外的一切所需资源&lt;/li&gt;
+&lt;li&gt;运行状态：进程正在处理机上运行，对于单CPU而言，同一时间运行的进程只能有一个&lt;/li&gt;
+&lt;li&gt;等待状态：等待资源或等待I/O，即使处理机空闲也无法运行&lt;/li&gt;
+&lt;li&gt;新的状态：进程正在被创建，尚未转化到运行状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;应该注意以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只有就绪态和运行态可以相互转换，其它的都是单向转换。就绪状态的进程通过调度算法从而获得 CPU 时间，转为运行状态；而运行状态的进程，在分配给它的 CPU 时间片用完之后就会转为就绪状态，等待下一次调度。&lt;/li&gt;
+&lt;li&gt;不能从等待直接到运行，因为在等I/O，给CPU也没有。不能从就绪到等待，因为就绪只缺CPU，别的都不缺，给了也没用。&lt;/li&gt;
+&lt;li&gt;等待状态是缺少需要的资源从而由运行状态转换而来，但是该资源不包括 CPU 时间，缺少 CPU 时间会从运行态转换为就绪态。&lt;/li&gt;
+&lt;li&gt;某个时间点上等待只能等一个资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;进程间通信&#34;&gt;进程间通信&lt;/h3&gt;
+&lt;p&gt;不和其他任何进程共享数据的进程是独立的，如果互相有意向那么该进程是协作的&lt;/p&gt;
+&lt;p&gt;有许多理由：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;信息共享&lt;/li&gt;
+&lt;li&gt;提高运算速度&lt;/li&gt;
+&lt;li&gt;模块化&lt;/li&gt;
+&lt;li&gt;方便&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;进程之间交换数据不能通过访问地址空间，因为进程各自的地址空间是私有的&lt;/p&gt;
+&lt;p&gt;PV操作是低级进程通信方式，高级进程通信方式包括：&lt;strong&gt;共享内存、消息传递、管道通信、共享文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;共享内存比消息传递快，它可以达到内存的速度，要求通信进程共享一些变量，进程通过使用这些变量来共享信息、主要由程序员提供通信，操作系统只需要提供共享呢内存；&lt;/p&gt;
+&lt;p&gt;消息传递更易于实现，适合交换少量的数据，不需要避免冲突，允许进程交换信息。提供通信的主要职责在于操作系统本身&lt;/p&gt;
+&lt;h3 id=&#34;进程控制块pcb&#34;&gt;进程控制块(PCB)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;进程状态：包括新的、就绪、运行、等待、停止&lt;/li&gt;
+&lt;li&gt;程序计数器：表示要执行的下一个指令的地址&lt;/li&gt;
+&lt;li&gt;CPU寄存器：包括很多东西，中断时要保存&lt;/li&gt;
+&lt;li&gt;CPU调度信息：包括进程优先级、调度队列指针和其他调度参数&lt;/li&gt;
+&lt;li&gt;内存管理信息：&lt;/li&gt;
+&lt;li&gt;记账信息：&lt;/li&gt;
+&lt;li&gt;I/O状态信息：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PCB块是进程的唯一标识，OS就是通过控制PCB来对并发执行的进程进行控制和管理的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;进程调度&#34;&gt;进程调度&lt;/h3&gt;
+&lt;p&gt;进程调度会选择一个可用的程序到CPU上执行&lt;/p&gt;
+&lt;h4 id=&#34;调度队列&#34;&gt;调度队列&lt;/h4&gt;
+&lt;p&gt;进程到系统后会进入作业队列，包括所有进程。等待运行的会进入到就绪队列。通常用链表表示&lt;/p&gt;
+&lt;h4 id=&#34;调度程序&#34;&gt;调度程序&lt;/h4&gt;
+&lt;p&gt;操作系统必须按某种方式从队列中选择进程，进程的选择是由相应的调度程序来执行的&lt;/p&gt;
+&lt;p&gt;短期调度程序
+长期调度程序&lt;/p&gt;
+&lt;h4 id=&#34;上下文切换&#34;&gt;上下文切换&lt;/h4&gt;
+&lt;p&gt;一个进程运行时，CPU中所有寄存器中的内容、进程的状态以及运行栈中的内容被称为进程的上下文（和PCB对应）&lt;/p&gt;
+&lt;p&gt;通过执行一个状态保存来&lt;strong&gt;保存&lt;/strong&gt;CPU当前状态，之后执行一个状态&lt;strong&gt;恢复&lt;/strong&gt;重新开始运行。将CPU切换到另一个进程需要保存当前状态并恢复另一个进程的状态，这一状态切换称为上下文切换。&lt;/p&gt;
+&lt;h3 id=&#34;进程控制&#34;&gt;进程控制&lt;/h3&gt;
+&lt;h4 id=&#34;进程的创建&#34;&gt;进程的创建&lt;/h4&gt;
+&lt;p&gt;允许一个进程创建另一个进程，创建者称为父进程，被创建的称为子进程，子进程可以获得父进程的所有资源，子进程结束会归还资源给父进程，父进程结束必须同时撤销子进程。&lt;/p&gt;
+&lt;p&gt;创建进程的过程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分配唯一的进程标志号(pid)&lt;/li&gt;
+&lt;li&gt;分配资源&lt;/li&gt;
+&lt;li&gt;初始化PCB&lt;/li&gt;
+&lt;li&gt;插入到就绪队列&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过fork()系统调用，可以创建新进程&lt;/p&gt;
+&lt;h4 id=&#34;进程的终止&#34;&gt;进程的终止&lt;/h4&gt;
+&lt;p&gt;包括正常结束和异常结束&lt;/p&gt;
+&lt;p&gt;终止进程的过程&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据pid搜索PCB，读出状态&lt;/li&gt;
+&lt;li&gt;立即终止&lt;/li&gt;
+&lt;li&gt;若还有子进程，一并终止&lt;/li&gt;
+&lt;li&gt;归还资源&lt;/li&gt;
+&lt;li&gt;把PCB从队列中删除&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果一个进程终止，那么它的所有子进程都终止。这种现象称为级联终止&lt;/p&gt;
+&lt;h4 id=&#34;进程的阻塞&#34;&gt;进程的阻塞&lt;/h4&gt;
+&lt;p&gt;自发的行为 block()&lt;/p&gt;
+&lt;h4 id=&#34;进程的唤醒&#34;&gt;进程的唤醒&lt;/h4&gt;
+&lt;p&gt;wakeup()&lt;/p&gt;
+&lt;h3 id=&#34;线程&#34;&gt;线程&lt;/h3&gt;
+&lt;p&gt;线程是CPU使用的基本单元，由线程ID、程序计数器、寄存器集合和栈组成，它与属于同一进程的其他线程共享代码段、数据段和其他操作系统资源&lt;/p&gt;
+&lt;p&gt;线程是独立调度的基本单位，引入线程的目的是为了简化进程间的通信，减小程序在并发执行时所付出的时间开销，提高操作系统的并发性&lt;/p&gt;
+&lt;p&gt;线程自己不拥有系统资源，只有一点点必要的运行资源，但是它可以和同一进程的其他线程一起共享进程拥有的全部资源&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;举个栗子：QQ和浏览器是两个进程，浏览器进程里面有很多线程，例如 HTTP 请求线程、事件响应线程、渲染线程等等，线程的并发执行使得在浏览器中点击一个新链接从而发起 HTTP 请求时，浏览器还可以响应用户的其它事件。&lt;/p&gt;
+&lt;p&gt;多线程编程的优点:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;响应度高&lt;/li&gt;
+&lt;li&gt;资源共享&lt;/li&gt;
+&lt;li&gt;经济&lt;/li&gt;
+&lt;li&gt;多处理器体系机构的利用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;多线程模型&#34;&gt;多线程模型&lt;/h4&gt;
+&lt;p&gt;有两种不同的方法来提供线程支持：用户层的用户线程和内核层的内核线程，二者有三种对应关系&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;多对一模型：多个用户线程映射到一个内核线程&lt;/li&gt;
+&lt;li&gt;一对一模型：有更好的并发功能，但是开销比较大&lt;/li&gt;
+&lt;li&gt;多对多模型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;线程池&#34;&gt;线程池&lt;/h4&gt;
+&lt;p&gt;为了解决创建线程时间和丢弃，以及没有限制线程数量可能会导致资源用尽的问题，产生了线程池的解决方法&lt;/p&gt;
+&lt;p&gt;线程池会在进程开始时创建一定数量的线程，并放入池中来等待，服务器每次收到请求就会唤醒池中的一个线程，线程完成了任务又会返回池中。如果池中没有可用线程，服务器会等待。&lt;/p&gt;
+&lt;p&gt;优点：
+使用现有线程比创建新线程快
+限制了数量，不会耗尽资源&lt;/p&gt;
+&lt;h4 id=&#34;线程库&#34;&gt;线程库&lt;/h4&gt;
+&lt;p&gt;线程库为程序员提供创建和管理线程的api&lt;/p&gt;
+&lt;p&gt;Pthread
+Win32
+Java&lt;/p&gt;
+&lt;h4 id=&#34;多线程问题&#34;&gt;多线程问题&lt;/h4&gt;
+&lt;p&gt;fork()和exec()&lt;/p&gt;
+&lt;p&gt;取消：异步取消、延迟取消&lt;/p&gt;
+&lt;h3 id=&#34;进程与线程的区别&#34;&gt;进程与线程的区别&lt;/h3&gt;
+&lt;h4 id=&#34;资源方面&#34;&gt;资源方面&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;进程是资源分配的基本单位&lt;/strong&gt;，但是线程不拥有资源，线程可以访问隶属进程的资源，线程没有自己独立的地址空间。&lt;/p&gt;
+&lt;h4 id=&#34;调度方面&#34;&gt;调度方面&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;线程是独立调度的基本单位&lt;/strong&gt;，在同一进程中，线程的切换不会引起进程切换，从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换。&lt;/p&gt;
+&lt;h4 id=&#34;系统开销&#34;&gt;系统开销&lt;/h4&gt;
+&lt;p&gt;由于创建或撤销进程时，系统都要为之分配或回收资源，如内存空间、I/O 设备等，所付出的开销远大于创建或撤销线程时的开销。类似地，在进行进程切换时，涉及当前执行进程 CPU 环境的保存及新调度进程 CPU 环境的设置，而线程切换时只需保存和设置少量寄存器内容，开销很小。&lt;/p&gt;
+&lt;h4 id=&#34;通信方面&#34;&gt;通信方面&lt;/h4&gt;
+&lt;p&gt;线程间可以通过直接读写同一进程中的数据进行通信，但是进程通信需要借助 IPC。&lt;/p&gt;
+&lt;h4 id=&#34;并发性&#34;&gt;并发性&lt;/h4&gt;
+&lt;p&gt;一个进程间的多个线程可以并发&lt;/p&gt;
+&lt;h3 id=&#34;tips&#34;&gt;Tips&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个进程被不同的地方调用，会形成不同的进程&lt;/li&gt;
+&lt;li&gt;同一个线程可以被多个进程调用，线程还是同一个&lt;/li&gt;
+&lt;li&gt;对进程的管理和控制是通过执行各种原语来实现的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;二处理机调度&#34;&gt;二、处理机调度&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;单处理器系统，每次只允许一个进程运行，这个效率啊，efficiency。&lt;/p&gt;
+&lt;p&gt;每当CPU空闲时，操作系统就必须从就绪队列中选择一个进程来执行，由短期调度程序或者CPU调度来执行。调度程序从内存中选择一个能够执行的进程并为之分配CPU&lt;/p&gt;
+&lt;p&gt;就绪队列可实现为FIFO队列、优先队列、树或者简单的无序链表&lt;/p&gt;
+&lt;p&gt;CPU调度决策可在如下四种环境下发生：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进程从运行切换到等待（I/O请求、调用wait等）&lt;/li&gt;
+&lt;li&gt;从运行切换到就绪（出现中断）&lt;/li&gt;
+&lt;li&gt;从等待切换到就绪（I/O完成）&lt;/li&gt;
+&lt;li&gt;终止&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;1、4的情况下，调度方式是非抢占的，2、3是抢占的&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;调度的层级：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;作业调度：给作业获得竞争处理机的机会&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;中级调度：内存调度，提高内存利用率和系统吞吐量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进程调度：低级调度，从就绪队列选进程分配处理机&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;进程调度方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;剥夺调度：有另一个优先级高的进程进入，立即调度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;非剥夺调度：等一个进程介绍才会调度，不抢&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调度准则&#34;&gt;调度准则&lt;/h3&gt;
+&lt;p&gt;用于比较的特征准则有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU使用率&lt;/li&gt;
+&lt;li&gt;吞吐量：一个单位时间内完成进程的数量&lt;/li&gt;
+&lt;li&gt;周转时间：从进程提交到进程完成的时间称为周转时间&lt;/li&gt;
+&lt;li&gt;平均周转时间：多个作业周转时间平均值&lt;/li&gt;
+&lt;li&gt;带权周转时间：周转时间/运行时间&lt;/li&gt;
+&lt;li&gt;平均带权周转时间：多个作业带权周转时间的平均值&lt;/li&gt;
+&lt;li&gt;等待时间：为最就绪队列中等待所花的时间，调度算法不影响进程运行时间，只影响在队列中的等待时间&lt;/li&gt;
+&lt;li&gt;响应时间：从提交请求到响应请求的时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调度算法&#34;&gt;调度算法&lt;/h3&gt;
+&lt;p&gt;CPU调度是多道程序操作系统的基础，通过在进程之间切换CPU，操作系统可以提高计算机的吞吐率。&lt;/p&gt;
+&lt;p&gt;不同环境的调度算法目标不同，因此需要针对不同环境来讨论调度算法。&lt;/p&gt;
+&lt;p&gt;几个概念：
+&lt;strong&gt;周转时间&lt;/strong&gt;：最后完成的时刻-刚进来的时刻，即包括等待时间与运行时间
+&lt;strong&gt;带权周转时间&lt;/strong&gt;：周转时间/进程运行时间
+&lt;strong&gt;响应比&lt;/strong&gt;：（等待时间+要求服务时间）/ 要求服务时间&lt;/p&gt;
+&lt;h4 id=&#34;1-批处理系统&#34;&gt;1. 批处理系统&lt;/h4&gt;
+&lt;p&gt;批处理系统没有太多的用户操作，在该系统中，调度算法目标是保证吞吐量和周转时间（从提交到终止的时间）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.1 先来先服务 first-come first-serverd（FCFS）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按照请求的顺序进行调度。&lt;/p&gt;
+&lt;p&gt;用FIFO队列就可以实现&lt;/p&gt;
+&lt;p&gt;有利于长作业，但不利于短作业，因为短作业必须一直等待前面的长作业执行完毕才能执行，而长作业又需要执行很长时间，造成了短作业等待时间过长。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.2 短作业优先 shortest job first（SJF）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按估计运行时间最短的顺序进行调度。&lt;/p&gt;
+&lt;p&gt;SJF算法调度理论上确实是最佳的，但问题在于如何知道下一个CPU区间的长度&lt;/p&gt;
+&lt;p&gt;长作业有可能会饿死，处于一直等待短作业执行完毕的状态。因为如果一直有短作业到来，那么长作业永远得不到调度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.3 最短剩余时间优先 shortest remaining time next（SRTN）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按估计剩余时间最短的顺序进行调度。&lt;/p&gt;
+&lt;h4 id=&#34;2-交互式系统&#34;&gt;2. 交互式系统&lt;/h4&gt;
+&lt;p&gt;交互式系统有大量的用户交互操作，在该系统中调度算法的目标是快速地进行响应。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.1 时间片轮转&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将所有就绪进程按 FCFS 的原则排成一个队列，每次调度时，把 CPU 时间分配给队首进程，该进程可以执行一个时间片。当时间片用完时，由计时器发出时钟中断，调度程序便停止该进程的执行，并将它送往就绪队列的末尾，同时继续把 CPU 时间分配给队首的进程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;时间片轮转算法是为了多个用户能及时干预系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;时间片轮转算法的效率和时间片的大小有很大关系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因为进程切换都要保存进程的信息并且载入新进程的信息，如果时间片太小，会导致进程切换得太频繁，在进程切换上就会花过多时间。&lt;/li&gt;
+&lt;li&gt;而如果时间片过长，那么实时性就不能得到保证。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.2 优先级调度&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;为每个进程分配一个优先级，按优先级进行调度。&lt;/p&gt;
+&lt;p&gt;为了防止低优先级的进程永远等不到调度，可以随着时间的推移增加等待进程的优先级。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.3 多级反馈队列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一个进程需要执行 100 个时间片，如果采用时间片轮转调度算法，那么需要交换 100 次。&lt;/p&gt;
+&lt;p&gt;多级队列是为这种需要连续执行多个时间片的进程考虑，它设置了多个队列，每个队列时间片大小都不同，例如 1,2,4,8,..。进程在第一个队列没执行完，就会被移到下一个队列。这种方式下，之前的进程只需要交换 7 次。&lt;/p&gt;
+&lt;p&gt;每个队列优先权也不同，最上面的优先权最高。因此只有上一个队列没有进程在排队，才能调度当前队列上的进程。&lt;/p&gt;
+&lt;p&gt;可以将这种调度算法看成是时间片轮转调度算法和优先级调度算法的结合。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;3-实时系统&#34;&gt;3. 实时系统&lt;/h4&gt;
+&lt;p&gt;实时系统要求一个请求在一个确定时间内得到响应。&lt;/p&gt;
+&lt;p&gt;分为硬实时和软实时，前者必须满足绝对的截止时间，后者可以容忍一定的超时。&lt;/p&gt;
+&lt;h3 id=&#34;tips-1&#34;&gt;Tips&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;考虑到系统资源利用率，要选择让I/O繁忙型作业有更高的优先级&lt;/li&gt;
+&lt;li&gt;作业和进程的区别，作业由用户提交、以用户任务为单位，进程由系统自动生成、以操作系统控制为单位&lt;/li&gt;
+&lt;li&gt;分时操作系统采用时间片轮转调度算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;三进程同步&#34;&gt;三、进程同步&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;%C2%B5https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944201/os-thread-6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;同步与互斥&#34;&gt;同步与互斥&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;：直接相互制约同步&lt;/p&gt;
+&lt;p&gt;进程之间的合作，比如A进程向B进程提供数据，多个进程会按一定顺序执行；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;互斥&lt;/strong&gt;：间接相互制约&lt;/p&gt;
+&lt;p&gt;源于资源共享，几个进程抢相同的资源，多个进程在同一时刻只有一个进程能进入临界区。&lt;/p&gt;
+&lt;p&gt;互斥可能会出现两种情况：
+饥饿：拥有其他所有资源却得不到CPU的就绪进程
+死锁：进程之间相互等待对方资源却无法得到，陷入永远的阻塞&lt;/p&gt;
+&lt;p&gt;进程互斥实际上是进程同步的一种特殊情况，可以认为是逐次使用互斥资源&lt;/p&gt;
+&lt;h3 id=&#34;临界资源和临界区&#34;&gt;临界资源和临界区&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;临界资源&lt;/strong&gt; ：一次仅允许一个进程使用的资源，比如说硬件资源打印机什么的，一些非硬件资源比如一些变量、数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;临界区&lt;/strong&gt; ：对临界资源进行访问的那段代码称为临界区&lt;/p&gt;
+&lt;p&gt;不论是硬件临界资源还是软件临界资源，多个进程必须互斥地对它们进行访问&lt;/p&gt;
+&lt;p&gt;把临界资源的访问分为四个部分：进入区、临界区、退出区、剩余区&lt;/p&gt;
+&lt;p&gt;为了互斥访问临界资源，每个进程在进入临界区之前，需要先进行检查，看是否正在被访问，如果未被访问就可以进入临界区，并设置它正在被访问的标志。在进入临界区之前执行的这段代码称为进入区。&lt;/p&gt;
+&lt;p&gt;在出来之前也要运行一段代码，把访问标志清除，这段代码称为退出区。&lt;/p&gt;
+&lt;p&gt;进入区和退出区起到互斥保护临界区的作用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;entry&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 进入区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;critical&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 临界区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 退出区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;remainer&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 剩余区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;临界区不是原语的，中途可以出现中断等（反正其他的还是进不来）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;同步机制的原则：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;空闲让进&lt;/li&gt;
+&lt;li&gt;忙则等待&lt;/li&gt;
+&lt;li&gt;有限等待&lt;/li&gt;
+&lt;li&gt;让权等待&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;信号量&#34;&gt;信号量&lt;/h3&gt;
+&lt;p&gt;信号量（Semaphore）是一个整型变量，可以对其执行wait和signal操作，也就是常见的 P 和 V 操作。&lt;/p&gt;
+&lt;p&gt;wait是P（申请资源），signal是V（释放资源）&lt;/p&gt;
+&lt;p&gt;S.value的初值就代表资源的数目，如果S.value &amp;lt; 0，那么其绝对值表示阻塞的进程的个数&lt;/p&gt;
+&lt;h4 id=&#34;整型信号量&#34;&gt;整型信号量&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;P&lt;/strong&gt; ：如果信号量S大于 0 ，执行 -1 操作；如果信号量等于 0，进程睡眠，等待信号量大于 0；
+&lt;strong&gt;V&lt;/strong&gt; ：对信号量S执行 +1 操作，唤醒睡眠的进程让其完成 down 操作。&lt;/p&gt;
+&lt;p&gt;P V操作需要被设计成原语，不可分割，通常的做法是在执行这些操作的时候屏蔽中断。&lt;/p&gt;
+&lt;p&gt;缺点是在S&amp;lt;=0时，会出现”忙等”，没有遵循让权等待&lt;/p&gt;
+&lt;h4 id=&#34;记录型信号量&#34;&gt;记录型信号量&lt;/h4&gt;
+&lt;p&gt;再增加一个进程链表，链接上述的等待进程
+P V操作修改为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 请求一个资源
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 如果资源没了，就调用block阻塞掉，插入到信号量链表S.L中
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 释放一个资源
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wakeup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;L&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 如果释放掉后还是堵着的，那么唤醒一个堵着的资源
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;//（如果释放掉后不堵了，前一步也是0，说明链表原本就没有东西，所以不存在wakeup）
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实现前驱关系&lt;/strong&gt;：比如S1结束才能执行S2，可以设置一个信号量a，初始值为0，S1中V(a)，S2中P(a)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实现互斥关系&lt;/strong&gt;：比如S1和S2互斥，可以设置一个信号量a，初始值为1，S1、S2都用P(a) V(a)夹紧中间过程&lt;/p&gt;
+&lt;p&gt;如果信号量的取值只能为 0 或者 1，那么就成为了  &lt;strong&gt;互斥量（Mutex）&lt;/strong&gt; ，0 表示临界区已经加锁，1 表示临界区解锁。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;P1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// 临界区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;P2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// 临界区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;实现同步互斥&#34;&gt;实现同步互斥&lt;/h3&gt;
+&lt;h4 id=&#34;软件实现petersons-algotithm&#34;&gt;软件实现：Peterson&#39;s Algotithm&lt;/h4&gt;
+&lt;p&gt;flag表示有这个意愿，turn表示把回合让给谁，这是一个很谦让的算法，进程i要来先打个招呼，说我有执行的打算，然后把回合让给进程j，如果j没打算，那么i直接进去，进去之后，j如果再进来，直接把回合又给了i，j达到了while等待条件，只能等着i的执行完之后，j再进去&lt;/p&gt;
+&lt;p&gt;P[i]进程&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;turn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;turn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// j正在访问临界区，i等着
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;critical&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;remainder&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;P[j]进程&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;turn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;turn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;critical&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;flag&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;remainer&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;典型问题生产者-消费者问题&#34;&gt;典型问题：生产者-消费者问题&lt;/h3&gt;
+&lt;p&gt;这是一个非常重要而典型的问题，进程同步60%以上的题目都是生产者消费者的改编&lt;/p&gt;
+&lt;p&gt;问题描述：有一群生产者进程在生产产品，并将这些产品提供给消费者进程去进行消费。使用一个缓冲区来保存物品，只有缓冲区没有满，生产者才可以放入物品；只有缓冲区不为空，消费者才可以拿走物品。&lt;/p&gt;
+&lt;p&gt;因为缓冲区属于临界资源，因此需要使用一个互斥量 mutex 来控制对缓冲区的互斥访问。（缓冲区用循环队列就可以模拟）&lt;/p&gt;
+&lt;p&gt;为了同步生产者和消费者的行为，需要记录缓冲区中物品的数量。数量可以使用信号量来进行统计，这里需要使用两个信号量：empty 记录空缓冲区的数量，full 记录满缓冲区的数量。其中，empty 信号量是在生产者进程中使用，当 empty 不为 0 时，生产者才可以放入物品；full 信号量是在消费者进程中使用，当 full 信号量不为 0 时，消费者才可以取走物品。&lt;/p&gt;
+&lt;p&gt;注意，不能先对缓冲区进行加锁，再测试信号量。也就是说，不能先执行 down(mutex) 再执行 down(empty)。如果这么做了，那么可能会出现这种情况：生产者对缓冲区加锁后，执行 down(empty) 操作，发现 empty = 0，此时生产者睡眠。消费者不能进入临界区，因为生产者对缓冲区加锁了，消费者就无法执行 up(empty) 操作，empty 永远都为 0，导致生产者永远等待下，不会释放锁，消费者因此也会永远等待下去。&lt;/p&gt;
+&lt;p&gt;顺序执行的时候显然没有任何问题，然而在并发执行的时候，就会出现差错，比如共享变量counter，会出现冲突。解决的关键是将counter作为临界资源来处理。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;##define N 100
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;full&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;producer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;item&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;produce_item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;insert_item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;full&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;consumer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;full&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;down&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;item&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;remove_item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;consume_item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;up&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实际例子：吃水果问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;桌子上有一个盘子，可以放一个水果。爸爸每次放一个苹果，妈妈每次放一个桔子；女儿每次吃一个苹果，儿子每次吃一个桔子。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;S&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;  &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SA&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SO&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 盘子的互斥信号量、苹果和桔子的互斥信号量
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;father&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;have&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;put&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;mother&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;have&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;orange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;put&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;orange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;daughter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;eat&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;apple&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;son&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;orange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 吃完之后要V(S)才能接着让爸爸妈妈接着放
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;eat&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;an&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;orange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;典型问题哲学家就餐问题&#34;&gt;典型问题：哲学家就餐问题&lt;/h3&gt;
+&lt;p&gt;这是由Dijkstra提出的典型进程同步问题&lt;/p&gt;
+&lt;p&gt;5个哲学家坐在桌子边，桌子上有5个碗和5支筷子，哲学家开始思考，如果饥饿了，就拿起两边筷子进餐（两支筷子都拿起才能进餐），用餐后放下筷子，继续思考&lt;/p&gt;
+&lt;p&gt;多个临界资源的问题&lt;/p&gt;
+&lt;p&gt;只考虑筷子互斥：可能会产生死锁，比如所有人都同时拿起右边筷子，左边无限等待
+再考虑吃饭行为互斥：同时只让一个人吃饭，肯定不会冲突或死锁，但是资源比较浪费&lt;/p&gt;
+&lt;p&gt;解决方法1：允许4位哲学家同时去拿左边的筷子&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;chopstick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 筷子信号量
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;eating&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 允许四个哲学家可以同时拿筷子
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;philosopher&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 第i个哲学家的程序
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;thinking&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;eating&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;chopstick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 请求左边的筷子
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;chopstick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 请求右边的筷子
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;n&#34;&gt;eating&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;chopstick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;chopstick&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;eating&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;解决方式2：奇数位置的哲学家先左后右，偶数位置的哲学家先右后左&lt;/p&gt;
+&lt;h3 id=&#34;典型问题读者写者问题&#34;&gt;典型问题：读者写者问题&lt;/h3&gt;
+&lt;p&gt;读进程：Reader进程
+写进程：Writer进程&lt;/p&gt;
+&lt;p&gt;允许多个进程同时读一个共享文件，因为读不会使数据混乱；但同时仅仅允许一个写者在写&lt;/p&gt;
+&lt;p&gt;写-写互斥，写-读互斥，读-读允许&lt;/p&gt;
+&lt;p&gt;纯互斥问题，没有同步关系没有先后之分&lt;/p&gt;
+&lt;p&gt;需要多加一个读者计数器，并且修改这个时要同步，所以要再加一个变量保证修改count时的互斥&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rmutex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;wmutex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// readcount的互斥信号量，数据的互斥信号量
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;readcount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 每次进入和退出因为涉及readcount变化，要保证同时只有一个，所以分别设置rmutex
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 抢readcount信号量，防止多个reader同时进入 导致readcount变化不同
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;readcount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 第一个进来的读者，抢公共缓冲区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;readcount&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 其他reader可以进来了
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;perform&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;read&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;operation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 再抢一次，使每次只有一个退出
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;readcount&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;readcount&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 最后一个reader走了，释放公共缓冲区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;Writer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 写者很简单，只需要考虑wmutex公共缓冲区
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;perform&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;write&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;operation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wmutex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上面的算法可能会导致写者可能会被插队，如果是RWR，中间的W被堵了，结果后面的R还能进去，W还要等后面的R读完&lt;/p&gt;
+&lt;p&gt;变形：让写者优先，如果有写者，那么后来的读者都要阻塞，实现完全按照来的顺序进行读写操作。
+解决方法：再增加一个wfirst信号量，初始为1，在读者的Read()和之前的阶段和写者部分都加一个P(wfirst)作为互斥入口，结尾V(wfirst)释放即可&lt;/p&gt;
+&lt;p&gt;变形：让写者真正优先，可以插队
+解决方法：增加一个writecount统计，也就是加一个写者队列，写者可以霸占这个队列一直堵着&lt;/p&gt;
+&lt;h3 id=&#34;例子汽车过窄桥问题&#34;&gt;例子：汽车过窄桥问题&lt;/h3&gt;
+&lt;p&gt;来往各有两条路，但是中间有一个窄桥只能容纳一辆车通过，方向一样的车可以一起过&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;n&#34;&gt;semaphore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mutex1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mutex2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;count1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;Process&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;North&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 第一辆车来了就抢bridge让对面的车进不来
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;count1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+    &lt;span class=&#34;n&#34;&gt;cross&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;count1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 最后一辆车走了就释放bridge让对面的车可以进来
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;Process&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;South&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;count2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+
+    &lt;span class=&#34;n&#34;&gt;cross&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;the&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;n&#34;&gt;P&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;count2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;count2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bridge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;V&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutex2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;管程&#34;&gt;管程&lt;/h3&gt;
+&lt;p&gt;使用信号量机制实现的生产者消费者问题需要客户端代码做很多控制，而管程把控制的代码独立出来，不仅不容易出错，也使得客户端代码调用更容易。&lt;/p&gt;
+&lt;p&gt;（管程有点像用一个类来封装初始化、共享数据、操作代码等）&lt;/p&gt;
+&lt;p&gt;管程有一个重要特性：在一个时刻只能有一个进程使用管程。进程在无法继续执行的时候不能一直占用管程，否者其它进程永远不能使用管程。&lt;/p&gt;
+&lt;p&gt;管程定义了一个数据结构和能为并发进程所执行的一组操作，这组操作可以同步进程和改变管程中的数据&lt;/p&gt;
+&lt;p&gt;管程引入了  &lt;strong&gt;条件变量&lt;/strong&gt;  以及相关的操作：&lt;strong&gt;wait()&lt;/strong&gt; 和 &lt;strong&gt;signal()&lt;/strong&gt; 来实现同步操作。对条件变量执行 wait() 操作会导致调用进程阻塞，把管程让出来给另一个进程持有。signal() 操作用于唤醒被阻塞的进程。&lt;/p&gt;
+&lt;h3 id=&#34;tips-2&#34;&gt;Tips&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;临界资源同一时间只能被一个进程访问，而共享资源一段时间可以被多个访问，磁盘属于共享设备而不是临界资源&lt;/li&gt;
+&lt;li&gt;要对并发进程进行同步的原因是：并发进程是异步的&lt;/li&gt;
+&lt;li&gt;PV操作由两个不可被中断的过程组成，也就是它们两个，它们都属于低级进程通信原语，不是系统调用&lt;/li&gt;
+&lt;li&gt;有五个并发进程涉及到同一个变量A，说明有五段代码，也就是说有5个临界区&lt;/li&gt;
+&lt;li&gt;信箱通信是一种间接通信方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;四死锁&#34;&gt;四、死锁&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944527/os-thread-9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;多个程序因为竞争共享资源而造成的僵局，若无外力作用，这些进程都将永远无法继续推进&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;★产生死锁的四个条件&lt;/strong&gt;，都满足就会产生：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;互斥条件&lt;/strong&gt;：要求某资源进行排它性占有&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不剥夺条件&lt;/strong&gt;：进程已经获得的资源在未被使用完前不可被剥夺&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;请求和保持条件&lt;/strong&gt;：已经至少拥有了一个资源，但是又提出了一个新的资源请求&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;循环/环路等待条件&lt;/strong&gt;（必要而非充分）：存在一个进程--资源循环链&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;举个例子，你手上拿着一个苹果，一个苹果只能被一个人拥有，这是互斥条件；别人不能把苹果从你手中抢走，这是不剥夺条件；你抱着这个苹果不放还想去拿别的苹果，这是请求和保持；一圈人都想拿他右边那个人的苹果，陷入循环，这是循环等待条件&lt;/p&gt;
+&lt;h3 id=&#34;死锁处理&#34;&gt;死锁处理&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;不让死锁发生：预防死锁、避免死锁&lt;/li&gt;
+&lt;li&gt;允许死锁发生，但死锁发生时要能检测到并加以处理：检测死锁、解除死锁&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645944527/os-thread-8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;预防死锁&#34;&gt;预防死锁&lt;/h3&gt;
+&lt;p&gt;设置某些限制条件，破坏上面四个必要条件的一个或几个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;（互斥在很多场合下是必须要遵循的，没办法破坏该条件）&lt;/li&gt;
+&lt;li&gt;摈弃“请求和保持条件”：所有进程一次性获得所有资源&lt;/li&gt;
+&lt;li&gt;摈弃“不可剥夺性”：如果提出新的申请无法满足，则放弃所有已经拥有的资源&lt;/li&gt;
+&lt;li&gt;摈弃“环路等待”：资源按顺序编号，进程必须按顺序申请资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;避免死锁&#34;&gt;避免死锁&lt;/h3&gt;
+&lt;p&gt;在资源的动态分配过程中，用某种方法防止系统进入不安全状态，从而避免死锁&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;银行家算法&lt;/strong&gt;（过程省略，找个例子就很容易理解）（卧槽，看完了才发现不考）
+尝试分配，然后检测安全性&lt;/p&gt;
+&lt;h3 id=&#34;死锁检测及解除&#34;&gt;死锁检测及解除&lt;/h3&gt;
+&lt;p&gt;不采取任何限制措施，允许死锁，通过系统检测机构及时检测出死锁的产生，并采取某些措施解除死锁&lt;/p&gt;
+&lt;p&gt;接触死锁的方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;剥夺资源&lt;/li&gt;
+&lt;li&gt;撤销进程
+&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;tips-3&#34;&gt;Tips&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;进程产生死锁的主要原因。时间上可能是进程运行中的推进顺序不当，空间上的原因是对独占资源分配不当，而不是系统资源不足&lt;/li&gt;
+&lt;li&gt;死锁的避免是根据防止系统进入不安全状态采取措施，实现的结果是让进程推进合理&lt;/li&gt;
+&lt;li&gt;结束死锁甚至可以终止所有死锁进程，但是一般不会从非死锁进程处抢夺资源&lt;/li&gt;
+&lt;li&gt;死锁状态一定是不安全状态，但是不安全状态不一定有死锁，还可能是其他的&lt;/li&gt;
+&lt;li&gt;限制用户申请资源的顺序属于死锁预防的破坏循环等待，限制给进程分配资源的顺序属于死锁避免&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
             <title type="text">生存分析基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/survival-analysis-basic/" />
             <id>https://yichengme.site/posts/survival-analysis-basic/</id>
-            <updated>2022-02-08T17:27:00&#43;08:00</updated>
+            <updated>2022-02-27T15:21:54&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -5500,7 +6852,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5528,7 +6880,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             <title type="text">计算机系统结构</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/computer-system-structure-1/" />
             <id>https://yichengme.site/posts/computer-system-structure-1/</id>
-            <updated>2022-02-26T23:49:02&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2020-06-04T15:05:09&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6134,7 +7486,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -6342,7 +7694,7 @@ ALU等&lt;/p&gt;
             <title type="text">Mongodb初级教程</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mongodb-basics/" />
             <id>https://yichengme.site/posts/mongodb-basics/</id>
-            <updated>2022-02-26T23:48:32&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2020-04-20T14:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -6667,7 +8019,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -6695,7 +8047,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
             <title type="text">Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
             <id>https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
-            <updated>2022-02-26T23:48:40&#43;08:00</updated>
+            <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -7039,7 +8391,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E5%BC%80%E5%8F%91/" term="开发" label="开发" />
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     

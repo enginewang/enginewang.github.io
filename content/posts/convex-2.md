@@ -2,7 +2,7 @@
 title: "凸优化（二）凸函数"
 date: 2022-01-03T20:22:23+08:00
 draft: false
-categories: ["算法"]
+categories: ["技术"]
 tags: ["凸优化", "数学"]
 ---
 

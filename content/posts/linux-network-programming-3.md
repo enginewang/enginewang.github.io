@@ -2,7 +2,7 @@
 title: "Linux网络编程（三）高性能网络编程"
 date: 2022-02-12T14:51:32+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Linux", "TCP/IP"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Django2+nginx+uwsgi+Ubuntu部署记录"
 date: 2019-12-22T00:57:19+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Django", "Linux", "nginx"]
 ---
 

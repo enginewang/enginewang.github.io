@@ -2,7 +2,7 @@
 title: "RPC基础"
 date: 2022-01-20T13:29:14+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["RPC", "分布式", "Golang"]
 ---
 

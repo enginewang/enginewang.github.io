@@ -2,7 +2,7 @@
 title: "凸优化（一）绪论与凸集"
 date: 2021-12-27T21:10:31+08:00
 draft: false
-categories: ["算法"]
+categories: ["技术"]
 tags: ["凸优化", "数学"]
 ---
 

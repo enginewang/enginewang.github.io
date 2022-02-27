@@ -2,7 +2,7 @@
 title: "分布式系统（一）：CAP及基础理论"
 date: 2021-11-19T00:21:18+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["分布式"]
 ---
 

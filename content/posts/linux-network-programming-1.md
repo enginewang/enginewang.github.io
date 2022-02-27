@@ -2,7 +2,7 @@
 title: "Linux网络编程（一） 从TCP/IP协议开始"
 date: 2022-02-01T14:44:13+08:00
 draft: false
-categories: ["开发"]
+categories: ["技术"]
 tags: ["Linux", "TCP/IP"]
 ---
 
