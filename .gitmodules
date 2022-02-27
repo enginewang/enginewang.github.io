@@ -1,0 +1,3 @@
+[submodule "static/js/lib/live2DModel"]
+	path = static/js/lib/live2DModel
+	url = https://gitee.com/tczmh/live2DModel.git

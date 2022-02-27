@@ -63,3 +63,12 @@
 {{- else -}}
     <script src="{{ $script.RelPermalink }}"></script>
 {{- end }}
+
+{{- /* l2dwidget https://gitee.com/tczmh/live2DModel */ -}}
+{{- $l2dwidget := "" -}}
+{{- if eq (getenv "HUGO_ENV") "production" | and .Site.Params.cdn.l2dwidget_js -}}
+    {{- $l2dwidget = .Site.Params.cdn.l2dwidget_js -}}
+{{- else -}}
+    {{- $l2dwidget = printf "<script src=\"%s\"></script>" "js/lib/live2DModel/l2dwidget.min.js" | relURL -}}
+{{- end -}}
+{{- $l2dwidget | safeHTML -}}
