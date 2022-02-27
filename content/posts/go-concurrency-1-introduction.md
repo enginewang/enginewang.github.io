@@ -1,5 +1,5 @@
 ---
-title: "Go并发（一）：并发的基本原理"
+title: "Go并发（一）：并发的基本概念"
 date: 2022-02-24T23:46:26+08:00
 draft: false
 categories: ["技术"]
