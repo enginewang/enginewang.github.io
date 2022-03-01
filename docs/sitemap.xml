@@ -3,28 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yichengme.site/categories/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/golang/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/posts/go-concurrency-2-mutex/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/posts/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/</loc>
+    <lastmod>2022-03-01T11:39:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/go-concurrency-1-introduction/</loc>
     <lastmod>2022-03-01T11:34:16+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/posts/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/tags/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/docker/</loc>
     <lastmod>2022-02-27T15:21:46+08:00</lastmod>
@@ -217,9 +220,6 @@
   </url><url>
     <loc>https://yichengme.site/tags/%E7%BE%8E%E5%8C%96/</loc>
     <lastmod>2022-02-08T17:27:00+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/posts/go-concurrency-2-mutex/</loc>
-    <lastmod>2022-03-01T11:35:46+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/tcp/ip/</loc>
   </url>
