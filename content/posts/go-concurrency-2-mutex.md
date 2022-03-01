@@ -122,7 +122,7 @@ Mutex的源码出现了`sync_runtime_SemacquireMutex`和`poll_runtime_Semrelease
 
 ### 变量
 
-`sync/mutex`的源码只有两百行（去掉注释只有一百来行），当然其中更底层的是原子包（源码位于`sync/atomic.go`）、自旋锁（源码位于`runtime/proc.go`）、信号量（源码位于`runtime/sema.go`），这两个之后再讨论，先看`sync/mutex.go`。
+`sync/mutex`的源码只有两百行（去掉注释只有一百来行），当然其中更底层的是原子包（源码位于`sync/atomic.go`）、自旋锁（源码位于`runtime/proc.go`）、信号量（源码位于`runtime/sema.go`），这几个之后再讨论，先看`sync/mutex.go`。
 
 `Locker`接口，`Locker`接口有两个方法`Lock()`和`Unlock()`，只要实现了这两个方法就属于Locker类，Mutex就是实现了`Locker`的接口。
 

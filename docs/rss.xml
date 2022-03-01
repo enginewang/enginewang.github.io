@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 01 Mar 2022 11:39:05 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 01 Mar 2022 11:51:57 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -156,7 +156,7 @@
 &lt;p&gt;&lt;code&gt;poll_runtime_Semrelease&lt;/code&gt;：唤醒sleep的锁，&lt;/p&gt;
 &lt;h2 id=&#34;mutex源码解析&#34;&gt;Mutex源码解析&lt;/h2&gt;
 &lt;h3 id=&#34;变量&#34;&gt;变量&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;sync/mutex&lt;/code&gt;的源码只有两百行（去掉注释只有一百来行），当然其中更底层的是原子包（源码位于&lt;code&gt;sync/atomic.go&lt;/code&gt;）、自旋锁（源码位于&lt;code&gt;runtime/proc.go&lt;/code&gt;）、信号量（源码位于&lt;code&gt;runtime/sema.go&lt;/code&gt;），这两个之后再讨论，先看&lt;code&gt;sync/mutex.go&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sync/mutex&lt;/code&gt;的源码只有两百行（去掉注释只有一百来行），当然其中更底层的是原子包（源码位于&lt;code&gt;sync/atomic.go&lt;/code&gt;）、自旋锁（源码位于&lt;code&gt;runtime/proc.go&lt;/code&gt;）、信号量（源码位于&lt;code&gt;runtime/sema.go&lt;/code&gt;），这几个之后再讨论，先看&lt;code&gt;sync/mutex.go&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Locker&lt;/code&gt;接口，&lt;code&gt;Locker&lt;/code&gt;接口有两个方法&lt;code&gt;Lock()&lt;/code&gt;和&lt;code&gt;Unlock()&lt;/code&gt;，只要实现了这两个方法就属于Locker类，Mutex就是实现了&lt;code&gt;Locker&lt;/code&gt;的接口。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;

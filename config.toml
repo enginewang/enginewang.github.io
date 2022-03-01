@@ -1284,13 +1284,13 @@ uglyURLs = false
     # 是否开启竖直滚动
     enableOverflowY = true
     # 最大高度
-    maxHeight = 60
+    maxHeight = 500
     # 单位：em
 
     # 是否开启复制
     enableCopy = true
     # 是否开启自动隐藏
-    enableCopyAutoHide = true
+    enableCopyAutoHide = false
 
 
     ####################
