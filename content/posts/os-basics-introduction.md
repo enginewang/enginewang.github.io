@@ -1,6 +1,6 @@
 ---
 title: "操作系统基础（一）导论"
-date: 2021-05-01T16:29:53+08:00
+date: 2020-01-04T16:29:53+08:00
 draft: false
 categories: ["技术"]
 tags: ["OS"]

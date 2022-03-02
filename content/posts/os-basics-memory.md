@@ -1,6 +1,6 @@
 ---
 title: "操作系统基础（三）内存"
-date: 2021-05-27T19:45:04+08:00
+date: 2020-02-08T19:45:04+08:00
 draft: false
 categories: ["技术"]
 tags: ["OS"]
