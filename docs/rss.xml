@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 02 Mar 2022 19:31:49 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 02 Mar 2022 19:34:15 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -5070,7 +5070,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
             </item>
         
             <item>
-                <title>Go并发（三）RWMutex源码剖析</title>
+                <title>Go并发（四）WaitGroup源码剖析</title>
                 <link>https://yichengme.site/posts/go-concurrency-4-waitgroup/</link>
                 <guid isPermaLink="true">https://yichengme.site/posts/go-concurrency-4-waitgroup/</guid>
                 <pubDate>Sat, 06 Mar 2021 22:03:48 &#43;0800</pubDate>

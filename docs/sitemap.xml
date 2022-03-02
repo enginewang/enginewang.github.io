@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yichengme.site/categories/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/docker/</loc>
     <lastmod>2022-02-27T15:21:46+08:00</lastmod>
@@ -12,16 +12,16 @@
     <lastmod>2022-02-27T15:21:46+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/linux/</loc>
     <lastmod>2022-02-27T15:21:46+08:00</lastmod>
@@ -36,7 +36,7 @@
     <lastmod>2022-02-27T15:21:45+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/golang/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/rpc/</loc>
     <lastmod>2022-02-27T15:21:45+08:00</lastmod>
@@ -132,10 +132,10 @@
     <lastmod>2022-02-27T15:21:55+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/go-concurrency-4-waitgroup/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/</loc>
-    <lastmod>2022-03-02T19:25:50+08:00</lastmod>
+    <lastmod>2022-03-02T19:34:02+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/go-concurrency-3-rwmutex/</loc>
     <lastmod>2022-03-02T19:25:33+08:00</lastmod>
