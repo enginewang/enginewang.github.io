@@ -47,7 +47,7 @@ func main() {
 
 比如使用WaitGroup后，可以确保主协程会在前面的goroutine结束之后才会继续。
 
-## WaitGroup原理基础
+## 基础
 
 ### nocopy字段
 
@@ -146,5 +146,90 @@ func (wg *WaitGroup) Wait() {
 ### 未置为0就重用
 
 WaitGroup可以完成一次编排任务，计数值降为0后可以继续被其他任务所用，但是不要在还没使用完的时候就用于其他任务，这样由于带着计数值，很可能出问题。
+
+### 自产自销
+
+```go
+var wg sync.WaitGroup
+for i:=0; i < 3; i++{
+    go func() {
+        wg.Add(1)
+        defer wg.Done()
+        fmt.Println(i)
+    }()
+}
+wg.Wait()
+```
+输出是什么？大概率是什么也不会输出，或者输出0，基本不会正常输出012的排列，原因在于`wg.Add()`不应该加在goroutine里面而是应该在外面，如果像这样加在里面，实际上for循环结束之后，还没等`wg.Add(1)`开始，`wg.Wait()`就不阻塞了。
+
+那么我们修改成下面的形式就对了吗？
+
+```go
+var wg sync.WaitGroup
+for i:=0; i < 3; i++{
+    wg.Add(1)
+    go func() {
+        defer wg.Done()
+        fmt.Println(i)
+    }()
+}
+wg.Wait()
+```
+
+最后的输出更加离谱，是`333`。
+事实上，通常在进入第一个goroutine的时候，for循环就已经遍历完了，这个时候i的值就已经加到了3
+
+如果想要正确的结果，就应该将i作为匿名函数的参数：
+
+```go
+var wg sync.WaitGroup
+for i:=0; i < 3; i++{
+    wg.Add(1)
+    go func(i int) {
+        defer wg.Done()
+        fmt.Println(i)
+    }(i)
+}
+wg.Wait()
+```
+
+### 作为参数的wg
+
+wg是不能被复制的！
+
+看下面的代码：
+
+```go
+func f1(wg sync.WaitGroup) {
+    defer wg.Done()
+}
+
+func main() {
+    var wg sync.WaitGroup
+    wg.Add(1)
+    go f1(wg)
+    wg.Wait()
+}
+```
+
+乍一看似乎没问题，但是会报死锁：
+```go
+fatal error: all goroutines are asleep - deadlock!
+```
+
+问题就出在参数wg，WaitGroup内部维护了计数，不允许被copy，WaitGroup的结构：
+
+```go
+type WaitGroup struct {
+	noCopy noCopy
+
+	// 64-bit value: high 32 bits are counter, low 32 bits are waiter count.
+	// 64-bit atomic operations require 64-bit alignment, but 32-bit
+	// compilers do not ensure it. So we allocate 12 bytes and then use
+	// the aligned 8 bytes in them as state, and the other 4 as storage
+	// for the sema.
+	state1 [3]uint32
+}
+```
 
 ![waitGroup-1](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1646219952/waitGroup-1.jpg)
