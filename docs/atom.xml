@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-03-12T03:52:30&#43;08:00</updated>
+    <updated>2022-03-15T09:39:55&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -17,408 +17,67 @@
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
-            <title type="text">Docker基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-basics/" />
-            <id>https://yichengme.site/posts/docker-basics/</id>
-            <updated>2022-02-27T15:21:46&#43;08:00</updated>
-            <published>2022-02-19T17:27:34&#43;08:00</published>
+            <title type="text">MySQL进阶（一）MySQL架构</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-1-architecture/" />
+            <id>https://yichengme.site/posts/mysql-advanced-1-architecture/</id>
+            <updated>2022-03-15T09:36:08&#43;08:00</updated>
+            <published>2022-02-19T09:32:17&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Docker概述 为什么需要Docker？ 项目环境需要迁移，重新配环境很麻烦、一些配置很复杂程序想让其他人运行。 一个解决方法是虚拟机，但是虚拟机过于笨重。为了克服……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">MySQL底层架构 MySQL包含一个Server层和一个存储逻辑层，大部分核心功能和内置函数、所有跨存储引擎的功能都在Server层实现。 存储引擎层负责数据存储……</summary>
             
-                <content type="html">&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299146/docker-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;docker概述&#34;&gt;Docker概述&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;为什么需要Docker？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;项目环境需要迁移，重新配环境很麻烦、一些配置很复杂程序想让其他人运行。&lt;/p&gt;
-&lt;p&gt;一个解决方法是虚拟机，但是虚拟机过于笨重。为了克服虚拟机的缺点，Linux发展出了一种虚拟化技术：Linux Container（LXC），该技术可以对进程进行隔离，对于容器里面的进程来说，接触到的所有资源都是虚拟的。&lt;/p&gt;
-&lt;p&gt;Docker则是对LXC的一种封装，是目前最流行的Linux容器方案，甚至成已然为了容器的代名词。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;虚拟机（Virtual Machine）和Docker的区别：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299151/docker-1.png&#34; alt=&#34;docker-1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299231/docker-2.png&#34; alt=&#34;docker-2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Docker相比于传统虚拟机的优点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;更节约资源，同样的硬件可以运行更多的容器&lt;/li&gt;
-&lt;li&gt;启动更快&lt;/li&gt;
-&lt;li&gt;运行环境一致&lt;/li&gt;
-&lt;li&gt;持续交付和部署&lt;/li&gt;
-&lt;li&gt;更方便的迁移&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Docker完美贴合DevOps理解，适用于CI/CD流程。&lt;/p&gt;
-&lt;h2 id=&#34;docker原理概述&#34;&gt;Docker原理概述&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299288/docker-3.png&#34; alt=&#34;docker-3&#34;&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;概念&lt;/th&gt;
-&lt;th&gt;解释&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Docker Client（客户端）&lt;/td&gt;
-&lt;td&gt;客户端通过命令行或者其他工具与Docker Host进行通信&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Docker Host（主机）&lt;/td&gt;
-&lt;td&gt;用来执行Docker守护进程和容器的物理或者虚拟的机器&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Docker Registry&lt;/td&gt;
-&lt;td&gt;保存镜像的代码仓库，类似github&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;docker三大概念&#34;&gt;Docker三大概念&lt;/h2&gt;
-&lt;h3 id=&#34;镜像image&#34;&gt;镜像（image）&lt;/h3&gt;
-&lt;p&gt;相当于一个特殊的root文件系统，比如&lt;code&gt;ubuntu:18.04&lt;/code&gt;官方镜像，就包含一套完整的Ubuntu18.04最小系统的root文件系统，image也可以是多个image堆叠在一起组成，比如在一个image里同时放centOS、MySQL、nginx、app等。&lt;/p&gt;
-&lt;p&gt;image可以看成是container的模板，一个image可以生成多个同时运行的container。&lt;/p&gt;
-&lt;p&gt;Image从哪里获得？&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;从Docker Hub pull下来&lt;/li&gt;
-&lt;li&gt;从其他地方导出的image导入进来&lt;/li&gt;
-&lt;li&gt;自行写Dockerfile&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;大部分情况下，为了节约时间，都是使用其他人的image或者在其他image上进行一些修改，很少会从0开始写。&lt;/p&gt;
-&lt;p&gt;Dockerfile类似于一个创建container的脚本，因为Dockerfile的内容比较多，下一篇专门讲一下怎么写。&lt;/p&gt;
-&lt;h3 id=&#34;容器container&#34;&gt;容器（container）&lt;/h3&gt;
-&lt;p&gt;image是静态的定义，container是镜像运行时的实体，类似于跑起来的一个个虚拟机。镜像和容器的关系，类似于面向对象过程中的类与示例。容器通过镜像产生，并独立运行。&lt;/p&gt;
-&lt;p&gt;container可以被创建、启动、停止、删除、暂停等。&lt;/p&gt;
-&lt;p&gt;容器不应该向存成内写入数据，所有的文件写入操作应该使用数据卷（Volume），数据卷可以使得容器删除或者重新运行后数据不会丢失&lt;/p&gt;
-&lt;h3 id=&#34;仓库repository&#34;&gt;仓库（repository）&lt;/h3&gt;
-&lt;p&gt;Docker Registry是一个集中的存储、分发镜像的服务。可以包含多个repository，每个repository可以包含多个标签，一个标签对应一个image&lt;/p&gt;
-&lt;p&gt;最主流的仓库是官方的Docker Hub&lt;/p&gt;
-&lt;h2 id=&#34;docker安装&#34;&gt;Docker安装&lt;/h2&gt;
-&lt;p&gt;Docker的安装很简单，一般直接去官网下载安装，然后运行Docker服务，命令行输入&lt;code&gt;docker version&lt;/code&gt;，出现版本即安装成功。&lt;/p&gt;
-&lt;h2 id=&#34;docker命令&#34;&gt;Docker命令&lt;/h2&gt;
-&lt;h3 id=&#34;build&#34;&gt;build&lt;/h3&gt;
-&lt;p&gt;在含有Dockerfile的文件夹中执行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker build -t &amp;lt;IMAGE&amp;gt;:&amp;lt;tag&amp;gt; .
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;run&#34;&gt;run&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 运行容器&lt;/span&gt;
-docker run &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;option&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &amp;lt;image&amp;gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 比如&lt;/span&gt;
-docker run --name ubuntu -it --rm ubuntu:18.04 bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;其中&lt;code&gt;--name&lt;/code&gt;赋予一个名称，&lt;code&gt;-it&lt;/code&gt;表示交互模式[i]的终端[t]，&lt;code&gt;--rm&lt;/code&gt;表示运行完之后就删除这个container，最后的是在容器中执行的命令，这里是&lt;code&gt;bash&lt;/code&gt;表示打开命令行。&lt;/p&gt;
-&lt;p&gt;这里docker run如果运行的是公用镜像，在本地找不到的话会自动去docker hub pull下来。&lt;/p&gt;
-&lt;p&gt;或者先创建不进去，之后运行交互命令行：&lt;code&gt;docker exec -it &amp;lt;id/name&amp;gt; bash&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;docker run的一些参数如下：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;参数&lt;/th&gt;
-&lt;th&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;-i&lt;/td&gt;
-&lt;td&gt;交互式&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-t&lt;/td&gt;
-&lt;td&gt;终端&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-p&lt;/td&gt;
-&lt;td&gt;端口映射，比如 &lt;code&gt;-p 8000:3000&lt;/code&gt;指的就是本机的8000端口映射容器的3000端口&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-P&lt;/td&gt;
-&lt;td&gt;让容器的端口随机映射到本机上&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-d&lt;/td&gt;
-&lt;td&gt;后台运行容器&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-v&lt;/td&gt;
-&lt;td&gt;绑定一个卷&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;--name&lt;/td&gt;
-&lt;td&gt;指定一个别名&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;--remove&lt;/td&gt;
-&lt;td&gt;使用完就删除&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;--mount&lt;/td&gt;
-&lt;td&gt;加载数据卷到容器的某个目录，比如&lt;code&gt;source=my-vol,target=/usr/share/nginx/html&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;多个可用一起使用，比如&lt;code&gt;-it&lt;/code&gt;表示运行容器的交互式终端&lt;/p&gt;
-&lt;h3 id=&#34;image相关&#34;&gt;image相关&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出全部的image&lt;/span&gt;
-docker image list
-&lt;span class=&#34;c1&#34;&gt;# 或者简写为&lt;/span&gt;
-docker image ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;比如&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;REPOSITORY        TAG       IMAGE ID       CREATED         SIZE
-redis             latest    f1b6973564e9   &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; weeks ago     113MB
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 删除image&lt;/span&gt;
-docker image rm &amp;lt;id&amp;gt;/&amp;lt;短id&amp;gt;/&amp;lt;lable&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;container相关&#34;&gt;container相关&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出所有正在运行的container&lt;/span&gt;
-docker container list
-&lt;span class=&#34;c1&#34;&gt;# 或者简写为&lt;/span&gt;
-docker container ls
-&lt;span class=&#34;c1&#34;&gt;# 或者进一步简写为&lt;/span&gt;
-docker ps
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;比如&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                    NAMES
-29436842e21d   redis     &lt;span class=&#34;s2&#34;&gt;&amp;#34;docker-entrypoint.s…&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;52&lt;/span&gt; minutes ago   Up &lt;span class=&#34;m&#34;&gt;52&lt;/span&gt; minutes   0.0.0.0:6379-&amp;gt;6379/tcp   my-redis
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;其中CONTAINER ID和NAME都能指代唯一的container，之后说的&amp;lt;container_id&amp;gt;可以用其中之一表示，ID取前五位即可，比如&lt;code&gt;29436&lt;/code&gt;和&lt;code&gt;my-redis&lt;/code&gt;都可以指定这个container。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出所有container，即使是已经停止运行的。&lt;/span&gt;
-docker container ls --all
-
-&lt;span class=&#34;c1&#34;&gt;# 停止某容器，只是停止容器运行，之后可以随时启动&lt;/span&gt;
-docker stop &amp;lt;container_id&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 启动某容器，不会和run一样开一个新的，而是启动一个已经停止的container&lt;/span&gt;
-docker start &amp;lt;container_id&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 进入容器，首先这个容器需要是running的&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 比如之前创建的时候后台运行了，就可以通过exec重新进入容器&lt;/span&gt;
-docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; &amp;lt;option&amp;gt; &amp;lt;container_id&amp;gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 重启某容器&lt;/span&gt;
-docker restart &amp;lt;container_id&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 删除某容器，不同于停止，删除会从本地完全删掉&lt;/span&gt;
-docker rm &amp;lt;container_id&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 结束对应container的进程（如果container还在运行的话）&lt;/span&gt;
-docker kill/stop &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;id&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 列出所有被停止的container的id&lt;/span&gt;
-docker container ls -aq
-
-&lt;span class=&#34;c1&#34;&gt;# 删除这些停止的container，不再占本地空间，之后ls --all就不会显示了&lt;/span&gt;
-docker container rm  &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;docker container ls -aq&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;修改之后，如果要将container提交保存为image，使用commit命令：
-&lt;code&gt;docker commit --author &amp;quot;engine&amp;quot; --message &amp;quot;msg&amp;quot; &amp;lt;name&amp;gt; &amp;lt;image:label&amp;gt;&lt;/code&gt;
-会返回一个sha256，但是并不建议这样，因为每次改动一个小地方就可能会动到很多系统文件，会很臃肿&lt;/p&gt;
-&lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出docker image、repository、container占用的系统空间&lt;/span&gt;
-docker system df
-
-&lt;span class=&#34;c1&#34;&gt;# 查看某容器的端口映射&lt;/span&gt;
-docker port &amp;lt;container_id&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;数据管理&#34;&gt;数据管理&lt;/h2&gt;
-&lt;p&gt;数据管理一般是通过数据卷或者挂载主机目录这两种方式：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299354/docker-4.png&#34; alt=&#34;types-of-mounts&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;数据卷volume&#34;&gt;数据卷Volume&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建一个数据卷&lt;/span&gt;
-docker volume create &amp;lt;vol_name&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 查看所有数据卷&lt;/span&gt;
-docker volume ls
-
-&lt;span class=&#34;c1&#34;&gt;# 删除数据卷&lt;/span&gt;
-docker volume rm &amp;lt;vol_name&amp;gt;
-
-&lt;span class=&#34;c1&#34;&gt;# 清理无主的数据卷&lt;/span&gt;
-docker volume prune
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;docker run&lt;/code&gt;的时候可以通过&lt;code&gt;--mount&lt;/code&gt;来加载数据卷到容器的某个目录&lt;/p&gt;
-&lt;h3 id=&#34;挂载主机目录&#34;&gt;挂载主机目录&lt;/h3&gt;
-&lt;p&gt;或者挂载主机目录，通过&lt;code&gt;--mount type=bind,source=,target=&lt;/code&gt;来挂载&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -d -P &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --name web &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;# -v /src/webapp:/usr/share/nginx/html \&lt;/span&gt;
-    --mount &lt;span class=&#34;nv&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bind,source&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/src/webapp,target&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/share/nginx/html &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    nginx:alpine
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h2&gt;
-&lt;p&gt;Docker Compose负责快速的部署分布式应用。
-Compose允许用户通过一个单一的&lt;code&gt;docker-compose.yml&lt;/code&gt;文件来为一个项目创建一组容器。&lt;/p&gt;
-&lt;p&gt;安装好doker后即可使用&lt;code&gt;docker-compose&lt;/code&gt;命令，具体的yaml文件写法见官方文档：https://docs.docker.com/compose/compose-file/&lt;/p&gt;
-&lt;h2 id=&#34;docker-hub&#34;&gt;Docker Hub&lt;/h2&gt;
-&lt;h3 id=&#34;search&#34;&gt;search&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 搜寻指定image，只看官方&lt;/span&gt;
-docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;pull&#34;&gt;pull&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker pull &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;option&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Registry:port/name/label
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;push&#34;&gt;push&lt;/h3&gt;
-&lt;p&gt;先去Docker Hub注册，可以本地命令行登录&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker login
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在hub上创建好一个仓库，假设叫&lt;code&gt;&amp;lt;REPO&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然后将image打tag：
-&lt;code&gt;docker image tag &amp;lt;IMAGE_ID&amp;gt; &amp;lt;HUB_ID&amp;gt;/&amp;lt;REPO&amp;gt;:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;push到repo中
-&lt;code&gt;docker push &amp;lt;HUB_ID&amp;gt;/&amp;lt;REPO&amp;gt;:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;参考：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/&#34;&gt;https://docs.docker.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://ithelp.ithome.com.tw/users/20103456/ironman/1320&#34;&gt;https://ithelp.ithome.com.tw/users/20103456/ironman/1320&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://yeasy.gitbook.io/docker_practice/&#34;&gt;https://yeasy.gitbook.io/docker_practice/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html&#34;&gt;https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.runoob.com/docker/docker-container-usage.html&#34;&gt;https://www.runoob.com/docker/docker-container-usage.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+                <content type="html">&lt;h2 id=&#34;mysql底层架构&#34;&gt;MySQL底层架构&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1646895283/mysql-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;MySQL包含一个Server层和一个存储逻辑层，大部分核心功能和内置函数、所有跨存储引擎的功能都在Server层实现。&lt;/p&gt;
+&lt;p&gt;存储引擎层负责数据存储和提取，支持InnoDB、MylSAM、Memory等多种存储引擎，目前默认用的是InnoDB，除非在创建表的时候通过&lt;code&gt;engine=xxx&lt;/code&gt;来手动选择。后面如果没做特殊说明，都指的是InnoDB引擎。&lt;/p&gt;
+&lt;h2 id=&#34;查询sql的执行过程&#34;&gt;查询SQL的执行过程&lt;/h2&gt;
+&lt;h3 id=&#34;1-连接器&#34;&gt;1. 连接器&lt;/h3&gt;
+&lt;p&gt;我们都知道，在启动mysql server后，通过如下的mysql的连接命令进行连接：
+&lt;code&gt;mysql -h ip -P port -u user -p&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;首先会和连接器打交道，连接器负责鉴权和建立连接。&lt;/p&gt;
+&lt;p&gt;和MySQL建立连接的方式是TCP/IP或者socket（取决于是连接远程服务器的MySQL还是本地的）&lt;/p&gt;
+&lt;p&gt;建立连接后，MySQL会检查权限表，查看该用户有没有权限连接到MySQL实例。验证通过之后会将用户的权限信息缓存起来，之后都基于缓存中的权限信息来执行sql。&lt;/p&gt;
+&lt;p&gt;连接后如果超过&lt;code&gt;wait_timeout&lt;/code&gt;（默认是8小时）一直都没有操作，就会自动断开。下一次就要重连。&lt;/p&gt;
+&lt;h3 id=&#34;2-查询缓存&#34;&gt;2. 查询缓存&lt;/h3&gt;
+&lt;p&gt;把之前查询过的语句和结果通过k-v对的形式缓存在内存中，如果之后某次的查询在缓存中找到了，就直接返回。
+不过实际上这个功能并不好，只要表被更新了就会失效，而且还占缓存，除非是经常不更新的表，所以MySQL8.0直接删除了查询缓存。&lt;/p&gt;
+&lt;h3 id=&#34;3-分析器&#34;&gt;3. 分析器&lt;/h3&gt;
+&lt;p&gt;MySQL需要解析这条语句，先做词法分析，再做语法分析。
+从而理解这条语句的需求。属于编译原理的内容，这里就不细说。&lt;/p&gt;
+&lt;h3 id=&#34;4-优化器&#34;&gt;4. 优化器&lt;/h3&gt;
+&lt;p&gt;在分析好了SQL语句后，MySQL就了解了具体的需求，但是在实际执行之前还需要进入优化器进行优化。&lt;/p&gt;
+&lt;p&gt;在表里有多张索引的时候，决定使用哪个索引，或者比较复杂的查询语句，有多种查询的嵌套方式，优化器的作用就是选择一种最佳方案来执行，从而提高效率&lt;/p&gt;
+&lt;h3 id=&#34;5-执行器&#34;&gt;5. 执行器&lt;/h3&gt;
+&lt;p&gt;首先判断用户是否有权限使用这张表。最前面的连接器鉴权是判断是够能够连接MySQL实体，而这里是精确到表的权限。&lt;/p&gt;
+&lt;p&gt;然后根据对应表的引擎定义，使用存储引擎的接口执行查询。&lt;/p&gt;
+&lt;p&gt;执行器会维护一个结果集，在查询的过程中如果查询到了符合要求的记录，就会追加进结果表，最后将这个结果表返回给用户。&lt;/p&gt;
+&lt;p&gt;至此就完成了一条SQL查询语句的执行。&lt;/p&gt;
+&lt;h2 id=&#34;innodb引擎架构简述&#34;&gt;InnoDB引擎架构简述&lt;/h2&gt;
+&lt;p&gt;MySQL默认的存储引擎是InnoDB，其架构图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://static001.geekbang.org/infoq/bf/bf3d9fb7acbf4482434107aba9731eb8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;因为确实非常复杂，也不是专门研究数据库，所以不会讲解非常详细，只是简单的提一下InnoDB的架构。&lt;/p&gt;
+&lt;p&gt;主要包括内存池、后台线程和存储文件。&lt;/p&gt;
+&lt;p&gt;内存池包括：磁盘缓存、redo log缓存等
+后台线程包括Master Thread、IO Thread和Pruge Thread
+存储文件包括：表结构文件.frm、共享表空间文件ibdata1、独占表空间文件ibd、日志文件redo文件等&lt;/p&gt;
+&lt;h3 id=&#34;缓冲池&#34;&gt;缓冲池&lt;/h3&gt;
+&lt;p&gt;Buffer Pool（缓冲池）是主内存的一块区域，由于直接从磁盘读取数据会造成性能瓶颈，InnoDB在访问数据的时候，会将数据页缓存到缓冲池中，从而加快速度。缓冲池的目的就是为了提高数据库的读写性能。&lt;/p&gt;
+&lt;p&gt;缓冲池会把数据页链接为链表，通过LRU或者其他缓存代替算法来替换掉老的缓存。&lt;/p&gt;
+&lt;p&gt;对于修改数据的情况，也会先修改缓冲池的数据，然后通过Master Thread刷到磁盘上。&lt;/p&gt;
+&lt;p&gt;redo log也会先放入缓冲区，然后刷到redo log文件中。&lt;/p&gt;
+&lt;h3 id=&#34;后台线程&#34;&gt;后台线程&lt;/h3&gt;
+&lt;p&gt;Master Thread负责将缓冲池的数据异步刷新到磁盘中，IO Thread负责IO，Purge Thread用户回收已经提交的undo log。&lt;/p&gt;
+&lt;h3 id=&#34;存储文件&#34;&gt;存储文件&lt;/h3&gt;
+&lt;p&gt;逻辑存储结构从打到小依次是表空间（TableSpace）、段（Segment）、区（Extent）、页（Page）、行（Row）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1647268687/innodb-2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表空间&lt;/strong&gt;分为共享表空间（ibdata1）和独占表空间，默认会全部放在共享表空间中，也可以设置&lt;code&gt;innodb_file_per_table = 1&lt;/code&gt;来开启独立表空间模式，这一模式下所有的表都有自己的独立空间。&lt;/p&gt;
+&lt;p&gt;表空间由&lt;strong&gt;段&lt;/strong&gt;组成，段分为数据段、索引段、回滚段等，InnoDB采用B+树作为索引的底层数据结构，B+树的非叶子结点就是索引段，叶子节点就是数据段。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;区&lt;/strong&gt;是表空间的单元结构，每个区的大小是1Mb&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;页&lt;/strong&gt;是组成区的最小单元，也是InnoDB磁盘管理的最小大单元，每个页为16Kb&lt;/p&gt;
+&lt;p&gt;数据按&lt;strong&gt;行&lt;/strong&gt;进行存放，每个页最多允许存放7992行&lt;/p&gt;
 </content>
             
             
@@ -427,23 +86,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
             
                 
                     
-                        
-                            
-                            
-                            
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
-                            
-                        
-                    
                 
-                    
-                        
-                            
-                            
-                            
-                                <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
-                            
-                        
                     
                 
             
@@ -5104,6 +4747,439 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                                 <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">Docker基础</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-basics/" />
+            <id>https://yichengme.site/posts/docker-basics/</id>
+            <updated>2022-03-15T09:34:12&#43;08:00</updated>
+            <published>2021-08-19T17:27:34&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Docker概述 为什么需要Docker？ 项目环境需要迁移，重新配环境很麻烦、一些配置很复杂程序想让其他人运行。 一个解决方法是虚拟机，但是虚拟机过于笨重。为了克服……</summary>
+            
+                <content type="html">&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299146/docker-logo.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;docker概述&#34;&gt;Docker概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为什么需要Docker？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;项目环境需要迁移，重新配环境很麻烦、一些配置很复杂程序想让其他人运行。&lt;/p&gt;
+&lt;p&gt;一个解决方法是虚拟机，但是虚拟机过于笨重。为了克服虚拟机的缺点，Linux发展出了一种虚拟化技术：Linux Container（LXC），该技术可以对进程进行隔离，对于容器里面的进程来说，接触到的所有资源都是虚拟的。&lt;/p&gt;
+&lt;p&gt;Docker则是对LXC的一种封装，是目前最流行的Linux容器方案，甚至成已然为了容器的代名词。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;虚拟机（Virtual Machine）和Docker的区别：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299151/docker-1.png&#34; alt=&#34;docker-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299231/docker-2.png&#34; alt=&#34;docker-2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Docker相比于传统虚拟机的优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;更节约资源，同样的硬件可以运行更多的容器&lt;/li&gt;
+&lt;li&gt;启动更快&lt;/li&gt;
+&lt;li&gt;运行环境一致&lt;/li&gt;
+&lt;li&gt;持续交付和部署&lt;/li&gt;
+&lt;li&gt;更方便的迁移&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Docker完美贴合DevOps理解，适用于CI/CD流程。&lt;/p&gt;
+&lt;h2 id=&#34;docker原理概述&#34;&gt;Docker原理概述&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299288/docker-3.png&#34; alt=&#34;docker-3&#34;&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;概念&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Docker Client（客户端）&lt;/td&gt;
+&lt;td&gt;客户端通过命令行或者其他工具与Docker Host进行通信&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Docker Host（主机）&lt;/td&gt;
+&lt;td&gt;用来执行Docker守护进程和容器的物理或者虚拟的机器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Docker Registry&lt;/td&gt;
+&lt;td&gt;保存镜像的代码仓库，类似github&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;docker三大概念&#34;&gt;Docker三大概念&lt;/h2&gt;
+&lt;h3 id=&#34;镜像image&#34;&gt;镜像（image）&lt;/h3&gt;
+&lt;p&gt;相当于一个特殊的root文件系统，比如&lt;code&gt;ubuntu:18.04&lt;/code&gt;官方镜像，就包含一套完整的Ubuntu18.04最小系统的root文件系统，image也可以是多个image堆叠在一起组成，比如在一个image里同时放centOS、MySQL、nginx、app等。&lt;/p&gt;
+&lt;p&gt;image可以看成是container的模板，一个image可以生成多个同时运行的container。&lt;/p&gt;
+&lt;p&gt;Image从哪里获得？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从Docker Hub pull下来&lt;/li&gt;
+&lt;li&gt;从其他地方导出的image导入进来&lt;/li&gt;
+&lt;li&gt;自行写Dockerfile&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;大部分情况下，为了节约时间，都是使用其他人的image或者在其他image上进行一些修改，很少会从0开始写。&lt;/p&gt;
+&lt;p&gt;Dockerfile类似于一个创建container的脚本，因为Dockerfile的内容比较多，下一篇专门讲一下怎么写。&lt;/p&gt;
+&lt;h3 id=&#34;容器container&#34;&gt;容器（container）&lt;/h3&gt;
+&lt;p&gt;image是静态的定义，container是镜像运行时的实体，类似于跑起来的一个个虚拟机。镜像和容器的关系，类似于面向对象过程中的类与示例。容器通过镜像产生，并独立运行。&lt;/p&gt;
+&lt;p&gt;container可以被创建、启动、停止、删除、暂停等。&lt;/p&gt;
+&lt;p&gt;容器不应该向存成内写入数据，所有的文件写入操作应该使用数据卷（Volume），数据卷可以使得容器删除或者重新运行后数据不会丢失&lt;/p&gt;
+&lt;h3 id=&#34;仓库repository&#34;&gt;仓库（repository）&lt;/h3&gt;
+&lt;p&gt;Docker Registry是一个集中的存储、分发镜像的服务。可以包含多个repository，每个repository可以包含多个标签，一个标签对应一个image&lt;/p&gt;
+&lt;p&gt;最主流的仓库是官方的Docker Hub&lt;/p&gt;
+&lt;h2 id=&#34;docker安装&#34;&gt;Docker安装&lt;/h2&gt;
+&lt;p&gt;Docker的安装很简单，一般直接去官网下载安装，然后运行Docker服务，命令行输入&lt;code&gt;docker version&lt;/code&gt;，出现版本即安装成功。&lt;/p&gt;
+&lt;h2 id=&#34;docker命令&#34;&gt;Docker命令&lt;/h2&gt;
+&lt;h3 id=&#34;build&#34;&gt;build&lt;/h3&gt;
+&lt;p&gt;在含有Dockerfile的文件夹中执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker build -t &amp;lt;IMAGE&amp;gt;:&amp;lt;tag&amp;gt; .
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;run&#34;&gt;run&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 运行容器&lt;/span&gt;
+docker run &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;option&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &amp;lt;image&amp;gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 比如&lt;/span&gt;
+docker run --name ubuntu -it --rm ubuntu:18.04 bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中&lt;code&gt;--name&lt;/code&gt;赋予一个名称，&lt;code&gt;-it&lt;/code&gt;表示交互模式[i]的终端[t]，&lt;code&gt;--rm&lt;/code&gt;表示运行完之后就删除这个container，最后的是在容器中执行的命令，这里是&lt;code&gt;bash&lt;/code&gt;表示打开命令行。&lt;/p&gt;
+&lt;p&gt;这里docker run如果运行的是公用镜像，在本地找不到的话会自动去docker hub pull下来。&lt;/p&gt;
+&lt;p&gt;或者先创建不进去，之后运行交互命令行：&lt;code&gt;docker exec -it &amp;lt;id/name&amp;gt; bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;docker run的一些参数如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-i&lt;/td&gt;
+&lt;td&gt;交互式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-t&lt;/td&gt;
+&lt;td&gt;终端&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-p&lt;/td&gt;
+&lt;td&gt;端口映射，比如 &lt;code&gt;-p 8000:3000&lt;/code&gt;指的就是本机的8000端口映射容器的3000端口&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-P&lt;/td&gt;
+&lt;td&gt;让容器的端口随机映射到本机上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-d&lt;/td&gt;
+&lt;td&gt;后台运行容器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-v&lt;/td&gt;
+&lt;td&gt;绑定一个卷&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--name&lt;/td&gt;
+&lt;td&gt;指定一个别名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--remove&lt;/td&gt;
+&lt;td&gt;使用完就删除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--mount&lt;/td&gt;
+&lt;td&gt;加载数据卷到容器的某个目录，比如&lt;code&gt;source=my-vol,target=/usr/share/nginx/html&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;多个可用一起使用，比如&lt;code&gt;-it&lt;/code&gt;表示运行容器的交互式终端&lt;/p&gt;
+&lt;h3 id=&#34;image相关&#34;&gt;image相关&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出全部的image&lt;/span&gt;
+docker image list
+&lt;span class=&#34;c1&#34;&gt;# 或者简写为&lt;/span&gt;
+docker image ls
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;REPOSITORY        TAG       IMAGE ID       CREATED         SIZE
+redis             latest    f1b6973564e9   &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; weeks ago     113MB
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 删除image&lt;/span&gt;
+docker image rm &amp;lt;id&amp;gt;/&amp;lt;短id&amp;gt;/&amp;lt;lable&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;container相关&#34;&gt;container相关&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出所有正在运行的container&lt;/span&gt;
+docker container list
+&lt;span class=&#34;c1&#34;&gt;# 或者简写为&lt;/span&gt;
+docker container ls
+&lt;span class=&#34;c1&#34;&gt;# 或者进一步简写为&lt;/span&gt;
+docker ps
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                    NAMES
+29436842e21d   redis     &lt;span class=&#34;s2&#34;&gt;&amp;#34;docker-entrypoint.s…&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;52&lt;/span&gt; minutes ago   Up &lt;span class=&#34;m&#34;&gt;52&lt;/span&gt; minutes   0.0.0.0:6379-&amp;gt;6379/tcp   my-redis
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中CONTAINER ID和NAME都能指代唯一的container，之后说的&amp;lt;container_id&amp;gt;可以用其中之一表示，ID取前五位即可，比如&lt;code&gt;29436&lt;/code&gt;和&lt;code&gt;my-redis&lt;/code&gt;都可以指定这个container。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出所有container，即使是已经停止运行的。&lt;/span&gt;
+docker container ls --all
+
+&lt;span class=&#34;c1&#34;&gt;# 停止某容器，只是停止容器运行，之后可以随时启动&lt;/span&gt;
+docker stop &amp;lt;container_id&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 启动某容器，不会和run一样开一个新的，而是启动一个已经停止的container&lt;/span&gt;
+docker start &amp;lt;container_id&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 进入容器，首先这个容器需要是running的&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 比如之前创建的时候后台运行了，就可以通过exec重新进入容器&lt;/span&gt;
+docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; &amp;lt;option&amp;gt; &amp;lt;container_id&amp;gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cmd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 重启某容器&lt;/span&gt;
+docker restart &amp;lt;container_id&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 删除某容器，不同于停止，删除会从本地完全删掉&lt;/span&gt;
+docker rm &amp;lt;container_id&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 结束对应container的进程（如果container还在运行的话）&lt;/span&gt;
+docker kill/stop &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;id&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 列出所有被停止的container的id&lt;/span&gt;
+docker container ls -aq
+
+&lt;span class=&#34;c1&#34;&gt;# 删除这些停止的container，不再占本地空间，之后ls --all就不会显示了&lt;/span&gt;
+docker container rm  &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;docker container ls -aq&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;修改之后，如果要将container提交保存为image，使用commit命令：
+&lt;code&gt;docker commit --author &amp;quot;engine&amp;quot; --message &amp;quot;msg&amp;quot; &amp;lt;name&amp;gt; &amp;lt;image:label&amp;gt;&lt;/code&gt;
+会返回一个sha256，但是并不建议这样，因为每次改动一个小地方就可能会动到很多系统文件，会很臃肿&lt;/p&gt;
+&lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出docker image、repository、container占用的系统空间&lt;/span&gt;
+docker system df
+
+&lt;span class=&#34;c1&#34;&gt;# 查看某容器的端口映射&lt;/span&gt;
+docker port &amp;lt;container_id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;数据管理&#34;&gt;数据管理&lt;/h2&gt;
+&lt;p&gt;数据管理一般是通过数据卷或者挂载主机目录这两种方式：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645299354/docker-4.png&#34; alt=&#34;types-of-mounts&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数据卷volume&#34;&gt;数据卷Volume&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建一个数据卷&lt;/span&gt;
+docker volume create &amp;lt;vol_name&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 查看所有数据卷&lt;/span&gt;
+docker volume ls
+
+&lt;span class=&#34;c1&#34;&gt;# 删除数据卷&lt;/span&gt;
+docker volume rm &amp;lt;vol_name&amp;gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 清理无主的数据卷&lt;/span&gt;
+docker volume prune
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;docker run&lt;/code&gt;的时候可以通过&lt;code&gt;--mount&lt;/code&gt;来加载数据卷到容器的某个目录&lt;/p&gt;
+&lt;h3 id=&#34;挂载主机目录&#34;&gt;挂载主机目录&lt;/h3&gt;
+&lt;p&gt;或者挂载主机目录，通过&lt;code&gt;--mount type=bind,source=,target=&lt;/code&gt;来挂载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -d -P &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --name web &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;# -v /src/webapp:/usr/share/nginx/html \&lt;/span&gt;
+    --mount &lt;span class=&#34;nv&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bind,source&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/src/webapp,target&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/share/nginx/html &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    nginx:alpine
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;docker-compose&#34;&gt;Docker Compose&lt;/h2&gt;
+&lt;p&gt;Docker Compose负责快速的部署分布式应用。
+Compose允许用户通过一个单一的&lt;code&gt;docker-compose.yml&lt;/code&gt;文件来为一个项目创建一组容器。&lt;/p&gt;
+&lt;p&gt;安装好doker后即可使用&lt;code&gt;docker-compose&lt;/code&gt;命令，具体的yaml文件写法见官方文档：https://docs.docker.com/compose/compose-file/&lt;/p&gt;
+&lt;h2 id=&#34;docker-hub&#34;&gt;Docker Hub&lt;/h2&gt;
+&lt;h3 id=&#34;search&#34;&gt;search&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 搜寻指定image，只看官方&lt;/span&gt;
+docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;pull&#34;&gt;pull&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker pull &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;option&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Registry:port/name/label
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;push&#34;&gt;push&lt;/h3&gt;
+&lt;p&gt;先去Docker Hub注册，可以本地命令行登录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker login
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在hub上创建好一个仓库，假设叫&lt;code&gt;&amp;lt;REPO&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后将image打tag：
+&lt;code&gt;docker image tag &amp;lt;IMAGE_ID&amp;gt; &amp;lt;HUB_ID&amp;gt;/&amp;lt;REPO&amp;gt;:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;push到repo中
+&lt;code&gt;docker push &amp;lt;HUB_ID&amp;gt;/&amp;lt;REPO&amp;gt;:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;参考：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/&#34;&gt;https://docs.docker.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ithelp.ithome.com.tw/users/20103456/ironman/1320&#34;&gt;https://ithelp.ithome.com.tw/users/20103456/ironman/1320&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://yeasy.gitbook.io/docker_practice/&#34;&gt;https://yeasy.gitbook.io/docker_practice/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html&#34;&gt;https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.runoob.com/docker/docker-container-usage.html&#34;&gt;https://www.runoob.com/docker/docker-container-usage.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
                             
                         
                     
