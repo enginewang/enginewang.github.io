@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 15 Mar 2022 09:39:55 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 15 Mar 2022 14:11:36 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -264,8 +264,8 @@ timeout：select函数的超时时间&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;int poll(struct polld *fds, nfds_t nfds, int timeout)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;fds：pollfd结构的数组，包括文件描述符的可读可写异常等事件&lt;/p&gt;
 &lt;p&gt;相比于select将三种事件描述符集合都分开作为三个参数，poll的pollfd放入了全部的文件描述符和事件，被统一处理，从而使得编程更简洁，用户通过pollfd.events传入感兴趣的事件，内核通过修改pollfd.revents反馈就绪的事件。&lt;/p&gt;
-&lt;p&gt;返回值的含义和select一样，poll不是重点。&lt;/p&gt;
-&lt;h3 id=&#34;-epoll&#34;&gt;★ epoll&lt;/h3&gt;
+&lt;p&gt;返回值的含义和select一样，poll的改进比较有限。&lt;/p&gt;
+&lt;h3 id=&#34;epoll重点&#34;&gt;epoll（重点）&lt;/h3&gt;
 &lt;p&gt;epoll是Linux特有的I/O复用函数，在2.6的内核版本才引入，是目前Linux最优秀的多路复用机制，也是本篇的重点内容。&lt;/p&gt;
 &lt;p&gt;epoll相比于select的改进：&lt;/p&gt;
 &lt;ol&gt;
@@ -312,6 +312,37 @@ timeout：select函数的超时时间&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;它在一段时间之内等待一组文件描述符的事件，maxevent指最多监听的事件个数。&lt;/p&gt;
 &lt;p&gt;如果检测到事件，就将就绪的事件从epfd指定的事件表中复制到events指定的数组中。&lt;/p&gt;
 &lt;p&gt;和前面采用轮询机制的的select和poll相比，epoll采用回调机制，轮询的复杂度是$O(n)$，回调是$O(1)$，不过如果活动连接较多，&lt;code&gt;epoll_wait&lt;/code&gt;的回调函数触发过于频繁，造成性能下降。所以epoll适用于连接数较多但是活动连接较少的情况。&lt;/p&gt;
+&lt;h3 id=&#34;三者的对比&#34;&gt;三者的对比&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;select&lt;/th&gt;
+&lt;th&gt;poll&lt;/th&gt;
+&lt;th&gt;epoll&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;事件集合&lt;/td&gt;
+&lt;td&gt;三个参数分别对应可读、可写与异常事件集合&lt;/td&gt;
+&lt;td&gt;统一处理所有事件类型，传入一个事件集参数即可&lt;/td&gt;
+&lt;td&gt;内核通过一个事件表管理所有事件，每个事件绑定回调函数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;内核实现方式&lt;/td&gt;
+&lt;td&gt;采用轮询来检测就绪事件，$O(n)$&lt;/td&gt;
+&lt;td&gt;采用轮询来检测就绪事件，$O(n)$&lt;/td&gt;
+&lt;td&gt;采用回调函数来检测就绪事件，$O(1)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;最大连接数&lt;/td&gt;
+&lt;td&gt;1024&lt;/td&gt;
+&lt;td&gt;不限&lt;/td&gt;
+&lt;td&gt;不限&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </description>
                 
                 
