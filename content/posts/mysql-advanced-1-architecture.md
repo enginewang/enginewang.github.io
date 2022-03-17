@@ -2,6 +2,8 @@
 title: "MySQL进阶（一）MySQL架构"
 date: 2022-02-19T09:32:17+08:00
 draft: false
+categories: ["技术"]
+tags: ["MySQL"]
 ---
 
 ## MySQL底层架构

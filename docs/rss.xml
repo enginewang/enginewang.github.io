@@ -23,10 +23,127 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 15 Mar 2022 14:12:54 &#43;0800</lastBuildDate>
+        <lastBuildDate>Fri, 18 Mar 2022 00:00:50 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
+        
+            <item>
+                <title>MySQL进阶（二）日志</title>
+                <link>https://yichengme.site/posts/mysql-advanced-2-log/</link>
+                <guid isPermaLink="true">https://yichengme.site/posts/mysql-advanced-2-log/</guid>
+                <pubDate>Sun, 27 Feb 2022 21:58:29 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;日志的概念与意义&#34;&gt;日志的概念与意义&lt;/h2&gt;
+&lt;p&gt;日志在各种软件都不可或缺，尤其是数据库应用，可以看作是飞机的黑匣子，记录着发生的一切。&lt;/p&gt;
+&lt;p&gt;其意义在于：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分析历史记录&lt;/li&gt;
+&lt;li&gt;定位问题&lt;/li&gt;
+&lt;li&gt;错误复盘&lt;/li&gt;
+&lt;li&gt;误操作，借助日志恢复到某个之前的状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;mysql日志&#34;&gt;MySQL日志&lt;/h2&gt;
+&lt;p&gt;MySQL有一个很神奇的特性，它可以恢复为半个月之内任意一秒的状态。这要仰仗它的日志系统中的redo log和bin log。&lt;/p&gt;
+&lt;h3 id=&#34;redo-log&#34;&gt;redo log&lt;/h3&gt;
+&lt;p&gt;每一次的更新操作不可能都直接写进磁盘里，这样IO成本过高，效率太低。InnoDB使用WAL（Write-ahead Logging）技术，也就是先写日志，然后等不忙的时候才写磁盘。&lt;/p&gt;
+&lt;p&gt;一条更新记录会先写入redo log，然后写入内存，之后等系统空闲的时候再写入磁盘。如果log写满了就只能先将里面的一部分写入磁盘，再擦掉log。InnoDB的redo log大小是固定的，一组4个文件，每个文件大小为1G。&lt;/p&gt;
+&lt;p&gt;redo log记录的是这个页做了什么改动。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645639120/mysql-2.png&#34; alt=&#34;mysql02&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里write_pos就是目前在写的位置，checkpoint就是当前在擦除的位置，checkpoint到write_pos之间的是写入内容的redo log，而write_pos到checkpoint之间的就是空闲的区域。&lt;/p&gt;
+&lt;p&gt;通过redo log，即使数据库发生异常，之前提交的记录依然存放在log里，也不会丢失，这个能力称为&lt;strong&gt;crash-safe&lt;/strong&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;redo-log的两阶段提交&#34;&gt;redo log的两阶段提交&lt;/h4&gt;
+&lt;p&gt;两阶段提交的目的是让redo log和bin log之间的逻辑一致。&lt;/p&gt;
+&lt;p&gt;如果不采用两阶段提交，不论redo log和bin log的先后记录顺序，如果在两个log写的间隙时崩溃，都会导致binlog恢复的库与原库的值不同。两阶段提交可以让这两个的状态保持一致。&lt;/p&gt;
+&lt;h4 id=&#34;redo-log的底层原理&#34;&gt;redo log的底层原理&lt;/h4&gt;
+&lt;p&gt;InnoDB是Write Ahead Log机制，也就是先写log再写磁盘，处理一条更新语句时，首先会把记录写到redo log buffer中，然后更新内存数据，此时是脏页，最终会刷入磁盘中覆盖原有的数据。&lt;/p&gt;
+&lt;h3 id=&#34;undo-log&#34;&gt;undo log&lt;/h3&gt;
+&lt;p&gt;数据修改的时候，会记录相应的回滚值。&lt;/p&gt;
+&lt;p&gt;undo log和bin log记录的类型一样，都是逻辑，不过undo log记录一个相反的操作，比如delete一条记录，undo log就会记录insert这条记录。a的b字段从1update为2，那么undo log就会记录a的b从2update为1。&lt;/p&gt;
+&lt;p&gt;后面的事务MVCC会用到undo log&lt;/p&gt;
+&lt;h3 id=&#34;bin-log&#34;&gt;bin log&lt;/h3&gt;
+&lt;p&gt;bin log是二进制日志，存储所有数据库表结构变更和表数据修改的所有操作。&lt;/p&gt;
+&lt;p&gt;redo log是InnoDB存储引擎特有的log，而bin log是Server层的，所有引擎都支持。&lt;/p&gt;
+&lt;p&gt;它用于记录原始的逻辑日志，可以追加写入。&lt;/p&gt;
+&lt;p&gt;也就是记录的是每次执行语句的原始逻辑，比如给ID=1的c字段设置为5。&lt;/p&gt;
+&lt;p&gt;redo log是循环写，空间用完后会覆盖之前的日志。bin log是追加写，不会覆盖以前的日志。&lt;/p&gt;
+&lt;h3 id=&#34;如何依靠日志恢复到历史的某个点&#34;&gt;如何依靠日志恢复到历史的某个点&lt;/h3&gt;
+&lt;p&gt;假如现在的时刻时C，在之前的某个B时刻执行错误了某个操作（比如误删表），想要恢复到B操作之前的状态，那么应该先去找在B之前的最近的一次全量备份A，先恢复到A时刻的数据，然后将A-B这个时间段的binlog取出，依次执行命令。&lt;/p&gt;
+&lt;h2 id=&#34;一条sql更新语句的执行过程&#34;&gt;一条SQL更新语句的执行过程&lt;/h2&gt;
+&lt;p&gt;假设执行这样一条update语句：
+&lt;code&gt;update T set c=5 where ID=1;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那么流程如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645640253/mysql-3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;蓝色表示在InnoDB存储引擎中执行，红色表示在执行器中执行。&lt;/p&gt;
+&lt;h2 id=&#34;抖动&#34;&gt;抖动&lt;/h2&gt;
+&lt;p&gt;实际工程中，大部分SQL执行都很快，但是有时候同样的一条SQL忽然就很慢，而且这种随机情况还很难复现。这种情况称为抖动&lt;/p&gt;
+&lt;p&gt;每次修改的记录顺序，都是从内存 - redo log - 硬盘存储的过程。&lt;/p&gt;
+&lt;p&gt;在把内存里的数据写入磁盘的过程称为flush&lt;/p&gt;
+&lt;p&gt;内存数据页和磁盘不一致的时候，这个内存页称为脏页，写入到磁盘后二者一致，内存页称为干净页&lt;/p&gt;
+&lt;p&gt;平时操作很快，是在写内存和日志，而某一条忽然抖一下，很有可能是在进行flush，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;什么时候会进行flush呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;redo log写满了，再写入新的日志就需要把早的一部分日志对应的脏数据flush到硬盘，然后擦掉，留出空间写新的redo log。&lt;/li&gt;
+&lt;li&gt;内存不足，此时也只能淘汰一些老的内存页，在这之前先flush到硬盘。&lt;/li&gt;
+&lt;li&gt;mysql认为当前空闲，进行flush。如果一直都很忙也要找时间刷一点脏页&lt;/li&gt;
+&lt;li&gt;MySQL的关闭，在关闭之前需要将所有的脏页都flush到磁盘，这样下次启动就从磁盘直接读取。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其中前两种情况对性能的影响比较大。&lt;/p&gt;
+&lt;p&gt;第一种情况redo log满，此时数据库将不再接受更新，直到flush完。&lt;/p&gt;
+&lt;p&gt;第二种情况内存满，InnoDB的缓冲池中的内存页游三种状态：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;还未被使用&lt;/li&gt;
+&lt;li&gt;使用了，是干净页&lt;/li&gt;
+&lt;li&gt;使用了，是脏页&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;读入的数据不在内存中，就需要从内存中申请一个数据页，如果没有未被使用的内存页，就需要淘汰最久未使用的数据页。如果是干净页可以直接删掉，如果是脏页的话就要flush。&lt;/p&gt;
+&lt;p&gt;那么如果一个查询要淘汰很多脏页，就会导致抖动卡住的时间非常长，需要避免这种情况。&lt;/p&gt;
+&lt;p&gt;所以InnoDB需要控制脏页的比例。&lt;/p&gt;
+&lt;p&gt;首先需要告诉InnoDB主机的IO能力，设置&lt;code&gt;innodb_io_capacity&lt;/code&gt;这个参数，通过&lt;code&gt;fio&lt;/code&gt;命令可以测出本机的IOPS：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fio -filename&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$filename&lt;/span&gt; -direct&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; -iodepth &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; -thread -rw&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;randrw -ioengine&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;psync -bs&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;16k -size&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;500M -numjobs&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; -runtime&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; -group_reporting -name&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mytest
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;InnoDB会考虑脏页比例和redo log的写盘速度，计算得到，按照&lt;code&gt;R%&lt;/code&gt;的速度来刷脏页&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/mysql/">MySQL</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>MySQL进阶（一）MySQL架构</title>
@@ -95,7 +212,23 @@
                 
                     
                         
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
                     
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://yichengme.site/tags/mysql/">MySQL</category>
+                                
+                            
                         
                     
                 
