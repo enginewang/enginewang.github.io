@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-03-19T14:22:07&#43;08:00</updated>
+    <updated>2022-03-19T14:25:29&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">MySQL进阶（四）索引</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-4-index/" />
             <id>https://yichengme.site/posts/mysql-advanced-4-index/</id>
-            <updated>2022-03-19T14:22:00&#43;08:00</updated>
+            <updated>2022-03-19T14:25:25&#43;08:00</updated>
             <published>2022-03-17T14:21:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -170,8 +170,6 @@
 &lt;p&gt;联合索引的任何一个索引的最左前缀都会被优化器用于查找列。比如，一个包含三列的联合索引 (col1, col2, col3)，索引会生效于 (col1), (col1, col2), and (col1, col2, col3)，但是其他情况的组合则不会生效。&lt;/p&gt;
 &lt;h3 id=&#34;索引下推&#34;&gt;索引下推&lt;/h3&gt;
 &lt;p&gt;MySQL5.6之后引入索引下推，在遍历的过程中可以直接过滤掉不满足条件的记录，从而减少回表次数。&lt;/p&gt;
-&lt;h3 id=&#34;普通索引还是唯一索引&#34;&gt;普通索引还是唯一索引&lt;/h3&gt;
-&lt;h3 id=&#34;多个索引mysql会选择哪个&#34;&gt;多个索引，MySQL会选择哪个&lt;/h3&gt;
 &lt;h3 id=&#34;字符串字段的前缀索引&#34;&gt;字符串字段的前缀索引&lt;/h3&gt;
 &lt;p&gt;正常情况来说，给字符串字段加索引，会给整个字符串建立索引，但有有些时候字符串很长，比较浪费空间，我们没必要全部存，存一部分即可。&lt;/p&gt;
 &lt;p&gt;比如有&lt;/p&gt;

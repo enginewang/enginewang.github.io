@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 19 Mar 2022 14:22:07 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 19 Mar 2022 14:25:29 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -179,8 +179,6 @@
 &lt;p&gt;联合索引的任何一个索引的最左前缀都会被优化器用于查找列。比如，一个包含三列的联合索引 (col1, col2, col3)，索引会生效于 (col1), (col1, col2), and (col1, col2, col3)，但是其他情况的组合则不会生效。&lt;/p&gt;
 &lt;h3 id=&#34;索引下推&#34;&gt;索引下推&lt;/h3&gt;
 &lt;p&gt;MySQL5.6之后引入索引下推，在遍历的过程中可以直接过滤掉不满足条件的记录，从而减少回表次数。&lt;/p&gt;
-&lt;h3 id=&#34;普通索引还是唯一索引&#34;&gt;普通索引还是唯一索引&lt;/h3&gt;
-&lt;h3 id=&#34;多个索引mysql会选择哪个&#34;&gt;多个索引，MySQL会选择哪个&lt;/h3&gt;
 &lt;h3 id=&#34;字符串字段的前缀索引&#34;&gt;字符串字段的前缀索引&lt;/h3&gt;
 &lt;p&gt;正常情况来说，给字符串字段加索引，会给整个字符串建立索引，但有有些时候字符串很长，比较浪费空间，我们没必要全部存，存一部分即可。&lt;/p&gt;
 &lt;p&gt;比如有&lt;/p&gt;
