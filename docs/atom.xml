@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-03-19T14:25:29&#43;08:00</updated>
+    <updated>2022-03-29T21:57:20&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -16,6 +16,178 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
+        <entry>
+            <title type="text">MySQL进阶（五）锁</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-5-lock/" />
+            <id>https://yichengme.site/posts/mysql-advanced-5-lock/</id>
+            <updated>2022-03-29T21:57:04&#43;08:00</updated>
+            <published>2022-03-27T21:56:16&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">有并发的时候，需要锁来控制资源的访问规则。 MySQL的锁分为全局锁、表级锁和行锁。 全局锁 对整个数据库实例进行加锁，加完锁后数据库处于只读状态，一般用于全量备份的……</summary>
+            
+                <content type="html">&lt;p&gt;有并发的时候，需要锁来控制资源的访问规则。&lt;/p&gt;
+&lt;p&gt;MySQL的锁分为全局锁、表级锁和行锁。&lt;/p&gt;
+&lt;h2 id=&#34;全局锁&#34;&gt;全局锁&lt;/h2&gt;
+&lt;p&gt;对整个数据库实例进行加锁，加完锁后数据库处于只读状态，一般用于全量备份的场景。虽然毫无疑问会对业务有很大的影响。&lt;/p&gt;
+&lt;p&gt;全局锁的命令是： (FTWRL)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;n&#34;&gt;Flush&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;with&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但是如果不加全局锁那么就会造成问题，比如依次备份表A和表B，刚好备份完表A的时候有个操作同时修改了两张表，然后备份表B，这就造成了两个表内容的不一致。&lt;/p&gt;
+&lt;p&gt;如果引擎支持事务（如InnoDB），那么导数据之前启动一个事务，拿到一致性视图，依靠MVCC，就可以在边导出的时候还能更新数据。
+但如果使用了不支持事务的引擎（如MyISAM），就只能采用FTWRL。&lt;/p&gt;
+&lt;h2 id=&#34;表级锁&#34;&gt;表级锁&lt;/h2&gt;
+&lt;p&gt;表级锁包括表锁和元数据锁。&lt;/p&gt;
+&lt;p&gt;表锁&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;lock&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tables&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;…&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;元数据锁（MDL）访问一个表的时候会自动加上。&lt;/p&gt;
+&lt;p&gt;增删改查的时候加MDL读锁，对表结构进行变更的时候加MDL写锁。
+读锁之间不互斥，但是读写和写写之间互斥，需要串行执行，否则会出现数据不一致。&lt;/p&gt;
+&lt;h3 id=&#34;如何安全地给表加字段&#34;&gt;如何安全地给表加字段&lt;/h3&gt;
+&lt;p&gt;事务需要提交才会释放锁，试想这样一个场景，某个表经常被频繁访问，事务A发起查询，加MDL读锁，事务B增加一个字段，但是被阻塞，因为读锁没释放，之后又来了很多事务发起查询，都被阻塞了。&lt;/p&gt;
+&lt;p&gt;如何解决？
+可以先查询长事务，在information_schema 库的 innodb_trx 表中查找长事务，可以先kill掉长事务。&lt;/p&gt;
+&lt;p&gt;如果访问过于频繁，可以在alter table的设置等待时间，如果在一段时间内还抢不到MDL写锁，就自动放弃。以免阻塞后面的事务。&lt;/p&gt;
+&lt;h2 id=&#34;行锁&#34;&gt;行锁&lt;/h2&gt;
+&lt;p&gt;行锁由具体的引擎自行实现，MyISAM就不支持航说，InnoDB支持。&lt;/p&gt;
+&lt;p&gt;行锁的粒度比较细，只有当两个事务都同时更新某一行的时候才会生效，并且在事务提交之后才会释放，其他需要操作同一行数据的事务会被阻塞。&lt;/p&gt;
+&lt;p&gt;如果事务需要锁多个行，把最可能造成锁冲突的尽量放后面。&lt;/p&gt;
+&lt;p&gt;比如先来的事务A操作一系列其他的表和表C的m行，后来的事务B也操作其他的表和表C的m行，在表C的m行会触发行锁，最好的方法是事务A最后才更改表C的m行，然后直接提交释放锁，因为这样的话事务A持有锁的时间会短很多，提高并发效率。&lt;/p&gt;
+&lt;h2 id=&#34;死锁和死锁检测&#34;&gt;死锁和死锁检测&lt;/h2&gt;
+&lt;p&gt;不同线程陷入循环资源依赖，比如事务A先访问某表的行m，加行锁，事务B访问行n，此时事务A要访问行n，事务B要访问行m。由于两个事务都没有提交，所以锁都没释放，陷入死锁。&lt;/p&gt;
+&lt;p&gt;解决死锁的办法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设置超时时间&lt;/li&gt;
+&lt;li&gt;死锁检测，如果检测到死锁就主动回滚某个事务，等其他事务先执行完。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;InnoDB的超时时间默认是50s，过大会浪费时间，可能花费快一分钟陷入死锁，很多场景无法接受。过小则容易误伤。&lt;/p&gt;
+&lt;p&gt;更好的方式是死锁检测，innoDB本身也开启了死锁检测，但是有额外的CPU负担。但是如果为解决死锁而大量地进行死锁检测，如果对于某一行有非常庞大的并发线程，那么检测死锁的代价会很高。&lt;/p&gt;
+&lt;p&gt;有以下的解决思路：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在业务本身设计的时候规避死锁的问题，从而不需要死锁检测。当然这样比较困难。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;控制并发度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将一行的逻辑改为多行，从而减少锁冲突。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;幻读&#34;&gt;幻读&lt;/h2&gt;
+&lt;p&gt;幻读指的是一个事务在前后两次查询同一个范围的时候，后一次查询看到了前一次查询没有看到的行，前一次读取的数据状态不能支撑后续的事务操作。&lt;/p&gt;
+&lt;p&gt;但不是所有两次读取不一样就叫幻读。举个具体的例子，比如select查询发现某个记录没有，然后插入这个记录的时候又发现该记录已存在，和幻觉一样。&lt;/p&gt;
+&lt;p&gt;在可重复读的隔离级别下，查询的读用的是快照，所以不能看到别的事务插入的数据，幻读在RU/RC/RR级别下都会出现，在SERIALIZABLE事务级别则不会出现。&lt;/p&gt;
+&lt;p&gt;假设表为：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;id&lt;/th&gt;
+&lt;th&gt;c&lt;/th&gt;
+&lt;th&gt;d&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;事务A三次执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1647179345/mysql-11.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看起来似乎没问题。&lt;/p&gt;
+&lt;p&gt;但是语义上，事务A在T1的时刻应该会有行锁将d=5的行都锁住，这样就会破坏这个语义。&lt;/p&gt;
+&lt;p&gt;从数据一致性角度来看，如果事务A在选择d=5的所有行之后对其数据有更改，比如A的T1改为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但是A是最后才提交的，也就是binlog记录的这个修改时最后才执行的，那么id=0,1,5的d字段都会变成100，从而造成了数据不一致。&lt;/p&gt;
+&lt;p&gt;如何解决幻读？&lt;/p&gt;
+&lt;p&gt;如果把所有的行都加行锁，这样事务B正常，但是事务C的插入还是导致幻读无法避免。因为行锁只能锁住行，但是插入记录更新的是记录之间的间隙，所以InnoDB引入间隙锁，执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;的时候，会给数据库的所有记录都加行锁，然后给字段d存在的4个间隙都加间隙锁，间隙锁会阻塞在间隙中插入新的记录的操作。&lt;/p&gt;
+&lt;p&gt;间隙锁和行锁合称为next-key lock，比如上面的例子就是：$(-\infin, 0], (0, 5], (5, 10], (10, +\infin)$&lt;/p&gt;
+&lt;p&gt;不过并发事务的多个间隙锁之间可能会导致死锁&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">MySQL进阶（四）索引</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-4-index/" />
