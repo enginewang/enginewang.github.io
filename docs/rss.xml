@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 31 Jul 2022 18:04:01 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 31 Jul 2022 18:08:34 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -40,7 +40,7 @@
                 
                     <description>&lt;p&gt;Go web中最底层的库就是Go自带的http库，下面对这个库的源码进行解析，简单而言，http分为两个部分：Server与Client。&lt;/p&gt;
 &lt;p&gt;go http包的执行流程如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/11043-b203aff690e35cfc.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1659262064/net-http-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;首先会创建一个Listen Socket，对指定的端口进行监听。Listen socket接受客户端的请求，得到Client socket，Client socket将负责与客户端的通信。&lt;/p&gt;
 &lt;p&gt;client socket读取HTTP请求头的内容，如果是POST还有读取提交的数据，然后交给相应的handler进行处理，再通过client socket返回给客户端。&lt;/p&gt;
 &lt;p&gt;这里主要对&lt;code&gt;ListenAndServe&lt;/code&gt;的执行过程源码进行解析。&lt;/p&gt;

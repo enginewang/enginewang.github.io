@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-07-31T18:04:01&#43;08:00</updated>
+    <updated>2022-07-31T18:08:34&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Go net/http 源码解析</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/net-http-source-code/" />
             <id>https://yichengme.site/posts/net-http-source-code/</id>
-            <updated>2022-07-31T17:53:13&#43;08:00</updated>
+            <updated>2022-07-31T18:08:30&#43;08:00</updated>
             <published>2022-06-27T21:56:16&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -31,7 +31,7 @@
             
                 <content type="html">&lt;p&gt;Go web中最底层的库就是Go自带的http库，下面对这个库的源码进行解析，简单而言，http分为两个部分：Server与Client。&lt;/p&gt;
 &lt;p&gt;go http包的执行流程如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/11043-b203aff690e35cfc.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1659262064/net-http-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;首先会创建一个Listen Socket，对指定的端口进行监听。Listen socket接受客户端的请求，得到Client socket，Client socket将负责与客户端的通信。&lt;/p&gt;
 &lt;p&gt;client socket读取HTTP请求头的内容，如果是POST还有读取提交的数据，然后交给相应的handler进行处理，再通过client socket返回给客户端。&lt;/p&gt;
 &lt;p&gt;这里主要对&lt;code&gt;ListenAndServe&lt;/code&gt;的执行过程源码进行解析。&lt;/p&gt;

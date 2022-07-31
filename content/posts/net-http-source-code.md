@@ -10,7 +10,7 @@ Go web中最底层的库就是Go自带的http库，下面对这个库的源码�
 
 go http包的执行流程如下图所示：
 
-![](https://upload-images.jianshu.io/upload_images/11043-b203aff690e35cfc.png)
+![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1659262064/net-http-1.png)
 
 首先会创建一个Listen Socket，对指定的端口进行监听。Listen socket接受客户端的请求，得到Client socket，Client socket将负责与客户端的通信。
 
