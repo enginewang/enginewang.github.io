@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 17 Sep 2022 13:49:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 17 Sep 2022 13:51:21 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
@@ -32,7 +32,7 @@
                 <title>frp内网穿透记录</title>
                 <link>https://yichengme.site/posts/frp-notes/</link>
                 <guid isPermaLink="true">https://yichengme.site/posts/frp-notes/</guid>
-                <pubDate>Sat, 17 Sep 2022 13:43:38 &#43;0800</pubDate>
+                <pubDate>Sun, 17 Jul 2022 13:43:38 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
                 
@@ -45,7 +45,7 @@
 &lt;p&gt;NAT（Network Address Translation，网络地址转换）是一个将内部私有的网络地址翻译成合法ip地址的技术。&lt;/p&gt;
 &lt;p&gt;NAT分为三种：静态NAT、动态地址NAT、网络地址端口转换NAPT。&lt;/p&gt;
 &lt;h3 id=&#34;静态nat&#34;&gt;静态NAT&lt;/h3&gt;
-&lt;p&gt;静态NAT就是内网和公网IP一一对应，这个方式用的很少&lt;/p&gt;
+&lt;p&gt;静态NAT就是内网和公网IP一一x对应，这个方式用的很少&lt;/p&gt;
 &lt;h3 id=&#34;动态地址nat&#34;&gt;动态地址NAT&lt;/h3&gt;
 &lt;p&gt;NAT网关有多个公网IP，内网机器发送IP报文的时候，NAT设备（通常是路由器或者防火墙）会分配一个可用的公网IP将源地址进行替换，目标地址不变&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -65,7 +65,7 @@
 &lt;h2 id=&#34;内网穿透原理及工具&#34;&gt;内网穿透原理及工具&lt;/h2&gt;
 &lt;p&gt;内网穿透，就是解决如何访问内网ip的技术，因为处于内网的设备可以借助NAT访问外网，却很难被外网设备有效访问，比如在内网部署了一个web服务，而外面的客户端根本不知道对应NAT的ip和端口好，也就无法访问。&lt;/p&gt;
 &lt;p&gt;内网穿透就是通过对地址进行转换，将公共的网络地址转变为私有网络地址，采用一种路由的方式将一台有公网的计算机变成路由器的功能，实现了两个不同局域网下的计算机的沟通。&lt;/p&gt;
-&lt;p&gt;不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些给予frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。&lt;/p&gt;
+&lt;p&gt;不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些基于frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。&lt;/p&gt;
 &lt;p&gt;而这里重点介绍和使用的是frp，也是目前使用最广泛的一个开源内网穿透工具。&lt;/p&gt;
 &lt;h2 id=&#34;frp&#34;&gt;frp&lt;/h2&gt;
 &lt;p&gt;frp是一个用Go语言编写的，专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。&lt;/p&gt;
