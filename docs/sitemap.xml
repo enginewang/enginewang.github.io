@@ -3,7 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yichengme.site/categories/</loc>
-    <lastmod>2022-07-31T18:08:30+08:00</lastmod>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/frp/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/posts/frp-notes/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/nat/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/posts/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
+  </url><url>
+    <loc>https://yichengme.site/</loc>
+    <lastmod>2022-09-17T13:47:13+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/posts/net-http-source-code/</loc>
     <lastmod>2022-07-31T18:08:30+08:00</lastmod>
@@ -12,18 +36,6 @@
     <lastmod>2022-07-31T18:08:30+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/http/</loc>
-    <lastmod>2022-07-31T18:08:30+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/posts/</loc>
-    <lastmod>2022-07-31T18:08:30+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/tags/</loc>
-    <lastmod>2022-07-31T18:08:30+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-07-31T18:08:30+08:00</lastmod>
-  </url><url>
-    <loc>https://yichengme.site/</loc>
     <lastmod>2022-07-31T18:08:30+08:00</lastmod>
   </url><url>
     <loc>https://yichengme.site/tags/docker/</loc>
