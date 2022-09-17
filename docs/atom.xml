@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-09-17T13:51:21&#43;08:00</updated>
+    <updated>2022-09-17T14:49:24&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">frp内网穿透记录</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/frp-notes/" />
             <id>https://yichengme.site/posts/frp-notes/</id>
-            <updated>2022-09-17T13:51:15&#43;08:00</updated>
+            <updated>2022-09-17T14:49:04&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -577,7 +577,7 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/nat/" term="NAT" label="NAT" />
+                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
                             
                         
                     
@@ -7583,6 +7583,279 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                             
                             
                                 <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">Ubuntu配置samba共享简易记录</title>
+            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/ubuntu-samba-notes/" />
+            <id>https://yichengme.site/posts/ubuntu-samba-notes/</id>
+            <updated>2022-09-17T14:49:19&#43;08:00</updated>
+            <published>2021-07-23T14:47:14&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://yichengme.site/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">nas的便捷早已融入了生活,最开始是利用路由器挂载移动硬盘的方式，目前仍在使用不过容量有限(4T)。 而我的主机是win10+Ubuntu18.04双系统，除去2……</summary>
+            
+                <content type="html">&lt;p&gt;nas的便捷早已融入了生活,最开始是利用路由器挂载移动硬盘的方式，目前仍在使用不过容量有限(4T)。&lt;/p&gt;
+&lt;p&gt;而我的主机是win10+Ubuntu18.04双系统，除去2T的SSD系统盘之外，去年还买了两块机械硬盘(16TB+6TB)用来存文件，也就是22T，为此我基本把百度云存的一些课程完整下到了本地，win10打开samba比较容易，勾选几个选项就好，而目前大部分时间其实是在Ubuntu下跑实验，所以需要在Ubuntu下开启samba共享，简单记录一下步骤：&lt;/p&gt;
+&lt;h2 id=&#34;挂载硬盘&#34;&gt;挂载硬盘&lt;/h2&gt;
+&lt;p&gt;先查一下机械硬盘的位置:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo fdisk -l
+Disk /dev/sda: 14.57 TiB, &lt;span class=&#34;m&#34;&gt;16000900661248&lt;/span&gt; bytes, &lt;span class=&#34;m&#34;&gt;31251759104&lt;/span&gt; sectors
+Disk model: ST16000NM000J-2T
+Units: sectors of &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; * &lt;span class=&#34;nv&#34;&gt;512&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;512&lt;/span&gt; bytes
+Sector size &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;logical/physical&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;512&lt;/span&gt; bytes / &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes
+I/O size &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;minimum/optimal&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes / &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes
+Disklabel type: gpt
+Disk identifier: 50471F15-5395-44CC-94E3-CF0AE43F83A7
+
+Device     Start         End     Sectors  Size Type
+/dev/sda1     &lt;span class=&#34;m&#34;&gt;34&lt;/span&gt;       &lt;span class=&#34;m&#34;&gt;32767&lt;/span&gt;       &lt;span class=&#34;m&#34;&gt;32734&lt;/span&gt;   16M Microsoft reserved
+/dev/sda2  &lt;span class=&#34;m&#34;&gt;32768&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;31251755007&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;31251722240&lt;/span&gt; 14.6T Microsoft basic data
+
+Disk /dev/sdb: 5.47 TiB, &lt;span class=&#34;m&#34;&gt;6001175126016&lt;/span&gt; bytes, &lt;span class=&#34;m&#34;&gt;11721045168&lt;/span&gt; sectors
+Disk model: ST6000NM0115-1YZ
+Units: sectors of &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; * &lt;span class=&#34;nv&#34;&gt;512&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;512&lt;/span&gt; bytes
+Sector size &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;logical/physical&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;512&lt;/span&gt; bytes / &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes
+I/O size &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;minimum/optimal&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes / &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; bytes
+Disklabel type: gpt
+Disk identifier: 5375EE2B-DB96-40E2-AA43-776B835D2253
+
+Device     Start         End     Sectors  Size Type
+/dev/sdb1     &lt;span class=&#34;m&#34;&gt;34&lt;/span&gt;       &lt;span class=&#34;m&#34;&gt;32767&lt;/span&gt;       &lt;span class=&#34;m&#34;&gt;32734&lt;/span&gt;   16M Microsoft reserved
+/dev/sdb2  &lt;span class=&#34;m&#34;&gt;32768&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;11721041919&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;11721009152&lt;/span&gt;  5.5T Microsoft basic data
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以发现16T的机械硬盘分别是&lt;code&gt;/dev/sda2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;默认挂载点是&lt;code&gt;/dev/sda2&lt;/code&gt;,不去动他&lt;/p&gt;
+&lt;p&gt;挂载硬盘&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo umount /dev/sda2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo mount /dev/sda2 /dev/sda2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;创建开机自动挂载,首先获取uuid&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo blkid /dev/sda2
+/dev/sda2: &lt;span class=&#34;nv&#34;&gt;LABEL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;File&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;UUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;02785C53785C4795&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;TYPE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ntfs&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PARTLABEL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Basic data partition&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PARTUUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;3dbd7fde-6292-4173-928e-1a5d2a5fb624&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;硬盘的uuid是`02785C53785C4795&lt;/p&gt;
+&lt;p&gt;修改&lt;code&gt;/etc/fstab&lt;/code&gt;,将uuid填在末尾:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;UUID=02785C53785C4795 /dev/sda2 ntfs defaults 0 2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第一个数字：0表示开机不检查磁盘，1表示开机检查磁盘；
+第二个数字：0表示交换分区，1代表启动分区（Linux），2表示普通分区
+挂载的分区是在WIn系统下创建的分区，磁盘格式为ntfs&lt;/p&gt;
+&lt;h2 id=&#34;设立samba共享&#34;&gt;设立Samba共享&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo apt-get install samba cifs-utils
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# /etc/samba/smb.conf&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;NASShare&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+  &lt;span class=&#34;nv&#34;&gt;path&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /media/engine/File
+  &lt;span class=&#34;nb&#34;&gt;read&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;only&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; no
+&lt;span class=&#34;c1&#34;&gt;# 视情况是否要允许guest访问&lt;/span&gt;
+  guest &lt;span class=&#34;nv&#34;&gt;ok&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; yes
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 新增samba用户，后面访问nas的时候要用&lt;/span&gt;
+sudo smbpasswd -a &amp;lt;username&amp;gt;
+&lt;span class=&#34;c1&#34;&gt;# 会弹出密码，输入即可&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo systemctl restart smbd
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;配置完成&lt;/p&gt;
+&lt;h2 id=&#34;访问nas&#34;&gt;访问nas&lt;/h2&gt;
+&lt;p&gt;先查一下主机的ip：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ifconfig
+eno1: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;4099&amp;lt;UP,BROADCAST,MULTICAST&amp;gt;  mtu &lt;span class=&#34;m&#34;&gt;1500&lt;/span&gt;
+        ether f0:2f:74:30:7e:7b  txqueuelen &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Ethernet&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX packets &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.0 B&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  frame &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+        TX packets &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0.0 B&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        TX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  carrier &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  collisions &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+        device interrupt &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt;  memory 0x92400000-92420000
+
+lo: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;73&amp;lt;UP,LOOPBACK,RUNNING&amp;gt;  mtu &lt;span class=&#34;m&#34;&gt;65536&lt;/span&gt;
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen &lt;span class=&#34;m&#34;&gt;128&lt;/span&gt;  scopeid 0x10&amp;lt;host&amp;gt;
+        loop  txqueuelen &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Local Loopback&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX packets &lt;span class=&#34;m&#34;&gt;707218&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;68728858&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;68.7 MB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  frame &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+        TX packets &lt;span class=&#34;m&#34;&gt;707218&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;68728858&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;68.7 MB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        TX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  carrier &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  collisions &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+
+wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;4163&amp;lt;UP,BROADCAST,RUNNING,MULTICAST&amp;gt;  mtu &lt;span class=&#34;m&#34;&gt;1500&lt;/span&gt;
+        inet 192.168.50.174  netmask 255.255.255.0  broadcast 192.168.50.255
+        inet6 fe80::6778:73ef:e70d:6cb1  prefixlen &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt;  scopeid 0x20&amp;lt;link&amp;gt;
+        ether dc:41:a9:da:14:20  txqueuelen &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Ethernet&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX packets &lt;span class=&#34;m&#34;&gt;10482994&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;12080226956&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;12.0 GB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        RX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  frame &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+        TX packets &lt;span class=&#34;m&#34;&gt;5291322&lt;/span&gt;  bytes &lt;span class=&#34;m&#34;&gt;897290799&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;897.2 MB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        TX errors &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  dropped &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; overruns &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  carrier &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;  collisions &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查到局域网ip地址是192.168.50.174，之后在局域网下访问nas的时候需要通过这个地址。&lt;/p&gt;
+&lt;p&gt;不同的客户端的方式不一样&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以在我的电脑上面的地址栏输入 \192.168.50.174 然后输入账户密码访问&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finder - go - connect to server，输入smb://192.168.50.174&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Android/IOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一些app可以访问nas，比如nPlayer、FE File Explorer等。&lt;/p&gt;
+&lt;p&gt;内网穿透直接访问nas好像有些问题，就采用了内网穿透cloudreve云盘挂载的方式，见后面的&lt;a href=&#34;https://yichengme.site/posts/frp-notes/#cloudreve%E7%A7%81%E6%9C%89%E4%BA%91%E5%AD%98%E5%82%A8&#34;&gt;内网穿透记录&lt;/a&gt;&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/nas/" term="nas" label="nas" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
                             
                         
                     
