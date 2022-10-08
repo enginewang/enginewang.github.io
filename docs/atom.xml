@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-10-08T15:42:10&#43;08:00</updated>
+    <updated>2022-10-08T15:42:44&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,18 +20,17 @@
             <title type="text">通过kubeadm搭建局域网Kubernetes集群</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/k8s-lan-setup/" />
             <id>https://yichengme.site/posts/k8s-lan-setup/</id>
-            <updated>2022-10-08T15:42:06&#43;08:00</updated>
+            <updated>2022-10-08T15:42:40&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://yichengme.site/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">[toc] 因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的……</summary>
             
-                <content type="html">&lt;p&gt;[toc]&lt;/p&gt;
-&lt;p&gt;因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的，所以就使用了本地局域网下的两台主机进行k8s搭建。&lt;/p&gt;
-&lt;h3 id=&#34;准备硬件环境&#34;&gt;准备硬件环境&lt;/h3&gt;
+                <content type="html">&lt;p&gt;因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的，所以就使用了本地局域网下的两台主机进行k8s搭建。&lt;/p&gt;
+&lt;h2 id=&#34;准备硬件环境&#34;&gt;准备硬件环境&lt;/h2&gt;
 &lt;p&gt;k8s搭建的一些难点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;需要多台服务器，贵&lt;/li&gt;
@@ -88,7 +87,7 @@ $ swapoff -a
 $ free -m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -134,7 +133,7 @@ $ free -m
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# (Install Docker CE)&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;## Set up the repository:&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;### Install packages to allow apt to use a repository over HTTPS&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## Install packages to allow apt to use a repository over HTTPS&lt;/span&gt;
 $ sudo apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
@@ -173,7 +172,7 @@ $ systemctl daemon-reload
 $ systemctl restart docker
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;安装kubernetes&#34;&gt;安装Kubernetes&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装kubernetes&#34;&gt;安装Kubernetes&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -297,7 +296,7 @@ sudo kubeadm reset
 sudo rm -rf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h2&gt;
 &lt;p&gt;很多插件都可以，这里采用Calico&lt;/p&gt;
 &lt;p&gt;官网如下：
 &lt;a href=&#34;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&#34;&gt;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&lt;/a&gt;&lt;/p&gt;
@@ -345,7 +344,7 @@ NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP
 master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h2&gt;
 &lt;p&gt;在slave节点上通过&lt;code&gt;kubeadm join&lt;/code&gt;加入到集群中：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -458,7 +457,7 @@ kube-system        kube-scheduler-engine-macmini              1/1     Running   
 tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          13m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;k8s-dashboard&#34;&gt;k8s dashboard&lt;/h3&gt;
+&lt;/div&gt;&lt;h2 id=&#34;k8s-dashboard&#34;&gt;k8s dashboard&lt;/h2&gt;
 &lt;p&gt;通过k8s dashboard，可以更好的可视化观察k8s的各项运行情况。&lt;/p&gt;
 &lt;p&gt;官方文档：
 &lt;a href=&#34;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&#34;&gt;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&lt;/a&gt;&lt;/p&gt;
@@ -470,7 +469,7 @@ tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;创建用户&#34;&gt;创建用户&lt;/h4&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建用户&#34;&gt;创建用户&lt;/h3&gt;
 &lt;p&gt;官方说明：
 &lt;a href=&#34;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&#34;&gt;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -567,7 +566,7 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
 &lt;p&gt;之前的token复制进去即可登录&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h4&gt;
+&lt;h3 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h3&gt;
 &lt;p&gt;dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。&lt;/p&gt;
 &lt;p&gt;取Deployment找到kubernetes-dashboard，进行修改：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -593,7 +592,7 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样就将token延长到了43200秒，也就是12小时&lt;/p&gt;
-&lt;h3 id=&#34;一些报错&#34;&gt;一些报错&lt;/h3&gt;
+&lt;h2 id=&#34;一些报错&#34;&gt;一些报错&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/p&gt;
 &lt;/blockquote&gt;

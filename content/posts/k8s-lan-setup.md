@@ -6,11 +6,10 @@ categories: ["技术"]
 tags: ["Kubernetes", "分布式", "Docker", "Linux"]
 ---
 
-[toc]
 
 因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的，所以就使用了本地局域网下的两台主机进行k8s搭建。
 
-### 准备硬件环境
+## 准备硬件环境
 
 k8s搭建的一些难点：
 - 需要多台服务器，贵
@@ -36,13 +35,13 @@ $ swapoff -a
 $ free -m
 ```
 
-### 安装Docker
+## 安装Docker
 
 
 ```bash
 # (Install Docker CE)
 ## Set up the repository:
-### Install packages to allow apt to use a repository over HTTPS
+## Install packages to allow apt to use a repository over HTTPS
 $ sudo apt-get update && apt-get install -y \
   apt-transport-https ca-certificates curl software-properties-common gnupg2
 
@@ -81,7 +80,7 @@ $ systemctl daemon-reload
 $ systemctl restart docker
 ```
 
-### 安装Kubernetes
+## 安装Kubernetes
 
 ```bash
 # Update the apt package index and install packages needed to use the Kubernetes apt repository:
@@ -147,7 +146,7 @@ sudo kubeadm reset
 sudo rm -rf $HOME/.kube
 ```
 
-### 安装网络通信插件
+## 安装网络通信插件
 
 很多插件都可以，这里采用Calico
 
@@ -182,7 +181,7 @@ NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP
 master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   <none>        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 ```
 
-### slave节点加入
+## slave节点加入
 
 在slave节点上通过`kubeadm join`加入到集群中：
 
@@ -243,7 +242,7 @@ kube-system        kube-scheduler-engine-macmini              1/1     Running   
 tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   0          13m
 ```
 
-### k8s dashboard
+## k8s dashboard
 
 通过k8s dashboard，可以更好的可视化观察k8s的各项运行情况。
 
@@ -254,7 +253,7 @@ https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboa
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 ```
 
-#### 创建用户
+### 创建用户
 
 官方说明：
 https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
@@ -318,7 +317,7 @@ https://<master_ip>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:k
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png)
 
 
-#### 延长token过期时间
+### 延长token过期时间
 
 dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。
 
@@ -338,7 +337,7 @@ spec:
 这样就将token延长到了43200秒，也就是12小时
 
 
-### 一些报错
+## 一些报错
 
 > The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?
 
