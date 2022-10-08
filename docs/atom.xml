@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-10-08T15:25:14&#43;08:00</updated>
+    <updated>2022-10-08T15:42:10&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -17,10 +17,10 @@
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
-            <title type="text">通过kubeadmin搭建局域网Kubernetes集群</title>
+            <title type="text">通过kubeadm搭建局域网Kubernetes集群</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/k8s-lan-setup/" />
             <id>https://yichengme.site/posts/k8s-lan-setup/</id>
-            <updated>2022-10-08T15:14:26&#43;08:00</updated>
+            <updated>2022-10-08T15:42:06&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>

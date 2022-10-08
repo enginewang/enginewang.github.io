@@ -1,5 +1,5 @@
 ---
-title: "通过kubeadmin搭建局域网Kubernetes集群"
+title: "通过kubeadm搭建局域网Kubernetes集群"
 date: 2022-09-09T14:33:59+08:00
 draft: false
 categories: ["技术"]

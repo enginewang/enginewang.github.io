@@ -23,13 +23,13 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 08 Oct 2022 15:25:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 08 Oct 2022 15:42:10 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://yichengme.site/rss.xml" />
         
         
             <item>
-                <title>通过kubeadmin搭建局域网Kubernetes集群</title>
+                <title>通过kubeadm搭建局域网Kubernetes集群</title>
                 <link>https://yichengme.site/posts/k8s-lan-setup/</link>
                 <guid isPermaLink="true">https://yichengme.site/posts/k8s-lan-setup/</guid>
                 <pubDate>Fri, 09 Sep 2022 14:33:59 &#43;0800</pubDate>
