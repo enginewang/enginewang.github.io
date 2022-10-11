@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-10-08T15:42:44&#43;08:00</updated>
+    <updated>2022-10-11T10:34:50&#43;08:00</updated>
     <id>https://yichengme.site/</id>
     <link rel="alternate" type="text/html" href="https://yichengme.site/" />
     <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">通过kubeadm搭建局域网Kubernetes集群</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/k8s-lan-setup/" />
             <id>https://yichengme.site/posts/k8s-lan-setup/</id>
-            <updated>2022-10-08T15:42:40&#43;08:00</updated>
+            <updated>2022-10-11T10:34:22&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -593,9 +593,9 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样就将token延长到了43200秒，也就是12小时&lt;/p&gt;
 &lt;h2 id=&#34;一些报错&#34;&gt;一些报错&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;master节点重启，可能会报这个错，重新关闭swap&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -607,9 +607,9 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 $ strace -eopenat kubectl version
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;[ERROR CRI]: container runtime is not running: output: E0812&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;[ERROR CRI]: container runtime is not running: output: E0812&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;可以通过重启containered解决：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -621,7 +621,66 @@ $ strace -eopenat kubectl version
 $ systemctl restart containerd
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content>
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;kubeadm init，pull镜像的时候报错timeout&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从http://k8s.gcr.io pull镜像的时候需要科学上网，可以通过其他地方下载包打tag，或者添加&lt;code&gt;--image-repository registry.aliyuncs.com/google_containers&lt;/code&gt;修改为阿里源&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;kubeadm init，找不到主节点报错：kubelet.go:2466] &amp;quot;Error getting node&amp;quot; err=&amp;quot;node &amp;quot;xxx&amp;quot; not found&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有时候在云上部署会报这个错误，因为网卡跟公网ip没绑定，可以将advertise_ip修改为内网ip，然后通过iptables进行映射：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# master&lt;/span&gt;
+sudo iptables -t nat -A OUTPUT -d &amp;lt;公网ip&amp;gt; -j DNAT --to-destination &amp;lt;内网ip&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;kubeadm join的token忘记保存或者过期&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看当前的token，如果有的话则保存这个&amp;lt;token&amp;gt;的内容&lt;/span&gt;
+$ kubeadm token list
+TOKEN                     TTL         EXPIRES                USAGES                   DESCRIPTION                                                EXTRA GROUPS
+&amp;lt;token&amp;gt;   15h         2022-10-11T17:06:41Z   authentication,signing   The default bootstrap token generated by &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubeadm init&amp;#39;&lt;/span&gt;.   system:bootstrappers:kubeadm:default-node-token
+&lt;span class=&#34;c1&#34;&gt;# 如果token过期的话就通过下面来新建一个token&lt;/span&gt;
+$ kubeadm token create --print-join-command
+&lt;span class=&#34;c1&#34;&gt;# 获取ca证书sha256编码hash值&lt;/span&gt;
+$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl rsa -pubin -outform der 2&amp;gt;/dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl dgst -sha256 -hex &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sed &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/^.* //&amp;#39;&lt;/span&gt;
+&amp;lt;hash&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后就可以通过：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join &amp;lt;ip&amp;gt;:6443 --token &amp;lt;token&amp;gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --discovery-token-ca-cert-hash &amp;lt;hash&amp;gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;　　--ignore-preflight-errors&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Swap
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;来join&lt;/p&gt;
+</content>
             
             
             
@@ -4115,7 +4174,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
             <title type="text">RPC基础</title>
             <link rel="alternate" type="text/html" href="https://yichengme.site/posts/rpc-basics/" />
             <id>https://yichengme.site/posts/rpc-basics/</id>
-            <updated>2022-02-27T15:21:45&#43;08:00</updated>
+            <updated>2022-10-08T16:01:55&#43;08:00</updated>
             <published>2022-01-20T13:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4168,6 +4227,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
 &lt;p&gt;用于接受Client Stub发送的请求数据包并进行解析，完成功能调用，最后将结果进行打包并返回给Client Stub。在没有接受到请求数据包时则处于阻塞状态。&lt;/p&gt;
 &lt;p&gt;封装了Client Stub和Server Stub后，从Client的角度来看，似乎和本地调用一样。从Server的角度看，似乎就是客户直接调用。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643108079/rpc-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1665216103/rpc-3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;rpc的具体通信步骤&#34;&gt;RPC的具体通信步骤&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Client以类似本地调用的方式调Client Stub&lt;/li&gt;

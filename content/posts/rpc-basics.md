@@ -80,6 +80,8 @@ Server，包含要调用的方法
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643108079/rpc-1.png)
 
+![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1665216103/rpc-3.jpg)
+
 ## RPC的具体通信步骤
 
 1. Client以类似本地调用的方式调Client Stub
