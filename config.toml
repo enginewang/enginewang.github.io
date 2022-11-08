@@ -1,7 +1,7 @@
 ######################
 # 站点配置
 
-baseURL = "https://enginewang.github.io"
+baseURL = "https://blog.engine.wang"
 title = "王毅诚的博客"
 languageCode = "zh-CN"
 hasCJKLanguage = true

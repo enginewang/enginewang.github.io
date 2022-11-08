@@ -8,7 +8,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>王毅诚的博客</title>
-        <link>https://enginewang.github.io/</link>
+        <link>https://blog.engine.wang/</link>
         <description>这里是王毅诚的博客，分享技术文章和生活经历</description>
         <generator>Hugo 0.91.1 https://gohugo.io/</generator>
         
@@ -23,15 +23,15 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 08 Nov 2022 21:41:57 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 08 Nov 2022 21:49:33 &#43;0800</lastBuildDate>
         
-            <atom:link rel="self" type="application/rss&#43;xml" href="https://enginewang.github.io/rss.xml" />
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
         
             <item>
                 <title>通过kubeadm搭建局域网Kubernetes集群</title>
-                <link>https://enginewang.github.io/posts/k8s-lan-setup/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/k8s-lan-setup/</guid>
+                <link>https://blog.engine.wang/posts/k8s-lan-setup/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/k8s-lan-setup/</guid>
                 <pubDate>Fri, 09 Sep 2022 14:33:59 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -701,7 +701,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -711,25 +711,25 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/kubernetes/">Kubernetes</category>
+                                    <category domain="https://blog.engine.wang/tags/kubernetes/">Kubernetes</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/docker/">Docker</category>
+                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                         
@@ -739,8 +739,8 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
         
             <item>
                 <title>frp内网穿透记录</title>
-                <link>https://enginewang.github.io/posts/frp-notes/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/frp-notes/</guid>
+                <link>https://blog.engine.wang/posts/frp-notes/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/frp-notes/</guid>
                 <pubDate>Sun, 17 Jul 2022 13:43:38 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -1273,7 +1273,7 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -1283,19 +1283,19 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/frp/">frp</category>
+                                    <category domain="https://blog.engine.wang/tags/frp/">frp</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                         
@@ -1305,8 +1305,8 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
         
             <item>
                 <title>Go net/http 源码解析</title>
-                <link>https://enginewang.github.io/posts/net-http-source-code/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/net-http-source-code/</guid>
+                <link>https://blog.engine.wang/posts/net-http-source-code/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/net-http-source-code/</guid>
                 <pubDate>Mon, 27 Jun 2022 21:56:16 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -2051,7 +2051,7 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -2061,13 +2061,13 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/http/">HTTP</category>
+                                    <category domain="https://blog.engine.wang/tags/http/">HTTP</category>
                                 
                             
                         
@@ -2077,8 +2077,8 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
         
             <item>
                 <title>深入Docker：Namespace与Cgroups</title>
-                <link>https://enginewang.github.io/posts/docker-namespace-cgroups/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/docker-namespace-cgroups/</guid>
+                <link>https://blog.engine.wang/posts/docker-namespace-cgroups/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/docker-namespace-cgroups/</guid>
                 <pubDate>Fri, 06 May 2022 16:08:32 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -2411,7 +2411,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -2421,7 +2421,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/docker/">Docker</category>
+                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
                                 
                             
                         
@@ -2431,8 +2431,8 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
         
             <item>
                 <title>MySQL进阶（五）锁</title>
-                <link>https://enginewang.github.io/posts/mysql-advanced-5-lock/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mysql-advanced-5-lock/</guid>
+                <link>https://blog.engine.wang/posts/mysql-advanced-5-lock/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mysql-advanced-5-lock/</guid>
                 <pubDate>Sun, 27 Mar 2022 21:56:16 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -2580,7 +2580,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -2590,7 +2590,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mysql/">MySQL</category>
+                                    <category domain="https://blog.engine.wang/tags/mysql/">MySQL</category>
                                 
                             
                         
@@ -2600,8 +2600,8 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
         
             <item>
                 <title>MySQL进阶（四）索引</title>
-                <link>https://enginewang.github.io/posts/mysql-advanced-4-index/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mysql-advanced-4-index/</guid>
+                <link>https://blog.engine.wang/posts/mysql-advanced-4-index/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mysql-advanced-4-index/</guid>
                 <pubDate>Thu, 17 Mar 2022 14:21:14 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -2800,7 +2800,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -2810,7 +2810,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mysql/">MySQL</category>
+                                    <category domain="https://blog.engine.wang/tags/mysql/">MySQL</category>
                                 
                             
                         
@@ -2820,8 +2820,8 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
         
             <item>
                 <title>MySQL进阶（三）再谈事务</title>
-                <link>https://enginewang.github.io/posts/mysql-advanced-3-transaction/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mysql-advanced-3-transaction/</guid>
+                <link>https://blog.engine.wang/posts/mysql-advanced-3-transaction/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mysql-advanced-3-transaction/</guid>
                 <pubDate>Mon, 07 Mar 2022 10:00:11 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -2937,7 +2937,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -2947,7 +2947,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mysql/">MySQL</category>
+                                    <category domain="https://blog.engine.wang/tags/mysql/">MySQL</category>
                                 
                             
                         
@@ -2957,8 +2957,8 @@ Durability：持久性&lt;/p&gt;
         
             <item>
                 <title>MySQL进阶（二）日志</title>
-                <link>https://enginewang.github.io/posts/mysql-advanced-2-log/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mysql-advanced-2-log/</guid>
+                <link>https://blog.engine.wang/posts/mysql-advanced-2-log/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mysql-advanced-2-log/</guid>
                 <pubDate>Sun, 27 Feb 2022 21:58:29 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -3054,7 +3054,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -3064,7 +3064,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mysql/">MySQL</category>
+                                    <category domain="https://blog.engine.wang/tags/mysql/">MySQL</category>
                                 
                             
                         
@@ -3074,8 +3074,8 @@ Durability：持久性&lt;/p&gt;
         
             <item>
                 <title>MySQL进阶（一）MySQL架构</title>
-                <link>https://enginewang.github.io/posts/mysql-advanced-1-architecture/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mysql-advanced-1-architecture/</guid>
+                <link>https://blog.engine.wang/posts/mysql-advanced-1-architecture/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mysql-advanced-1-architecture/</guid>
                 <pubDate>Sat, 19 Feb 2022 09:32:17 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -3143,7 +3143,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -3153,7 +3153,7 @@ Durability：持久性&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mysql/">MySQL</category>
+                                    <category domain="https://blog.engine.wang/tags/mysql/">MySQL</category>
                                 
                             
                         
@@ -3163,8 +3163,8 @@ Durability：持久性&lt;/p&gt;
         
             <item>
                 <title>Linux网络编程（三）高性能网络编程</title>
-                <link>https://enginewang.github.io/posts/linux-network-programming-3/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/linux-network-programming-3/</guid>
+                <link>https://blog.engine.wang/posts/linux-network-programming-3/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/linux-network-programming-3/</guid>
                 <pubDate>Sat, 12 Feb 2022 14:51:32 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -3415,7 +3415,7 @@ timeout：select函数的超时时间&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -3425,13 +3425,13 @@ timeout：select函数的超时时间&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/tcp/ip/">TCP/IP</category>
+                                    <category domain="https://blog.engine.wang/tags/tcp/ip/">TCP/IP</category>
                                 
                             
                         
@@ -3441,8 +3441,8 @@ timeout：select函数的超时时间&lt;/p&gt;
         
             <item>
                 <title>Linux网络编程（二） socket网络编程基础</title>
-                <link>https://enginewang.github.io/posts/linux-network-programming-2/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/linux-network-programming-2/</guid>
+                <link>https://blog.engine.wang/posts/linux-network-programming-2/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/linux-network-programming-2/</guid>
                 <pubDate>Sun, 06 Feb 2022 20:00:52 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -3928,7 +3928,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -3938,13 +3938,13 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/tcp/ip/">TCP/IP</category>
+                                    <category domain="https://blog.engine.wang/tags/tcp/ip/">TCP/IP</category>
                                 
                             
                         
@@ -3954,8 +3954,8 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
         
             <item>
                 <title>Linux网络编程（一） 从TCP/IP协议开始</title>
-                <link>https://enginewang.github.io/posts/linux-network-programming-1/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/linux-network-programming-1/</guid>
+                <link>https://blog.engine.wang/posts/linux-network-programming-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/linux-network-programming-1/</guid>
                 <pubDate>Tue, 01 Feb 2022 14:44:13 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -4122,7 +4122,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -4132,13 +4132,13 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/tcp/ip/">TCP/IP</category>
+                                    <category domain="https://blog.engine.wang/tags/tcp/ip/">TCP/IP</category>
                                 
                             
                         
@@ -4148,8 +4148,8 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
         
             <item>
                 <title>RPC基础</title>
-                <link>https://enginewang.github.io/posts/rpc-basics/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/rpc-basics/</guid>
+                <link>https://blog.engine.wang/posts/rpc-basics/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/rpc-basics/</guid>
                 <pubDate>Thu, 20 Jan 2022 13:29:14 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -4443,7 +4443,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -4453,19 +4453,19 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/rpc/">RPC</category>
+                                    <category domain="https://blog.engine.wang/tags/rpc/">RPC</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                         
@@ -4475,8 +4475,8 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
         
             <item>
                 <title>无线网络基础</title>
-                <link>https://enginewang.github.io/posts/wireless-network-basic/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/wireless-network-basic/</guid>
+                <link>https://blog.engine.wang/posts/wireless-network-basic/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/wireless-network-basic/</guid>
                 <pubDate>Thu, 13 Jan 2022 17:34:00 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -4645,7 +4645,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -4655,7 +4655,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E9%80%9A%E4%BF%A1/">通信</category>
+                                    <category domain="https://blog.engine.wang/tags/%E9%80%9A%E4%BF%A1/">通信</category>
                                 
                             
                         
@@ -4665,8 +4665,8 @@ MIMO（Multiple Input Multiple Output，多进多出）
         
             <item>
                 <title>凸优化（五）算法</title>
-                <link>https://enginewang.github.io/posts/convex-5/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/convex-5/</guid>
+                <link>https://blog.engine.wang/posts/convex-5/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/convex-5/</guid>
                 <pubDate>Tue, 11 Jan 2022 01:09:12 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -5054,7 +5054,7 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -5064,13 +5064,13 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%95%B0%E5%AD%A6/">数学</category>
                                 
                             
                         
@@ -5080,8 +5080,8 @@ $$&lt;/p&gt;
         
             <item>
                 <title>凸优化（四）对偶</title>
-                <link>https://enginewang.github.io/posts/convex-4/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/convex-4/</guid>
+                <link>https://blog.engine.wang/posts/convex-4/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/convex-4/</guid>
                 <pubDate>Sun, 09 Jan 2022 21:25:05 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -5448,7 +5448,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -5458,13 +5458,13 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%95%B0%E5%AD%A6/">数学</category>
                                 
                             
                         
@@ -5474,8 +5474,8 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
         
             <item>
                 <title>凸优化（三）凸优化问题</title>
-                <link>https://enginewang.github.io/posts/convex-3/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/convex-3/</guid>
+                <link>https://blog.engine.wang/posts/convex-3/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/convex-3/</guid>
                 <pubDate>Thu, 06 Jan 2022 21:25:05 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -5753,7 +5753,7 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -5763,13 +5763,13 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%95%B0%E5%AD%A6/">数学</category>
                                 
                             
                         
@@ -5779,8 +5779,8 @@ $$&lt;/p&gt;
         
             <item>
                 <title>凸优化（二）凸函数</title>
-                <link>https://enginewang.github.io/posts/convex-2/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/convex-2/</guid>
+                <link>https://blog.engine.wang/posts/convex-2/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/convex-2/</guid>
                 <pubDate>Mon, 03 Jan 2022 20:22:23 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -6165,7 +6165,7 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -6175,13 +6175,13 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%95%B0%E5%AD%A6/">数学</category>
                                 
                             
                         
@@ -6191,8 +6191,8 @@ $$&lt;/p&gt;
         
             <item>
                 <title>凸优化（一）绪论与凸集</title>
-                <link>https://enginewang.github.io/posts/convex-1/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/convex-1/</guid>
+                <link>https://blog.engine.wang/posts/convex-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/convex-1/</guid>
                 <pubDate>Mon, 27 Dec 2021 21:10:31 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -6518,7 +6518,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -6528,13 +6528,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%87%B8%E4%BC%98%E5%8C%96/">凸优化</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%95%B0%E5%AD%A6/">数学</category>
                                 
                             
                         
@@ -6544,8 +6544,8 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
         
             <item>
                 <title>返璞归真，博客重新迁移到Hugo</title>
-                <link>https://enginewang.github.io/posts/hello-world/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/hello-world/</guid>
+                <link>https://blog.engine.wang/posts/hello-world/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/hello-world/</guid>
                 <pubDate>Tue, 21 Dec 2021 23:08:40 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -6567,7 +6567,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
                                 
                             
                         
@@ -6577,13 +6577,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/hugo/">hugo</category>
+                                    <category domain="https://blog.engine.wang/tags/hugo/">hugo</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/site/">site</category>
+                                    <category domain="https://blog.engine.wang/tags/site/">site</category>
                                 
                             
                         
@@ -6593,8 +6593,8 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
         
             <item>
                 <title>分布式系统（二）：共识算法</title>
-                <link>https://enginewang.github.io/posts/distribution-system-2/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/distribution-system-2/</guid>
+                <link>https://blog.engine.wang/posts/distribution-system-2/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/distribution-system-2/</guid>
                 <pubDate>Sun, 19 Dec 2021 23:18:18 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -6853,7 +6853,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -6863,13 +6863,13 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E7%B2%BE%E9%80%89/">精选</category>
+                                    <category domain="https://blog.engine.wang/tags/%E7%B2%BE%E9%80%89/">精选</category>
                                 
                             
                         
@@ -6879,8 +6879,8 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
         
             <item>
                 <title>分布式系统（一）：CAP及基础理论</title>
-                <link>https://enginewang.github.io/posts/distribution-system-1/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/distribution-system-1/</guid>
+                <link>https://blog.engine.wang/posts/distribution-system-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/distribution-system-1/</guid>
                 <pubDate>Fri, 19 Nov 2021 00:21:18 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -7073,7 +7073,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -7083,7 +7083,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                         
@@ -7093,8 +7093,8 @@ R + R &amp;gt; N：&lt;/p&gt;
         
             <item>
                 <title>浅谈深度学习模型的可解释性</title>
-                <link>https://enginewang.github.io/posts/talk-about-model-interpreter/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/talk-about-model-interpreter/</guid>
+                <link>https://blog.engine.wang/posts/talk-about-model-interpreter/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/talk-about-model-interpreter/</guid>
                 <pubDate>Mon, 01 Nov 2021 23:41:33 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -7220,7 +7220,7 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -7230,19 +7230,19 @@ $$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</category>
+                                    <category domain="https://blog.engine.wang/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/">可解释性</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/">可解释性</category>
                                 
                             
                         
@@ -7252,8 +7252,8 @@ $$&lt;/p&gt;
         
             <item>
                 <title>Google三驾马车（三）—— Bigtable</title>
-                <link>https://enginewang.github.io/posts/bigtable/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/bigtable/</guid>
+                <link>https://blog.engine.wang/posts/bigtable/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/bigtable/</guid>
                 <pubDate>Wed, 27 Oct 2021 00:21:18 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -7427,7 +7427,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -7437,19 +7437,19 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/bigtable/">Bigtable</category>
+                                    <category domain="https://blog.engine.wang/tags/bigtable/">Bigtable</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
                                 
                             
                         
@@ -7459,8 +7459,8 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
         
             <item>
                 <title>Google三驾马车（二）—— MapReduce</title>
-                <link>https://enginewang.github.io/posts/mapreduce/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mapreduce/</guid>
+                <link>https://blog.engine.wang/posts/mapreduce/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mapreduce/</guid>
                 <pubDate>Mon, 18 Oct 2021 20:21:18 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -7591,7 +7591,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -7601,19 +7601,19 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mapreduce/">MapReduce</category>
+                                    <category domain="https://blog.engine.wang/tags/mapreduce/">MapReduce</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
                                 
                             
                         
@@ -7623,8 +7623,8 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
         
             <item>
                 <title>Google三驾马车（一）—— Google File System</title>
-                <link>https://enginewang.github.io/posts/gfs/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/gfs/</guid>
+                <link>https://blog.engine.wang/posts/gfs/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/gfs/</guid>
                 <pubDate>Mon, 11 Oct 2021 18:00:18 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -7774,7 +7774,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -7784,19 +7784,19 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/gfs/">GFS</category>
+                                    <category domain="https://blog.engine.wang/tags/gfs/">GFS</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</category>
                                 
                             
                         
@@ -7806,8 +7806,8 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
         
             <item>
                 <title>Docker基础</title>
-                <link>https://enginewang.github.io/posts/docker-basics/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/docker-basics/</guid>
+                <link>https://blog.engine.wang/posts/docker-basics/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/docker-basics/</guid>
                 <pubDate>Thu, 19 Aug 2021 17:27:34 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -8216,7 +8216,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -8226,7 +8226,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/docker/">Docker</category>
+                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
                                 
                             
                         
@@ -8236,8 +8236,8 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
         
             <item>
                 <title>Ubuntu配置samba共享简易记录</title>
-                <link>https://enginewang.github.io/posts/ubuntu-samba-notes/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/ubuntu-samba-notes/</guid>
+                <link>https://blog.engine.wang/posts/ubuntu-samba-notes/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/ubuntu-samba-notes/</guid>
                 <pubDate>Fri, 23 Jul 2021 14:47:14 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -8480,7 +8480,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -8490,13 +8490,13 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/nas/">nas</category>
+                                    <category domain="https://blog.engine.wang/tags/nas/">nas</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                         
@@ -8506,8 +8506,8 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
         
             <item>
                 <title>Go并发（四）WaitGroup源码剖析</title>
-                <link>https://enginewang.github.io/posts/go-concurrency-4-waitgroup/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/go-concurrency-4-waitgroup/</guid>
+                <link>https://blog.engine.wang/posts/go-concurrency-4-waitgroup/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/go-concurrency-4-waitgroup/</guid>
                 <pubDate>Sat, 06 Mar 2021 22:03:48 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -8888,7 +8888,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -8898,13 +8898,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/">并发</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%B9%B6%E5%8F%91/">并发</category>
                                 
                             
                         
@@ -8914,8 +8914,8 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
         
             <item>
                 <title>Go并发（三）RWMutex源码剖析</title>
-                <link>https://enginewang.github.io/posts/go-concurrency-3-rwmutex/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/go-concurrency-3-rwmutex/</guid>
+                <link>https://blog.engine.wang/posts/go-concurrency-3-rwmutex/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/go-concurrency-3-rwmutex/</guid>
                 <pubDate>Fri, 19 Feb 2021 22:03:48 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -9194,7 +9194,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -9204,13 +9204,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/">并发</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%B9%B6%E5%8F%91/">并发</category>
                                 
                             
                         
@@ -9220,8 +9220,8 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
         
             <item>
                 <title>Go并发（二）Mutex源码剖析</title>
-                <link>https://enginewang.github.io/posts/go-concurrency-2-mutex/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/go-concurrency-2-mutex/</guid>
+                <link>https://blog.engine.wang/posts/go-concurrency-2-mutex/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/go-concurrency-2-mutex/</guid>
                 <pubDate>Sat, 06 Feb 2021 22:03:48 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -9773,7 +9773,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -9783,13 +9783,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/">并发</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%B9%B6%E5%8F%91/">并发</category>
                                 
                             
                         
@@ -9799,8 +9799,8 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
         
             <item>
                 <title>Go并发（一）：并发的基本概念</title>
-                <link>https://enginewang.github.io/posts/go-concurrency-1-introduction/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/go-concurrency-1-introduction/</guid>
+                <link>https://blog.engine.wang/posts/go-concurrency-1-introduction/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/go-concurrency-1-introduction/</guid>
                 <pubDate>Sun, 24 Jan 2021 23:46:26 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -10005,7 +10005,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -10015,13 +10015,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/golang/">Golang</category>
+                                    <category domain="https://blog.engine.wang/tags/golang/">Golang</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/">并发</category>
+                                    <category domain="https://blog.engine.wang/tags/%E5%B9%B6%E5%8F%91/">并发</category>
                                 
                             
                         
@@ -10031,8 +10031,8 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
         
             <item>
                 <title>生存分析基础</title>
-                <link>https://enginewang.github.io/posts/survival-analysis-basic/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/survival-analysis-basic/</guid>
+                <link>https://blog.engine.wang/posts/survival-analysis-basic/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/survival-analysis-basic/</guid>
                 <pubDate>Wed, 23 Dec 2020 15:23:00 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -10195,7 +10195,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -10205,13 +10205,13 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/">生存分析</category>
+                                    <category domain="https://blog.engine.wang/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/">生存分析</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">统计学</category>
+                                    <category domain="https://blog.engine.wang/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/">统计学</category>
                                 
                             
                         
@@ -10221,8 +10221,8 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
         
             <item>
                 <title>计算机系统结构</title>
-                <link>https://enginewang.github.io/posts/computer-system-structure-1/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/computer-system-structure-1/</guid>
+                <link>https://blog.engine.wang/posts/computer-system-structure-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/computer-system-structure-1/</guid>
                 <pubDate>Thu, 04 Jun 2020 15:05:09 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -10826,7 +10826,7 @@ ALU等&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -10836,7 +10836,7 @@ ALU等&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/">系统结构</category>
+                                    <category domain="https://blog.engine.wang/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/">系统结构</category>
                                 
                             
                         
@@ -10846,8 +10846,8 @@ ALU等&lt;/p&gt;
         
             <item>
                 <title>同济学生服务站小程序如何每日自动打卡</title>
-                <link>https://enginewang.github.io/posts/miniprogram-auto-checkin/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/miniprogram-auto-checkin/</guid>
+                <link>https://blog.engine.wang/posts/miniprogram-auto-checkin/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/miniprogram-auto-checkin/</guid>
                 <pubDate>Sun, 10 May 2020 18:44:36 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -11009,7 +11009,7 @@ ALU等&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
                                 
                             
                         
@@ -11019,7 +11019,7 @@ ALU等&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E8%84%9A%E6%9C%AC/">脚本</category>
+                                    <category domain="https://blog.engine.wang/tags/%E8%84%9A%E6%9C%AC/">脚本</category>
                                 
                             
                         
@@ -11029,8 +11029,8 @@ ALU等&lt;/p&gt;
         
             <item>
                 <title>Mongodb初级教程</title>
-                <link>https://enginewang.github.io/posts/mongodb-basics/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mongodb-basics/</guid>
+                <link>https://blog.engine.wang/posts/mongodb-basics/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mongodb-basics/</guid>
                 <pubDate>Mon, 20 Apr 2020 14:29:14 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -11353,7 +11353,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -11363,13 +11363,13 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/mongodb/">MongoDB</category>
+                                    <category domain="https://blog.engine.wang/tags/mongodb/">MongoDB</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/database/">Database</category>
+                                    <category domain="https://blog.engine.wang/tags/database/">Database</category>
                                 
                             
                         
@@ -11379,8 +11379,8 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
         
             <item>
                 <title>操作系统基础（四）文件IO</title>
-                <link>https://enginewang.github.io/posts/os-basics-io/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/os-basics-io/</guid>
+                <link>https://blog.engine.wang/posts/os-basics-io/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/os-basics-io/</guid>
                 <pubDate>Thu, 20 Feb 2020 16:01:08 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -11544,7 +11544,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -11554,7 +11554,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/os/">OS</category>
+                                    <category domain="https://blog.engine.wang/tags/os/">OS</category>
                                 
                             
                         
@@ -11564,8 +11564,8 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
         
             <item>
                 <title>操作系统基础（三）内存</title>
-                <link>https://enginewang.github.io/posts/os-basics-memory/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/os-basics-memory/</guid>
+                <link>https://blog.engine.wang/posts/os-basics-memory/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/os-basics-memory/</guid>
                 <pubDate>Sat, 08 Feb 2020 19:45:04 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -11831,7 +11831,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -11841,7 +11841,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/os/">OS</category>
+                                    <category domain="https://blog.engine.wang/tags/os/">OS</category>
                                 
                             
                         
@@ -11851,8 +11851,8 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
         
             <item>
                 <title>操作系统基础（二）进程与线程</title>
-                <link>https://enginewang.github.io/posts/os-basics-thread/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/os-basics-thread/</guid>
+                <link>https://blog.engine.wang/posts/os-basics-thread/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/os-basics-thread/</guid>
                 <pubDate>Mon, 20 Jan 2020 14:29:59 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -12702,7 +12702,7 @@ P V操作修改为&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -12712,7 +12712,7 @@ P V操作修改为&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/os/">OS</category>
+                                    <category domain="https://blog.engine.wang/tags/os/">OS</category>
                                 
                             
                         
@@ -12722,8 +12722,8 @@ P V操作修改为&lt;/p&gt;
         
             <item>
                 <title>操作系统基础（一）导论</title>
-                <link>https://enginewang.github.io/posts/os-basics-introduction/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/os-basics-introduction/</guid>
+                <link>https://blog.engine.wang/posts/os-basics-introduction/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/os-basics-introduction/</guid>
                 <pubDate>Sat, 04 Jan 2020 16:29:53 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -12825,7 +12825,7 @@ P V操作修改为&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -12835,7 +12835,7 @@ P V操作修改为&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/os/">OS</category>
+                                    <category domain="https://blog.engine.wang/tags/os/">OS</category>
                                 
                             
                         
@@ -12845,8 +12845,8 @@ P V操作修改为&lt;/p&gt;
         
             <item>
                 <title>Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
-                <link>https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</guid>
+                <link>https://blog.engine.wang/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</guid>
                 <pubDate>Sun, 22 Dec 2019 00:57:19 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -13188,7 +13188,7 @@ systemctl reload nginx.service
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
                                 
                             
                         
@@ -13198,19 +13198,19 @@ systemctl reload nginx.service
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/django/">Django</category>
+                                    <category domain="https://blog.engine.wang/tags/django/">Django</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/linux/">Linux</category>
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/nginx/">nginx</category>
+                                    <category domain="https://blog.engine.wang/tags/nginx/">nginx</category>
                                 
                             
                         
@@ -13220,8 +13220,8 @@ systemctl reload nginx.service
         
             <item>
                 <title>mac软件推荐</title>
-                <link>https://enginewang.github.io/posts/mac-software-recommend/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/mac-software-recommend/</guid>
+                <link>https://blog.engine.wang/posts/mac-software-recommend/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/mac-software-recommend/</guid>
                 <pubDate>Sun, 10 Nov 2019 15:38:07 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -13365,7 +13365,7 @@ systemctl reload nginx.service
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
                                 
                             
                         
@@ -13375,7 +13375,7 @@ systemctl reload nginx.service
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/macos/">macOS</category>
+                                    <category domain="https://blog.engine.wang/tags/macos/">macOS</category>
                                 
                             
                         
@@ -13385,8 +13385,8 @@ systemctl reload nginx.service
         
             <item>
                 <title>Precision5510 黑苹果使用体验</title>
-                <link>https://enginewang.github.io/posts/precision5510-hackintosh/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/precision5510-hackintosh/</guid>
+                <link>https://blog.engine.wang/posts/precision5510-hackintosh/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/precision5510-hackintosh/</guid>
                 <pubDate>Thu, 05 Sep 2019 14:33:07 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -13463,7 +13463,7 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
                                 
                             
                         
@@ -13473,13 +13473,13 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/">黑苹果</category>
+                                    <category domain="https://blog.engine.wang/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/">黑苹果</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E6%8A%98%E8%85%BE/">折腾</category>
+                                    <category domain="https://blog.engine.wang/tags/%E6%8A%98%E8%85%BE/">折腾</category>
                                 
                             
                         
@@ -13489,8 +13489,8 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
         
             <item>
                 <title>Atom的Markdown配置与美化</title>
-                <link>https://enginewang.github.io/posts/use-atom-as-an-elegant-markdown-editor/</link>
-                <guid isPermaLink="true">https://enginewang.github.io/posts/use-atom-as-an-elegant-markdown-editor/</guid>
+                <link>https://blog.engine.wang/posts/use-atom-as-an-elegant-markdown-editor/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/use-atom-as-an-elegant-markdown-editor/</guid>
                 <pubDate>Fri, 22 Mar 2019 16:12:25 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
@@ -13601,7 +13601,7 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
                                 
                             
                         
@@ -13611,19 +13611,19 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/atom/">Atom</category>
+                                    <category domain="https://blog.engine.wang/tags/atom/">Atom</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/markdown/">markdown</category>
+                                    <category domain="https://blog.engine.wang/tags/markdown/">markdown</category>
                                 
                             
                                 
                                 
                                 
-                                    <category domain="https://enginewang.github.io/tags/%E7%BE%8E%E5%8C%96/">美化</category>
+                                    <category domain="https://blog.engine.wang/tags/%E7%BE%8E%E5%8C%96/">美化</category>
                                 
                             
                         
