@@ -4,13 +4,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-11-08T20:40:33&#43;08:00</updated>
-    <id>https://yichengme.site/</id>
-    <link rel="alternate" type="text/html" href="https://yichengme.site/" />
-    <link rel="self" type="application/atom&#43;xml" href="https://yichengme.site/atom.xml" />
+    <updated>2022-11-08T21:41:57&#43;08:00</updated>
+    <id>https://enginewang.github.io/</id>
+    <link rel="alternate" type="text/html" href="https://enginewang.github.io/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://enginewang.github.io/atom.xml" />
     <author>
             <name>王毅诚</name>
-            <uri>https://yichengme.site/</uri>
+            <uri>https://enginewang.github.io/</uri>
             
                 <email>engine74396@gmail.com</email>
             </author>
@@ -18,13 +18,13 @@
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
             <title type="text">通过kubeadm搭建局域网Kubernetes集群</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/k8s-lan-setup/" />
-            <id>https://yichengme.site/posts/k8s-lan-setup/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/k8s-lan-setup/" />
+            <id>https://enginewang.github.io/posts/k8s-lan-setup/</id>
             <updated>2022-10-11T10:34:22&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的……</summary>
@@ -692,7 +692,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -702,25 +702,25 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/kubernetes/" term="Kubernetes" label="Kubernetes" />
+                                <category scheme="https://enginewang.github.io/tags/kubernetes/" term="Kubernetes" label="Kubernetes" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
+                                <category scheme="https://enginewang.github.io/tags/docker/" term="Docker" label="Docker" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                     
@@ -730,13 +730,13 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
     
         <entry>
             <title type="text">frp内网穿透记录</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/frp-notes/" />
-            <id>https://yichengme.site/posts/frp-notes/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/frp-notes/" />
+            <id>https://enginewang.github.io/posts/frp-notes/</id>
             <updated>2022-09-17T14:49:04&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技……</summary>
@@ -1267,7 +1267,7 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -1277,19 +1277,19 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" term="内网穿透" label="内网穿透" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" term="内网穿透" label="内网穿透" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/frp/" term="frp" label="frp" />
+                                <category scheme="https://enginewang.github.io/tags/frp/" term="frp" label="frp" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                     
@@ -1299,13 +1299,13 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
     
         <entry>
             <title type="text">Go net/http 源码解析</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/net-http-source-code/" />
-            <id>https://yichengme.site/posts/net-http-source-code/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/net-http-source-code/" />
+            <id>https://enginewang.github.io/posts/net-http-source-code/</id>
             <updated>2022-07-31T18:08:30&#43;08:00</updated>
             <published>2022-06-27T21:56:16&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Go web中最底层的库就是Go自带的http库，下面对这个库的源码进行解析，简单而言，http分为两个部分：Server与Client。 go http包的执行流程如下……</summary>
@@ -2048,7 +2048,7 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2058,13 +2058,13 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/http/" term="HTTP" label="HTTP" />
+                                <category scheme="https://enginewang.github.io/tags/http/" term="HTTP" label="HTTP" />
                             
                         
                     
@@ -2074,13 +2074,13 @@ handler函数的参数包括一个ResponseWriter和*Request&lt;/p&gt;
     
         <entry>
             <title type="text">深入Docker：Namespace与Cgroups</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-namespace-cgroups/" />
-            <id>https://yichengme.site/posts/docker-namespace-cgroups/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/docker-namespace-cgroups/" />
+            <id>https://enginewang.github.io/posts/docker-namespace-cgroups/</id>
             <updated>2022-05-06T16:11:07&#43;08:00</updated>
             <published>2022-05-06T16:08:32&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Docker的基石 容器本质上是一种沙盒技术，像一个集装箱，将应用装起来。 这样应用与应用不会互相干扰，装进集装箱的应用也可以非常方便的迁移，在不同的地方也能保持一……</summary>
@@ -2411,7 +2411,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2421,7 +2421,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
+                                <category scheme="https://enginewang.github.io/tags/docker/" term="Docker" label="Docker" />
                             
                         
                     
@@ -2431,13 +2431,13 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
     
         <entry>
             <title type="text">MySQL进阶（五）锁</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-5-lock/" />
-            <id>https://yichengme.site/posts/mysql-advanced-5-lock/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mysql-advanced-5-lock/" />
+            <id>https://enginewang.github.io/posts/mysql-advanced-5-lock/</id>
             <updated>2022-03-29T21:57:04&#43;08:00</updated>
             <published>2022-03-27T21:56:16&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">有并发的时候，需要锁来控制资源的访问规则。 MySQL的锁分为全局锁、表级锁和行锁。 全局锁 对整个数据库实例进行加锁，加完锁后数据库处于只读状态，一般用于全量备份的……</summary>
@@ -2583,7 +2583,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2593,7 +2593,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                                <category scheme="https://enginewang.github.io/tags/mysql/" term="MySQL" label="MySQL" />
                             
                         
                     
@@ -2603,13 +2603,13 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
     
         <entry>
             <title type="text">MySQL进阶（四）索引</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-4-index/" />
-            <id>https://yichengme.site/posts/mysql-advanced-4-index/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mysql-advanced-4-index/" />
+            <id>https://enginewang.github.io/posts/mysql-advanced-4-index/</id>
             <updated>2022-03-19T14:25:25&#43;08:00</updated>
             <published>2022-03-17T14:21:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">索引的概念与意义 索引是数据库中最重要的概念之一，它是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。 索引可大大提高SELECT和WHERE的查询速度，……</summary>
@@ -2806,7 +2806,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2816,7 +2816,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                                <category scheme="https://enginewang.github.io/tags/mysql/" term="MySQL" label="MySQL" />
                             
                         
                     
@@ -2826,13 +2826,13 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
     
         <entry>
             <title type="text">MySQL进阶（三）再谈事务</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-3-transaction/" />
-            <id>https://yichengme.site/posts/mysql-advanced-3-transaction/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mysql-advanced-3-transaction/" />
+            <id>https://enginewang.github.io/posts/mysql-advanced-3-transaction/</id>
             <updated>2022-03-18T10:08:12&#43;08:00</updated>
             <published>2022-03-07T10:00:11&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">事务的概念与意义 一个行为可能涉及到多个操作，如果进行到中途系统忽然崩溃，那么可能会造成巨大的损失。 我们想要保证一系列的数据库操作，要么全部成功，要么全部失败。这……</summary>
@@ -2946,7 +2946,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -2956,7 +2956,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                                <category scheme="https://enginewang.github.io/tags/mysql/" term="MySQL" label="MySQL" />
                             
                         
                     
@@ -2966,13 +2966,13 @@ Durability：持久性&lt;/p&gt;
     
         <entry>
             <title type="text">MySQL进阶（二）日志</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-2-log/" />
-            <id>https://yichengme.site/posts/mysql-advanced-2-log/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mysql-advanced-2-log/" />
+            <id>https://enginewang.github.io/posts/mysql-advanced-2-log/</id>
             <updated>2022-03-18T00:00:42&#43;08:00</updated>
             <published>2022-02-27T21:58:29&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">日志的概念与意义 日志在各种软件都不可或缺，尤其是数据库应用，可以看作是飞机的黑匣子，记录着发生的一切。 其意义在于： 分析历史记录 定位问题 错误复盘 误操作，借助日志恢……</summary>
@@ -3066,7 +3066,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3076,7 +3076,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                                <category scheme="https://enginewang.github.io/tags/mysql/" term="MySQL" label="MySQL" />
                             
                         
                     
@@ -3086,13 +3086,13 @@ Durability：持久性&lt;/p&gt;
     
         <entry>
             <title type="text">MySQL进阶（一）MySQL架构</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mysql-advanced-1-architecture/" />
-            <id>https://yichengme.site/posts/mysql-advanced-1-architecture/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mysql-advanced-1-architecture/" />
+            <id>https://enginewang.github.io/posts/mysql-advanced-1-architecture/</id>
             <updated>2022-03-15T14:15:55&#43;08:00</updated>
             <published>2022-02-19T09:32:17&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">MySQL底层架构 MySQL包含一个Server层和一个存储逻辑层，大部分核心功能和内置函数、所有跨存储引擎的功能都在Server层实现。 存储引擎层负责数据存储……</summary>
@@ -3158,7 +3158,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3168,7 +3168,7 @@ Durability：持久性&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mysql/" term="MySQL" label="MySQL" />
+                                <category scheme="https://enginewang.github.io/tags/mysql/" term="MySQL" label="MySQL" />
                             
                         
                     
@@ -3178,13 +3178,13 @@ Durability：持久性&lt;/p&gt;
     
         <entry>
             <title type="text">Linux网络编程（三）高性能网络编程</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-3/" />
-            <id>https://yichengme.site/posts/linux-network-programming-3/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/linux-network-programming-3/" />
+            <id>https://enginewang.github.io/posts/linux-network-programming-3/</id>
             <updated>2022-03-15T14:03:21&#43;08:00</updated>
             <published>2022-02-12T14:51:32&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">服务器模型 C/S模型 即传统的Client/Server模型，客户端通过访问服务器来获取所需的资源。 串行效率非常低下，服务器需要同时保持多个客户端的监听和提供请求……</summary>
@@ -3433,7 +3433,7 @@ timeout：select函数的超时时间&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3443,13 +3443,13 @@ timeout：select函数的超时时间&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
+                                <category scheme="https://enginewang.github.io/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
                             
                         
                     
@@ -3459,13 +3459,13 @@ timeout：select函数的超时时间&lt;/p&gt;
     
         <entry>
             <title type="text">Linux网络编程（二） socket网络编程基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-2/" />
-            <id>https://yichengme.site/posts/linux-network-programming-2/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/linux-network-programming-2/" />
+            <id>https://enginewang.github.io/posts/linux-network-programming-2/</id>
             <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2022-02-06T20:00:52&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">概述 数据链路层、网络层和传输层的协议都是在操作系统内核中完成的，实现网络的系统调用的api目前最主流的就是socket。 socket是应用层与TCP/IP协议之……</summary>
@@ -3949,7 +3949,7 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -3959,13 +3959,13 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
+                                <category scheme="https://enginewang.github.io/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
                             
                         
                     
@@ -3975,13 +3975,13 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
     
         <entry>
             <title type="text">Linux网络编程（一） 从TCP/IP协议开始</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/linux-network-programming-1/" />
-            <id>https://yichengme.site/posts/linux-network-programming-1/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/linux-network-programming-1/" />
+            <id>https://enginewang.github.io/posts/linux-network-programming-1/</id>
             <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2022-02-01T14:44:13&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">重温计算机网络 TCP/IP协议是目前互联网的主流协议簇，早在计算机网络中我们就已经学习过大部分的内容，现在我们从协议的角度出发再次重温计算机网络的内容，作为后续……</summary>
@@ -4146,7 +4146,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4156,13 +4156,13 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
+                                <category scheme="https://enginewang.github.io/tags/tcp/ip/" term="TCP/IP" label="TCP/IP" />
                             
                         
                     
@@ -4172,13 +4172,13 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
     
         <entry>
             <title type="text">RPC基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/rpc-basics/" />
-            <id>https://yichengme.site/posts/rpc-basics/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/rpc-basics/" />
+            <id>https://enginewang.github.io/posts/rpc-basics/</id>
             <updated>2022-10-08T16:01:55&#43;08:00</updated>
             <published>2022-01-20T13:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">RPC的概念 RPC（Romote Procedure Call），全称是远程过程调用，作为分布式系统中不同节点之间的通信方式，是分布式系统的基石之一，RPC不是具体的方法，而是一种……</summary>
@@ -4470,7 +4470,7 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4480,19 +4480,19 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/rpc/" term="RPC" label="RPC" />
+                                <category scheme="https://enginewang.github.io/tags/rpc/" term="RPC" label="RPC" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                     
@@ -4502,13 +4502,13 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
     
         <entry>
             <title type="text">无线网络基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/wireless-network-basic/" />
-            <id>https://yichengme.site/posts/wireless-network-basic/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/wireless-network-basic/" />
+            <id>https://enginewang.github.io/posts/wireless-network-basic/</id>
             <updated>2022-02-27T15:21:54&#43;08:00</updated>
             <published>2022-01-13T17:34:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">信息论基础 信息是事物运动状态或存在方式的不确定性的描述 通信系统形式上传递的就是信息，需求来源于： ① 需要告知某信息给对方 ② 需要接受某种信息。通信的结果就是消除不确……</summary>
@@ -4675,7 +4675,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -4685,7 +4685,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E9%80%9A%E4%BF%A1/" term="通信" label="通信" />
+                                <category scheme="https://enginewang.github.io/tags/%E9%80%9A%E4%BF%A1/" term="通信" label="通信" />
                             
                         
                     
@@ -4695,13 +4695,13 @@ MIMO（Multiple Input Multiple Output，多进多出）
     
         <entry>
             <title type="text">凸优化（五）算法</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-5/" />
-            <id>https://yichengme.site/posts/convex-5/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/convex-5/" />
+            <id>https://enginewang.github.io/posts/convex-5/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">包括无约束优化问题、带等式约束和不等式约束的凸优化问题的求解 无约束优化问题 无约束优化问题： $$ \text { minimize } f_0(x) $$ 对于凸问题而言，只有一个条件 $$ \nabla f (x^{\star}) = 0 $$ 强凸性 存在一个……</summary>
@@ -5087,7 +5087,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5097,13 +5097,13 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
                             
                         
                     
@@ -5113,13 +5113,13 @@ $$&lt;/p&gt;
     
         <entry>
             <title type="text">凸优化（四）对偶</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-4/" />
-            <id>https://yichengme.site/posts/convex-4/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/convex-4/" />
+            <id>https://enginewang.github.io/posts/convex-4/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Lagrange函数 原优化问题： $$ \begin{array}{ll} \text{ minimize } &amp;amp; f_0(x) \newline \text { subject to } &amp;amp; f_{i}(x) \leq 0, \quad i=1, \ldots, m \newline &amp;amp; h_i(x) = 0, \quad i=1, \ldots, p \end{array} $$ Lagrange函数是在优化目标中考虑约束条件，添加约束条件的加……</summary>
@@ -5484,7 +5484,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5494,13 +5494,13 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
                             
                         
                     
@@ -5510,13 +5510,13 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
     
         <entry>
             <title type="text">凸优化（三）凸优化问题</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-3/" />
-            <id>https://yichengme.site/posts/convex-3/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/convex-3/" />
+            <id>https://enginewang.github.io/posts/convex-3/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">基本形式 一般的优化问题的形式： $$ \begin{array}{ll} \text { minimize } &amp;amp; f_0(x) \newline \text { subject to } &amp;amp; f_{i}(x) \leq 0, \quad i=1, \ldots, m \newline &amp;amp; h_{i}(x)=0, \quad i=1, \ldots, p \end{array} $$ 其中$x$是优化变量，$f_0(x)$是目标函数 ，$f_i(x)\l……</summary>
@@ -5792,7 +5792,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -5802,13 +5802,13 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
                             
                         
                     
@@ -5818,13 +5818,13 @@ $$&lt;/p&gt;
     
         <entry>
             <title type="text">凸优化（二）凸函数</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-2/" />
-            <id>https://yichengme.site/posts/convex-2/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/convex-2/" />
+            <id>https://enginewang.github.io/posts/convex-2/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">凸函数的定义 定义一（基本定义） 函数$f: R^n \to R$是凸函数，当且仅当： $f$的定义域是凸集 $\forall x_1, x_2 \in dom(f), \forall \theta \in [0,1]$ $f(\theta x_1+(1-\theta)x_2) \leq \theta f(x_1) + (1-\theta)f(x_2)$ 该式也叫Jenson不等式： $$f(\theta x + (1-\theta) y) \leq……</summary>
@@ -6207,7 +6207,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -6217,13 +6217,13 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
                             
                         
                     
@@ -6233,13 +6233,13 @@ $$&lt;/p&gt;
     
         <entry>
             <title type="text">凸优化（一）绪论与凸集</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/convex-1/" />
-            <id>https://yichengme.site/posts/convex-1/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/convex-1/" />
+            <id>https://enginewang.github.io/posts/convex-1/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">凸优化的笔记专栏，预计会分为五个部分，分别是： 绪论与凸集 凸函数 凸优化问题 对偶 算法 参考： Stanford《convex optimization》 中科大 凌青 凸优化 优……</summary>
@@ -6563,7 +6563,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -6573,13 +6573,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%87%B8%E4%BC%98%E5%8C%96/" term="凸优化" label="凸优化" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%95%B0%E5%AD%A6/" term="数学" label="数学" />
                             
                         
                     
@@ -6589,13 +6589,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
     
         <entry>
             <title type="text">返璞归真，博客重新迁移到Hugo</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/hello-world/" />
-            <id>https://yichengme.site/posts/hello-world/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/hello-world/" />
+            <id>https://enginewang.github.io/posts/hello-world/</id>
             <updated>2022-01-12T12:31:42&#43;08:00</updated>
             <published>2021-12-21T23:08:40&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">第一次开博客应该是在大二的时候，也就是2018年，用的是Hexo。之后觉得配置太少，想要有发挥的空间，就用当时学的Django写了一个博客网站，再后来又改成了G……</summary>
@@ -6615,7 +6615,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -6625,13 +6625,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/hugo/" term="hugo" label="hugo" />
+                                <category scheme="https://enginewang.github.io/tags/hugo/" term="hugo" label="hugo" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/site/" term="site" label="site" />
+                                <category scheme="https://enginewang.github.io/tags/site/" term="site" label="site" />
                             
                         
                     
@@ -6641,13 +6641,13 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
     
         <entry>
             <title type="text">分布式系统（二）：共识算法</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-2/" />
-            <id>https://yichengme.site/posts/distribution-system-2/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/distribution-system-2/" />
+            <id>https://enginewang.github.io/posts/distribution-system-2/</id>
             <updated>2022-02-27T15:21:45&#43;08:00</updated>
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">拜占庭将军问题 拜占庭将军问题是分布式领域最复杂的一个容错模型，较好地抽象了分布式系统面临的共识问题。 假如你是一位拜占庭的将军，需要与其他几个国家的军队做沟通，而……</summary>
@@ -6904,7 +6904,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -6914,13 +6914,13 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E7%B2%BE%E9%80%89/" term="精选" label="精选" />
+                                <category scheme="https://enginewang.github.io/tags/%E7%B2%BE%E9%80%89/" term="精选" label="精选" />
                             
                         
                     
@@ -6930,13 +6930,13 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
     
         <entry>
             <title type="text">分布式系统（一）：CAP及基础理论</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/distribution-system-1/" />
-            <id>https://yichengme.site/posts/distribution-system-1/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/distribution-system-1/" />
+            <id>https://enginewang.github.io/posts/distribution-system-1/</id>
             <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">ACID、BASE、2PC/3PC ACID 在讲ACID之前，先讲本地事务，事务最早在数据库等课程中就接触过，简单来说，事务提供一种“要么什么也不做，要么全做完”的机制……</summary>
@@ -7127,7 +7127,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -7137,7 +7137,7 @@ R + R &amp;gt; N：&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                     
@@ -7147,13 +7147,13 @@ R + R &amp;gt; N：&lt;/p&gt;
     
         <entry>
             <title type="text">浅谈深度学习模型的可解释性</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/talk-about-model-interpreter/" />
-            <id>https://yichengme.site/posts/talk-about-model-interpreter/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/talk-about-model-interpreter/" />
+            <id>https://enginewang.github.io/posts/talk-about-model-interpreter/</id>
             <updated>2022-02-27T15:47:22&#43;08:00</updated>
             <published>2021-11-01T23:41:33&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 可解释性是指人类能够理解决策原因的程度。模型一方面需要有一定的预测能力，另外还应当让人类可以理解，为什么模型会根据这些数据作出最后的判断，也就是中间的决策过……</summary>
@@ -7277,7 +7277,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -7287,19 +7287,19 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" term="深度学习" label="深度学习" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" term="深度学习" label="深度学习" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" term="计算机视觉" label="计算机视觉" />
+                                <category scheme="https://enginewang.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" term="计算机视觉" label="计算机视觉" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/" term="可解释性" label="可解释性" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/" term="可解释性" label="可解释性" />
                             
                         
                     
@@ -7309,13 +7309,13 @@ $$&lt;/p&gt;
     
         <entry>
             <title type="text">Google三驾马车（三）—— Bigtable</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/bigtable/" />
-            <id>https://yichengme.site/posts/bigtable/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/bigtable/" />
+            <id>https://enginewang.github.io/posts/bigtable/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 为什么需要Bigtable？ 需要一个集群支持海量的随机读写，需要支持到每秒百万级别的随机读写。在Bigtable没出之前，使用MySQL集群可以解决一些问题……</summary>
@@ -7487,7 +7487,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -7497,19 +7497,19 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/bigtable/" term="Bigtable" label="Bigtable" />
+                                <category scheme="https://enginewang.github.io/tags/bigtable/" term="Bigtable" label="Bigtable" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -7519,13 +7519,13 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
     
         <entry>
             <title type="text">Google三驾马车（二）—— MapReduce</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mapreduce/" />
-            <id>https://yichengme.site/posts/mapreduce/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mapreduce/" />
+            <id>https://enginewang.github.io/posts/mapreduce/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-18T20:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 MapReduce是一个用于处理和生成大型数据集的编程模型和相关实现，它是一个分布式模型，通过一个Map函数将k/v对生存一组中间态的k/v对，然后通过一个……</summary>
@@ -7654,7 +7654,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -7664,19 +7664,19 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mapreduce/" term="MapReduce" label="MapReduce" />
+                                <category scheme="https://enginewang.github.io/tags/mapreduce/" term="MapReduce" label="MapReduce" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -7686,13 +7686,13 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
     
         <entry>
             <title type="text">Google三驾马车（一）—— Google File System</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/gfs/" />
-            <id>https://yichengme.site/posts/gfs/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/gfs/" />
+            <id>https://enginewang.github.io/posts/gfs/</id>
             <updated>2022-02-27T15:21:55&#43;08:00</updated>
             <published>2021-10-11T18:00:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">介绍 GFS，即Google File System，谷歌文件系统。 它是一种能够用于大型密集型数据的可拓展的分布式文件系统。（大型存储系统），它对于廉价硬件提供了容错机制；……</summary>
@@ -7840,7 +7840,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -7850,19 +7850,19 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/gfs/" term="GFS" label="GFS" />
+                                <category scheme="https://enginewang.github.io/tags/gfs/" term="GFS" label="GFS" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" term="大数据" label="大数据" />
                             
                         
                     
@@ -7872,13 +7872,13 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
     
         <entry>
             <title type="text">Docker基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/docker-basics/" />
-            <id>https://yichengme.site/posts/docker-basics/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/docker-basics/" />
+            <id>https://enginewang.github.io/posts/docker-basics/</id>
             <updated>2022-03-15T09:34:12&#43;08:00</updated>
             <published>2021-08-19T17:27:34&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Docker概述 为什么需要Docker？ 项目环境需要迁移，重新配环境很麻烦、一些配置很复杂程序想让其他人运行。 一个解决方法是虚拟机，但是虚拟机过于笨重。为了克服……</summary>
@@ -8285,7 +8285,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -8295,7 +8295,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/docker/" term="Docker" label="Docker" />
+                                <category scheme="https://enginewang.github.io/tags/docker/" term="Docker" label="Docker" />
                             
                         
                     
@@ -8305,13 +8305,13 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
     
         <entry>
             <title type="text">Ubuntu配置samba共享简易记录</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/ubuntu-samba-notes/" />
-            <id>https://yichengme.site/posts/ubuntu-samba-notes/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/ubuntu-samba-notes/" />
+            <id>https://enginewang.github.io/posts/ubuntu-samba-notes/</id>
             <updated>2022-09-17T14:49:19&#43;08:00</updated>
             <published>2021-07-23T14:47:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">nas的便捷早已融入了生活,最开始是利用路由器挂载移动硬盘的方式，目前仍在使用不过容量有限(4T)。 而我的主机是win10+Ubuntu18.04双系统，除去2……</summary>
@@ -8552,7 +8552,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -8562,13 +8562,13 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/nas/" term="nas" label="nas" />
+                                <category scheme="https://enginewang.github.io/tags/nas/" term="nas" label="nas" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                     
@@ -8578,13 +8578,13 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
     
         <entry>
             <title type="text">Go并发（四）WaitGroup源码剖析</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-4-waitgroup/" />
-            <id>https://yichengme.site/posts/go-concurrency-4-waitgroup/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/go-concurrency-4-waitgroup/" />
+            <id>https://enginewang.github.io/posts/go-concurrency-4-waitgroup/</id>
             <updated>2022-03-12T03:51:16&#43;08:00</updated>
             <published>2021-03-06T22:03:48&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">WaitGroup用于任务编排，解决并发-等待的问题。 试想一下，某个并发场景需要完成前置的几个协程任务才能完成另一个任务，如果没有WaitGroup、Chann……</summary>
@@ -8963,7 +8963,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -8973,13 +8973,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
                             
                         
                     
@@ -8989,13 +8989,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
     
         <entry>
             <title type="text">Go并发（三）RWMutex源码剖析</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-3-rwmutex/" />
-            <id>https://yichengme.site/posts/go-concurrency-3-rwmutex/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/go-concurrency-3-rwmutex/" />
+            <id>https://enginewang.github.io/posts/go-concurrency-3-rwmutex/</id>
             <updated>2022-03-02T19:25:33&#43;08:00</updated>
             <published>2021-02-19T22:03:48&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">RWMutex专门用于解决读写问题。 RWMutex使用方式 方法有五个： Lock：写操作调用，如果锁被写或读占用，会阻塞，如果拿到了锁，其他的读写都会阻塞 Unlo……</summary>
@@ -9272,7 +9272,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -9282,13 +9282,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
                             
                         
                     
@@ -9298,13 +9298,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
     
         <entry>
             <title type="text">Go并发（二）Mutex源码剖析</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-2-mutex/" />
-            <id>https://yichengme.site/posts/go-concurrency-2-mutex/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/go-concurrency-2-mutex/" />
+            <id>https://enginewang.github.io/posts/go-concurrency-2-mutex/</id>
             <updated>2022-03-02T19:24:39&#43;08:00</updated>
             <published>2021-02-06T22:03:48&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">基本并发原语 接下来的几节将会解析Go的这几个基本并发原语（同步原语）：Mutex、RWMutex、WaitGroup、Cond、Channel 为什么要用并发原语……</summary>
@@ -9854,7 +9854,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -9864,13 +9864,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
                             
                         
                     
@@ -9880,13 +9880,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
     
         <entry>
             <title type="text">Go并发（一）：并发的基本概念</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/go-concurrency-1-introduction/" />
-            <id>https://yichengme.site/posts/go-concurrency-1-introduction/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/go-concurrency-1-introduction/" />
+            <id>https://enginewang.github.io/posts/go-concurrency-1-introduction/</id>
             <updated>2022-03-12T03:51:59&#43;08:00</updated>
             <published>2021-01-24T23:46:26&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">写在前面 Go语言最有魅力的一个方面就在于它内建的并发支持，Go的并发所涉及的内容化很多，预计会占用比较长的篇幅。等基本更新完成后会在此处放上所有文章的链接。 首先……</summary>
@@ -10089,7 +10089,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -10099,13 +10099,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/golang/" term="Golang" label="Golang" />
+                                <category scheme="https://enginewang.github.io/tags/golang/" term="Golang" label="Golang" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
+                                <category scheme="https://enginewang.github.io/tags/%E5%B9%B6%E5%8F%91/" term="并发" label="并发" />
                             
                         
                     
@@ -10115,13 +10115,13 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
     
         <entry>
             <title type="text">生存分析基础</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/survival-analysis-basic/" />
-            <id>https://yichengme.site/posts/survival-analysis-basic/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/survival-analysis-basic/" />
+            <id>https://enginewang.github.io/posts/survival-analysis-basic/</id>
             <updated>2022-02-27T15:21:54&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">背景与简介 在生物医学、金融保险等领域，生存分析是一种很常见而且重要的方法。 生存分析主要用在癌症等疾病的研究中，比如对某种抗癌药物做临床试验，筛选一部分癌症患者，……</summary>
@@ -10282,7 +10282,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -10292,13 +10292,13 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" term="生存分析" label="生存分析" />
+                                <category scheme="https://enginewang.github.io/tags/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/" term="生存分析" label="生存分析" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" term="统计学" label="统计学" />
+                                <category scheme="https://enginewang.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6/" term="统计学" label="统计学" />
                             
                         
                     
@@ -10308,13 +10308,13 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
     
         <entry>
             <title type="text">计算机系统结构</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/computer-system-structure-1/" />
-            <id>https://yichengme.site/posts/computer-system-structure-1/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/computer-system-structure-1/" />
+            <id>https://enginewang.github.io/posts/computer-system-structure-1/</id>
             <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2020-06-04T15:05:09&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">第一章：导论 概念部分 第一台通用电子计算机诞生于1946年 计算机技术的飞速发展得益于：计算机制造技术的发展、计算机系统结构的创新 纷纷放弃高性能转向多核，标志着系统……</summary>
@@ -10916,7 +10916,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -10926,7 +10926,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/" term="系统结构" label="系统结构" />
+                                <category scheme="https://enginewang.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84/" term="系统结构" label="系统结构" />
                             
                         
                     
@@ -10936,13 +10936,13 @@ ALU等&lt;/p&gt;
     
         <entry>
             <title type="text">同济学生服务站小程序如何每日自动打卡</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/miniprogram-auto-checkin/" />
-            <id>https://yichengme.site/posts/miniprogram-auto-checkin/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/miniprogram-auto-checkin/" />
+            <id>https://enginewang.github.io/posts/miniprogram-auto-checkin/</id>
             <updated>2022-02-08T17:27:00&#43;08:00</updated>
             <published>2020-05-10T18:44:36&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">（仅针对同济大学学生服务站小程序，本文只提供思路，需要具体代码的话可以私信。如果你一直呆在学校，可以考虑使用该方法自动签到，但是一旦离开上海，请务必向辅导员申报……</summary>
@@ -11102,7 +11102,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -11112,7 +11112,7 @@ ALU等&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E8%84%9A%E6%9C%AC/" term="脚本" label="脚本" />
+                                <category scheme="https://enginewang.github.io/tags/%E8%84%9A%E6%9C%AC/" term="脚本" label="脚本" />
                             
                         
                     
@@ -11122,13 +11122,13 @@ ALU等&lt;/p&gt;
     
         <entry>
             <title type="text">Mongodb初级教程</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mongodb-basics/" />
-            <id>https://yichengme.site/posts/mongodb-basics/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mongodb-basics/" />
+            <id>https://enginewang.github.io/posts/mongodb-basics/</id>
             <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2020-04-20T14:29:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">背景 mongodb是一个基于分布式文件存储的数据库。由C++语言编写。旨在为WEB应用提供可扩展的高性能数据存储解决方案。它是一个介于关系数据库和非关系数据库之……</summary>
@@ -11449,7 +11449,7 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -11459,13 +11459,13 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/mongodb/" term="MongoDB" label="MongoDB" />
+                                <category scheme="https://enginewang.github.io/tags/mongodb/" term="MongoDB" label="MongoDB" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/database/" term="Database" label="Database" />
+                                <category scheme="https://enginewang.github.io/tags/database/" term="Database" label="Database" />
                             
                         
                     
@@ -11475,13 +11475,13 @@ db.col.update({&amp;quot;age&amp;quot;: {$gt: 20}}, {$set:{&amp;quot;age&amp;quo
     
         <entry>
             <title type="text">操作系统基础（四）文件IO</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-io/" />
-            <id>https://yichengme.site/posts/os-basics-io/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/os-basics-io/" />
+            <id>https://enginewang.github.io/posts/os-basics-io/</id>
             <updated>2022-03-02T19:00:03&#43;08:00</updated>
             <published>2020-02-20T16:01:08&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">文件基本概念 文件是记录在外存上相关信息的具名集合，对于用户而言文件是逻辑外存最小的分配单位，文件是一组有意义信息的集合 在系统运行时，计算机以进程为基本单位进行资……</summary>
@@ -11643,7 +11643,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -11653,7 +11653,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                                <category scheme="https://enginewang.github.io/tags/os/" term="OS" label="OS" />
                             
                         
                     
@@ -11663,13 +11663,13 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
     
         <entry>
             <title type="text">操作系统基础（三）内存</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-memory/" />
-            <id>https://yichengme.site/posts/os-basics-memory/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/os-basics-memory/" />
+            <id>https://enginewang.github.io/posts/os-basics-memory/</id>
             <updated>2022-03-02T18:59:52&#43;08:00</updated>
             <published>2020-02-08T19:45:04&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">基础 程序装入和链接 编译：编译程序将源代码编译成若干目标模块 链接：链接程序把各个目标模块，包括外部库函数链接在一起 装入：由装入程序将装入模块装入内存中运行 其中链接……</summary>
@@ -11933,7 +11933,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -11943,7 +11943,7 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                                <category scheme="https://enginewang.github.io/tags/os/" term="OS" label="OS" />
                             
                         
                     
@@ -11953,13 +11953,13 @@ C-LOOK：C-SCAN的升级，相比C-SCAN头尾不需要是磁盘的最前面和�
     
         <entry>
             <title type="text">操作系统基础（二）进程与线程</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-thread/" />
-            <id>https://yichengme.site/posts/os-basics-thread/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/os-basics-thread/" />
+            <id>https://enginewang.github.io/posts/os-basics-thread/</id>
             <updated>2022-03-02T18:59:43&#43;08:00</updated>
             <published>2020-01-20T14:29:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">本部分主要包括四个模块：进程与线程的概念、处理机调度算法、进程同步和死锁问题 一、进程与线程 进程 进程是进程实体的运行过程。是系统进行资源分配和调度的一个独立单位。……</summary>
@@ -12807,7 +12807,7 @@ P V操作修改为&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -12817,7 +12817,7 @@ P V操作修改为&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                                <category scheme="https://enginewang.github.io/tags/os/" term="OS" label="OS" />
                             
                         
                     
@@ -12827,13 +12827,13 @@ P V操作修改为&lt;/p&gt;
     
         <entry>
             <title type="text">操作系统基础（一）导论</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/os-basics-introduction/" />
-            <id>https://yichengme.site/posts/os-basics-introduction/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/os-basics-introduction/" />
+            <id>https://enginewang.github.io/posts/os-basics-introduction/</id>
             <updated>2022-03-02T18:59:30&#43;08:00</updated>
             <published>2020-01-04T16:29:53&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">概述 操作系统是指控制和管理整个计算机系统的硬件和软件资源，并且合理地组织调度计算机工作和资源的分配，以提供给用户和其他软件方便接口和环境的程序集合。 从底层到上层……</summary>
@@ -12933,7 +12933,7 @@ P V操作修改为&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -12943,7 +12943,7 @@ P V操作修改为&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/os/" term="OS" label="OS" />
+                                <category scheme="https://enginewang.github.io/tags/os/" term="OS" label="OS" />
                             
                         
                     
@@ -12953,13 +12953,13 @@ P V操作修改为&lt;/p&gt;
     
         <entry>
             <title type="text">Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
-            <id>https://yichengme.site/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
+            <id>https://enginewang.github.io/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
             <updated>2022-02-27T15:21:46&#43;08:00</updated>
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Django项目写好了，最后一步就是部署(deployment)，部署十分关键，只有部署在服务器上，别人才能从互联网上通过ip地址或域名直接访问到你的网页。 第一……</summary>
@@ -13299,7 +13299,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://enginewang.github.io/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
                             
                         
                     
@@ -13309,19 +13309,19 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/django/" term="Django" label="Django" />
+                                <category scheme="https://enginewang.github.io/tags/django/" term="Django" label="Django" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/linux/" term="Linux" label="Linux" />
+                                <category scheme="https://enginewang.github.io/tags/linux/" term="Linux" label="Linux" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/nginx/" term="nginx" label="nginx" />
+                                <category scheme="https://enginewang.github.io/tags/nginx/" term="nginx" label="nginx" />
                             
                         
                     
@@ -13331,13 +13331,13 @@ systemctl reload nginx.service
     
         <entry>
             <title type="text">mac软件推荐</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/mac-software-recommend/" />
-            <id>https://yichengme.site/posts/mac-software-recommend/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/mac-software-recommend/" />
+            <id>https://enginewang.github.io/posts/mac-software-recommend/</id>
             <updated>2022-02-12T21:14:52&#43;08:00</updated>
             <published>2019-11-10T15:38:07&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">注：以下软件或组件只是自我记录，因为是颜控，所以包含大量主观感情色彩 本篇不含软件资源，如果有需要建议去官网购买正版 多图预警！！！流量党请慎重 科研篇 Xmind 最好用的思维……</summary>
@@ -13479,7 +13479,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -13489,7 +13489,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/macos/" term="macOS" label="macOS" />
+                                <category scheme="https://enginewang.github.io/tags/macos/" term="macOS" label="macOS" />
                             
                         
                     
@@ -13499,13 +13499,13 @@ systemctl reload nginx.service
     
         <entry>
             <title type="text">Precision5510 黑苹果使用体验</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/precision5510-hackintosh/" />
-            <id>https://yichengme.site/posts/precision5510-hackintosh/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/precision5510-hackintosh/" />
+            <id>https://enginewang.github.io/posts/precision5510-hackintosh/</id>
             <updated>2022-02-12T21:01:13&#43;08:00</updated>
             <published>2019-09-05T14:33:07&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前年的时候，也就是17年年底，鉴于最低配的苏菲4性能比较羸弱，可怜的4G内存开个Chrome和Office就能吃满，分分钟卡爆，于是原来的电脑出掉了，准备更换一……</summary>
@@ -13580,7 +13580,7 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -13590,13 +13590,13 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" term="黑苹果" label="黑苹果" />
+                                <category scheme="https://enginewang.github.io/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/" term="黑苹果" label="黑苹果" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E6%8A%98%E8%85%BE/" term="折腾" label="折腾" />
+                                <category scheme="https://enginewang.github.io/tags/%E6%8A%98%E8%85%BE/" term="折腾" label="折腾" />
                             
                         
                     
@@ -13606,13 +13606,13 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
     
         <entry>
             <title type="text">Atom的Markdown配置与美化</title>
-            <link rel="alternate" type="text/html" href="https://yichengme.site/posts/use-atom-as-an-elegant-markdown-editor/" />
-            <id>https://yichengme.site/posts/use-atom-as-an-elegant-markdown-editor/</id>
+            <link rel="alternate" type="text/html" href="https://enginewang.github.io/posts/use-atom-as-an-elegant-markdown-editor/" />
+            <id>https://enginewang.github.io/posts/use-atom-as-an-elegant-markdown-editor/</id>
             <updated>2022-02-08T17:27:00&#43;08:00</updated>
             <published>2019-03-22T16:12:25&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
-                    <uri>https://yichengme.site/</uri>
+                    <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">Atom介绍 Atom是一个Github出品的一个开源的免费文本编辑器，和VS Code、Sublime Text是对标产品。 Atom和VS Code一样，都是用Ele……</summary>
@@ -13721,7 +13721,7 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://yichengme.site/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://enginewang.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
                             
                         
                     
@@ -13731,19 +13731,19 @@ Precision5510 / XPS15 4k版的是 3840 x 2160 100%AdobeRGB UHD 康宁大猩猩�
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/atom/" term="Atom" label="Atom" />
+                                <category scheme="https://enginewang.github.io/tags/atom/" term="Atom" label="Atom" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/markdown/" term="markdown" label="markdown" />
+                                <category scheme="https://enginewang.github.io/tags/markdown/" term="markdown" label="markdown" />
                             
                         
                             
                             
                             
-                                <category scheme="https://yichengme.site/tags/%E7%BE%8E%E5%8C%96/" term="美化" label="美化" />
+                                <category scheme="https://enginewang.github.io/tags/%E7%BE%8E%E5%8C%96/" term="美化" label="美化" />
                             
                         
                     
