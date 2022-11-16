@@ -8,6 +8,9 @@
     <loc>https://blog.engine.wang/tags/docker/</loc>
     <lastmod>2022-10-11T10:34:22+08:00</lastmod>
   </url><url>
+    <loc>https://blog.engine.wang/</loc>
+    <lastmod>2022-10-11T10:34:22+08:00</lastmod>
+  </url><url>
     <loc>https://blog.engine.wang/tags/kubernetes/</loc>
     <lastmod>2022-10-11T10:34:22+08:00</lastmod>
   </url><url>
@@ -24,9 +27,6 @@
     <lastmod>2022-10-11T10:34:22+08:00</lastmod>
   </url><url>
     <loc>https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-10-11T10:34:22+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.engine.wang/</loc>
     <lastmod>2022-10-11T10:34:22+08:00</lastmod>
   </url><url>
     <loc>https://blog.engine.wang/posts/k8s-lan-setup/</loc>

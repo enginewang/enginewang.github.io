@@ -7,9 +7,9 @@
 
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>王毅诚的博客</title>
+        <title>enginewang的博客</title>
         <link>https://blog.engine.wang/</link>
-        <description>这里是王毅诚的博客，分享技术文章和生活经历</description>
+        <description>这里是enginewang的博客，分享技术文章和生活经历</description>
         <generator>Hugo 0.91.1 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 08 Nov 2022 21:49:33 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 16 Nov 2022 13:55:10 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         

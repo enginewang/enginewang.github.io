@@ -2,7 +2,7 @@
 # 站点配置
 
 baseURL = "https://blog.engine.wang"
-title = "王毅诚的博客"
+title = "enginewang的博客"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
@@ -338,7 +338,7 @@ uglyURLs = false
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "这里是王毅诚的博客，分享技术文章和生活经历"
+    siteDescription = "这里是enginewang的博客，分享技术文章和生活经历"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
