@@ -1,16 +1,18 @@
 ---
-title: "frp内网穿透记录"
+title: "frp内网穿透原理及配置记录"
 date: 2022-07-17T13:43:38+08:00
 draft: false
 categories: ["技术"]
 tags: ["内网穿透", "frp", "Linux"]
 ---
 
+
 ## 前言
 
-如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技术来满足这些需求。
 
-所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT
+一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来，这么多年基本没什么发展。我们在学校、家庭的路由器都是运营商通过NAT等方式转接，都处于内网之中，需要在局域网内才能访问到相关的服务。
+
+但如果我们在外面有访问内网web服务、远程ssh内网服务器、远程访问内网NAS等需求的话，该怎么办呢？内网穿透可以在一定程度上解决这个需求。所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT技术。
 
 ## NAT技术
 
@@ -20,7 +22,7 @@ NAT分为三种：静态NAT、动态地址NAT、网络地址端口转换NAPT。
 
 ### 静态NAT
 
-静态NAT就是内网和公网IP一一x对应，这个方式用的很少
+静态NAT就是内网和公网IP一一对应，这个方式用的很少
 
 ### 动态地址NAT
 
@@ -60,13 +62,15 @@ NAT技术中，使用最普遍的是NAPT，它指的是将内部的地址映射�
 
 内网穿透就是通过对地址进行转换，将公共的网络地址转变为私有网络地址，采用一种路由的方式将一台有公网的计算机变成路由器的功能，实现了两个不同局域网下的计算机的沟通。
 
-不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些基于frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。
+不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些给予frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。
 
-而这里重点介绍和使用的是frp，也是目前使用最广泛的一个开源内网穿透工具。
+而这里重点介绍和使用的是frp，它也是目前使用最广泛的一个开源内网穿透工具。
 
 ## frp
 
 frp是一个用Go语言编写的，专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。
+
+frp的github地址：[https://github.com/fatedier/frp](https://github.com/fatedier/frp)
 
 frp包括以下特性：
 - 客户端服务端通信支持 TCP、KCP 以及 Websocket 等多种协议。
@@ -77,50 +81,123 @@ frp包括以下特性：
 - 高度扩展性的服务端插件系统，方便结合自身需求进行功能扩展。
 - 服务端和客户端 UI 页面。
 
+### frp的组成
 
-frp包含服务端frps（有公网ip，起转发作用）和客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）
+frp包含：
+- 服务端frps（有公网ip的机器，起转发作用）
+- 客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）
 
 ![](https://github.com/fatedier/frp/raw/dev/doc/pic/architecture.png)
+
+### frp的工作流程
+
+1. 首先，frpc 启动之后，会连接 frps，并且发送一个请求 login()，之后保持住这个长连接，如果断开了，就重试
+2. frps 收到请求之后，会建立一个 listener 监听来自公网的请求
+3. 当 frps 接受到请求之后，会在本地看是否有可用的连接( frp 可以设置连接池)，如果没有，就下发一个 msg.StartWorkConn 并且 等待来自 frpc 的请求
+4. frpc 收到之后，对 frps 发起请求，请求的最开始会指名这个连接是去向哪个 proxy 的
+5. frps 收到来自 frpc 的连接之后，就把新建立的连接与来自公网的连接进行流量互转
+6. 如果请求断开了，那么就把另一端的请求也断开
+
+![](https://jiajunhuang.com/articles/img/frp_flow.png)
+
+### nginx和frp的区别
+
+前面提到了frp的本质是反向代理，而我们熟知的nginx也基于反向代理，但是nginx主要用于负载均衡，而frp用于内网穿透。nginx的逻辑如下：
+
+![](https://jiajunhuang.com/articles/img/nginx_flow.png)
 
 
 ## frp配置记录
 
 ### frps
 
-首先去配置frps，这个比较简单，先去frp的releases页面：https://github.com/fatedier/frp/releases
+frps需要配置在有公网ip的服务器上，可以去腾讯云、阿里云、华为云等云服务商租服务器，这里我用的是腾讯云。
 
-下载好对应版本的frp并解压，修将frps.ini移到/etc/frp/frps.ini并修改为：
+新用户的话很推荐腾讯云的服务器特惠活动，应该是目前几家大厂里最便宜的，一年只需要50多就可以搞到2核2G的服务器，可以点击下面的图片进入腾讯云特惠活动：
+
+<a href="https://url.cn/W6cMbMm6"><img src="https://s2.loli.net/2022/11/25/NtOMw7gYr32veXb.jpg" alt="腾讯云特惠服务器"></a>
+
+
+先购买一台服务器，推荐选择同地域的Ubuntu或者CentOS（因为我是老用户，所以会贵很多，而且界面可能跟特惠不太一样，不过逻辑差不多），这里我选的是常用的Ubuntu，当然CcentOS也基本一样，只需要修改少量的命令。
+
+![](https://s2.loli.net/2022/11/25/TxkczZs8BPaVviq.png)
+
+然后查看它的公网ip，如果想在本地终端连接的话，需要设一下ubuntu账户的ssh密码（下面的重置密码）或者通过密钥连接（需要去密钥管理里上传本机的ssh密钥，这里就不说了）：
+
+![](https://s2.loli.net/2022/11/25/32pMZSOGTh9fYba.png)
+
+远程ssh连接到服务器：
+
+```bash
+ssh ubuntu@<你的公网ip>
+# 密码是刚刚设置的密码
+```
+
+```bash
+// 更新一波，并且装点常用软件
+$ sudo apt-get update
+$ sude apt-get upgrade
+$ sudo apt-get install wget vim git
+```
+
+开始配置frps，可以先创建一个目录：
+
+```bash
+$ mkdir frp
+$ cd frp
+```
+
+本机去frp的releases页面：https://github.com/fatedier/frp/releases 找一下最新版本的链接，在服务器端下载对应版本（linux_amd64）并解压：
+
+```bash
+$ wget https://github.com/fatedier/frp/releases/download/v0.45.0/frp_0.45.0_linux_amd64.tar.gz
+$ tar -zxvf frp_0.45.0_linux_amd64.tar.gz
+```
+
+修改里面的`frps.ini`：
 
 ```ini
 [common]
-# frp监听的端口，默认是7000，可以改成其他的
-bind_port = 7000
+bind_addr = 0.0.0.0
+# frp监听的端口，默认是7000，比较建议修改成其他的
+bind_port = <port>
+bind_udp_port = 7001
 vhost_http_port = 8080
-
-# frp管理后台端口，请按自己需求更改
+vhost_https_port = 4433
+# frp的UI管理后台端口，请按自己需求更改
 dashboard_port = 7500
-# frp管理后台用户名和密码，请改成自己的
+# frp的UI管理后台用户名和密码，请改成自己的
 dashboard_user = admin
-dashboard_pwd =admin_passwd
-# 开启prometheus监控
+dashboard_pwd = <设置你的密码>
 enable_prometheus = true
 
 # frp日志配置
-log_file = /var/log/frps.log
+log_file = /home/ubuntu/frp/frps.log
 log_level = info
 log_max_days = 3
+disable_log_color = false
+detailed_errors_to_client = true
 
-# token，用于frpc验证
-token = <token>
+# token，用于内网穿透验证，最简单的验证方式
+# 下面配置的token不要泄露，否则别人也可以用你的服务器进行内网穿透，也会造成安全隐患
+authentication_method = token
+token = <设置你的token>
 ```
 
-不要忘记去腾讯云后台把相关端口全部打开，以及在腾讯云创建安全组，允许全部端口，以及关闭防火墙，当然这里是暴力放开，最好是只开放对应的端口。
+还可以使用OIDC来验证，配置会更复杂，我没有试过，可以参考 [Client Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.4)
+
+另外还需要去腾讯云后台把相关端口全部打开，暴力的话可以在腾讯云创建安全组，允许全部端口，当然这里最好是只开放相关的端口。
+
+![](https://s2.loli.net/2022/11/25/jTU5VYGheHC93go.png)
+
+
+以及关闭防火墙：
 
 ```bash
 sudo systemctl stop firealld
 ```
 
-采用systemd的方式，使用服务会更加方便，运行在后台而且开机自启。
+采用systemd的方式来配置frps服务，这样使用服务会更加方便，可以让服务运行在后台而且开机自启。
 
 创建 /etc/systemd/system/frps.service并写入以下内容：
 
@@ -131,7 +208,7 @@ After=network.target syslog.target
 
 [Service]
 Type=simple
-# 实际路径自行调整
+# 根据实际路径自行调整
 ExecStart=/home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini
 
 [Install]
@@ -153,52 +230,31 @@ $ sudo systemctl status frps
            └─3413 /home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini
 ```
 
-前往server_ip:7500就可以访问到frp dashboard：
+前往<ip>:7500并进行登录就可以访问到frp dashboard：
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663351907/frp_dashboard_1.png)
+
+至此我们的服务器frps就配置好了，是比较简单的。
 
 ## frpc配置
 
 在需要穿透出去的内网本机上配置frpc。
 
-也是同样去下载frp，然后修改frpc.ini配置文件：
+也是同样去下载frp，需要下载跟frps相同版本的，然后修改frpc.ini配置文件：
 
 ```ini
 # 常规配置，这几个要与frps对应
 [common]
-server_addr =  <server_ip>
-server_port = 7000
-accesstoken = <token>
+server_addr = <server_ip>
+server_port = <port>
+token = <token>
 
-# 后面的根据自己的需求写
-[ssh]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 22
-remote_port = 2220
-
-[frontend]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 8080
-remote_port = 8001
-
-[backend]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 7439
-remote_port = 7439
-
-[cloudreve]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 5212
-remote_port = 5212
+# 后面的根据自己的需求写，比如ssh、web前后端、路由器、samba、nas、私有网盘服务等，后面一个一个举例
 ```
 
 后面的内容根据实际的需求进行添加，这里并不需要再修改frps，只要服务端的remote_port是允许访问的即可（需要去腾讯云的控制台和用命令行关闭相关防火墙开放这些端口）
 
-然后也可以使用systemd来管理：
+当然如果也是Linux的话，我们也可以使用systemd来管理
 
 ```bash
 $ sudo vim /usr/lib/systemd/system/frpc.service
@@ -212,7 +268,7 @@ Wants=network.target
 
 [Service]
 Type=simple
-# 写实际的路径
+# 根据frp所在的实际路径进行调整
 ExecStart=/home/engine/Projects/frp/frpc -c /home/engine/Projects/frp/frpc.ini
 Restart=always
 RestartSec=2s
@@ -226,15 +282,13 @@ WantedBy=multi-user.target
 ```bash
 # 更新配置
 $ systemctl daemon-reload
-
 # 启动服务
-$ systemctl start cloudreve
-
+$ systemctl start frpc
 # 设置开机启动
-$ systemctl enable cloudreve
+$ systemctl enable frpc
 ```
 
-
+如果是其他的系统或者路由器，修改frpc.ini然后常规启动就可以
 
 ### ssh穿透
 
@@ -243,22 +297,20 @@ $ systemctl enable cloudreve
 type = tcp
 local_ip = 127.0.0.1
 local_port = 22
-remote_port = 2220
+# 映射到远程的端口可以自己选定，选大一点的端口，自己记住就行了
+# 记不住也没事，可以去web UI管理界面查
+remote_port = <remote_ip>
 ```
 
 在外面就可以远程ssh连接寝室的服务器了，当然这里要用-p指示端口：
 
 ```bash
-$ sudo ssh -p 2220 <username>@<server_ip>
-```
-
-```bash
-$ ./frpc -c ./frpc.ini
+$ sudo ssh -p <remote_ip> <内网用户>@<server_ip>
 ```
 
 ### 内网web穿透
 
-比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端却不能跟后端连上，所以这里只好将后端也进行穿透。
+比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端是不能跟后端连上的，所以后端也需要进行穿透。
 
 ```ini
 [frontend]
@@ -276,7 +328,7 @@ remote_port = 7439
 
 ### Cloudreve私有云存储
 
-使用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。
+可以用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。
 
 先安装Cloudreve
 
@@ -345,24 +397,142 @@ remote_port = 5212
 
 ### 路由器后台
 
-如果在外面需要配置路由器的后台情况，这里对刷了梅林固件的路由器后台进行了配置，去软件中心安装Frpc内网穿透，然后配置：
+如果在外面需要配置路由器的后台情况，或者觉得直接访问内网服务器不安全，需要借助第三方机器对局域网内的机器进行连接，就可以将路由器进行内网穿透。
+
+这里对刷了梅林固件的路由器后台进行了配置，比较推荐刷了Koolshare梅林固件或者openwrt固件的路由器，可玩性比较强。
+
+
+
+去软件中心安装Frpc内网穿透，然后配置：
 
 ```ini
 # frpc custom configuration
 [common]
 server_addr = <server_ip>
-server_port = 7000
-accesstoken = <token>
+server_port = <frps_port>
+token = <token>
 
-[merlin]
+# ssh穿透
+[merlin_ssh]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = <merlin_ssh_remote_port>
+
+# 路由器后台穿透
+[merlin_center]
 type=tcp
-local_ip=127.0.0.1
-local_port=80
-remote_port=8003
+local_ip = 127.0.0.1
+local_port = 80
+remote_port = <merlin_center_remote_port>
 ```
 
-![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389621/merlin-frpc-1.png)
+![](https://s2.loli.net/2022/11/25/bhMZiXfIFNtx6OW.png)
 
-就可以在外面通过 `http://<server_ip>:8003/` 访问路由器后台了。
+就可以在外面通过 `http://<server_ip>:<merlin_center_remote_port>/` 访问路由器后台了。
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389718/merlin-frpc-2.png)
+
+## 群晖NAS内网穿透
+
+群晖自带quickconnect内网穿透，并且配置了域名，但是quickconnect速度感人并且需要手机号验证，一些服务可能还无法使用，所以这里我们自己穿透。
+
+因为没有自带的frpc客户端，去docker里找一个：（只有x86芯片的群晖才能用Docker，也就是型号带+的，型号带j的无法使用docker）
+
+![](https://s2.loli.net/2022/10/24/OLfX7nsrodVPKlt.png)
+
+
+![](https://s2.loli.net/2022/10/24/UxqNTjztEoC24Zm.png)
+
+写一下frpc的配置，上传到群晖的某个文件夹，我这里是`/docker/frpc/frpc.ini`
+
+
+后面一些是我的配置，包括dsm登录、webdav、emby、plex等
+
+```ini
+[common]
+server_addr = <server_ip>
+server_port = <frps_port>
+token = <token>
+
+[nas_ssh]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 22
+remote_port = 2333
+
+[dsm]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 5001
+remote_port = 5001
+
+[ds_file]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 5001
+remote_port = 5002
+
+[https_webdav]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 5006
+remote_port = 5006
+
+[http_webdav]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 5004
+remote_port = 5004
+
+[emby]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 8097
+remote_port = 8097
+
+[emby_8096]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 8096
+remote_port = 8096
+
+
+[plex_28888]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 28888
+remote_port = 28888
+
+
+[plex_32400]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 32400
+remote_port = 32400
+
+[nas_samba_445]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 445
+remote_port = 4455
+
+
+[nas_cloudreve_5212]
+type = tcp
+local_ip = 192.168.50.99
+local_port = 5212
+remote_port = 5212
+```
+
+DSM：
+![](https://s2.loli.net/2022/10/24/jdxFe6R3iI5abs4.png)
+
+Cloudreve:
+![](https://s2.loli.net/2022/11/25/RDUAeOkNvEqdZJT.png)
+
+Emby
+![](https://s2.loli.net/2022/11/25/qKIMdsyAP9DHV3U.png)
+
+Plex:
+![](https://s2.loli.net/2022/11/25/SIQErDdzaZNhyYR.png)

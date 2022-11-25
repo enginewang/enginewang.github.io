@@ -15,7 +15,7 @@
     
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <title>frp内网穿透记录 | enginewang的博客</title>
+    <title>frp内网穿透原理及配置记录 | enginewang的博客</title>
 
     <link rel="stylesheet" href="/css/meme.min.a0103f2d9fc2fc38560ac654e0160afa925ba58c4639fff0729aa70330d3e5fd.css"/>
 
@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
 
-    <meta name="author" content="enginewang" /><meta name="description" content="前言 如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技……" />
+    <meta name="author" content="enginewang" /><meta name="description" content="前言 一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来……" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
@@ -57,14 +57,14 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-07-17T13:43:38+08:00",
-        "dateModified": "2022-09-17T14:49:04+08:00",
+        "dateModified": "2022-11-25T16:59:43+08:00",
         "url": "https://blog.engine.wang/posts/frp-notes/",
-        "headline": "frp内网穿透记录",
-        "description": "前言 如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技……",
+        "headline": "frp内网穿透原理及配置记录",
+        "description": "前言 一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来……",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
-        "wordCount":  3148 ,
-        "image": ["https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c","https://picx.zhimg.com/80/v2-dc2a84984269febe7eb626b5f4a69861_720w.jpg?source=1940ef5c","https://picx.zhimg.com/80/v2-34da92151023c595b9bbad1e180fde15_720w.jpg?source=1940ef5c","https://pic2.zhimg.com/80/v2-51c40f6df15710213bedcb6d7e21976e_720w.jpg?source=1940ef5c","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663343308/nat-1.png","https://github.com/fatedier/frp/raw/dev/doc/pic/architecture.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663351907/frp_dashboard_1.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389621/merlin-frpc-1.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389718/merlin-frpc-2.png"],
+        "wordCount":  4982 ,
+        "image": ["https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c","https://picx.zhimg.com/80/v2-dc2a84984269febe7eb626b5f4a69861_720w.jpg?source=1940ef5c","https://picx.zhimg.com/80/v2-34da92151023c595b9bbad1e180fde15_720w.jpg?source=1940ef5c","https://pic2.zhimg.com/80/v2-51c40f6df15710213bedcb6d7e21976e_720w.jpg?source=1940ef5c","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663343308/nat-1.png","https://github.com/fatedier/frp/raw/dev/doc/pic/architecture.png","https://jiajunhuang.com/articles/img/frp_flow.png","https://jiajunhuang.com/articles/img/nginx_flow.png","https://s2.loli.net/2022/11/25/NtOMw7gYr32veXb.jpg","https://s2.loli.net/2022/11/25/TxkczZs8BPaVviq.png","https://s2.loli.net/2022/11/25/32pMZSOGTh9fYba.png","https://s2.loli.net/2022/11/25/jTU5VYGheHC93go.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663351907/frp_dashboard_1.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png","https://s2.loli.net/2022/11/25/bhMZiXfIFNtx6OW.png","https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389718/merlin-frpc-2.png","https://s2.loli.net/2022/10/24/OLfX7nsrodVPKlt.png","https://s2.loli.net/2022/10/24/UxqNTjztEoC24Zm.png","https://s2.loli.net/2022/10/24/jdxFe6R3iI5abs4.png","https://s2.loli.net/2022/11/25/RDUAeOkNvEqdZJT.png","https://s2.loli.net/2022/11/25/qKIMdsyAP9DHV3U.png","https://s2.loli.net/2022/11/25/SIQErDdzaZNhyYR.png"],
         "author": {
             "@type": "Person",
             "description": "Hello World",
@@ -100,14 +100,14 @@
 
 
 
-<meta property="og:title" content="frp内网穿透记录" />
-<meta property="og:description" content="前言 如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技……" />
+<meta property="og:title" content="frp内网穿透原理及配置记录" />
+<meta property="og:description" content="前言 一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来……" />
 <meta property="og:url" content="https://blog.engine.wang/posts/frp-notes/" />
 <meta property="og:site_name" content="enginewang的博客" />
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-07-17T13:43:38&#43;08:00" />
-    <meta property="article:modified_time" content="2022-09-17T14:49:04&#43;08:00" />
+    <meta property="article:modified_time" content="2022-11-25T16:59:43&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -224,7 +224,7 @@
 
         <article class="content post h-entry" data-align="justify" data-type="posts" data-toc-num="true">
 
-            <h1 class="post-title p-name">frp内网穿透记录</h1>
+            <h1 class="post-title p-name">frp内网穿透原理及配置记录</h1>
 
             
 
@@ -253,11 +253,11 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;3148</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;4982</span>
     
     
         
-        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;7&nbsp;分钟</span>
+        <span class="post-meta-item reading-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;10&nbsp;分钟</span>
     
     
     
@@ -276,7 +276,13 @@
       </ol>
     </li>
     <li><a id="contents:内网穿透原理及工具" href="#内网穿透原理及工具">内网穿透原理及工具</a></li>
-    <li><a id="contents:frp" href="#frp">frp</a></li>
+    <li><a id="contents:frp" href="#frp">frp</a>
+      <ol>
+        <li><a id="contents:frp的组成" href="#frp的组成">frp的组成</a></li>
+        <li><a id="contents:frp的工作流程" href="#frp的工作流程">frp的工作流程</a></li>
+        <li><a id="contents:nginx和frp的区别" href="#nginx和frp的区别">nginx和frp的区别</a></li>
+      </ol>
+    </li>
     <li><a id="contents:frp配置记录" href="#frp配置记录">frp配置记录</a>
       <ol>
         <li><a id="contents:frps" href="#frps">frps</a></li>
@@ -290,16 +296,17 @@
         <li><a id="contents:路由器后台" href="#路由器后台">路由器后台</a></li>
       </ol>
     </li>
+    <li><a id="contents:群晖nas内网穿透" href="#群晖nas内网穿透">群晖NAS内网穿透</a></li>
   </ol>
 </nav><div class="post-body e-content">
                 <h2 id="前言"><a href="#前言" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:前言" class="headings">前言</a></h2>
-<p>如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技术来满足这些需求。</p>
-<p>所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT</p>
+<p>一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来，这么多年基本没什么发展。我们在学校、家庭的路由器都是运营商通过NAT等方式转接，都处于内网之中，需要在局域网内才能访问到相关的服务。</p>
+<p>但如果我们在外面有访问内网web服务、远程ssh内网服务器、远程访问内网NAS等需求的话，该怎么办呢？内网穿透可以在一定程度上解决这个需求。所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT技术。</p>
 <h2 id="nat技术"><a href="#nat技术" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:nat技术" class="headings">NAT技术</a></h2>
 <p>NAT（Network Address Translation，网络地址转换）是一个将内部私有的网络地址翻译成合法ip地址的技术。</p>
 <p>NAT分为三种：静态NAT、动态地址NAT、网络地址端口转换NAPT。</p>
 <h3 id="静态nat"><a href="#静态nat" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:静态nat" class="headings">静态NAT</a></h3>
-<p>静态NAT就是内网和公网IP一一x对应，这个方式用的很少</p>
+<p>静态NAT就是内网和公网IP一一对应，这个方式用的很少</p>
 <h3 id="动态地址nat"><a href="#动态地址nat" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:动态地址nat" class="headings">动态地址NAT</a></h3>
 <p>NAT网关有多个公网IP，内网机器发送IP报文的时候，NAT设备（通常是路由器或者防火墙）会分配一个可用的公网IP将源地址进行替换，目标地址不变</p>
 <p><img src="https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c" alt=""></p>
@@ -319,10 +326,11 @@
 <h2 id="内网穿透原理及工具"><a href="#内网穿透原理及工具" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:内网穿透原理及工具" class="headings">内网穿透原理及工具</a></h2>
 <p>内网穿透，就是解决如何访问内网ip的技术，因为处于内网的设备可以借助NAT访问外网，却很难被外网设备有效访问，比如在内网部署了一个web服务，而外面的客户端根本不知道对应NAT的ip和端口好，也就无法访问。</p>
 <p>内网穿透就是通过对地址进行转换，将公共的网络地址转变为私有网络地址，采用一种路由的方式将一台有公网的计算机变成路由器的功能，实现了两个不同局域网下的计算机的沟通。</p>
-<p>不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些基于frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。</p>
-<p>而这里重点介绍和使用的是frp，也是目前使用最广泛的一个开源内网穿透工具。</p>
+<p>不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些给予frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。</p>
+<p>而这里重点介绍和使用的是frp，它也是目前使用最广泛的一个开源内网穿透工具。</p>
 <h2 id="frp"><a href="#frp" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frp" class="headings">frp</a></h2>
 <p>frp是一个用Go语言编写的，专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。</p>
+<p>frp的github地址：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener">https://github.com/fatedier/frp</a></p>
 <p>frp包括以下特性：</p>
 <ul>
 <li>客户端服务端通信支持 TCP、KCP 以及 Websocket 等多种协议。</li>
@@ -333,12 +341,83 @@
 <li>高度扩展性的服务端插件系统，方便结合自身需求进行功能扩展。</li>
 <li>服务端和客户端 UI 页面。</li>
 </ul>
-<p>frp包含服务端frps（有公网ip，起转发作用）和客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）</p>
+<h3 id="frp的组成"><a href="#frp的组成" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frp的组成" class="headings">frp的组成</a></h3>
+<p>frp包含：</p>
+<ul>
+<li>服务端frps（有公网ip的机器，起转发作用）</li>
+<li>客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）</li>
+</ul>
 <p><img src="https://github.com/fatedier/frp/raw/dev/doc/pic/architecture.png" alt=""></p>
+<h3 id="frp的工作流程"><a href="#frp的工作流程" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frp的工作流程" class="headings">frp的工作流程</a></h3>
+<ol>
+<li>首先，frpc 启动之后，会连接 frps，并且发送一个请求 login()，之后保持住这个长连接，如果断开了，就重试</li>
+<li>frps 收到请求之后，会建立一个 listener 监听来自公网的请求</li>
+<li>当 frps 接受到请求之后，会在本地看是否有可用的连接( frp 可以设置连接池)，如果没有，就下发一个 msg.StartWorkConn 并且 等待来自 frpc 的请求</li>
+<li>frpc 收到之后，对 frps 发起请求，请求的最开始会指名这个连接是去向哪个 proxy 的</li>
+<li>frps 收到来自 frpc 的连接之后，就把新建立的连接与来自公网的连接进行流量互转</li>
+<li>如果请求断开了，那么就把另一端的请求也断开</li>
+</ol>
+<p><img src="https://jiajunhuang.com/articles/img/frp_flow.png" alt=""></p>
+<h3 id="nginx和frp的区别"><a href="#nginx和frp的区别" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:nginx和frp的区别" class="headings">nginx和frp的区别</a></h3>
+<p>前面提到了frp的本质是反向代理，而我们熟知的nginx也基于反向代理，但是nginx主要用于负载均衡，而frp用于内网穿透。nginx的逻辑如下：</p>
+<p><img src="https://jiajunhuang.com/articles/img/nginx_flow.png" alt=""></p>
 <h2 id="frp配置记录"><a href="#frp配置记录" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frp配置记录" class="headings">frp配置记录</a></h2>
 <h3 id="frps"><a href="#frps" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frps" class="headings">frps</a></h3>
-<p>首先去配置frps，这个比较简单，先去frp的releases页面：https://github.com/fatedier/frp/releases</p>
-<p>下载好对应版本的frp并解压，修将frps.ini移到/etc/frp/frps.ini并修改为：</p>
+<p>frps需要配置在有公网ip的服务器上，可以去腾讯云、阿里云、华为云等云服务商租服务器，这里我用的是腾讯云。</p>
+<p>新用户的话很推荐腾讯云的服务器特惠活动，应该是目前几家大厂里最便宜的，一年只需要50多就可以搞到2核2G的服务器，可以点击下面的图片进入腾讯云特惠活动：</p>
+<p><a href="https://url.cn/W6cMbMm6" target="_blank" rel="noopener"><img src="https://s2.loli.net/2022/11/25/NtOMw7gYr32veXb.jpg" alt="腾讯云特惠服务器"></a></p>
+<p>先购买一台服务器，推荐选择同地域的Ubuntu或者CentOS（因为我是老用户，所以会贵很多，而且界面可能跟特惠不太一样，不过逻辑差不多），这里我选的是常用的Ubuntu，当然CcentOS也基本一样，只需要修改少量的命令。</p>
+<p><img src="https://s2.loli.net/2022/11/25/TxkczZs8BPaVviq.png" alt=""></p>
+<p>然后查看它的公网ip，如果想在本地终端连接的话，需要设一下ubuntu账户的ssh密码（下面的重置密码）或者通过密钥连接（需要去密钥管理里上传本机的ssh密钥，这里就不说了）：</p>
+<p><img src="https://s2.loli.net/2022/11/25/32pMZSOGTh9fYba.png" alt=""></p>
+<p>远程ssh连接到服务器：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh ubuntu@&lt;你的公网ip&gt;
+<span class="c1"># 密码是刚刚设置的密码</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">// 更新一波，并且装点常用软件
+$ sudo apt-get update
+$ sude apt-get upgrade
+$ sudo apt-get install wget vim git
+</code></pre></td></tr></table></div>
+</div>
+</div><p>开始配置frps，可以先创建一个目录：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ mkdir frp
+$ <span class="nb">cd</span> frp
+</code></pre></td></tr></table></div>
+</div>
+</div><p>本机去frp的releases页面：https://github.com/fatedier/frp/releases 找一下最新版本的链接，在服务器端下载对应版本（linux_amd64）并解压：</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ wget https://github.com/fatedier/frp/releases/download/v0.45.0/frp_0.45.0_linux_amd64.tar.gz
+$ tar -zxvf frp_0.45.0_linux_amd64.tar.gz
+</code></pre></td></tr></table></div>
+</div>
+</div><p>修改里面的<code>frps.ini</code>：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -361,31 +440,44 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[common]</span>
-<span class="c1"># frp监听的端口，默认是7000，可以改成其他的</span>
-<span class="na">bind_port</span> <span class="o">=</span> <span class="s">7000</span>
+<span class="na">bind_addr</span> <span class="o">=</span> <span class="s">0.0.0.0</span>
+<span class="c1"># frp监听的端口，默认是7000，比较建议修改成其他的</span>
+<span class="na">bind_port</span> <span class="o">=</span> <span class="s">&lt;port&gt;</span>
+<span class="na">bind_udp_port</span> <span class="o">=</span> <span class="s">7001</span>
 <span class="na">vhost_http_port</span> <span class="o">=</span> <span class="s">8080</span>
-
-<span class="c1"># frp管理后台端口，请按自己需求更改</span>
+<span class="na">vhost_https_port</span> <span class="o">=</span> <span class="s">4433</span>
+<span class="c1"># frp的UI管理后台端口，请按自己需求更改</span>
 <span class="na">dashboard_port</span> <span class="o">=</span> <span class="s">7500</span>
-<span class="c1"># frp管理后台用户名和密码，请改成自己的</span>
+<span class="c1"># frp的UI管理后台用户名和密码，请改成自己的</span>
 <span class="na">dashboard_user</span> <span class="o">=</span> <span class="s">admin</span>
-<span class="na">dashboard_pwd</span> <span class="o">=</span><span class="s">admin_passwd</span>
-<span class="c1"># 开启prometheus监控</span>
+<span class="na">dashboard_pwd</span> <span class="o">=</span> <span class="s">&lt;设置你的密码&gt;</span>
 <span class="na">enable_prometheus</span> <span class="o">=</span> <span class="s">true</span>
 
 <span class="c1"># frp日志配置</span>
-<span class="na">log_file</span> <span class="o">=</span> <span class="s">/var/log/frps.log</span>
+<span class="na">log_file</span> <span class="o">=</span> <span class="s">/home/ubuntu/frp/frps.log</span>
 <span class="na">log_level</span> <span class="o">=</span> <span class="s">info</span>
 <span class="na">log_max_days</span> <span class="o">=</span> <span class="s">3</span>
+<span class="na">disable_log_color</span> <span class="o">=</span> <span class="s">false</span>
+<span class="na">detailed_errors_to_client</span> <span class="o">=</span> <span class="s">true</span>
 
-<span class="c1"># token，用于frpc验证</span>
-<span class="na">token</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
+<span class="c1"># token，用于内网穿透验证，最简单的验证方式</span>
+<span class="c1"># 下面配置的token不要泄露，否则别人也可以用你的服务器进行内网穿透，也会造成安全隐患</span>
+<span class="na">authentication_method</span> <span class="o">=</span> <span class="s">token</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">&lt;设置你的token&gt;</span>
 </code></pre></td></tr></table></div>
 </div>
-</div><p>不要忘记去腾讯云后台把相关端口全部打开，以及在腾讯云创建安全组，允许全部端口，以及关闭防火墙，当然这里是暴力放开，最好是只开放对应的端口。</p>
+</div><p>还可以使用OIDC来验证，配置会更复杂，我没有试过，可以参考 <a href="https://tools.ietf.org/html/rfc6749#section-4.4" target="_blank" rel="noopener">Client Credentials Grant</a></p>
+<p>另外还需要去腾讯云后台把相关端口全部打开，暴力的话可以在腾讯云创建安全组，允许全部端口，当然这里最好是只开放相关的端口。</p>
+<p><img src="https://s2.loli.net/2022/11/25/jTU5VYGheHC93go.png" alt=""></p>
+<p>以及关闭防火墙：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -394,7 +486,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl stop firealld
 </code></pre></td></tr></table></div>
 </div>
-</div><p>采用systemd的方式，使用服务会更加方便，运行在后台而且开机自启。</p>
+</div><p>采用systemd的方式来配置frps服务，这样使用服务会更加方便，可以让服务运行在后台而且开机自启。</p>
 <p>创建 /etc/systemd/system/frps.service并写入以下内容：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
@@ -417,7 +509,7 @@
 
 <span class="k">[Service]</span>
 <span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="c1"># 实际路径自行调整</span>
+<span class="c1"># 根据实际路径自行调整</span>
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini</span>
 
 <span class="k">[Install]</span>
@@ -453,79 +545,34 @@ $ sudo systemctl status frps
            └─3413 /home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini
 </code></pre></td></tr></table></div>
 </div>
-</div><p>前往server_ip:7500就可以访问到frp dashboard：</p>
+</div><p>前往<ip>:7500并进行登录就可以访问到frp dashboard：</p>
 <p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663351907/frp_dashboard_1.png" alt=""></p>
+<p>至此我们的服务器frps就配置好了，是比较简单的。</p>
 <h2 id="frpc配置"><a href="#frpc配置" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:frpc配置" class="headings">frpc配置</a></h2>
 <p>在需要穿透出去的内网本机上配置frpc。</p>
-<p>也是同样去下载frp，然后修改frpc.ini配置文件：</p>
+<p>也是同样去下载frp，需要下载跟frps相同版本的，然后修改frpc.ini配置文件：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># 常规配置，这几个要与frps对应</span>
 <span class="k">[common]</span>
-<span class="na">server_addr</span> <span class="o">=</span>  <span class="s">&lt;server_ip&gt;</span>
-<span class="na">server_port</span> <span class="o">=</span> <span class="s">7000</span>
-<span class="na">accesstoken</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
+<span class="na">server_addr</span> <span class="o">=</span> <span class="s">&lt;server_ip&gt;</span>
+<span class="na">server_port</span> <span class="o">=</span> <span class="s">&lt;port&gt;</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
 
-<span class="c1"># 后面的根据自己的需求写</span>
-<span class="k">[ssh]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">2220</span>
-
-<span class="k">[frontend]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">8080</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">8001</span>
-
-<span class="k">[backend]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">7439</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">7439</span>
-
-<span class="k">[cloudreve]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">5212</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5212</span>
+<span class="c1"># 后面的根据自己的需求写，比如ssh、web前后端、路由器、samba、nas、私有网盘服务等，后面一个一个举例</span>
 </code></pre></td></tr></table></div>
 </div>
 </div><p>后面的内容根据实际的需求进行添加，这里并不需要再修改frps，只要服务端的remote_port是允许访问的即可（需要去腾讯云的控制台和用命令行关闭相关防火墙开放这些端口）</p>
-<p>然后也可以使用systemd来管理：</p>
+<p>当然如果也是Linux的话，我们也可以使用systemd来管理</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -561,7 +608,7 @@ $ sudo systemctl status frps
 
 <span class="k">[Service]</span>
 <span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-<span class="c1"># 写实际的路径</span>
+<span class="c1"># 根据frp所在的实际路径进行调整</span>
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/home/engine/Projects/frp/frpc -c /home/engine/Projects/frp/frpc.ini</span>
 <span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
 <span class="na">RestartSec</span><span class="o">=</span><span class="s">2s</span>
@@ -580,21 +627,18 @@ $ sudo systemctl status frps
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 更新配置</span>
 $ systemctl daemon-reload
-
 <span class="c1"># 启动服务</span>
-$ systemctl start cloudreve
-
+$ systemctl start frpc
 <span class="c1"># 设置开机启动</span>
-$ systemctl <span class="nb">enable</span> cloudreve
+$ systemctl <span class="nb">enable</span> frpc
 </code></pre></td></tr></table></div>
 </div>
-</div><h3 id="ssh穿透"><a href="#ssh穿透" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:ssh穿透" class="headings">ssh穿透</a></h3>
+</div><p>如果是其他的系统或者路由器，修改frpc.ini然后常规启动就可以</p>
+<h3 id="ssh穿透"><a href="#ssh穿透" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:ssh穿透" class="headings">ssh穿透</a></h3>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -602,13 +646,17 @@ $ systemctl <span class="nb">enable</span> cloudreve
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[ssh]</span>
 <span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
 <span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
 <span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">2220</span>
+<span class="c1"># 映射到远程的端口可以自己选定，选大一点的端口，自己记住就行了</span>
+<span class="c1"># 记不住也没事，可以去web UI管理界面查</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">&lt;remote_ip&gt;</span>
 </code></pre></td></tr></table></div>
 </div>
 </div><p>在外面就可以远程ssh连接寝室的服务器了，当然这里要用-p指示端口：</p>
@@ -617,19 +665,11 @@ $ systemctl <span class="nb">enable</span> cloudreve
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo ssh -p <span class="m">2220</span> &lt;username&gt;@&lt;server_ip&gt;
-</code></pre></td></tr></table></div>
-</div>
-</div><div class="highlight"><div class="chroma">
-<div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ ./frpc -c ./frpc.ini
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ sudo ssh -p &lt;remote_ip&gt; &lt;内网用户&gt;@&lt;server_ip&gt;
 </code></pre></td></tr></table></div>
 </div>
 </div><h3 id="内网web穿透"><a href="#内网web穿透" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:内网web穿透" class="headings">内网web穿透</a></h3>
-<p>比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端却不能跟后端连上，所以这里只好将后端也进行穿透。</p>
+<p>比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端是不能跟后端连上的，所以后端也需要进行穿透。</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -659,7 +699,7 @@ $ systemctl <span class="nb">enable</span> cloudreve
 </code></pre></td></tr></table></div>
 </div>
 </div><h3 id="cloudreve私有云存储"><a href="#cloudreve私有云存储" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:cloudreve私有云存储" class="headings">Cloudreve私有云存储</a></h3>
-<p>使用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。</p>
+<p>可以用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。</p>
 <p>先安装Cloudreve</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
@@ -774,7 +814,9 @@ systemctl <span class="nb">enable</span> cloudreve
 </div><p>通过本地的大容量硬盘，就可以有一个私有云+nas了。</p>
 <p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png" alt=""></p>
 <h3 id="路由器后台"><a href="#路由器后台" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:路由器后台" class="headings">路由器后台</a></h3>
-<p>如果在外面需要配置路由器的后台情况，这里对刷了梅林固件的路由器后台进行了配置，去软件中心安装Frpc内网穿透，然后配置：</p>
+<p>如果在外面需要配置路由器的后台情况，或者觉得直接访问内网服务器不安全，需要借助第三方机器对局域网内的机器进行连接，就可以将路由器进行内网穿透。</p>
+<p>这里对刷了梅林固件的路由器后台进行了配置，比较推荐刷了Koolshare梅林固件或者openwrt固件的路由器，可玩性比较强。</p>
+<p>去软件中心安装Frpc内网穿透，然后配置：</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -788,24 +830,207 @@ systemctl <span class="nb">enable</span> cloudreve
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1"># frpc custom configuration</span>
 <span class="k">[common]</span>
 <span class="na">server_addr</span> <span class="o">=</span> <span class="s">&lt;server_ip&gt;</span>
-<span class="na">server_port</span> <span class="o">=</span> <span class="s">7000</span>
-<span class="na">accesstoken</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
+<span class="na">server_port</span> <span class="o">=</span> <span class="s">&lt;frps_port&gt;</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
 
-<span class="k">[merlin]</span>
+<span class="c1"># ssh穿透</span>
+<span class="k">[merlin_ssh]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">&lt;merlin_ssh_remote_port&gt;</span>
+
+<span class="c1"># 路由器后台穿透</span>
+<span class="k">[merlin_center]</span>
 <span class="na">type</span><span class="o">=</span><span class="s">tcp</span>
-<span class="na">local_ip</span><span class="o">=</span><span class="s">127.0.0.1</span>
-<span class="na">local_port</span><span class="o">=</span><span class="s">80</span>
-<span class="na">remote_port</span><span class="o">=</span><span class="s">8003</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">80</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">&lt;merlin_center_remote_port&gt;</span>
 </code></pre></td></tr></table></div>
 </div>
-</div><p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389621/merlin-frpc-1.png" alt=""></p>
-<p>就可以在外面通过 <code>http://&lt;server_ip&gt;:8003/</code> 访问路由器后台了。</p>
+</div><p><img src="https://s2.loli.net/2022/11/25/bhMZiXfIFNtx6OW.png" alt=""></p>
+<p>就可以在外面通过 <code>http://&lt;server_ip&gt;:&lt;merlin_center_remote_port&gt;/</code> 访问路由器后台了。</p>
 <p><img src="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389718/merlin-frpc-2.png" alt=""></p>
+<h2 id="群晖nas内网穿透"><a href="#群晖nas内网穿透" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a><a href="#contents:群晖nas内网穿透" class="headings">群晖NAS内网穿透</a></h2>
+<p>群晖自带quickconnect内网穿透，并且配置了域名，但是quickconnect速度感人并且需要手机号验证，一些服务可能还无法使用，所以这里我们自己穿透。</p>
+<p>因为没有自带的frpc客户端，去docker里找一个：（只有x86芯片的群晖才能用Docker，也就是型号带+的，型号带j的无法使用docker）</p>
+<p><img src="https://s2.loli.net/2022/10/24/OLfX7nsrodVPKlt.png" alt=""></p>
+<p><img src="https://s2.loli.net/2022/10/24/UxqNTjztEoC24Zm.png" alt=""></p>
+<p>写一下frpc的配置，上传到群晖的某个文件夹，我这里是<code>/docker/frpc/frpc.ini</code></p>
+<p>后面一些是我的配置，包括dsm登录、webdav、emby、plex等</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[common]</span>
+<span class="na">server_addr</span> <span class="o">=</span> <span class="s">&lt;server_ip&gt;</span>
+<span class="na">server_port</span> <span class="o">=</span> <span class="s">&lt;frps_port&gt;</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">&lt;token&gt;</span>
+
+<span class="k">[nas_ssh]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">2333</span>
+
+<span class="k">[dsm]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5001</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5001</span>
+
+<span class="k">[ds_file]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5001</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5002</span>
+
+<span class="k">[https_webdav]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5006</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5006</span>
+
+<span class="k">[http_webdav]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5004</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5004</span>
+
+<span class="k">[emby]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">8097</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">8097</span>
+
+<span class="k">[emby_8096]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">8096</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">8096</span>
+
+
+<span class="k">[plex_28888]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">28888</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">28888</span>
+
+
+<span class="k">[plex_32400]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">32400</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">32400</span>
+
+<span class="k">[nas_samba_445]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">445</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">4455</span>
+
+
+<span class="k">[nas_cloudreve_5212]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">192.168.50.99</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5212</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">5212</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>DSM：
+<img src="https://s2.loli.net/2022/10/24/jdxFe6R3iI5abs4.png" alt=""></p>
+<p>Cloudreve:
+<img src="https://s2.loli.net/2022/11/25/RDUAeOkNvEqdZJT.png" alt=""></p>
+<p>Emby
+<img src="https://s2.loli.net/2022/11/25/qKIMdsyAP9DHV3U.png" alt=""></p>
+<p>Plex:
+<img src="https://s2.loli.net/2022/11/25/SIQErDdzaZNhyYR.png" alt=""></p>
 
             </div>
 

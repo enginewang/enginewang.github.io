@@ -108,7 +108,7 @@ Mutex的源码出现了`sync_runtime_canSpin`和`sync_runtime_doSpin`这两个�
 
 ### 信号量
 
-信号量机制（semaphore）在很多地方都有应用，在操作系统中也学习过，见之前的[操作系统基础（二）进程与线程](https://yichengme.site/posts/os-basics-thread/)
+信号量机制（semaphore）在很多地方都有应用，在操作系统中也学习过，见之前的[操作系统基础（二）进程与线程](https://blog.engine.wang/posts/os-basics-thread/)
 
 sema提供了`sleep`和`wakeup`的并发原语。
 

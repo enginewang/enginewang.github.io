@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">enginewang的博客</title>
     <subtitle type="html">这里是enginewang的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-11-16T13:55:35&#43;08:00</updated>
+    <updated>2022-11-25T17:05:51&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -729,26 +729,26 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
         </entry>
     
         <entry>
-            <title type="text">frp内网穿透记录</title>
+            <title type="text">frp内网穿透原理及配置记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/frp-notes/" />
             <id>https://blog.engine.wang/posts/frp-notes/</id>
-            <updated>2022-09-17T14:49:04&#43;08:00</updated>
+            <updated>2022-11-25T16:59:43&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>enginewang</name>
                     <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来……</summary>
             
                 <content type="html">&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
-&lt;p&gt;如果想在内网搭建一些服务从外网进行访问，如访问内网web服务、远程ssh内网服务器、远程访问内网NAS等，而没有公网ip的话是非常麻烦的，可以采用内网穿透技术来满足这些需求。&lt;/p&gt;
-&lt;p&gt;所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT&lt;/p&gt;
+&lt;p&gt;一般来说，除了一些企业高校等机构，国内绝大部分普通人没有ipv4的公网ip且极难申请到，毕竟用一个少一个，并且由于一些原因，国内ipv6也不太可能普及的起来，这么多年基本没什么发展。我们在学校、家庭的路由器都是运营商通过NAT等方式转接，都处于内网之中，需要在局域网内才能访问到相关的服务。&lt;/p&gt;
+&lt;p&gt;但如果我们在外面有访问内网web服务、远程ssh内网服务器、远程访问内网NAS等需求的话，该怎么办呢？内网穿透可以在一定程度上解决这个需求。所谓内网穿透，也称为NAT穿透，要想了解其具体原理，首先要了解NAT技术。&lt;/p&gt;
 &lt;h2 id=&#34;nat技术&#34;&gt;NAT技术&lt;/h2&gt;
 &lt;p&gt;NAT（Network Address Translation，网络地址转换）是一个将内部私有的网络地址翻译成合法ip地址的技术。&lt;/p&gt;
 &lt;p&gt;NAT分为三种：静态NAT、动态地址NAT、网络地址端口转换NAPT。&lt;/p&gt;
 &lt;h3 id=&#34;静态nat&#34;&gt;静态NAT&lt;/h3&gt;
-&lt;p&gt;静态NAT就是内网和公网IP一一x对应，这个方式用的很少&lt;/p&gt;
+&lt;p&gt;静态NAT就是内网和公网IP一一对应，这个方式用的很少&lt;/p&gt;
 &lt;h3 id=&#34;动态地址nat&#34;&gt;动态地址NAT&lt;/h3&gt;
 &lt;p&gt;NAT网关有多个公网IP，内网机器发送IP报文的时候，NAT设备（通常是路由器或者防火墙）会分配一个可用的公网IP将源地址进行替换，目标地址不变&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-f3736378c423302b81ad889642ceb587_720w.jpg?source=1940ef5c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -768,10 +768,11 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
 &lt;h2 id=&#34;内网穿透原理及工具&#34;&gt;内网穿透原理及工具&lt;/h2&gt;
 &lt;p&gt;内网穿透，就是解决如何访问内网ip的技术，因为处于内网的设备可以借助NAT访问外网，却很难被外网设备有效访问，比如在内网部署了一个web服务，而外面的客户端根本不知道对应NAT的ip和端口好，也就无法访问。&lt;/p&gt;
 &lt;p&gt;内网穿透就是通过对地址进行转换，将公共的网络地址转变为私有网络地址，采用一种路由的方式将一台有公网的计算机变成路由器的功能，实现了两个不同局域网下的计算机的沟通。&lt;/p&gt;
-&lt;p&gt;不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些基于frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。&lt;/p&gt;
-&lt;p&gt;而这里重点介绍和使用的是frp，也是目前使用最广泛的一个开源内网穿透工具。&lt;/p&gt;
+&lt;p&gt;不同的内网穿透工具实现的技术细节略有不同，内网穿透工具，包括一些知名的开源项目，比如frp、ngrok等，以及一些给予frp和ngrok的二次开发的商用产品，比如花生壳等。ngrok是通过反向代理的方式，在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。&lt;/p&gt;
+&lt;p&gt;而这里重点介绍和使用的是frp，它也是目前使用最广泛的一个开源内网穿透工具。&lt;/p&gt;
 &lt;h2 id=&#34;frp&#34;&gt;frp&lt;/h2&gt;
 &lt;p&gt;frp是一个用Go语言编写的，专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。&lt;/p&gt;
+&lt;p&gt;frp的github地址：&lt;a href=&#34;https://github.com/fatedier/frp&#34;&gt;https://github.com/fatedier/frp&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;frp包括以下特性：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;客户端服务端通信支持 TCP、KCP 以及 Websocket 等多种协议。&lt;/li&gt;
@@ -782,12 +783,83 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
 &lt;li&gt;高度扩展性的服务端插件系统，方便结合自身需求进行功能扩展。&lt;/li&gt;
 &lt;li&gt;服务端和客户端 UI 页面。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;frp包含服务端frps（有公网ip，起转发作用）和客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）&lt;/p&gt;
+&lt;h3 id=&#34;frp的组成&#34;&gt;frp的组成&lt;/h3&gt;
+&lt;p&gt;frp包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务端frps（有公网ip的机器，起转发作用）&lt;/li&gt;
+&lt;li&gt;客户端frpc（内网中需要做穿透的机器，提供服务供外面访问）&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/fatedier/frp/raw/dev/doc/pic/architecture.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;frp的工作流程&#34;&gt;frp的工作流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，frpc 启动之后，会连接 frps，并且发送一个请求 login()，之后保持住这个长连接，如果断开了，就重试&lt;/li&gt;
+&lt;li&gt;frps 收到请求之后，会建立一个 listener 监听来自公网的请求&lt;/li&gt;
+&lt;li&gt;当 frps 接受到请求之后，会在本地看是否有可用的连接( frp 可以设置连接池)，如果没有，就下发一个 msg.StartWorkConn 并且 等待来自 frpc 的请求&lt;/li&gt;
+&lt;li&gt;frpc 收到之后，对 frps 发起请求，请求的最开始会指名这个连接是去向哪个 proxy 的&lt;/li&gt;
+&lt;li&gt;frps 收到来自 frpc 的连接之后，就把新建立的连接与来自公网的连接进行流量互转&lt;/li&gt;
+&lt;li&gt;如果请求断开了，那么就把另一端的请求也断开&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiajunhuang.com/articles/img/frp_flow.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;nginx和frp的区别&#34;&gt;nginx和frp的区别&lt;/h3&gt;
+&lt;p&gt;前面提到了frp的本质是反向代理，而我们熟知的nginx也基于反向代理，但是nginx主要用于负载均衡，而frp用于内网穿透。nginx的逻辑如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiajunhuang.com/articles/img/nginx_flow.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;frp配置记录&#34;&gt;frp配置记录&lt;/h2&gt;
 &lt;h3 id=&#34;frps&#34;&gt;frps&lt;/h3&gt;
-&lt;p&gt;首先去配置frps，这个比较简单，先去frp的releases页面：https://github.com/fatedier/frp/releases&lt;/p&gt;
-&lt;p&gt;下载好对应版本的frp并解压，修将frps.ini移到/etc/frp/frps.ini并修改为：&lt;/p&gt;
+&lt;p&gt;frps需要配置在有公网ip的服务器上，可以去腾讯云、阿里云、华为云等云服务商租服务器，这里我用的是腾讯云。&lt;/p&gt;
+&lt;p&gt;新用户的话很推荐腾讯云的服务器特惠活动，应该是目前几家大厂里最便宜的，一年只需要50多就可以搞到2核2G的服务器，可以点击下面的图片进入腾讯云特惠活动：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://url.cn/W6cMbMm6&#34;&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/NtOMw7gYr32veXb.jpg&#34; alt=&#34;腾讯云特惠服务器&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;先购买一台服务器，推荐选择同地域的Ubuntu或者CentOS（因为我是老用户，所以会贵很多，而且界面可能跟特惠不太一样，不过逻辑差不多），这里我选的是常用的Ubuntu，当然CcentOS也基本一样，只需要修改少量的命令。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/TxkczZs8BPaVviq.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后查看它的公网ip，如果想在本地终端连接的话，需要设一下ubuntu账户的ssh密码（下面的重置密码）或者通过密钥连接（需要去密钥管理里上传本机的ssh密钥，这里就不说了）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/32pMZSOGTh9fYba.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;远程ssh连接到服务器：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh ubuntu@&amp;lt;你的公网ip&amp;gt;
+&lt;span class=&#34;c1&#34;&gt;# 密码是刚刚设置的密码&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;// 更新一波，并且装点常用软件
+$ sudo apt-get update
+$ sude apt-get upgrade
+$ sudo apt-get install wget vim git
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;开始配置frps，可以先创建一个目录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ mkdir frp
+$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; frp
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;本机去frp的releases页面：https://github.com/fatedier/frp/releases 找一下最新版本的链接，在服务器端下载对应版本（linux_amd64）并解压：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ wget https://github.com/fatedier/frp/releases/download/v0.45.0/frp_0.45.0_linux_amd64.tar.gz
+$ tar -zxvf frp_0.45.0_linux_amd64.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;修改里面的&lt;code&gt;frps.ini&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -810,31 +882,44 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[common]&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# frp监听的端口，默认是7000，可以改成其他的&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;bind_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7000&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;bind_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;0.0.0.0&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# frp监听的端口，默认是7000，比较建议修改成其他的&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;bind_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;port&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;bind_udp_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7001&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;vhost_http_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8080&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# frp管理后台端口，请按自己需求更改&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;vhost_https_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;4433&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# frp的UI管理后台端口，请按自己需求更改&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;dashboard_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7500&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# frp管理后台用户名和密码，请改成自己的&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# frp的UI管理后台用户名和密码，请改成自己的&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;dashboard_user&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;admin&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;dashboard_pwd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;admin_passwd&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 开启prometheus监控&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;dashboard_pwd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;设置你的密码&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;enable_prometheus&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;
 
 &lt;span class=&#34;c1&#34;&gt;# frp日志配置&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;log_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/var/log/frps.log&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;log_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/home/ubuntu/frp/frps.log&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;log_level&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;info&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;log_max_days&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;3&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;disable_log_color&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;false&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;detailed_errors_to_client&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;true&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;# token，用于frpc验证&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# token，用于内网穿透验证，最简单的验证方式&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 下面配置的token不要泄露，否则别人也可以用你的服务器进行内网穿透，也会造成安全隐患&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;authentication_method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;token&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;设置你的token&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;不要忘记去腾讯云后台把相关端口全部打开，以及在腾讯云创建安全组，允许全部端口，以及关闭防火墙，当然这里是暴力放开，最好是只开放对应的端口。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;还可以使用OIDC来验证，配置会更复杂，我没有试过，可以参考 &lt;a href=&#34;https://tools.ietf.org/html/rfc6749#section-4.4&#34;&gt;Client Credentials Grant&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;另外还需要去腾讯云后台把相关端口全部打开，暴力的话可以在腾讯云创建安全组，允许全部端口，当然这里最好是只开放相关的端口。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/jTU5VYGheHC93go.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以及关闭防火墙：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -843,7 +928,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo systemctl stop firealld
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;采用systemd的方式，使用服务会更加方便，运行在后台而且开机自启。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;采用systemd的方式来配置frps服务，这样使用服务会更加方便，可以让服务运行在后台而且开机自启。&lt;/p&gt;
 &lt;p&gt;创建 /etc/systemd/system/frps.service并写入以下内容：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -866,7 +951,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
 
 &lt;span class=&#34;k&#34;&gt;[Service]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;simple&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 实际路径自行调整&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 根据实际路径自行调整&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;/home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini&lt;/span&gt;
 
 &lt;span class=&#34;k&#34;&gt;[Install]&lt;/span&gt;
@@ -902,79 +987,34 @@ $ sudo systemctl status frps
            └─3413 /home/ubuntu/frp/frps -c /home/ubuntu/frp/frps.ini
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;前往server_ip:7500就可以访问到frp dashboard：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;前往&lt;ip&gt;:7500并进行登录就可以访问到frp dashboard：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663351907/frp_dashboard_1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;至此我们的服务器frps就配置好了，是比较简单的。&lt;/p&gt;
 &lt;h2 id=&#34;frpc配置&#34;&gt;frpc配置&lt;/h2&gt;
 &lt;p&gt;在需要穿透出去的内网本机上配置frpc。&lt;/p&gt;
-&lt;p&gt;也是同样去下载frp，然后修改frpc.ini配置文件：&lt;/p&gt;
+&lt;p&gt;也是同样去下载frp，需要下载跟frps相同版本的，然后修改frpc.ini配置文件：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 常规配置，这几个要与frps对应&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;[common]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;server_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;  &lt;span class=&#34;s&#34;&gt;&amp;lt;server_ip&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7000&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;accesstoken&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;server_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;server_ip&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;port&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
 
-&lt;span class=&#34;c1&#34;&gt;# 后面的根据自己的需求写&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;[ssh]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;22&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;2220&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;[frontend]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8080&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8001&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;[backend]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7439&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7439&lt;/span&gt;
-
-&lt;span class=&#34;k&#34;&gt;[cloudreve]&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5212&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5212&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 后面的根据自己的需求写，比如ssh、web前后端、路由器、samba、nas、私有网盘服务等，后面一个一个举例&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;后面的内容根据实际的需求进行添加，这里并不需要再修改frps，只要服务端的remote_port是允许访问的即可（需要去腾讯云的控制台和用命令行关闭相关防火墙开放这些端口）&lt;/p&gt;
-&lt;p&gt;然后也可以使用systemd来管理：&lt;/p&gt;
+&lt;p&gt;当然如果也是Linux的话，我们也可以使用systemd来管理&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1010,7 +1050,7 @@ $ sudo systemctl status frps
 
 &lt;span class=&#34;k&#34;&gt;[Service]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;simple&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# 写实际的路径&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 根据frp所在的实际路径进行调整&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;/home/engine/Projects/frp/frpc -c /home/engine/Projects/frp/frpc.ini&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;Restart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;always&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;RestartSec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;2s&lt;/span&gt;
@@ -1029,21 +1069,18 @@ $ sudo systemctl status frps
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 更新配置&lt;/span&gt;
 $ systemctl daemon-reload
-
 &lt;span class=&#34;c1&#34;&gt;# 启动服务&lt;/span&gt;
-$ systemctl start cloudreve
-
+$ systemctl start frpc
 &lt;span class=&#34;c1&#34;&gt;# 设置开机启动&lt;/span&gt;
-$ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
+$ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; frpc
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;ssh穿透&#34;&gt;ssh穿透&lt;/h3&gt;
+&lt;/div&gt;&lt;p&gt;如果是其他的系统或者路由器，修改frpc.ini然后常规启动就可以&lt;/p&gt;
+&lt;h3 id=&#34;ssh穿透&#34;&gt;ssh穿透&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1051,13 +1088,17 @@ $ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[ssh]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;22&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;2220&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 映射到远程的端口可以自己选定，选大一点的端口，自己记住就行了&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 记不住也没事，可以去web UI管理界面查&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;remote_ip&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;在外面就可以远程ssh连接寝室的服务器了，当然这里要用-p指示端口：&lt;/p&gt;
@@ -1066,19 +1107,11 @@ $ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo ssh -p &lt;span class=&#34;m&#34;&gt;2220&lt;/span&gt; &amp;lt;username&amp;gt;@&amp;lt;server_ip&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./frpc -c ./frpc.ini
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo ssh -p &amp;lt;remote_ip&amp;gt; &amp;lt;内网用户&amp;gt;@&amp;lt;server_ip&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;内网web穿透&#34;&gt;内网web穿透&lt;/h3&gt;
-&lt;p&gt;比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端却不能跟后端连上，所以这里只好将后端也进行穿透。&lt;/p&gt;
+&lt;p&gt;比如在本机部署了一个前后端的web，这里将本机前端的8080映射到服务器的8001端口。直接访问的话前端是不能跟后端连上的，所以后端也需要进行穿透。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1108,7 +1141,7 @@ $ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;cloudreve私有云存储&#34;&gt;Cloudreve私有云存储&lt;/h3&gt;
-&lt;p&gt;使用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。&lt;/p&gt;
+&lt;p&gt;可以用Cloudreve搭建私有云，不仅可以当做一个不限速的大容量网盘使用，也可以通过导入本地磁盘当做nas使用。&lt;/p&gt;
 &lt;p&gt;先安装Cloudreve&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1223,7 +1256,9 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;/div&gt;&lt;p&gt;通过本地的大容量硬盘，就可以有一个私有云+nas了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;路由器后台&#34;&gt;路由器后台&lt;/h3&gt;
-&lt;p&gt;如果在外面需要配置路由器的后台情况，这里对刷了梅林固件的路由器后台进行了配置，去软件中心安装Frpc内网穿透，然后配置：&lt;/p&gt;
+&lt;p&gt;如果在外面需要配置路由器的后台情况，或者觉得直接访问内网服务器不安全，需要借助第三方机器对局域网内的机器进行连接，就可以将路由器进行内网穿透。&lt;/p&gt;
+&lt;p&gt;这里对刷了梅林固件的路由器后台进行了配置，比较推荐刷了Koolshare梅林固件或者openwrt固件的路由器，可玩性比较强。&lt;/p&gt;
+&lt;p&gt;去软件中心安装Frpc内网穿透，然后配置：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1237,24 +1272,207 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# frpc custom configuration&lt;/span&gt;
 &lt;span class=&#34;k&#34;&gt;[common]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;server_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;server_ip&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;7000&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;accesstoken&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;frps_port&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
 
-&lt;span class=&#34;k&#34;&gt;[merlin]&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# ssh穿透&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[merlin_ssh]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;22&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;merlin_ssh_remote_port&amp;gt;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 路由器后台穿透&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;[merlin_center]&lt;/span&gt;
 &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;80&lt;/span&gt;
-&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;8003&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;127.0.0.1&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;80&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;merlin_center_remote_port&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389621/merlin-frpc-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;就可以在外面通过 &lt;code&gt;http://&amp;lt;server_ip&amp;gt;:8003/&lt;/code&gt; 访问路由器后台了。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/bhMZiXfIFNtx6OW.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;就可以在外面通过 &lt;code&gt;http://&amp;lt;server_ip&amp;gt;:&amp;lt;merlin_center_remote_port&amp;gt;/&lt;/code&gt; 访问路由器后台了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663389718/merlin-frpc-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群晖nas内网穿透&#34;&gt;群晖NAS内网穿透&lt;/h2&gt;
+&lt;p&gt;群晖自带quickconnect内网穿透，并且配置了域名，但是quickconnect速度感人并且需要手机号验证，一些服务可能还无法使用，所以这里我们自己穿透。&lt;/p&gt;
+&lt;p&gt;因为没有自带的frpc客户端，去docker里找一个：（只有x86芯片的群晖才能用Docker，也就是型号带+的，型号带j的无法使用docker）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/10/24/OLfX7nsrodVPKlt.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/10/24/UxqNTjztEoC24Zm.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;写一下frpc的配置，上传到群晖的某个文件夹，我这里是&lt;code&gt;/docker/frpc/frpc.ini&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;后面一些是我的配置，包括dsm登录、webdav、emby、plex等&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;k&#34;&gt;[common]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;server_addr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;server_ip&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;server_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;frps_port&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;token&amp;gt;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[nas_ssh]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;22&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;2333&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[dsm]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5001&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5001&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[ds_file]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5001&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5002&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[https_webdav]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5006&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5006&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[http_webdav]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5004&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5004&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[emby]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8097&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8097&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[emby_8096]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8096&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;8096&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;[plex_28888]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;28888&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;28888&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;[plex_32400]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;32400&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;32400&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;[nas_samba_445]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;445&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;4455&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;[nas_cloudreve_5212]&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;tcp&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;192.168.50.99&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5212&lt;/span&gt;
+&lt;span class=&#34;na&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;5212&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;DSM：
+&lt;img src=&#34;https://s2.loli.net/2022/10/24/jdxFe6R3iI5abs4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Cloudreve:
+&lt;img src=&#34;https://s2.loli.net/2022/11/25/RDUAeOkNvEqdZJT.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Emby
+&lt;img src=&#34;https://s2.loli.net/2022/11/25/qKIMdsyAP9DHV3U.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Plex:
+&lt;img src=&#34;https://s2.loli.net/2022/11/25/SIQErDdzaZNhyYR.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 </content>
             
             
@@ -8307,7 +8525,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
             <title type="text">Ubuntu配置samba共享简易记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/ubuntu-samba-notes/" />
             <id>https://blog.engine.wang/posts/ubuntu-samba-notes/</id>
-            <updated>2022-09-17T14:49:19&#43;08:00</updated>
+            <updated>2022-11-25T17:05:10&#43;08:00</updated>
             <published>2021-07-23T14:47:14&#43;08:00</published>
             <author>
                     <name>enginewang</name>
@@ -8539,7 +8757,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
 &lt;li&gt;Android/IOS&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;一些app可以访问nas，比如nPlayer、FE File Explorer等。&lt;/p&gt;
-&lt;p&gt;内网穿透直接访问nas好像有些问题，就采用了内网穿透cloudreve云盘挂载的方式，见后面的&lt;a href=&#34;https://yichengme.site/posts/frp-notes/#cloudreve%E7%A7%81%E6%9C%89%E4%BA%91%E5%AD%98%E5%82%A8&#34;&gt;内网穿透记录&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;内网穿透直接访问nas好像有些问题，就采用了内网穿透cloudreve云盘挂载的方式，见后面的&lt;a href=&#34;https://blog.engine.wang/posts/frp-notes/#cloudreve%E7%A7%81%E6%9C%89%E4%BA%91%E5%AD%98%E5%82%A8&#34;&gt;内网穿透记录&lt;/a&gt;&lt;/p&gt;
 </content>
             
             
@@ -8563,6 +8781,124 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                             
                             
                                 <category scheme="https://blog.engine.wang/tags/nas/" term="nas" label="nas" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/linux/" term="Linux" label="Linux" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">路由器折腾记录</title>
+            <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/router-1/" />
+            <id>https://blog.engine.wang/posts/router-1/</id>
+            <updated>2022-11-25T17:02:36&#43;08:00</updated>
+            <published>2021-06-17T13:43:38&#43;08:00</published>
+            <author>
+                    <name>enginewang</name>
+                    <uri>https://engine.wang/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">简要记录一下对路由器的折腾记录，只是一部分，剩下的后面有空就慢慢补上。 路由器成了我们生活必不可缺的一个产品，而且建议拥有自己的一台路由器，起码能对自身的网络环境……</summary>
+            
+                <content type="html">&lt;p&gt;简要记录一下对路由器的折腾记录，只是一部分，剩下的后面有空就慢慢补上。&lt;/p&gt;
+&lt;p&gt;路由器成了我们生活必不可缺的一个产品，而且建议拥有自己的一台路由器，起码能对自身的网络环境有一定的掌握，还可以通过一些操作使得自己的生活更便捷。&lt;/p&gt;
+&lt;p&gt;大部分人对路由器的认知只是一个释放无线信号给设备连接wifi的产品，但是实际上路由器的功能远不止于此。&lt;/p&gt;
+&lt;p&gt;推荐有固件的路由器，比如梅林或者openwrt，因为我的是梅林，所以这里就只基于梅林固件来讲。&lt;/p&gt;
+&lt;h2 id=&#34;准备&#34;&gt;准备&lt;/h2&gt;
+&lt;h3 id=&#34;一个能刷梅林的路由器&#34;&gt;一个能刷梅林的路由器&lt;/h3&gt;
+&lt;p&gt;最关键的点，普通路由器也没啥可折腾的，我用的是ASUS RT-AC68u，这款14年的产品到现在依然坚挺，并且全新的还能卖到400-600，也是够离谱的。当然如果需要更新更好的路由器，也可以在这里挑选一下喜欢的型号，反正越贵越好，按需购买，有钱就上带X的路由器，保证速度嘎嘎快。
+&lt;a href=&#34;https://www.koolcenter.com/category/merlin&#34;&gt;https://www.koolcenter.com/category/merlin&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其实去闲鱼捡二手也不错，我的另一台RT-AC68u就是花了一百多从闲鱼捡的，表面伤痕累累没关系，功能没啥问题就行。&lt;/p&gt;
+&lt;p&gt;第一次连接，路由器开机之后就会看到wifi列表里有ASUS，用一台设备（推荐电脑）连接wifi，当然这里直接连网线也是一样的。然后就会进入到初始设置页面，没自动进入的话就打开&lt;code&gt;router.asus.com&lt;/code&gt;或者&lt;code&gt;192.168.50.1&lt;/code&gt;（也可能是其他ip，看实际情况）手动进入，配置宽带账号密码、管理员账户密码、wifi名称密码等等。&lt;/p&gt;
+&lt;p&gt;然后就进入了路由器后台，这里的可玩性比普通路由器高太多了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/LWnIuE4OtgK6V8k.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;闲置移动硬盘可选&#34;&gt;闲置移动硬盘（可选）&lt;/h3&gt;
+&lt;p&gt;主要是做nas用，因为这些进阶版的路由器基本都有几个usb插孔，可以接存储设备，可以接移动机械硬盘/移动ssd，也可以买一个拓展坞接机械硬盘/ssd。考虑到带宽，其实机械硬盘就够了，固态属于大炮打蚊子。&lt;/p&gt;
+&lt;h3 id=&#34;闲置u盘一个可选&#34;&gt;闲置U盘一个（可选）&lt;/h3&gt;
+&lt;p&gt;小的就行，如果应用起的多，需要一个u盘来做虚拟内存，当然没有也没事&lt;/p&gt;
+&lt;h3 id=&#34;公网ip可选&#34;&gt;公网ip（可选）&lt;/h3&gt;
+&lt;p&gt;可以通过租云服务器来获得，主要是为了内网穿透，当然不配内网穿透的话就不用管这个，如果有一个域名那也是极好的，没有也没关系&lt;/p&gt;
+&lt;h2 id=&#34;刷koolshare梅林固件&#34;&gt;刷Koolshare梅林固件&lt;/h2&gt;
+&lt;p&gt;华硕自带的固件虽然功能很多，但是没有软件中心，可玩性大打折扣，这里需要刷Koolshare的改版梅林。&lt;/p&gt;
+&lt;p&gt;还是在这里，选择自己的路由器型号，然后翻到最下面下载固件。
+&lt;a href=&#34;https://www.koolcenter.com/category/merlin&#34;&gt;https://www.koolcenter.com/category/merlin&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;路由器后台页面，前往“系统管理-固件升级”，然后上传下载的固件，安装新的固件即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/vIb4k8YAVh5CWjL.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再次启动进入后台，就可以看到软件中心了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/knIY23b6KDou7XZ.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;初始设置&#34;&gt;初始设置&lt;/h2&gt;
+&lt;p&gt;开启ssh：
+系统管理-系统设置-服务-开启ssh&lt;/p&gt;
+&lt;p&gt;这样就可以远程ssh登录了&lt;/p&gt;
+&lt;h2 id=&#34;nas&#34;&gt;NAS&lt;/h2&gt;
+&lt;p&gt;进入路由后台，&lt;/p&gt;
+&lt;p&gt;（68u有一个USB3.0一个USB2.0，建议USB3.0接移动硬盘做NAS，USB2.0接一个小U盘做虚拟内存，供日后的内网穿透和v2ray等使用）&lt;/p&gt;
+&lt;p&gt;建议先插虚拟内存，待完成挂载和建立交换分区的操作后再插入移动硬盘。&lt;/p&gt;
+&lt;p&gt;usb驱动页面找到samba共享与ftp共享&lt;/p&gt;
+&lt;p&gt;重要的是下面的权限配置，管理员肯定是全权限，如果要和其他用户共享网络文件，可以指定文件夹赋予不同权限。硬盘直接NTFS格式就可以读取的。或者格式化为ext4。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/DSGniZYWs3FyxR1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;内网穿透&#34;&gt;内网穿透&lt;/h2&gt;
+&lt;p&gt;具体的服务端教程&lt;/p&gt;
+&lt;h2 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h2&gt;
+&lt;p&gt;本来虚拟内存挂一下U盘就能解决，结果我在我的ASUS RT-AC68u路由器的后台页面一直看到的未加载，明明已经格式化为ext4了&lt;/p&gt;
+&lt;p&gt;记录一下解决方法：&lt;/p&gt;
+&lt;p&gt;1.ssh连接路由器&lt;/p&gt;
+&lt;p&gt;和连接服务器一样，只是把ip改成192.168.50.1即可&lt;/p&gt;
+&lt;p&gt;2.fdisk -l 查看U盘在哪个区&lt;/p&gt;
+&lt;p&gt;比如在&lt;code&gt;/dev/sda1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;3.在路由器上格式化U盘&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mkfs.ext2 /dev/sda1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;4.建立一个挂在区，挂载U盘&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mkdir /mnt/usb&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mount -t ex2 /dev/sda1 /mnt/usb&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;理论上不会报错，这时候刷新路由器后台页面，就会显示U盘已经挂载了，就可以使用虚拟内存了&lt;/p&gt;
+&lt;h2 id=&#34;科学上网&#34;&gt;科学上网&lt;/h2&gt;
+&lt;h3 id=&#34;fancyssr下载&#34;&gt;fancyssr下载&lt;/h3&gt;
+&lt;p&gt;先下载对应的安装包：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/hq450/fancyss_history_package/tree/master/fancyss_arm&#34;&gt;https://github.com/hq450/fancyss_history_package/tree/master/fancyss_arm&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;允许安装&#34;&gt;允许安装&lt;/h3&gt;
+&lt;p&gt;直接上传如果报错：&lt;/p&gt;
+&lt;p&gt;检测到离线安装包：含非法关键词！！！
+根据法律规定，koolshare软件中心将不会安装此插件！！！&lt;/p&gt;
+&lt;p&gt;则需要登录路由器，运行下面的命令即可安装成功：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ sed -i &#39;s/\tdetect_package/\t# detect_package/g&#39; /koolshare/scripts/ks_tar_install.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后自行配置订阅、选择节点和开启服务，所有连接到此路由器的设备都能直连外网。&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" term="路由器" label="路由器" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/%E7%BD%91%E7%BB%9C/" term="网络" label="网络" />
                             
                         
                             
@@ -9300,7 +9636,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
             <title type="text">Go并发（二）Mutex源码剖析</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/go-concurrency-2-mutex/" />
             <id>https://blog.engine.wang/posts/go-concurrency-2-mutex/</id>
-            <updated>2022-03-02T19:24:39&#43;08:00</updated>
+            <updated>2022-11-25T17:05:12&#43;08:00</updated>
             <published>2021-02-06T22:03:48&#43;08:00</published>
             <author>
                     <name>enginewang</name>
@@ -9420,7 +9756,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
 &lt;p&gt;&lt;code&gt;sync_runtime_canSpin&lt;/code&gt;：返回目前自旋是否有意义。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;sync_runtime_doSpin&lt;/code&gt;：开始自旋。&lt;/p&gt;
 &lt;h3 id=&#34;信号量&#34;&gt;信号量&lt;/h3&gt;
-&lt;p&gt;信号量机制（semaphore）在很多地方都有应用，在操作系统中也学习过，见之前的&lt;a href=&#34;https://yichengme.site/posts/os-basics-thread/&#34;&gt;操作系统基础（二）进程与线程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;信号量机制（semaphore）在很多地方都有应用，在操作系统中也学习过，见之前的&lt;a href=&#34;https://blog.engine.wang/posts/os-basics-thread/&#34;&gt;操作系统基础（二）进程与线程&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;sema提供了&lt;code&gt;sleep&lt;/code&gt;和&lt;code&gt;wakeup&lt;/code&gt;的并发原语。&lt;/p&gt;
 &lt;p&gt;Mutex的源码出现了&lt;code&gt;sync_runtime_SemacquireMutex&lt;/code&gt;和&lt;code&gt;poll_runtime_Semrelease&lt;/code&gt;这两个信号量相关的函数，这里只理解一下函数的作用：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;sync_runtime_SemacquireMutex&lt;/code&gt;：对当前锁进行sleep，阻塞自己&lt;/p&gt;

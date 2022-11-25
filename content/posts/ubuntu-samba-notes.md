@@ -149,4 +149,4 @@ Finder - go - connect to server，输入smb://192.168.50.174
 
 一些app可以访问nas，比如nPlayer、FE File Explorer等。
 
-内网穿透直接访问nas好像有些问题，就采用了内网穿透cloudreve云盘挂载的方式，见后面的[内网穿透记录](https://yichengme.site/posts/frp-notes/#cloudreve%E7%A7%81%E6%9C%89%E4%BA%91%E5%AD%98%E5%82%A8)
+内网穿透直接访问nas好像有些问题，就采用了内网穿透cloudreve云盘挂载的方式，见后面的[内网穿透记录](https://blog.engine.wang/posts/frp-notes/#cloudreve%E7%A7%81%E6%9C%89%E4%BA%91%E5%AD%98%E5%82%A8)
