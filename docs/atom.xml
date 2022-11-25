@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">enginewang的博客</title>
     <subtitle type="html">这里是enginewang的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-11-25T17:05:51&#43;08:00</updated>
+    <updated>2022-11-25T17:13:44&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -732,7 +732,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
             <title type="text">frp内网穿透原理及配置记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/frp-notes/" />
             <id>https://blog.engine.wang/posts/frp-notes/</id>
-            <updated>2022-11-25T16:59:43&#43;08:00</updated>
+            <updated>2022-11-25T17:13:41&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>enginewang</name>
@@ -1255,8 +1255,9 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过本地的大容量硬盘，就可以有一个私有云+nas了。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;路由器后台&#34;&gt;路由器后台&lt;/h3&gt;
+&lt;h3 id=&#34;路由器&#34;&gt;路由器&lt;/h3&gt;
 &lt;p&gt;如果在外面需要配置路由器的后台情况，或者觉得直接访问内网服务器不安全，需要借助第三方机器对局域网内的机器进行连接，就可以将路由器进行内网穿透。&lt;/p&gt;
+&lt;p&gt;路由器相关的配置见我的这篇文章 &lt;a href=&#34;http://blog.engine.wang/posts/router-1/&#34;&gt;路由器折腾记录&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这里对刷了梅林固件的路由器后台进行了配置，比较推荐刷了Koolshare梅林固件或者openwrt固件的路由器，可玩性比较强。&lt;/p&gt;
 &lt;p&gt;去软件中心安装Frpc内网穿透，然后配置：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -8798,7 +8799,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
             <title type="text">路由器折腾记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/router-1/" />
             <id>https://blog.engine.wang/posts/router-1/</id>
-            <updated>2022-11-25T17:02:36&#43;08:00</updated>
+            <updated>2022-11-25T17:12:24&#43;08:00</updated>
             <published>2021-06-17T13:43:38&#43;08:00</published>
             <author>
                     <name>enginewang</name>
@@ -8845,7 +8846,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
 &lt;p&gt;重要的是下面的权限配置，管理员肯定是全权限，如果要和其他用户共享网络文件，可以指定文件夹赋予不同权限。硬盘直接NTFS格式就可以读取的。或者格式化为ext4。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/25/DSGniZYWs3FyxR1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;内网穿透&#34;&gt;内网穿透&lt;/h2&gt;
-&lt;p&gt;具体的服务端教程&lt;/p&gt;
+&lt;p&gt;具体的教程见我的这篇文章的后面部分：&lt;a href=&#34;http://blog.engine.wang/posts/frp-notes&#34;&gt;frp内网穿透原理及配置记录&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h2&gt;
 &lt;p&gt;本来虚拟内存挂一下U盘就能解决，结果我在我的ASUS RT-AC68u路由器的后台页面一直看到的未加载，明明已经格式化为ext4了&lt;/p&gt;
 &lt;p&gt;记录一下解决方法：&lt;/p&gt;

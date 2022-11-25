@@ -395,9 +395,11 @@ remote_port = 5212
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663391988/cloudreve-4.png)
 
 
-### 路由器后台
+### 路由器
 
 如果在外面需要配置路由器的后台情况，或者觉得直接访问内网服务器不安全，需要借助第三方机器对局域网内的机器进行连接，就可以将路由器进行内网穿透。
+
+路由器相关的配置见我的这篇文章 [路由器折腾记录](http://blog.engine.wang/posts/router-1/)
 
 这里对刷了梅林固件的路由器后台进行了配置，比较推荐刷了Koolshare梅林固件或者openwrt固件的路由器，可玩性比较强。
 

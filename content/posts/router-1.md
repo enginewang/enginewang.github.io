@@ -82,7 +82,7 @@ usb驱动页面找到samba共享与ftp共享
 
 ## 内网穿透
 
-具体的服务端教程
+具体的教程见我的这篇文章的后面部分：[frp内网穿透原理及配置记录](http://blog.engine.wang/posts/frp-notes)
 
 ## 虚拟内存
 
