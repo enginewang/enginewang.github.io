@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">enginewang的博客</title>
     <subtitle type="html">这里是enginewang的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-11-25T17:40:47&#43;08:00</updated>
+    <updated>2022-11-25T19:00:58&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">通过kubeadm搭建Kubernetes集群</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/k8s-kubeadm-setup/" />
             <id>https://blog.engine.wang/posts/k8s-kubeadm-setup/</id>
-            <updated>2022-11-25T17:40:38&#43;08:00</updated>
+            <updated>2022-11-25T18:56:07&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>enginewang</name>
@@ -666,7 +666,7 @@ BGP not established with 172.20.0.1
 ip link delete flannel.1
 su
 rm -rf /var/lib/cni/
-rm -f /etc/cni/net.d/*
+rm -rf /etc/cni/net.d/*
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</content>
