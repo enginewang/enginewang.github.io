@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">enginewang的博客</title>
     <subtitle type="html">这里是enginewang的博客，分享技术文章和生活经历</subtitle>
-    <updated>2022-11-25T17:13:44&#43;08:00</updated>
+    <updated>2022-11-25T17:40:47&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -17,60 +17,25 @@
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
         <entry>
-            <title type="text">通过kubeadm搭建局域网Kubernetes集群</title>
-            <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/k8s-lan-setup/" />
-            <id>https://blog.engine.wang/posts/k8s-lan-setup/</id>
-            <updated>2022-10-11T10:34:22&#43;08:00</updated>
+            <title type="text">通过kubeadm搭建Kubernetes集群</title>
+            <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/k8s-kubeadm-setup/" />
+            <id>https://blog.engine.wang/posts/k8s-kubeadm-setup/</id>
+            <updated>2022-11-25T17:40:38&#43;08:00</updated>
             <published>2022-09-09T14:33:59&#43;08:00</published>
             <author>
                     <name>enginewang</name>
                     <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">准备多台Linux服务器 k8s搭建的一些难点： 需要多台服务器，贵 搭建时需要科学上网 搭建比较复杂，学习起来也比较复杂 后面的操作都是以普通用户来操作，不直接用roo……</summary>
             
-                <content type="html">&lt;p&gt;因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的，所以就使用了本地局域网下的两台主机进行k8s搭建。&lt;/p&gt;
-&lt;h2 id=&#34;准备硬件环境&#34;&gt;准备硬件环境&lt;/h2&gt;
+                <content type="html">&lt;h4 id=&#34;准备多台linux服务器&#34;&gt;准备多台Linux服务器&lt;/h4&gt;
 &lt;p&gt;k8s搭建的一些难点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;需要多台服务器，贵&lt;/li&gt;
 &lt;li&gt;搭建时需要科学上网&lt;/li&gt;
 &lt;li&gt;搭建比较复杂，学习起来也比较复杂&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这里不想使用虚拟机的方式，计划采用局域网通过kubeadm搭建。本地有两台主机，一台主力台式机作为master。一台之前闲鱼捡的丐版mac mini 2012作为slave，之前内存只有4G（2+2），拆机升级到了10G（2+8），好在这个cpu有两个核心，能搭k8s，电子垃圾再利用。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;角色&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;OS&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;MEM&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;CPU&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;核心数&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;IP&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;台式工作站&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Master&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;32G&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;i7-10700&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;192.168.50.174&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Mac mini 2012&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Slave&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;10G&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;i5-3210M&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;192.168.50.175&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 &lt;p&gt;后面的操作都是以普通用户来操作，不直接用root因为不安全。&lt;/p&gt;
 &lt;p&gt;首先关闭swap&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -87,7 +52,7 @@ $ swapoff -a
 $ free -m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
+&lt;/div&gt;&lt;h4 id=&#34;安装-docker&#34;&gt;安装 Docker&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -133,7 +98,7 @@ $ free -m
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# (Install Docker CE)&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;## Set up the repository:&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Install packages to allow apt to use a repository over HTTPS&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;### Install packages to allow apt to use a repository over HTTPS&lt;/span&gt;
 $ sudo apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  apt-transport-https ca-certificates curl software-properties-common gnupg2
 
@@ -172,7 +137,7 @@ $ systemctl daemon-reload
 $ systemctl restart docker
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装kubernetes&#34;&gt;安装Kubernetes&lt;/h2&gt;
+&lt;/div&gt;&lt;h4 id=&#34;安装-kuberadm-kubelet-kubectl&#34;&gt;安装 kuberadm kubelet kubectl&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -205,7 +170,8 @@ $ sudo apt-get install -y kubelet kubeadm kubectl
 $ sudo apt-mark hold kubelet kubeadm kubectl
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;最关键的一步，通过&lt;code&gt;kubeadm init&lt;/code&gt;进行初始化，ip根据实际情况进行修改。&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;创建master节点&#34;&gt;创建master节点&lt;/h4&gt;
+&lt;p&gt;这是最关键的一步&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -235,10 +201,9 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm init --apiserver-advertise-address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.50.174  --pod-network-cidr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.0.0/16
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm init --apiserver-advertise-address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;lt;内网ip&amp;gt;  --pod-network-cidr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.244.0.0/16
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;init&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Using Kubernetes version: v1.25.0
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Pulling images required &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; setting up a Kubernetes cluster
@@ -264,8 +229,22 @@ Run &lt;span class=&#34;s2&#34;&gt;&amp;#34;kubectl apply -f [podnetwork].yaml&a
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 192.168.50.174:6443 --token jt7fap.t4gcisog9zc1lqqm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:49f1867877de69c1c1145fb026221b64824ed4ce993496aaeb73b1446d2b2ebc
+kubeadm join ... --token ...	--discovery-token-ca-cert-hash ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果要重新init，需要先停止服务，否则就会报错端口被占用，还要删除&lt;code&gt;$HOME/.kube&lt;/code&gt;文件夹&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 需要sudo&lt;/span&gt;
+sudo kubeadm reset
+sudo rm -rf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
+sudo rm -rf /var/lib/etcd
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;复制kubeconfig&lt;/p&gt;
@@ -281,25 +260,10 @@ $ sudo cp -i /etc/kubernetes/admin.conf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;
 $ sudo chown &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -u&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;:&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -g&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;如果要重新init，需要先停止服务，还要删除&lt;code&gt;$HOME/.kube&lt;/code&gt;文件夹，否则就会报错端口被占用等。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 需要sudo&lt;/span&gt;
-sudo kubeadm reset
-sudo rm -rf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h2&gt;
-&lt;p&gt;很多插件都可以，这里采用Calico&lt;/p&gt;
-&lt;p&gt;官网如下：
-&lt;a href=&#34;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&#34;&gt;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h4&gt;
+&lt;h5 id=&#34;calico&#34;&gt;Calico&lt;/h5&gt;
+&lt;p&gt;很多插件都可以，如果是Calico的话&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&#34;&gt;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;安装calico，用于网络通信&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -319,8 +283,7 @@ $ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch kubectl get pods -n calico-system
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;等待，直到里面的服务都是running状态。&lt;/p&gt;
-&lt;p&gt;设置traint污点容忍度，让master也可以被分配Pod&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;等待，直到里面的服务都是running状态，&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -331,8 +294,13 @@ $ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24
 kubectl taint nodes --all node-role.kubernetes.io/master-
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;查看当前的Nodes，只有master一个Node。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h5 id=&#34;flannel&#34;&gt;Flannel&lt;/h5&gt;
+&lt;p&gt;一开始创建的时候声明为&lt;code&gt;10.244.0.0/16&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+# 安装flannel
+kubectl create -f kube-flannel.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -344,8 +312,7 @@ NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP
 master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h2&gt;
-&lt;p&gt;在slave节点上通过&lt;code&gt;kubeadm join&lt;/code&gt;加入到集群中：&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -365,8 +332,8 @@ master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;non
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join 192.168.50.174:6443 --token jt7fap.t4gcisog9zc1lqqm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:49f1867877de69c1c1145fb026221b64824ed4ce993496aaeb73b1446d2b2ebc
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join 192.168.50.174:6443 --token m3pfuj.hh92oketgjdhcuzq &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:f7235824fa136c3ef5dcc879ec4a326906166e38b1490f630e994e2e562baa0d
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Reading configuration from the cluster...
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; FYI: You can look at this config file with &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl -n kube-system get cm kubeadm-config -o yaml&amp;#39;&lt;/span&gt;
@@ -382,7 +349,7 @@ This node has joined the cluster:
 Run &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl get nodes&amp;#39;&lt;/span&gt; on the control-plane to see this node join the cluster.
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在master node上查看集群中的节点，输出这些代表集群建立完成：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;主节点&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -402,8 +369,8 @@ Run &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl get nodes&amp;#39;&lt;/span&
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看已加入的节点&lt;/span&gt;
 $ kubectl get nodes -o wide
 NAME             STATUS   ROLES           AGE    VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-master           Ready    control-plane   13m    v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
-engine-macmini   Ready    &amp;lt;none&amp;gt;          116s   v1.25.0   192.168.50.175   &amp;lt;none&amp;gt;        Ubuntu 18.04.6 LTS   5.4.0-125-generic   containerd://1.2.13
+engine-macmini   Ready    control-plane   116s   v1.25.0   192.168.50.175   &amp;lt;none&amp;gt;        Ubuntu 18.04.6 LTS   5.4.0-125-generic   containerd://1.2.13
+master           Ready    &amp;lt;none&amp;gt;          13m    v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 &lt;span class=&#34;c1&#34;&gt;# 查看集群状态&lt;/span&gt;
 $ kubectl get cs
 Warning: v1 ComponentStatus is deprecated in v1.19+
@@ -457,10 +424,8 @@ kube-system        kube-scheduler-engine-macmini              1/1     Running   
 tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          13m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;k8s-dashboard&#34;&gt;k8s dashboard&lt;/h2&gt;
-&lt;p&gt;通过k8s dashboard，可以更好的可视化观察k8s的各项运行情况。&lt;/p&gt;
-&lt;p&gt;官方文档：
-&lt;a href=&#34;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&#34;&gt;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h4 id=&#34;k8s-dashboard配置&#34;&gt;k8s dashboard配置&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&#34;&gt;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -469,9 +434,8 @@ tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建用户&#34;&gt;创建用户&lt;/h3&gt;
-&lt;p&gt;官方说明：
-&lt;a href=&#34;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&#34;&gt;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h5 id=&#34;创建用户&#34;&gt;创建用户&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&#34;&gt;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -493,6 +457,15 @@ metadata:
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f dashboard-adminuser.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;还有一种是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -522,9 +495,7 @@ subjects:
   namespace: kubernetes-dashboard
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;并apply&lt;/p&gt;
-&lt;p&gt;生成用户token，用于之后的dashboard登录&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -535,9 +506,7 @@ subjects:
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/kubernetes/dashboard/raw/master/docs/images/signin.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果要删除用户&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;如果要删除用户：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -566,7 +535,7 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
 &lt;p&gt;之前的token复制进去即可登录&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h3&gt;
+&lt;h5 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h5&gt;
 &lt;p&gt;dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。&lt;/p&gt;
 &lt;p&gt;取Deployment找到kubernetes-dashboard，进行修改：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -592,11 +561,11 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样就将token延长到了43200秒，也就是12小时&lt;/p&gt;
-&lt;h2 id=&#34;一些报错&#34;&gt;一些报错&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;master节点重启，可能会报这个错，重新关闭swap&lt;/p&gt;
+&lt;h4 id=&#34;报错&#34;&gt;报错&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;master节点重启，可能会报这个错。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -607,10 +576,9 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 $ strace -eopenat kubectl version
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;[ERROR CRI]: container runtime is not running: output: E0812&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以通过重启containered解决：&lt;/p&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;[ERROR CRI]: container runtime is not running: output: E0812&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -621,27 +589,70 @@ $ strace -eopenat kubectl version
 $ systemctl restart containerd
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;kubeadm init，pull镜像的时候报错timeout&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从http://k8s.gcr.io pull镜像的时候需要科学上网，可以通过其他地方下载包打tag，或者添加&lt;code&gt;--image-repository registry.aliyuncs.com/google_containers&lt;/code&gt;修改为阿里源&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;kubeadm init，找不到主节点报错：kubelet.go:2466] &amp;quot;Error getting node&amp;quot; err=&amp;quot;node &amp;quot;xxx&amp;quot; not found&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;有时候在云上部署会报这个错误，因为网卡跟公网ip没绑定，可以将advertise_ip修改为内网ip，然后通过iptables进行映射：&lt;/p&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;coredns一直pending，无法调度&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# master&lt;/span&gt;
-sudo iptables -t nat -A OUTPUT -d &amp;lt;公网ip&amp;gt; -j DNAT --to-destination &amp;lt;内网ip&amp;gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kube-system    coredns-565d847f94-99kh9         0/1     Pending   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          4m55s
+kube-system    coredns-565d847f94-rhmr4         0/1     Pending   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          4m55s
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;kubeadm join的token忘记保存或者过期&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;&lt;p&gt;检查对应的pod：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl describe pods -n kube-system coredns-565d847f94-99kh9
+...
+Warning  FailedScheduling  3m9s &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;x2 over 8m26s&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  default-scheduler  0/1 nodes are available: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; node&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;s&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; had untolerated taint &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;node.kubernetes.io/disk-pressure: &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;. preemption: 0/1 nodes are available: &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; Preemption is not helpful &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; scheduling.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;看到这里是遇到了&lt;code&gt;node.kubernetes.io/disk-pressure&lt;/code&gt;，主机磁盘空间不足，进行空间清理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;calico 的ready是0/1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl describe pods -n calico-system calico-node-6cg6d
+...
+calico/node is not ready: BIRD is not ready: 
+BGP not established with 172.20.0.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;不适用calico，改用Falnnel报错：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;plugin &lt;span class=&#34;nv&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;calico&amp;#34;&lt;/span&gt; failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;add&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: error getting ClusterInformation...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因：calico没卸载干净，&lt;/p&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://qiaolb.github.io/remove-calico.html&#34;&gt;https://qiaolb.github.io/remove-calico.html&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ip a
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;网卡相关的错误，很多可以通过卸载网卡来解决，卸载掉比如br开头的，以及calico、flannel相关的网卡&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -649,38 +660,16 @@ sudo iptables -t nat -A OUTPUT -d &amp;lt;公网ip&amp;gt; -j DNAT --to-destinat
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看当前的token，如果有的话则保存这个&amp;lt;token&amp;gt;的内容&lt;/span&gt;
-$ kubeadm token list
-TOKEN                     TTL         EXPIRES                USAGES                   DESCRIPTION                                                EXTRA GROUPS
-&amp;lt;token&amp;gt;   15h         2022-10-11T17:06:41Z   authentication,signing   The default bootstrap token generated by &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubeadm init&amp;#39;&lt;/span&gt;.   system:bootstrappers:kubeadm:default-node-token
-&lt;span class=&#34;c1&#34;&gt;# 如果token过期的话就通过下面来新建一个token&lt;/span&gt;
-$ kubeadm token create --print-join-command
-&lt;span class=&#34;c1&#34;&gt;# 获取ca证书sha256编码hash值&lt;/span&gt;
-$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl rsa -pubin -outform der 2&amp;gt;/dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl dgst -sha256 -hex &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sed &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/^.* //&amp;#39;&lt;/span&gt;
-&amp;lt;hash&amp;gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ifconfig flannel.1 down
+ip link delete flannel.1
+su
+rm -rf /var/lib/cni/
+rm -f /etc/cni/net.d/*
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后就可以通过：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join &amp;lt;ip&amp;gt;:6443 --token &amp;lt;token&amp;gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --discovery-token-ca-cert-hash &amp;lt;hash&amp;gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;　　--ignore-preflight-errors&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Swap
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;来join&lt;/p&gt;
-</content>
+&lt;/div&gt;</content>
             
             
             
@@ -732,7 +721,7 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;
             <title type="text">frp内网穿透原理及配置记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/frp-notes/" />
             <id>https://blog.engine.wang/posts/frp-notes/</id>
-            <updated>2022-11-25T17:13:41&#43;08:00</updated>
+            <updated>2022-11-25T17:15:11&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>enginewang</name>
