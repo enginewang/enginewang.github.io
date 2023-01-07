@@ -367,6 +367,13 @@ Warning  FailedScheduling  3m9s (x2 over 8m26s)  default-scheduler  0/1 nodes ar
 
 看到这里是遇到了`node.kubernetes.io/disk-pressure`，主机磁盘空间不足，进行空间清理
 
+我们可以查看这个node：
+
+```bash
+$ kubectl describe nodes <node>
+
+```
+
 
 > calico 的ready是0/1
 
