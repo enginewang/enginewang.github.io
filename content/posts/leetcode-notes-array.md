@@ -6,17 +6,6 @@ categories: ["技术"]
 tags: ["算法", "LeetCode"]
 ---
 
-### 二维数组
-
-go初始化二维数组，记得开辟空间：
-
-```go
-matrix := make([][]int, n)
-for i := range matrix{
-	matrix[i] = make([]int, m)
-}
-```
-
 ## 双指针
 
 ### [LeetCode 27. 移除元素 ☆](https://leetcode.cn/problems/remove-element/)
