@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 31 Jan 2023 16:39:15 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 31 Jan 2023 21:47:21 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
@@ -1408,6 +1408,124 @@ $ vim /root/.aria2c/aria2.conf
                                 
                                 
                                     <category domain="https://blog.engine.wang/tags/leetcode/">LeetCode</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>给博客网站上CDN</title>
+                <link>https://blog.engine.wang/posts/githubpage-cdn/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/githubpage-cdn/</guid>
+                <pubDate>Wed, 21 Dec 2022 21:34:42 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (enginewang)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;为什么需要cdn&#34;&gt;为什么需要CDN&lt;/h2&gt;
+&lt;p&gt;因为众所周知的原因，Github在国内访问时经常抽风，page抽风概率小一点但还是有概率访问不了或者很慢。于是我尝试给博客网站进行CDN加速。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;内容分发网络（Content Delivery Network，CDN）通过将站点内容发布至遍布全球的海量加速节点，使其用户可就近获取所需内容，避免因网络拥堵、跨运营商、跨地域、跨境等因素带来的网络不稳定、访问延迟高等问题，有效提升下载速度、降低响应时间，提供流畅的用户体验。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不说废话，先看看效果。&lt;/p&gt;
+&lt;p&gt;加速之前，惨不忍睹：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/oifKjkDxgcGqBOV.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ping blog.engine.wang
+PING blog.engine.wang &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;185.199.110.153&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;56&lt;/span&gt; data bytes
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 185.199.110.153: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;44&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;253.192 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 185.199.110.153: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;44&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;195.049 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 185.199.110.153: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;44&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;237.292 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 185.199.110.153: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;44&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;229.440 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;加速之后，太香了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/AZSGdaLjHgzJ9se.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ping blog.engine.wang
+PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;111.29.52.131&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;m&#34;&gt;56&lt;/span&gt; data bytes
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 111.29.52.131: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;36.333 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 111.29.52.131: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;133.613 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 111.29.52.131: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;36.479 ms
+&lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; bytes from 111.29.52.131: &lt;span class=&#34;nv&#34;&gt;icmp_seq&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ttl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;37.851 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;前置条件&#34;&gt;前置条件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;有域名&lt;/li&gt;
+&lt;li&gt;域名已备案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为我的域名是从腾讯云买的，而且也备了案，如果不是的话可以考虑Cloudflare cdn之类的。&lt;/p&gt;
+&lt;h2 id=&#34;给github-page博客网站配置腾讯云cdn&#34;&gt;给github page博客网站配置腾讯云CDN&lt;/h2&gt;
+&lt;p&gt;前往CDN内容分发网络，配置一下加速域名&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/xmy2hz8ksQHrL3R.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后是源站地址和回源host，源站地址就是github page的一些ip：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/c2TR6ZgN7he8fKL.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前往缓存控制页，修改节点缓存过期配置：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/D3XnV52owhKLJWT.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;申请一下SSL证书，然后配置HTTPS：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/32HZtkaxIBUWqPe.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;需要添加一个CNAME解析，解析到提供的cdn地址：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/G5MuOiALaRpPmyU.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里添加解析的时候，之前的CNAME、A解析会断开，再重新加上指向enginewang.github.io的CNAME解析即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/1dM7EPVbCqSgXF2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;境外可以仍然指向github page，境内则指向我们配置的cdn&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/cdn/">CDN</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/github-page/">github page</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E7%BD%91%E7%AB%99/">网站</category>
                                 
                             
                         
