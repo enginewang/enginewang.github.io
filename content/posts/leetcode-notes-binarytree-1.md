@@ -1,6 +1,6 @@
 ---
 title: "LeetCode算法笔记（二叉树篇）"
-date: 2022-01-06T21:09:39+08:00
+date: 2023-01-06T21:09:39+08:00
 draft: false
 categories: ["技术"]
 tags: ["算法", "LeetCode"]
