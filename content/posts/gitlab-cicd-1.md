@@ -1,0 +1,238 @@
+---
+title: "Gitlab CI/CD搭建与部署实战"
+date: 2023-12-03T13:37:20+08:00
+draft: false
+categories: ["技术"]
+tags: ["CI/CD", "Gitlab", "Linux"]
+---
+
+我搭建好的gitlab地址为[https://gitlab.engine.wang](https://gitlab.engine.wang)，欢迎访问。
+
+体验账号：guest，密码：guest123456
+
+（服务器将于23年11月左右到期）
+
+## 搭建gitlab服务器
+
+Gitlab是一个类似于Github的代码托管软件，搭建一个私有的git服务器，类似于游戏中的私服，可以供内部使用，并且用国内服务器的话，网络也比较好。
+
+买一台云服务器，配置不低于2核4G，否则跑不动Gitlab。
+
+Gitlab有很多搭建方法，Docker、Docker-compose、k8s都比较好，我这里用的是docker-compose，下面是详细的搭建过程。
+
+
+### 云服务器初始化
+
+进入云服务器，在/srv/gitlab下新建config,data,logs三个文件夹
+
+```bash
+$ cd /srv/gitlab
+$ sudo mkdir data logs config
+```
+
+在`~/.zshrc`添加`GITLAB_HOME`并source
+
+```bash
+export GITLAB_HOME="/srv/gitlab"
+```
+
+改一下sshd的默认端口：
+
+`/etc/ssh/sshd_config`
+注意是sshd_config，不是ssh_config
+
+把Port取消注释并修改成其他端口，然后重启sshd服务，重启服务器，重新用新端口连接：
+
+```bash
+sudo service ssh restart
+```
+
+### 配置SSL证书
+
+首先去提交一个证书申请，普通用户总共能申请20个免费的域名证书（二级域名分开算），但也足够了
+
+![](https://s2.loli.net/2022/11/26/iEdQB9PKqsU7gYh.png)
+
+等待审核完成，下载证书，选择nginx
+
+![](https://s2.loli.net/2022/11/26/rq42VEoAHzPDiu8.png)
+
+将crt、key两个后缀的文件复制到/srv/gitlab/config/ssl和/root/.cert下面
+
+写`docker-compose.yml`文件，下面是我调试很久的版本
+
+做了smtp邮件配置、nginx的https ssl配置、性能调节防止内存消耗过高等。
+
+这台服务器只架设 Gitlab Server 和 Gitlab Runner，所以80和443都直接映射
+
+```yaml
+version: '3.6'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'gitlab.engine.wang'
+    container_name: "gitlab"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # /srv/gitlab/config/gitlab.rb
+        external_url 'https://gitlab.engine.wang'
+        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+        gitlab_rails['backup_keep_time'] = 259200
+        gitlab_rails['gitlab_shell_ssh_port'] = 20022
+        gitlab_rails['smtp_pool'] = true
+        gitlab_rails['smtp_enable'] = true
+        gitlab_rails['smtp_address'] = "smtp.qq.com"
+        gitlab_rails['smtp_port'] = 465
+        gitlab_rails['smtp_user_name'] = "engine.wang@qq.com"
+        gitlab_rails['smtp_password'] = "<SMTP密码>"
+        gitlab_rails['smtp_domain'] = "smtp.qq.com"
+        gitlab_rails['smtp_authentication'] = "login"
+        gitlab_rails['smtp_enable_starttls_auto'] = true
+        gitlab_rails['smtp_tls'] = true
+        gitlab_rails['gitlab_email_from'] = 'engine.wang@qq.com'
+        user["git_user_email"] = "engine.wang@qq.com"
+        nginx['client_max_body_size'] = '10240m'
+        nginx['redirect_http_to_https'] = true
+        nginx['ssl_certificate'] = "/etc/gitlab/ssl/gitlab.engine.wang.crt"
+        nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/gitlab.engine.wang.key"
+        nginx['ssl_ciphers'] = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256"
+        nginx['ssl_prefer_server_ciphers'] = "on"
+        nginx['ssl_protocols'] = "TLSv1.1 TLSv1.2"
+        nginx['ssl_session_cache'] = "builtin:1000  shared:SSL:10m"
+        nginx['listen_addresses'] = ["0.0.0.0"]
+        nginx['http2_enabled'] = true
+        postgresql['max_worker_processes'] = 8
+        postgresql['shared_buffers'] = "256MB"
+        puma['worker_processes'] = 0
+        sidekiq['max_concurrency'] = 5
+        alertmanager['admin_email'] = 'engine74396@gmail.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '20022:22'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    restart: always
+    user: root
+```
+
+
+```bash
+# 后台启动
+$ docker-compose up -d
+# 查看实时日志
+$ docker logs -ft gitlab
+# 查看初始密码
+$ docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+```
+
+测试邮件服务，这里用的是qq，其他的很多邮箱都可以。
+
+```bash
+$ docker exec -it gitlab bash
+$ root@engine:/# gitlab-rails console
+
+Notify.test_email('engine74396@gmail.com', 'Message Subject', 'Message Body').deliver_now
+```
+
+### 配置swap
+
+
+4G不够，通过swap加点虚拟内存，这里加2G
+
+```bash
+# 当前没有开启swap
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:          3.3Gi       212Mi       2.2Gi       2.0Mi       996Mi       2.9Gi
+Swap:            0B          0B          0B
+
+# 创建swap文件，这里给了2G虚拟内存
+$ sudo dd if=/dev/zero of=/swapfile count=2048 bs=1M
+2048+0 records in
+2048+0 records out
+2147483648 bytes (2.1 GB, 2.0 GiB) copied, 10.2516 s, 209 MB/s
+# 查看swap文件，存在
+$ ls / | grep swapfile
+swapfile
+
+$ sudo chmod 600 /swapfile
+
+# 开启swap
+$ sudo mkswap /swapfile
+Setting up swapspace version 1, size = 2 GiB (2147479552 bytes)
+no label, UUID=0bba6fce-e4a1-4cdf-8288-6770e4dd4266
+$ sudo swapon /swapfile
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           3419         234         105           2        3079        2909
+Swap:          2047           0        2047
+```
+
+```bash
+$ sudo vim /etc/fstab
+# 最后一行加入：
+# /swapfile none swap sw 0 0
+```
+
+可以看到内存降了一些，服务器不会很卡了
+
+![](https://s2.loli.net/2022/11/28/TgqO5jHit6Ac2v9.png)
+
+浏览器打开：`https://gitlab.engine.wang`，就可以访问到gitlab：
+
+![](https://s2.loli.net/2022/11/28/lmbC9KkuJ5oqF6S.png)
+
+### 后续工作
+
+修改root账户的密码
+
+![](https://s2.loli.net/2022/11/28/wqsKuMnyTDzFxfR.png)
+
+
+改一下邮箱，默认是admin@example.com，无法发送通知
+![](https://s2.loli.net/2022/11/28/WkAHCgIQqYwPzib.png)
+
+直接去容器里改数据库：
+
+```bash
+$ docker exec -it gitlab bash
+# root@gitlab:/#
+$ gitlab-psql -d gitlabhq_production
+psql (13.8)
+Type "help" for help.
+# gitlabhq_production=# 
+$ update users set email='engine.wang@qq.com',notification_email='engine.wang@qq.com',commit_email='engine.wang@qq.com' where id = 1;
+UPDATE 1
+```
+
+就可以了：
+![](https://s2.loli.net/2022/11/28/arl2pEFfzM7vQme.png)
+
+git@gitlab.engine.wang:enginewang/JRYY.git
+
+## 本地机器配置
+
+> fatal: could not read Username for 'https://gitlab.engine.wang': terminal prompts disabled
+
+```bash
+git config --global url."git@gitlab.engine.wang/".insteadof "https://gitlab.engine.wang/"
+```
+
+## 配置Gitlab runner
+
+官方文档：https://docs.gitlab.com/runner/install/
+
+我们需要一个runner来执行相关的代码
+
+参考：
+https://blog.csdn.net/ken1583096683/article/details/83117481
+
+## 实战 Gitlab CI/CD
+
+![](https://s2.loli.net/2022/11/28/zgu9wiSUTXscODk.png)
+
+未完待续
