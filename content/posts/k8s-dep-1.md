@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes在线业务：Deployment & DeamonSet"
-date: 2023-09-28T20:40:09+08:00
+date: 2022-09-30T20:40:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "Deployment", "DeamonSet", "云原生"]

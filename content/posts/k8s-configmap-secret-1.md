@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes配置管理：ConfigMap & Secret"
-date: 2023-10-15T20:40:09+08:00
+date: 2022-11-03T20:40:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "ConfigMap", "Secret", "云原生"]

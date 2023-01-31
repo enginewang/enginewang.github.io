@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes核心：Pod"
-date: 2023-09-20T20:40:09+08:00
+date: 2022-09-20T20:40:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "Pod", "云原生"]

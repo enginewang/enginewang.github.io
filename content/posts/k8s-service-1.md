@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes微服务：Service"
-date: 2023-10-31T23:13:09+08:00
+date: 2022-10-31T23:13:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "Service", "云原生"]

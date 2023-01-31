@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes有状态集：StatefulSet"
-date: 2023-10-24T17:02:09+08:00
+date: 2022-10-24T17:02:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "StatefulSet", "云原生"]

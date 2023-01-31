@@ -1,6 +1,6 @@
 ---
 title: "通过kubeadm搭建Kubernetes集群"
-date: 2022-09-09T14:33:59+08:00
+date: 2022-08-09T14:33:59+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "分布式", "Docker", "Linux"]

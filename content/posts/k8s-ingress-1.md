@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes集群进出流量管理：Ingress"
-date: 2023-11-08T23:13:09+08:00
+date: 2022-11-18T23:13:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "Ingress", "云原生"]

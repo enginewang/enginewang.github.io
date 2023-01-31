@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes离线业务：Job & CronJob"
-date: 2023-10-05T13:40:09+08:00
+date: 2022-10-09T13:40:09+08:00
 draft: false
 categories: ["技术"]
 tags: ["Kubernetes", "Job", "CronJob", "云原生"]
