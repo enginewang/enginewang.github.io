@@ -1,5 +1,5 @@
 ---
-title: "Cloudreve+aria2+群晖+frp内网穿透+nginx+https搭建私有云"
+title: "Cloudreve+aria2+群晖+frp+nginx+https搭建私有云"
 date: 2023-01-29T16:21:02+08:00
 draft: false
 categories: ["生活"]

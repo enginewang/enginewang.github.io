@@ -23,13 +23,13 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 31 Jan 2023 16:35:34 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 31 Jan 2023 16:39:15 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
         
             <item>
-                <title>Cloudreve&#43;aria2&#43;群晖&#43;frp内网穿透&#43;nginx&#43;https搭建私有云</title>
+                <title>Cloudreve&#43;aria2&#43;群晖&#43;frp&#43;nginx&#43;https搭建私有云</title>
                 <link>https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</link>
                 <guid isPermaLink="true">https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</guid>
                 <pubDate>Sun, 29 Jan 2023 16:21:02 &#43;0800</pubDate>
@@ -4325,123 +4325,6 @@ hello-cj   */1 * * * *   False     &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; 
             </item>
         
             <item>
-                <title>云原生概念</title>
-                <link>https://blog.engine.wang/posts/cloudnative-1/</link>
-                <guid isPermaLink="true">https://blog.engine.wang/posts/cloudnative-1/</guid>
-                <pubDate>Tue, 04 Oct 2022 13:22:25 &#43;0800</pubDate>
-                
-                    <author>engine74396@gmail.com (enginewang)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;h2 id=&#34;云原生的历史&#34;&gt;云原生的历史&lt;/h2&gt;
-&lt;h3 id=&#34;虚拟化技术&#34;&gt;虚拟化技术&lt;/h3&gt;
-&lt;p&gt;云计算的基础是虚拟化技术，一个重要的里程碑就是2001年VMWare的x86虚拟化计划，从而可以不购买物理设备来虚拟化一个机器。&lt;/p&gt;
-&lt;p&gt;接下来，亚马逊AWS在2006年开发S3存储服务、SQS消息队列服务、EC2虚拟机服务，标志着云计算时代的到来。&lt;/p&gt;
-&lt;p&gt;云计算提供的计算资源包括三种模式：IaaS、SaaS和PaaS&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;IaaS（Infrastructure as a service，基础设施即服务）是云端的最底层，提供基础资源。&lt;/li&gt;
-&lt;li&gt;PaaS（Platform as a service，平台即服务）提供软件部署平台，开发者只需要关注自己的业务逻辑，不需要关注底层。&lt;/li&gt;
-&lt;li&gt;SaaS（Software as a service，软件即服务）提供软件服务，软件的开发管理部署都交给第三方，企业拿来即用。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;容器&#34;&gt;容器&lt;/h3&gt;
-&lt;p&gt;容器化本质上是虚拟化的改进版本，容器化技术允许多个应用进程驻留在同一个服务器中，虚拟化在硬件层面分离，而容器化在软件层面分离。其中容器技术中应用最广泛、最具代表性的就是Docker。&lt;/p&gt;
-&lt;p&gt;Docker的出现对云计算产生了重大的影响，容器技术其实最早是LXC，不过没有涉及镜像打包等技术，导致没有普及。Docker则将容器化技术发扬光大，称为了容器化技术的领导者（不过不能说容器就是Docker）&lt;/p&gt;
-&lt;p&gt;当一组集群部署Docker时，需要一个管理调度技术，容器编排技术Mesos、Swarm、Kubernetes进行了竞争并最终Kubernetes取得了胜利。目前最流行的方式就是Docker+Kubernetes。&lt;/p&gt;
-&lt;p&gt;云计算颠覆了整个行业的格局，中小公司和其他行业的公司不必要再维护自建的数据中心，大大降低了IT公司的支出，同时也为云服务企业带来了高额的利润。&lt;/p&gt;
-&lt;h3 id=&#34;云原生&#34;&gt;云原生&lt;/h3&gt;
-&lt;h4 id=&#34;云原生为什么可以走上历史舞台&#34;&gt;云原生为什么可以走上历史舞台&lt;/h4&gt;
-&lt;p&gt;首先是因为软件的量级增大以及人与人的沟通方式导致微服务的流行，通过服务的拆分，每个小团队对应一个服务，增加了内聚性，减少了开会的频次，提高了沟通效率。&lt;/p&gt;
-&lt;p&gt;快速交付意味着更新的频次也高了，更新也容易造成服务的故障问题，这时更新与高可用之间需要权衡。而云原生架构的基础设施和工具可以减少更新导致的故障问题，保证服务的高可用。&lt;/p&gt;
-&lt;p&gt;云原生解决了下面的问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;产品快速迭代，更快的上线速度；&lt;/li&gt;
-&lt;li&gt;系统的高可用，故障时能够自动恢复与回滚；&lt;/li&gt;
-&lt;li&gt;快速解决问题，细致的故障探测和发现；&lt;/li&gt;
-&lt;li&gt;避免雪崩，故障时能自动隔离；&lt;/li&gt;
-&lt;li&gt;系统的弹性伸缩，简便快速的水平扩容。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;云原生的发展&#34;&gt;云原生的发展&lt;/h4&gt;
-&lt;p&gt;在过去的十几年间，越来越多的企业开始降低对IT基础设施的直接投入，不再倾向于维护自己的数据中心，而是采用上云的方式。&lt;/p&gt;
-&lt;p&gt;而从17年以后，很少提及上云了，因为已经进入到了云计算的下半场，这是云原生的主场。云原生在一定层面上重构了互联网产品的开发模式。&lt;/p&gt;
-&lt;p&gt;云原生（Cloud Native）的定义一直在更新，它首先是一种基础设施，而不是一个架构。运行在这个基础设施上的应用就称为云原生应用。&lt;/p&gt;
-&lt;p&gt;云原生没有一个非常明确的定义，不过一个较为公认的说法就是，它包含四个要素：DevOps、持续交付、微服务架构和容器化&lt;/p&gt;
-&lt;p&gt;五个代表技术有：微服务、容器、服务网格、DevOps、&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cloudn.com.au/img/cloud-native.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;云原生的基础架构&#34;&gt;云原生的基础架构&lt;/h2&gt;
-&lt;h3 id=&#34;微服务&#34;&gt;微服务&lt;/h3&gt;
-&lt;p&gt;将功能分成更小的服务，优点有很多，同时也带来了一些困难的点。具体的介绍见微服务的笔记，这里就不过多介绍。&lt;/p&gt;
-&lt;p&gt;微服务架构和云原生的关系：
-微服务架构是云原生的关键技术之一。
-但是二者是两个维度的，云原生更侧重于运行环境，以k8s和Docker为基础的云环境，而微服务架构更侧重于对于应用程序的软件架构。
-云原生可以没有微服务，比如把单体应用打包到docker中，不过二者配合使用可以&lt;/p&gt;
-&lt;h3 id=&#34;容器-1&#34;&gt;容器&lt;/h3&gt;
-&lt;p&gt;容器作为一种轻量级的虚拟化技术，通过namespace进行进程隔离，分为运行和编排两层。
-Docker是最著名的容器引擎，容器的管理和调度则是Kubernetes&lt;/p&gt;
-&lt;p&gt;具体的介绍见Docker和k8s的笔记，这里就不过多介绍。&lt;/p&gt;
-&lt;h3 id=&#34;服务网格&#34;&gt;服务网格&lt;/h3&gt;
-&lt;p&gt;微服务架构分为侵入式架构和非侵入式架构，侵入式指的是服务框架嵌入程序代码，开发者实现各种组件，比如RPC、负载均衡、熔断等。而非侵入式架构指的是通过代理的方式和应用程序部署在一起，这种情况下开发者只需要关注业务即可，这种方式的代表就是服务网络（Service Mesh）&lt;/p&gt;
-&lt;p&gt;Service Mesh 是用于处理服务到服务通信的专用基础架构层。云原生有着复杂的服务拓扑，它负责可靠的传递请求。实际上，Service Mesh 通常是作为一组轻量级网络代理实现，这些代理与应用程序代码部署在一起，应用程序无感知。&lt;/p&gt;
-&lt;p&gt;Service Mesh作为服务间通信的基础设施层，实现了轻量级网络代理，对于上面运行的云原生应用来说是透明的
-&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1649939157/service-mesh-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;服务网络提供了包括服务间通信、限流、统一认证等功能，从而使得微服务的开发者可以更关心业务，降低微服务门槛。&lt;/p&gt;
-&lt;p&gt;目前比较热门的服务网格软件有：Istio、Linkerd、Envoy等，后面可能会写详细的讲解。&lt;/p&gt;
-&lt;p&gt;为了让服务网格有更好的底层支撑，一般都将其运行在 Kubernetes上。K8s中的Service Mesh的实现模式被命名为Sidecar。（类似于三轮摩托车的边车）&lt;/p&gt;
-&lt;p&gt;sidebar模式中，边车附在父应用程序上，提供支持功能，比如通信等。&lt;/p&gt;
-&lt;h3 id=&#34;不可变基础设施与devops&#34;&gt;不可变基础设施与DevOps&lt;/h3&gt;
-&lt;p&gt;不可变基础设施强调的是基础设施的状态性质，一旦创建了基础设施的实例，就变为只读状态。如果要更新，则需要&lt;/p&gt;
-&lt;p&gt;DevOps是一组过程、方法与系统的统称，目的是增强开发者与运维人员的沟通交流。&lt;/p&gt;
-&lt;h3 id=&#34;声明式api&#34;&gt;声明式API&lt;/h3&gt;
-&lt;p&gt;指的是向工具描述目标状态，然后由工具直接取计算如何使其达到目标状态。&lt;/p&gt;
-&lt;p&gt;相对的概念是过程式设计，指的是描述一系列动作，&lt;/p&gt;
-&lt;h3 id=&#34;云原生的12要素&#34;&gt;云原生的12要素&lt;/h3&gt;
-&lt;p&gt;编码有关：基准代码、构建发布运行、开发 / 生产环境等价 ，与源码管理相关；
-部署有关：显式依赖、配置、独立进程、后端服务、端口绑定，与微服务该如何部署以及如何处理
-依赖相关；
-运维原则：并发、易处理、日志、管理进程，与如何简化微服务的运维相关。&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
-                                
-                            
-                        
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
                 <title>Kubernetes在线业务：Deployment &amp; DeamonSet</title>
                 <link>https://blog.engine.wang/posts/k8s-dep-1/</link>
                 <guid isPermaLink="true">https://blog.engine.wang/posts/k8s-dep-1/</guid>
@@ -5281,6 +5164,123 @@ Events:
                                 
                                 
                                     <category domain="https://blog.engine.wang/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>云原生概念</title>
+                <link>https://blog.engine.wang/posts/cloudnative-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/cloudnative-1/</guid>
+                <pubDate>Sun, 21 Aug 2022 13:22:25 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (enginewang)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;云原生的历史&#34;&gt;云原生的历史&lt;/h2&gt;
+&lt;h3 id=&#34;虚拟化技术&#34;&gt;虚拟化技术&lt;/h3&gt;
+&lt;p&gt;云计算的基础是虚拟化技术，一个重要的里程碑就是2001年VMWare的x86虚拟化计划，从而可以不购买物理设备来虚拟化一个机器。&lt;/p&gt;
+&lt;p&gt;接下来，亚马逊AWS在2006年开发S3存储服务、SQS消息队列服务、EC2虚拟机服务，标志着云计算时代的到来。&lt;/p&gt;
+&lt;p&gt;云计算提供的计算资源包括三种模式：IaaS、SaaS和PaaS&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;IaaS（Infrastructure as a service，基础设施即服务）是云端的最底层，提供基础资源。&lt;/li&gt;
+&lt;li&gt;PaaS（Platform as a service，平台即服务）提供软件部署平台，开发者只需要关注自己的业务逻辑，不需要关注底层。&lt;/li&gt;
+&lt;li&gt;SaaS（Software as a service，软件即服务）提供软件服务，软件的开发管理部署都交给第三方，企业拿来即用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;容器&#34;&gt;容器&lt;/h3&gt;
+&lt;p&gt;容器化本质上是虚拟化的改进版本，容器化技术允许多个应用进程驻留在同一个服务器中，虚拟化在硬件层面分离，而容器化在软件层面分离。其中容器技术中应用最广泛、最具代表性的就是Docker。&lt;/p&gt;
+&lt;p&gt;Docker的出现对云计算产生了重大的影响，容器技术其实最早是LXC，不过没有涉及镜像打包等技术，导致没有普及。Docker则将容器化技术发扬光大，称为了容器化技术的领导者（不过不能说容器就是Docker）&lt;/p&gt;
+&lt;p&gt;当一组集群部署Docker时，需要一个管理调度技术，容器编排技术Mesos、Swarm、Kubernetes进行了竞争并最终Kubernetes取得了胜利。目前最流行的方式就是Docker+Kubernetes。&lt;/p&gt;
+&lt;p&gt;云计算颠覆了整个行业的格局，中小公司和其他行业的公司不必要再维护自建的数据中心，大大降低了IT公司的支出，同时也为云服务企业带来了高额的利润。&lt;/p&gt;
+&lt;h3 id=&#34;云原生&#34;&gt;云原生&lt;/h3&gt;
+&lt;h4 id=&#34;云原生为什么可以走上历史舞台&#34;&gt;云原生为什么可以走上历史舞台&lt;/h4&gt;
+&lt;p&gt;首先是因为软件的量级增大以及人与人的沟通方式导致微服务的流行，通过服务的拆分，每个小团队对应一个服务，增加了内聚性，减少了开会的频次，提高了沟通效率。&lt;/p&gt;
+&lt;p&gt;快速交付意味着更新的频次也高了，更新也容易造成服务的故障问题，这时更新与高可用之间需要权衡。而云原生架构的基础设施和工具可以减少更新导致的故障问题，保证服务的高可用。&lt;/p&gt;
+&lt;p&gt;云原生解决了下面的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;产品快速迭代，更快的上线速度；&lt;/li&gt;
+&lt;li&gt;系统的高可用，故障时能够自动恢复与回滚；&lt;/li&gt;
+&lt;li&gt;快速解决问题，细致的故障探测和发现；&lt;/li&gt;
+&lt;li&gt;避免雪崩，故障时能自动隔离；&lt;/li&gt;
+&lt;li&gt;系统的弹性伸缩，简便快速的水平扩容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;云原生的发展&#34;&gt;云原生的发展&lt;/h4&gt;
+&lt;p&gt;在过去的十几年间，越来越多的企业开始降低对IT基础设施的直接投入，不再倾向于维护自己的数据中心，而是采用上云的方式。&lt;/p&gt;
+&lt;p&gt;而从17年以后，很少提及上云了，因为已经进入到了云计算的下半场，这是云原生的主场。云原生在一定层面上重构了互联网产品的开发模式。&lt;/p&gt;
+&lt;p&gt;云原生（Cloud Native）的定义一直在更新，它首先是一种基础设施，而不是一个架构。运行在这个基础设施上的应用就称为云原生应用。&lt;/p&gt;
+&lt;p&gt;云原生没有一个非常明确的定义，不过一个较为公认的说法就是，它包含四个要素：DevOps、持续交付、微服务架构和容器化&lt;/p&gt;
+&lt;p&gt;五个代表技术有：微服务、容器、服务网格、DevOps、&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cloudn.com.au/img/cloud-native.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;云原生的基础架构&#34;&gt;云原生的基础架构&lt;/h2&gt;
+&lt;h3 id=&#34;微服务&#34;&gt;微服务&lt;/h3&gt;
+&lt;p&gt;将功能分成更小的服务，优点有很多，同时也带来了一些困难的点。具体的介绍见微服务的笔记，这里就不过多介绍。&lt;/p&gt;
+&lt;p&gt;微服务架构和云原生的关系：
+微服务架构是云原生的关键技术之一。
+但是二者是两个维度的，云原生更侧重于运行环境，以k8s和Docker为基础的云环境，而微服务架构更侧重于对于应用程序的软件架构。
+云原生可以没有微服务，比如把单体应用打包到docker中，不过二者配合使用可以&lt;/p&gt;
+&lt;h3 id=&#34;容器-1&#34;&gt;容器&lt;/h3&gt;
+&lt;p&gt;容器作为一种轻量级的虚拟化技术，通过namespace进行进程隔离，分为运行和编排两层。
+Docker是最著名的容器引擎，容器的管理和调度则是Kubernetes&lt;/p&gt;
+&lt;p&gt;具体的介绍见Docker和k8s的笔记，这里就不过多介绍。&lt;/p&gt;
+&lt;h3 id=&#34;服务网格&#34;&gt;服务网格&lt;/h3&gt;
+&lt;p&gt;微服务架构分为侵入式架构和非侵入式架构，侵入式指的是服务框架嵌入程序代码，开发者实现各种组件，比如RPC、负载均衡、熔断等。而非侵入式架构指的是通过代理的方式和应用程序部署在一起，这种情况下开发者只需要关注业务即可，这种方式的代表就是服务网络（Service Mesh）&lt;/p&gt;
+&lt;p&gt;Service Mesh 是用于处理服务到服务通信的专用基础架构层。云原生有着复杂的服务拓扑，它负责可靠的传递请求。实际上，Service Mesh 通常是作为一组轻量级网络代理实现，这些代理与应用程序代码部署在一起，应用程序无感知。&lt;/p&gt;
+&lt;p&gt;Service Mesh作为服务间通信的基础设施层，实现了轻量级网络代理，对于上面运行的云原生应用来说是透明的
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1649939157/service-mesh-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;服务网络提供了包括服务间通信、限流、统一认证等功能，从而使得微服务的开发者可以更关心业务，降低微服务门槛。&lt;/p&gt;
+&lt;p&gt;目前比较热门的服务网格软件有：Istio、Linkerd、Envoy等，后面可能会写详细的讲解。&lt;/p&gt;
+&lt;p&gt;为了让服务网格有更好的底层支撑，一般都将其运行在 Kubernetes上。K8s中的Service Mesh的实现模式被命名为Sidecar。（类似于三轮摩托车的边车）&lt;/p&gt;
+&lt;p&gt;sidebar模式中，边车附在父应用程序上，提供支持功能，比如通信等。&lt;/p&gt;
+&lt;h3 id=&#34;不可变基础设施与devops&#34;&gt;不可变基础设施与DevOps&lt;/h3&gt;
+&lt;p&gt;不可变基础设施强调的是基础设施的状态性质，一旦创建了基础设施的实例，就变为只读状态。如果要更新，则需要&lt;/p&gt;
+&lt;p&gt;DevOps是一组过程、方法与系统的统称，目的是增强开发者与运维人员的沟通交流。&lt;/p&gt;
+&lt;h3 id=&#34;声明式api&#34;&gt;声明式API&lt;/h3&gt;
+&lt;p&gt;指的是向工具描述目标状态，然后由工具直接取计算如何使其达到目标状态。&lt;/p&gt;
+&lt;p&gt;相对的概念是过程式设计，指的是描述一系列动作，&lt;/p&gt;
+&lt;h3 id=&#34;云原生的12要素&#34;&gt;云原生的12要素&lt;/h3&gt;
+&lt;p&gt;编码有关：基准代码、构建发布运行、开发 / 生产环境等价 ，与源码管理相关；
+部署有关：显式依赖、配置、独立进程、后端服务、端口绑定，与微服务该如何部署以及如何处理
+依赖相关；
+运维原则：并发、易处理、日志、管理进程，与如何简化微服务的运维相关。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                         
