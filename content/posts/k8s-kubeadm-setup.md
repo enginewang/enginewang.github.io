@@ -6,13 +6,21 @@ categories: ["技术"]
 tags: ["Kubernetes", "分布式", "Docker", "Linux"]
 ---
 
-
-#### 准备多台Linux服务器
+## 准备硬件环境
 
 k8s搭建的一些难点：
 - 需要多台服务器，贵
 - 搭建时需要科学上网
 - 搭建比较复杂，学习起来也比较复杂
+
+如果是学习阶段，也接触不到大型集群，可以在本地局域网进行搭建。
+
+因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，所以就使用了本地局域网下的两台主机进行k8s搭建。其中一台主力机作为master，一台之前闲鱼收的废品mac mini 2012作为slave，之前内存只有4G（2+2），拆机升级到了10G（2+8），好在这个cpu有两个核心。
+
+| | 角色 | OS |  MEM |  CPU | 核心数 |
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| 台式工作站 | Master |  Ubuntu 18.04 | 32G | i7-10700 | 8 |
+|Mac mini 2012 |  Slave | Ubuntu 18.04 | 10G | i5-3210M | 2 |
 
 后面的操作都是以普通用户来操作，不直接用root因为不安全。
 
@@ -25,7 +33,7 @@ $ swapoff -a
 $ free -m
 ```
 
-#### 安装 Docker
+## 安装 Docker
 
 
 ```bash
@@ -68,9 +76,12 @@ sudo mkdir -p /etc/systemd/system/docker.service.d
 # Restart Docker
 $ systemctl daemon-reload
 $ systemctl restart docker
+
+$ sudo usermod -aG docker ${USER}   #当前用户加入docker组
+
 ```
 
-#### 安装 kuberadm kubelet kubectl
+## 安装 kuberadm kubelet kubectl
 
 ```bash
 # Update the apt package index and install packages needed to use the Kubernetes apt repository:
@@ -88,12 +99,12 @@ $ sudo apt-get install -y kubelet kubeadm kubectl
 $ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-#### 创建master节点
+## 创建master节点
 
 这是最关键的一步
 
 ```bash
-$ sudo kubeadm init --apiserver-advertise-address=<内网ip>  --pod-network-cidr=10.244.0.0/16
+$ sudo kubeadm init --apiserver-advertise-address=192.168.50.175 --pod-network-cidr=10.244.0.0/16 --image-repository registry.aliyuncs.com/google_containers
 [init] Using Kubernetes version: v1.25.0
 [preflight] Running pre-flight checks
 [preflight] Pulling images required for setting up a Kubernetes cluster
@@ -119,9 +130,9 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join ... --token ...	--discovery-token-ca-cert-hash ...
+kubeadm join 192.168.50.175:6443 --token 89yinf.x0qkzypt93f7o456 \
+	--discovery-token-ca-cert-hash sha256:dea38ffb2e70723ecf808bec225e222affa13c5061a83b3ac9b215a8be946af5
 ```
-
 
 如果要重新init，需要先停止服务，否则就会报错端口被占用，还要删除`$HOME/.kube`文件夹
 ```bash
@@ -138,37 +149,19 @@ $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-#### 安装网络通信插件
+## 安装网络通信插件
 
-##### Calico
+以Flannel为例：
 
-很多插件都可以，如果是Calico的话
-
-https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
-
-安装calico，用于网络通信
-
-```bash
-$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
-$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml
-```
-
-```bash
-$ watch kubectl get pods -n calico-system
-```
-
-等待，直到里面的服务都是running状态，
-
+首先解除master的污点，使其也可以调度pod
 ```bash
 kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
-##### Flannel
+一开始创建的时候声明为`10.244.0.0/16`，这里就不需要改
 
-一开始创建的时候声明为`10.244.0.0/16`
-
-```
+```bash
 wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # 安装flannel
@@ -181,11 +174,11 @@ NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP
 master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   <none>        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 ```
 
-#### slave节点加入
+## slave节点加入
 
 ```bash
-$ kubeadm join 192.168.50.174:6443 --token m3pfuj.hh92oketgjdhcuzq \
-	--discovery-token-ca-cert-hash sha256:f7235824fa136c3ef5dcc879ec4a326906166e38b1490f630e994e2e562baa0d
+$ sudo kubeadm join 192.168.50.175:6443 --token 89yinf.x0qkzypt93f7o456 \
+	--discovery-token-ca-cert-hash sha256:dea38ffb2e70723ecf808bec225e222affa13c5061a83b3ac9b215a8be946af5
 [preflight] Running pre-flight checks
 [preflight] Reading configuration from the cluster...
 [preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
@@ -205,9 +198,10 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 ```bash
 # 查看已加入的节点
 $ kubectl get nodes -o wide
-NAME             STATUS   ROLES           AGE    VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-engine-macmini   Ready    control-plane   116s   v1.25.0   192.168.50.175   <none>        Ubuntu 18.04.6 LTS   5.4.0-125-generic   containerd://1.2.13
-master           Ready    <none>          13m    v1.25.0   192.168.50.174   <none>        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
+NAME             STATUS   ROLES           AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+engine-macmini   Ready    control-plane   21m   v1.25.0   192.168.50.175   <none>        Ubuntu 18.04.6 LTS   5.4.0-132-generic   containerd://1.6.9
+master           Ready    <none>          52s   v1.25.0   192.168.50.174   <none>        Ubuntu 20.04.5 LTS   5.15.0-56-generic   containerd://1.6.10
+
 # 查看集群状态
 $ kubectl get cs
 Warning: v1 ComponentStatus is deprecated in v1.19+
@@ -219,27 +213,20 @@ etcd-0               Healthy   {"health":"true","reason":""}
 
 ```bash
 $ kubectl get pods --all-namespaces
-NAMESPACE          NAME                                       READY   STATUS    RESTARTS   AGE
-calico-apiserver   calico-apiserver-85bf56d655-5qt6d          1/1     Running   0          10m
-calico-apiserver   calico-apiserver-85bf56d655-f2955          1/1     Running   0          10m
-calico-system      calico-kube-controllers-85666c5b94-5nmc5   1/1     Running   0          12m
-calico-system      calico-node-95tsf                          1/1     Running   0          12m
-calico-system      calico-node-rhv4c                          1/1     Running   0          5m50s
-calico-system      calico-typha-5b8759fbc6-jjfnb              1/1     Running   0          12m
-calico-system      csi-node-driver-tmq7g                      2/2     Running   0          11m
-calico-system      csi-node-driver-vpj2z                      2/2     Running   0          4m49s
-kube-system        coredns-c676cc86f-gd22x                    1/1     Running   0          36m
-kube-system        coredns-c676cc86f-scm5t                    1/1     Running   0          36m
-kube-system        etcd-engine-macmini                        1/1     Running   0          36m
-kube-system        kube-apiserver-engine-macmini              1/1     Running   0          36m
-kube-system        kube-controller-manager-engine-macmini     1/1     Running   0          36m
-kube-system        kube-proxy-hvtv5                           1/1     Running   0          5m50s
-kube-system        kube-proxy-nn2lk                           1/1     Running   0          36m
-kube-system        kube-scheduler-engine-macmini              1/1     Running   0          36m
-tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   0          13m
+NAMESPACE      NAME                                     READY   STATUS    RESTARTS   AGE
+kube-flannel   kube-flannel-ds-kx57t                    1/1     Running   0          11m
+kube-flannel   kube-flannel-ds-ps82g                    1/1     Running   0          26m
+kube-system    coredns-565d847f94-v5574                 1/1     Running   0          31m
+kube-system    coredns-565d847f94-vg6p5                 1/1     Running   0          31m
+kube-system    etcd-engine-macmini                      1/1     Running   1          31m
+kube-system    kube-apiserver-engine-macmini            1/1     Running   1          31m
+kube-system    kube-controller-manager-engine-macmini   1/1     Running   1          31m
+kube-system    kube-proxy-49bq9                         1/1     Running   0          11m
+kube-system    kube-proxy-hc858                         1/1     Running   0          31m
+kube-system    kube-scheduler-engine-macmini            1/1     Running   1          31m
 ```
 
-#### k8s dashboard配置
+## k8s dashboard配置
 
 https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/
 
@@ -247,7 +234,7 @@ https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboa
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 ```
 
-##### 创建用户
+### 创建用户
 
 https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
 
@@ -259,14 +246,7 @@ kind: ServiceAccount
 metadata:
   name: admin-user
   namespace: kubernetes-dashboard
-```
-```bash
-kubectl apply -f dashboard-adminuser.yaml
-```
-
-还有一种是：
-
-```bash
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -279,6 +259,10 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
+```
+
+```bash
+kubectl apply -f dashboard-adminuser.yaml
 ```
 
 ```bash
@@ -297,22 +281,61 @@ kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user
 
 ```bash
 # 开启proxy，设置address使得非本机也可以访问
-$ kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*' &
-$ kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8080:443 &
+$ nohup kubectl proxy --address='0.0.0.0' --port=8001 --accept-hosts='.*' &
+$ nohup kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8080:443 &
 ```
 
-本机访问（只能http）
+### 本机访问
+
+只能http
+
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-局域网其他机器访问：（只能https）
-https://<master_ip>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+### 局域网访问
 
-之前的token复制进去即可登录
+只能https
+
+修改service kubernetes-dashboard，最后的ClusterIP改为NodePort。查看Service：
+
+```bash
+$ get svc --all-namespaces
+NAMESPACE              NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+default                kubernetes                  ClusterIP   10.96.0.1        <none>        443/TCP                  13h
+k8s-learning           nginx                       ClusterIP   None             <none>        80/TCP                   7h28m
+kube-system            kube-dns                    ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   13h
+kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.103.123.173   <none>        8000/TCP                 13h
+kubernetes-dashboard   kubernetes-dashboard        NodePort    10.105.70.41     <none>        443:30659/TCP            13
+```
+
+这里映射到了30659，访问：
+
+`https://<master_ip>:30659`即可
+
+如果是Chrome可能在点击详情看不到不安全仍然访问的按钮，而是直接报错连接不私密。此时任意点击网页中的空白的地方，然后输入`thisisunsafe`，回车就可以访问了。
+
+### 公网ip云服务器访问
+
+如果是在有公网IP的云服务器搭建，则无法通过http登录，但是不在一个局域网直接https也不行，有两种方式：
+1. 简单
+
+转发到8001之后，本地转发云端的8081到本地的8081
+```bash
+ssh -L localhost:8001:localhost:8001 -NT ubuntu@ip
+```
+然后本机访问
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+即可
+
+2. 配置HTTPS证书
+
+这个复杂一些，之后如果实际经历了再写
+
+登录的话将之前的token复制进去即可登录
 
 ![](https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png)
 
 
-##### 延长token过期时间
+### 延长token过期时间
 
 dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。
 
@@ -332,7 +355,7 @@ spec:
 这样就将token延长到了43200秒，也就是12小时
 
 
-#### 报错
+## 安装过程中的一些报错
 
 > The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?
 
@@ -367,45 +390,71 @@ Warning  FailedScheduling  3m9s (x2 over 8m26s)  default-scheduler  0/1 nodes ar
 
 看到这里是遇到了`node.kubernetes.io/disk-pressure`，主机磁盘空间不足，进行空间清理
 
-我们可以查看这个node：
+
+
+
+> coredns一直Container Creating，查看发现报错是 plugin type="calico" failed (add): error getting ClusterInformation: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": dial tcp 10.96.0.1:443: i/o timeout
+
+calico没卸干净，先卸载br开头的、calico的、Tunl0的网卡
+
+网卡相关的错误，很多可以通过卸载网卡来解决，卸载掉比如br开头的，以及calico、flannel相关的网卡（如果要卸载的话）
 
 ```bash
-$ kubectl describe nodes <node>
-
+su
+ip a
+ifconfig <网卡id> down
+ip link delete <网卡id>
+rm -rf /var/lib/cni/
+rm -f /etc/cni/net.d/*
 ```
 
-
-> calico 的ready是0/1
-
-```bash
-kubectl describe pods -n calico-system calico-node-6cg6d
-...
-calico/node is not ready: BIRD is not ready: 
-BGP not established with 172.20.0.1
-```
-
-
-不适用calico，改用Falnnel报错：
-
-```bash
-plugin type="calico" failed (add): error getting ClusterInformation...
-```
-
-原因：calico没卸载干净，
+然后去`/etc/cni/net.d/`把所有calico相关的都删掉
 
 参考 https://qiaolb.github.io/remove-calico.html
 
+> dashboard失败，报错failed to set bridge addr: "cni0" already has an IP address different from 10.244.1.1/24
+
+此时是master或者node已经有cni0网卡，但是和flannel冲突，一般是node的问题，去node删除cni0网卡。此时dashboard正常，但是这样又造成了coredns的网卡被挤掉了
 
 ```bash
-$ ip a
+$ kubectl get pods --all-namespaces
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS      AGE
+kube-flannel           kube-flannel-ds-kx57t                        1/1     Running   0             22m
+kube-flannel           kube-flannel-ds-ps82g                        1/1     Running   0             36m
+kube-system            coredns-565d847f94-v5574                     0/1     Running   2 (84s ago)   42m
+kube-system            coredns-565d847f94-vg6p5                     0/1     Running   2 (74s ago)   42m
+kube-system            etcd-engine-macmini                          1/1     Running   1             42m
+kube-system            kube-apiserver-engine-macmini                1/1     Running   1             42m
+kube-system            kube-controller-manager-engine-macmini       1/1     Running   1             42m
+kube-system            kube-proxy-49bq9                             1/1     Running   0             22m
+kube-system            kube-proxy-hc858                             1/1     Running   0             42m
+kube-system            kube-scheduler-engine-macmini                1/1     Running   1             42m
+kubernetes-dashboard   dashboard-metrics-scraper-748b4f5b9d-vm4xj   1/1     Running   0             9m16s
+kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Running   0             9m16s
 ```
 
-网卡相关的错误，很多可以通过卸载网卡来解决，卸载掉比如br开头的，以及calico、flannel相关的网卡
+此时delete掉两个coredns即可恢复。
+
 
 ```bash
-ifconfig flannel.1 down
-ip link delete flannel.1
-su
-rm -rf /var/lib/cni/
-rm -rf /etc/cni/net.d/*
+ $ kubectl delete pod -n kube-system coredns-565d847f94-v5574                         
+pod "coredns-565d847f94-v5574" deleted
+$ dashboard kubectl delete pod -n kube-system coredns-565d847f94-vg6p5                        
+pod "coredns-565d847f94-vg6p5" deleted
+$  dashboard kubectl get pods --all-namespaces                         
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS   AGE
+kube-flannel           kube-flannel-ds-kx57t                        1/1     Running   0          22m
+kube-flannel           kube-flannel-ds-ps82g                        1/1     Running   0          37m
+kube-system            coredns-565d847f94-fdflx                     1/1     Running   0          9s
+kube-system            coredns-565d847f94-vhddz                     1/1     Running   0          21s
+kube-system            etcd-engine-macmini                          1/1     Running   1          42m
+kube-system            kube-apiserver-engine-macmini                1/1     Running   1          42m
+kube-system            kube-controller-manager-engine-macmini       1/1     Running   1          42m
+kube-system            kube-proxy-49bq9                             1/1     Running   0          22m
+kube-system            kube-proxy-hc858                             1/1     Running   0          42m
+kube-system            kube-scheduler-engine-macmini                1/1     Running   1          42m
+kubernetes-dashboard   dashboard-metrics-scraper-748b4f5b9d-vm4xj   1/1     Running   0          9m53s
+kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Running   0          9m53s
 ```
+
+

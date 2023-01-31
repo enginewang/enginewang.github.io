@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 07 Jan 2023 17:43:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 31 Jan 2023 13:30:05 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
@@ -1454,13 +1454,45 @@ answer = [10,55,45,25,25]
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
                 
-                    <description>&lt;h4 id=&#34;准备多台linux服务器&#34;&gt;准备多台Linux服务器&lt;/h4&gt;
+                    <description>&lt;h2 id=&#34;准备硬件环境&#34;&gt;准备硬件环境&lt;/h2&gt;
 &lt;p&gt;k8s搭建的一些难点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;需要多台服务器，贵&lt;/li&gt;
 &lt;li&gt;搭建时需要科学上网&lt;/li&gt;
 &lt;li&gt;搭建比较复杂，学习起来也比较复杂&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;如果是学习阶段，也接触不到大型集群，可以在本地局域网进行搭建。&lt;/p&gt;
+&lt;p&gt;因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，所以就使用了本地局域网下的两台主机进行k8s搭建。其中一台主力机作为master，一台之前闲鱼收的废品mac mini 2012作为slave，之前内存只有4G（2+2），拆机升级到了10G（2+8），好在这个cpu有两个核心。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;角色&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;OS&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;MEM&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;CPU&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;核心数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;台式工作站&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Master&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;32G&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;i7-10700&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Mac mini 2012&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Slave&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10G&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;i5-3210M&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;后面的操作都是以普通用户来操作，不直接用root因为不安全。&lt;/p&gt;
 &lt;p&gt;首先关闭swap&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1477,7 +1509,7 @@ $ swapoff -a
 $ free -m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;安装-docker&#34;&gt;安装 Docker&lt;/h4&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装-docker&#34;&gt;安装 Docker&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1519,6 +1551,9 @@ $ free -m
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# (Install Docker CE)&lt;/span&gt;
@@ -1560,9 +1595,12 @@ sudo mkdir -p /etc/systemd/system/docker.service.d
 &lt;span class=&#34;c1&#34;&gt;# Restart Docker&lt;/span&gt;
 $ systemctl daemon-reload
 $ systemctl restart docker
+
+$ sudo usermod -aG docker &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;#当前用户加入docker组&lt;/span&gt;
+
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;安装-kuberadm-kubelet-kubectl&#34;&gt;安装 kuberadm kubelet kubectl&lt;/h4&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装-kuberadm-kubelet-kubectl&#34;&gt;安装 kuberadm kubelet kubectl&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1595,7 +1633,7 @@ $ sudo apt-get install -y kubelet kubeadm kubectl
 $ sudo apt-mark hold kubelet kubeadm kubectl
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;创建master节点&#34;&gt;创建master节点&lt;/h4&gt;
+&lt;/div&gt;&lt;h2 id=&#34;创建master节点&#34;&gt;创建master节点&lt;/h2&gt;
 &lt;p&gt;这是最关键的一步&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1626,9 +1664,10 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm init --apiserver-advertise-address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&amp;lt;内网ip&amp;gt;  --pod-network-cidr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.244.0.0/16
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm init --apiserver-advertise-address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.50.175 --pod-network-cidr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;10.244.0.0/16 --image-repository registry.aliyuncs.com/google_containers
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;init&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Using Kubernetes version: v1.25.0
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Pulling images required &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; setting up a Kubernetes cluster
@@ -1654,7 +1693,8 @@ Run &lt;span class=&#34;s2&#34;&gt;&amp;#34;kubectl apply -f [podnetwork].yaml&a
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join ... --token ...	--discovery-token-ca-cert-hash ...
+kubeadm join 192.168.50.175:6443 --token 89yinf.x0qkzypt93f7o456 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:dea38ffb2e70723ecf808bec225e222affa13c5061a83b3ac9b215a8be946af5
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果要重新init，需要先停止服务，否则就会报错端口被占用，还要删除&lt;code&gt;$HOME/.kube&lt;/code&gt;文件夹&lt;/p&gt;
@@ -1685,30 +1725,9 @@ $ sudo cp -i /etc/kubernetes/admin.conf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;
 $ sudo chown &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -u&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;:&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -g&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h4&gt;
-&lt;h5 id=&#34;calico&#34;&gt;Calico&lt;/h5&gt;
-&lt;p&gt;很多插件都可以，如果是Calico的话&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&#34;&gt;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;安装calico，用于网络通信&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
-$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch kubectl get pods -n calico-system
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;等待，直到里面的服务都是running状态，&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h2&gt;
+&lt;p&gt;以Flannel为例：&lt;/p&gt;
+&lt;p&gt;首先解除master的污点，使其也可以调度pod&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1719,13 +1738,22 @@ $ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24
 kubectl taint nodes --all node-role.kubernetes.io/master-
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h5 id=&#34;flannel&#34;&gt;Flannel&lt;/h5&gt;
-&lt;p&gt;一开始创建的时候声明为&lt;code&gt;10.244.0.0/16&lt;/code&gt;&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+&lt;/div&gt;&lt;p&gt;一开始创建的时候声明为&lt;code&gt;10.244.0.0/16&lt;/code&gt;，这里就不需要改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-# 安装flannel
+&lt;span class=&#34;c1&#34;&gt;# 安装flannel&lt;/span&gt;
 kubectl create -f kube-flannel.yml
-&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -1737,7 +1765,7 @@ NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP
 master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h4&gt;
+&lt;/div&gt;&lt;h2 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1757,8 +1785,8 @@ master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;non
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join 192.168.50.174:6443 --token m3pfuj.hh92oketgjdhcuzq &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:f7235824fa136c3ef5dcc879ec4a326906166e38b1490f630e994e2e562baa0d
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm join 192.168.50.175:6443 --token 89yinf.x0qkzypt93f7o456 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:dea38ffb2e70723ecf808bec225e222affa13c5061a83b3ac9b215a8be946af5
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Reading configuration from the cluster...
 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; FYI: You can look at this config file with &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl -n kube-system get cm kubeadm-config -o yaml&amp;#39;&lt;/span&gt;
@@ -1789,13 +1817,15 @@ Run &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl get nodes&amp;#39;&lt;/span&
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看已加入的节点&lt;/span&gt;
 $ kubectl get nodes -o wide
-NAME             STATUS   ROLES           AGE    VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-engine-macmini   Ready    control-plane   116s   v1.25.0   192.168.50.175   &amp;lt;none&amp;gt;        Ubuntu 18.04.6 LTS   5.4.0-125-generic   containerd://1.2.13
-master           Ready    &amp;lt;none&amp;gt;          13m    v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
+NAME             STATUS   ROLES           AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+engine-macmini   Ready    control-plane   21m   v1.25.0   192.168.50.175   &amp;lt;none&amp;gt;        Ubuntu 18.04.6 LTS   5.4.0-132-generic   containerd://1.6.9
+master           Ready    &amp;lt;none&amp;gt;          52s   v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-56-generic   containerd://1.6.10
+
 &lt;span class=&#34;c1&#34;&gt;# 查看集群状态&lt;/span&gt;
 $ kubectl get cs
 Warning: v1 ComponentStatus is deprecated in v1.19+
@@ -1819,37 +1849,23 @@ etcd-0               Healthy   &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;s
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pods --all-namespaces
-NAMESPACE          NAME                                       READY   STATUS    RESTARTS   AGE
-calico-apiserver   calico-apiserver-85bf56d655-5qt6d          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          10m
-calico-apiserver   calico-apiserver-85bf56d655-f2955          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          10m
-calico-system      calico-kube-controllers-85666c5b94-5nmc5   1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      calico-node-95tsf                          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      calico-node-rhv4c                          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          5m50s
-calico-system      calico-typha-5b8759fbc6-jjfnb              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      csi-node-driver-tmq7g                      2/2     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          11m
-calico-system      csi-node-driver-vpj2z                      2/2     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          4m49s
-kube-system        coredns-c676cc86f-gd22x                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        coredns-c676cc86f-scm5t                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        etcd-engine-macmini                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-apiserver-engine-macmini              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-controller-manager-engine-macmini     1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-proxy-hvtv5                           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          5m50s
-kube-system        kube-proxy-nn2lk                           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-scheduler-engine-macmini              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          13m
+NAMESPACE      NAME                                     READY   STATUS    RESTARTS   AGE
+kube-flannel   kube-flannel-ds-kx57t                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          11m
+kube-flannel   kube-flannel-ds-ps82g                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          26m
+kube-system    coredns-565d847f94-v5574                 1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          31m
+kube-system    coredns-565d847f94-vg6p5                 1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          31m
+kube-system    etcd-engine-macmini                      1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          31m
+kube-system    kube-apiserver-engine-macmini            1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          31m
+kube-system    kube-controller-manager-engine-macmini   1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          31m
+kube-system    kube-proxy-49bq9                         1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          11m
+kube-system    kube-proxy-hc858                         1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          31m
+kube-system    kube-scheduler-engine-macmini            1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          31m
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;k8s-dashboard配置&#34;&gt;k8s dashboard配置&lt;/h4&gt;
+&lt;/div&gt;&lt;h2 id=&#34;k8s-dashboard配置&#34;&gt;k8s dashboard配置&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&#34;&gt;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1859,37 +1875,8 @@ tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h5 id=&#34;创建用户&#34;&gt;创建用户&lt;/h5&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建用户&#34;&gt;创建用户&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&#34;&gt;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ vim dashboard-adminuser.yaml
-&lt;span class=&#34;c1&#34;&gt;# 写入以下内容&lt;/span&gt;
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f dashboard-adminuser.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;还有一种是：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1904,9 +1891,25 @@ metadata:
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: rbac.authorization.k8s.io/v1
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ vim dashboard-adminuser.yaml
+&lt;span class=&#34;c1&#34;&gt;# 写入以下内容&lt;/span&gt;
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: admin-user
@@ -1918,6 +1921,14 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f dashboard-adminuser.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1950,17 +1961,63 @@ kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 开启proxy，设置address使得非本机也可以访问&lt;/span&gt;
-$ kubectl proxy --address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt; --port&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8001&lt;/span&gt; --accept-hosts&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.*&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-$ kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8080:443 &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+$ nohup kubectl proxy --address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt; --port&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8001&lt;/span&gt; --accept-hosts&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.*&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+$ nohup kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8080:443 &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;本机访问（只能http）
-http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
-&lt;p&gt;局域网其他机器访问：（只能https）
-https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
-&lt;p&gt;之前的token复制进去即可登录&lt;/p&gt;
+&lt;/div&gt;&lt;h3 id=&#34;本机访问&#34;&gt;本机访问&lt;/h3&gt;
+&lt;p&gt;只能http&lt;/p&gt;
+&lt;p&gt;http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
+&lt;h3 id=&#34;局域网访问&#34;&gt;局域网访问&lt;/h3&gt;
+&lt;p&gt;只能https&lt;/p&gt;
+&lt;p&gt;修改service kubernetes-dashboard，最后的ClusterIP改为NodePort。查看Service：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ get svc --all-namespaces
+NAMESPACE              NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;S&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;                  AGE
+default                kubernetes                  ClusterIP   10.96.0.1        &amp;lt;none&amp;gt;        443/TCP                  13h
+k8s-learning           nginx                       ClusterIP   None             &amp;lt;none&amp;gt;        80/TCP                   7h28m
+kube-system            kube-dns                    ClusterIP   10.96.0.10       &amp;lt;none&amp;gt;        53/UDP,53/TCP,9153/TCP   13h
+kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.103.123.173   &amp;lt;none&amp;gt;        8000/TCP                 13h
+kubernetes-dashboard   kubernetes-dashboard        NodePort    10.105.70.41     &amp;lt;none&amp;gt;        443:30659/TCP            &lt;span class=&#34;m&#34;&gt;13&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里映射到了30659，访问：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://&amp;lt;master_ip&amp;gt;:30659&lt;/code&gt;即可&lt;/p&gt;
+&lt;p&gt;如果是Chrome可能在点击详情看不到不安全仍然访问的按钮，而是直接报错连接不私密。此时任意点击网页中的空白的地方，然后输入&lt;code&gt;thisisunsafe&lt;/code&gt;，回车就可以访问了。&lt;/p&gt;
+&lt;h3 id=&#34;公网ip云服务器访问&#34;&gt;公网ip云服务器访问&lt;/h3&gt;
+&lt;p&gt;如果是在有公网IP的云服务器搭建，则无法通过http登录，但是不在一个局域网直接https也不行，有两种方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;简单&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;转发到8001之后，本地转发云端的8081到本地的8081&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh -L localhost:8001:localhost:8001 -NT ubuntu@ip
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后本机访问
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+即可&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;配置HTTPS证书&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个复杂一些，之后如果实际经历了再写&lt;/p&gt;
+&lt;p&gt;登录的话将之前的token复制进去即可登录&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h5 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h5&gt;
+&lt;h3 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h3&gt;
 &lt;p&gt;dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。&lt;/p&gt;
 &lt;p&gt;取Deployment找到kubernetes-dashboard，进行修改：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1986,7 +2043,7 @@ https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/se
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样就将token延长到了43200秒，也就是12小时&lt;/p&gt;
-&lt;h4 id=&#34;报错&#34;&gt;报错&lt;/h4&gt;
+&lt;h2 id=&#34;安装过程中的一些报错&#34;&gt;安装过程中的一些报错&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2041,54 +2098,11 @@ Warning  FailedScheduling  3m9s &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;x2 o
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;看到这里是遇到了&lt;code&gt;node.kubernetes.io/disk-pressure&lt;/code&gt;，主机磁盘空间不足，进行空间清理&lt;/p&gt;
-&lt;p&gt;我们可以查看这个node：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl describe nodes &amp;lt;node&amp;gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;calico 的ready是0/1&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;coredns一直Container Creating，查看发现报错是 plugin type=&amp;quot;calico&amp;quot; failed (add): error getting ClusterInformation: Get &amp;quot;https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default&amp;quot;: dial tcp 10.96.0.1:443: i/o timeout&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl describe pods -n calico-system calico-node-6cg6d
-...
-calico/node is not ready: BIRD is not ready: 
-BGP not established with 172.20.0.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;不适用calico，改用Falnnel报错：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;plugin &lt;span class=&#34;nv&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;calico&amp;#34;&lt;/span&gt; failed &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;add&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: error getting ClusterInformation...
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;原因：calico没卸载干净，&lt;/p&gt;
-&lt;p&gt;参考 &lt;a href=&#34;https://qiaolb.github.io/remove-calico.html&#34;&gt;https://qiaolb.github.io/remove-calico.html&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ip a
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;网卡相关的错误，很多可以通过卸载网卡来解决，卸载掉比如br开头的，以及calico、flannel相关的网卡&lt;/p&gt;
+&lt;p&gt;calico没卸干净，先卸载br开头的、calico的、Tunl0的网卡&lt;/p&gt;
+&lt;p&gt;网卡相关的错误，很多可以通过卸载网卡来解决，卸载掉比如br开头的，以及calico、flannel相关的网卡（如果要卸载的话）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2096,390 +2110,23 @@ BGP not established with 172.20.0.1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ifconfig flannel.1 down
-ip link delete flannel.1
-su
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;su
+ip a
+ifconfig &amp;lt;网卡id&amp;gt; down
+ip link delete &amp;lt;网卡id&amp;gt;
 rm -rf /var/lib/cni/
-rm -rf /etc/cni/net.d/*
+rm -f /etc/cni/net.d/*
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
-                                
-                            
-                        
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/kubernetes/">Kubernetes</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/docker/">Docker</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>通过kubeadm搭建局域网Kubernetes集群</title>
-                <link>https://blog.engine.wang/posts/k8s-lan-setup/</link>
-                <guid isPermaLink="true">https://blog.engine.wang/posts/k8s-lan-setup/</guid>
-                <pubDate>Fri, 09 Sep 2022 14:33:59 &#43;0800</pubDate>
-                
-                    <author>engine74396@gmail.com (enginewang)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;p&gt;因为在学习k8s，但是要搭建集群的话最少也要两台机子（虚拟机也可以但是不太喜欢虚拟机），然而去云服务商租的话又太贵了，因为至少需要两核，便宜的机子基本都是1核的，所以就使用了本地局域网下的两台主机进行k8s搭建。&lt;/p&gt;
-&lt;h2 id=&#34;准备硬件环境&#34;&gt;准备硬件环境&lt;/h2&gt;
-&lt;p&gt;k8s搭建的一些难点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;需要多台服务器，贵&lt;/li&gt;
-&lt;li&gt;搭建时需要科学上网&lt;/li&gt;
-&lt;li&gt;搭建比较复杂，学习起来也比较复杂&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这里不想使用虚拟机的方式，计划采用局域网通过kubeadm搭建。本地有两台主机，一台主力台式机作为master。一台之前闲鱼捡的丐版mac mini 2012作为slave，之前内存只有4G（2+2），拆机升级到了10G（2+8），好在这个cpu有两个核心，能搭k8s，电子垃圾再利用。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;角色&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;OS&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;MEM&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;CPU&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;核心数&lt;/th&gt;
-&lt;th style=&#34;text-align:center&#34;&gt;IP&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;台式工作站&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Master&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;32G&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;i7-10700&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;8&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;192.168.50.174&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Mac mini 2012&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Slave&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;Ubuntu 18.04&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;10G&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;i5-3210M&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;2&lt;/td&gt;
-&lt;td style=&#34;text-align:center&#34;&gt;192.168.50.175&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;后面的操作都是以普通用户来操作，不直接用root因为不安全。&lt;/p&gt;
-&lt;p&gt;首先关闭swap&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 关闭swap&lt;/span&gt;
-$ swapoff -a
-&lt;span class=&#34;c1&#34;&gt;# 检查swap是否被成功关掉了&lt;/span&gt;
-$ free -m
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# (Install Docker CE)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Set up the repository:&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;## Install packages to allow apt to use a repository over HTTPS&lt;/span&gt;
-$ sudo apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  apt-transport-https ca-certificates curl software-properties-common gnupg2
-
-&lt;span class=&#34;c1&#34;&gt;# Add Docker’s official GPG key:&lt;/span&gt;
-$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;sudo apt-key add -
-
-&lt;span class=&#34;c1&#34;&gt;# Add the Docker apt repository:&lt;/span&gt;
-$ sudo add-apt-repository &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;lsb_release -cs&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt; \
-&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;  stable&amp;#34;&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;# Install Docker CE&lt;/span&gt;
-$ sudo apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt-get install -y &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    containerd.io&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1.2.13-1 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    docker-ce&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;5:19.03.8~3-0~ubuntu-&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;lsb_release -cs&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    docker-ce-cli&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;5:19.03.8~3-0~ubuntu-&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;lsb_release -cs&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
-
-
-$ sudo vim /etc/docker/daemon.json
-&lt;span class=&#34;c1&#34;&gt;# 写入以下内容到该文件中&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;s2&#34;&gt;&amp;#34;exec-opts&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;native.cgroupdriver=systemd&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
-  &lt;span class=&#34;s2&#34;&gt;&amp;#34;log-driver&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;json-file&amp;#34;&lt;/span&gt;,
-  &lt;span class=&#34;s2&#34;&gt;&amp;#34;log-opts&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;s2&#34;&gt;&amp;#34;max-size&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;100m&amp;#34;&lt;/span&gt;
-  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
-  &lt;span class=&#34;s2&#34;&gt;&amp;#34;storage-driver&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;overlay2&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-
-sudo mkdir -p /etc/systemd/system/docker.service.d
-
-&lt;span class=&#34;c1&#34;&gt;# Restart Docker&lt;/span&gt;
-$ systemctl daemon-reload
-$ systemctl restart docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装kubernetes&#34;&gt;安装Kubernetes&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Update the apt package index and install packages needed to use the Kubernetes apt repository:&lt;/span&gt;
-$ sudo apt-get update
-$ sudo apt-get install -y apt-transport-https ca-certificates curl
-&lt;span class=&#34;c1&#34;&gt;# Install kubeadm&lt;/span&gt;
-$ sudo curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo apt-key add -
-&lt;span class=&#34;c1&#34;&gt;# Add the Kubernetes apt repository&lt;/span&gt;
-$ sudo tee /etc/apt/sources.list.d/kubernetes.list &lt;span class=&#34;s&#34;&gt;&amp;lt;&amp;lt;-&amp;#39;EOF&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;deb https://mirrors.aliyun.com/kubernetes/apt kubernetes-xenial main
-&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;EOF&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# Update apt package index, install kubelet, kubeadm and kubectl&lt;/span&gt;
-$ sudo apt-get update
-$ sudo apt-get install -y kubelet kubeadm kubectl
-$ sudo apt-mark hold kubelet kubeadm kubectl
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;最关键的一步，通过&lt;code&gt;kubeadm init&lt;/code&gt;进行初始化，ip根据实际情况进行修改。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo kubeadm init --apiserver-advertise-address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.50.174  --pod-network-cidr&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;192.168.0.0/16
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;init&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Using Kubernetes version: v1.25.0
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Pulling images required &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; setting up a Kubernetes cluster
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; This might take a minute or two, depending on the speed of your internet connection
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; You can also perform this action in beforehand using &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubeadm config images pull&amp;#39;&lt;/span&gt;
-...
-
-Your Kubernetes control-plane has initialized successfully!
-
-To start using your cluster, you need to run the following as a regular user:
-
-  mkdir -p &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
-  sudo cp -i /etc/kubernetes/admin.conf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
-  sudo chown &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -u&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;:&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -g&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
-
-Alternatively, &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; you are the root user, you can run:
-
-  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;KUBECONFIG&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/etc/kubernetes/admin.conf
-
-You should now deploy a pod network to the cluster.
-Run &lt;span class=&#34;s2&#34;&gt;&amp;#34;kubectl apply -f [podnetwork].yaml&amp;#34;&lt;/span&gt; with one of the options listed at:
-  https://kubernetes.io/docs/concepts/cluster-administration/addons/
-
-Then you can join any number of worker nodes by running the following on each as root:
-
-kubeadm join 192.168.50.174:6443 --token jt7fap.t4gcisog9zc1lqqm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:49f1867877de69c1c1145fb026221b64824ed4ce993496aaeb73b1446d2b2ebc
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;复制kubeconfig&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ mkdir -p &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
-$ sudo cp -i /etc/kubernetes/admin.conf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
-$ sudo chown &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -u&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;:&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;id -g&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube/config
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;如果要重新init，需要先停止服务，还要删除&lt;code&gt;$HOME/.kube&lt;/code&gt;文件夹，否则就会报错端口被占用等。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;然后去&lt;code&gt;/etc/cni/net.d/&lt;/code&gt;把所有calico相关的都删掉&lt;/p&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://qiaolb.github.io/remove-calico.html&#34;&gt;https://qiaolb.github.io/remove-calico.html&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;dashboard失败，报错failed to set bridge addr: &amp;quot;cni0&amp;quot; already has an IP address different from 10.244.1.1/24&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 需要sudo&lt;/span&gt;
-sudo kubeadm reset
-sudo rm -rf &lt;span class=&#34;nv&#34;&gt;$HOME&lt;/span&gt;/.kube
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;安装网络通信插件&#34;&gt;安装网络通信插件&lt;/h2&gt;
-&lt;p&gt;很多插件都可以，这里采用Calico&lt;/p&gt;
-&lt;p&gt;官网如下：
-&lt;a href=&#34;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&#34;&gt;https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;安装calico，用于网络通信&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
-$ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ watch kubectl get pods -n calico-system
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;等待，直到里面的服务都是running状态。&lt;/p&gt;
-&lt;p&gt;设置traint污点容忍度，让master也可以被分配Pod&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-kubectl taint nodes --all node-role.kubernetes.io/master-
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;查看当前的Nodes，只有master一个Node。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get nodes -o wide
-NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;slave节点加入&#34;&gt;slave节点加入&lt;/h2&gt;
-&lt;p&gt;在slave节点上通过&lt;code&gt;kubeadm join&lt;/code&gt;加入到集群中：&lt;/p&gt;
+&lt;p&gt;此时是master或者node已经有cni0网卡，但是和flannel冲突，一般是node的问题，去node删除cni0网卡。此时dashboard正常，但是这样又造成了coredns的网卡被挤掉了&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -2496,137 +2143,26 @@ master   Ready    control-plane   3m58s   v1.25.0   192.168.50.174   &amp;lt;non
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join 192.168.50.174:6443 --token jt7fap.t4gcisog9zc1lqqm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;	--discovery-token-ca-cert-hash sha256:49f1867877de69c1c1145fb026221b64824ed4ce993496aaeb73b1446d2b2ebc
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Running pre-flight checks
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Reading configuration from the cluster...
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;preflight&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; FYI: You can look at this config file with &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl -n kube-system get cm kubeadm-config -o yaml&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;kubelet-start&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Writing kubelet configuration to file &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/lib/kubelet/config.yaml&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;kubelet-start&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Writing kubelet environment file with flags to file &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/lib/kubelet/kubeadm-flags.env&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;kubelet-start&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Starting the kubelet
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;kubelet-start&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Waiting &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the kubelet to perform the TLS Bootstrap...
-
-This node has joined the cluster:
-* Certificate signing request was sent to apiserver and a response was received.
-* The Kubelet was informed of the new secure connection details.
-
-Run &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubectl get nodes&amp;#39;&lt;/span&gt; on the control-plane to see this node join the cluster.
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在master node上查看集群中的节点，输出这些代表集群建立完成：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看已加入的节点&lt;/span&gt;
-$ kubectl get nodes -o wide
-NAME             STATUS   ROLES           AGE    VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-master           Ready    control-plane   13m    v1.25.0   192.168.50.174   &amp;lt;none&amp;gt;        Ubuntu 20.04.5 LTS   5.15.0-46-generic   containerd://1.6.8
-engine-macmini   Ready    &amp;lt;none&amp;gt;          116s   v1.25.0   192.168.50.175   &amp;lt;none&amp;gt;        Ubuntu 18.04.6 LTS   5.4.0-125-generic   containerd://1.2.13
-&lt;span class=&#34;c1&#34;&gt;# 查看集群状态&lt;/span&gt;
-$ kubectl get cs
-Warning: v1 ComponentStatus is deprecated in v1.19+
-NAME                 STATUS    MESSAGE                         ERROR
-scheduler            Healthy   ok
-controller-manager   Healthy   ok
-etcd-0               Healthy   &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;health&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;,&lt;span class=&#34;s2&#34;&gt;&amp;#34;reason&amp;#34;&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pods --all-namespaces
-NAMESPACE          NAME                                       READY   STATUS    RESTARTS   AGE
-calico-apiserver   calico-apiserver-85bf56d655-5qt6d          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          10m
-calico-apiserver   calico-apiserver-85bf56d655-f2955          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          10m
-calico-system      calico-kube-controllers-85666c5b94-5nmc5   1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      calico-node-95tsf                          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      calico-node-rhv4c                          1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          5m50s
-calico-system      calico-typha-5b8759fbc6-jjfnb              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          12m
-calico-system      csi-node-driver-tmq7g                      2/2     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          11m
-calico-system      csi-node-driver-vpj2z                      2/2     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          4m49s
-kube-system        coredns-c676cc86f-gd22x                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        coredns-c676cc86f-scm5t                    1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        etcd-engine-macmini                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-apiserver-engine-macmini              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-controller-manager-engine-macmini     1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-proxy-hvtv5                           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          5m50s
-kube-system        kube-proxy-nn2lk                           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-kube-system        kube-scheduler-engine-macmini              1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          36m
-tigera-operator    tigera-operator-6675dc47f4-j9prh           1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          13m
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS      AGE
+kube-flannel           kube-flannel-ds-kx57t                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             22m
+kube-flannel           kube-flannel-ds-ps82g                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             36m
+kube-system            coredns-565d847f94-v5574                     0/1     Running   &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;84s ago&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;   42m
+kube-system            coredns-565d847f94-vg6p5                     0/1     Running   &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;74s ago&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;   42m
+kube-system            etcd-engine-macmini                          1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;             42m
+kube-system            kube-apiserver-engine-macmini                1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;             42m
+kube-system            kube-controller-manager-engine-macmini       1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;             42m
+kube-system            kube-proxy-49bq9                             1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             22m
+kube-system            kube-proxy-hc858                             1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             42m
+kube-system            kube-scheduler-engine-macmini                1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;             42m
+kubernetes-dashboard   dashboard-metrics-scraper-748b4f5b9d-vm4xj   1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             9m16s
+kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;             9m16s
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;k8s-dashboard&#34;&gt;k8s dashboard&lt;/h2&gt;
-&lt;p&gt;通过k8s dashboard，可以更好的可视化观察k8s的各项运行情况。&lt;/p&gt;
-&lt;p&gt;官方文档：
-&lt;a href=&#34;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&#34;&gt;https://kubernetes.io/zh-cn/docs/tasks/access-application-cluster/web-ui-dashboard/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;此时delete掉两个coredns即可恢复。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;创建用户&#34;&gt;创建用户&lt;/h3&gt;
-&lt;p&gt;官方说明：
-&lt;a href=&#34;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&#34;&gt;https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ vim dashboard-adminuser.yaml
-&lt;span class=&#34;c1&#34;&gt;# 写入以下内容&lt;/span&gt;
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -2640,181 +2176,35 @@ metadata:
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; $ kubectl delete pod -n kube-system coredns-565d847f94-v5574                         
+pod &lt;span class=&#34;s2&#34;&gt;&amp;#34;coredns-565d847f94-v5574&amp;#34;&lt;/span&gt; deleted
+$ dashboard kubectl delete pod -n kube-system coredns-565d847f94-vg6p5                        
+pod &lt;span class=&#34;s2&#34;&gt;&amp;#34;coredns-565d847f94-vg6p5&amp;#34;&lt;/span&gt; deleted
+$  dashboard kubectl get pods --all-namespaces                         
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS   AGE
+kube-flannel           kube-flannel-ds-kx57t                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          22m
+kube-flannel           kube-flannel-ds-ps82g                        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          37m
+kube-system            coredns-565d847f94-fdflx                     1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          9s
+kube-system            coredns-565d847f94-vhddz                     1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          21s
+kube-system            etcd-engine-macmini                          1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          42m
+kube-system            kube-apiserver-engine-macmini                1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          42m
+kube-system            kube-controller-manager-engine-macmini       1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          42m
+kube-system            kube-proxy-49bq9                             1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          22m
+kube-system            kube-proxy-hc858                             1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          42m
+kube-system            kube-scheduler-engine-macmini                1/1     Running   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;          42m
+kubernetes-dashboard   dashboard-metrics-scraper-748b4f5b9d-vm4xj   1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          9m53s
+kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Running   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;          9m53s
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;并apply&lt;/p&gt;
-&lt;p&gt;生成用户token，用于之后的dashboard登录&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n kubernetes-dashboard create token admin-user
-&lt;span class=&#34;c1&#34;&gt;# 会输出一长串token，复制登录即可&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://github.com/kubernetes/dashboard/raw/master/docs/images/signin.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果要删除用户&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n kubernetes-dashboard delete serviceaccount admin-user
-kubectl -n kubernetes-dashboard delete clusterrolebinding admin-user
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 开启proxy，设置address使得非本机也可以访问&lt;/span&gt;
-$ kubectl proxy --address&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt; --port&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8001&lt;/span&gt; --accept-hosts&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;.*&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-$ kubectl port-forward -n kubernetes-dashboard --address 0.0.0.0 service/kubernetes-dashboard 8080:443 &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;本机访问（只能http）
-http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
-&lt;p&gt;局域网其他机器访问：（只能https）
-https://&amp;lt;master_ip&amp;gt;:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/&lt;/p&gt;
-&lt;p&gt;之前的token复制进去即可登录&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1663857908/k8s-dashboard-1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;延长token过期时间&#34;&gt;延长token过期时间&lt;/h3&gt;
-&lt;p&gt;dashboard的token默认15分钟就会过期，不太方便，可以修改从而延长过期时间。&lt;/p&gt;
-&lt;p&gt;取Deployment找到kubernetes-dashboard，进行修改：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-YAML&#34; data-lang=&#34;YAML&#34;&gt;&lt;span class=&#34;nt&#34;&gt;spec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;containers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;kubernetes-dashboard&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;kubernetesui/dashboard:v2.6.1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;--token-ttl=43200&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这样就将token延长到了43200秒，也就是12小时&lt;/p&gt;
-&lt;h2 id=&#34;一些报错&#34;&gt;一些报错&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The connection to the server 192.168.50.175:6443 was refused - did you specify the right host or port?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;master节点重启，可能会报这个错，重新关闭swap&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo swapoff -a
-$ strace -eopenat kubectl version
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;[ERROR CRI]: container runtime is not running: output: E0812&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以通过重启containered解决：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo rm -rf /etc/containerd/config.toml
-$ systemctl restart containerd
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;kubeadm init，pull镜像的时候报错timeout&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从http://k8s.gcr.io pull镜像的时候需要科学上网，可以通过其他地方下载包打tag，或者添加&lt;code&gt;--image-repository registry.aliyuncs.com/google_containers&lt;/code&gt;修改为阿里源&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;kubeadm init，找不到主节点报错：kubelet.go:2466] &amp;quot;Error getting node&amp;quot; err=&amp;quot;node &amp;quot;xxx&amp;quot; not found&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;有时候在云上部署会报这个错误，因为网卡跟公网ip没绑定，可以将advertise_ip修改为内网ip，然后通过iptables进行映射：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# master&lt;/span&gt;
-sudo iptables -t nat -A OUTPUT -d &amp;lt;公网ip&amp;gt; -j DNAT --to-destination &amp;lt;内网ip&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;kubeadm join的token忘记保存或者过期&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看当前的token，如果有的话则保存这个&amp;lt;token&amp;gt;的内容&lt;/span&gt;
-$ kubeadm token list
-TOKEN                     TTL         EXPIRES                USAGES                   DESCRIPTION                                                EXTRA GROUPS
-&amp;lt;token&amp;gt;   15h         2022-10-11T17:06:41Z   authentication,signing   The default bootstrap token generated by &lt;span class=&#34;s1&#34;&gt;&amp;#39;kubeadm init&amp;#39;&lt;/span&gt;.   system:bootstrappers:kubeadm:default-node-token
-&lt;span class=&#34;c1&#34;&gt;# 如果token过期的话就通过下面来新建一个token&lt;/span&gt;
-$ kubeadm token create --print-join-command
-&lt;span class=&#34;c1&#34;&gt;# 获取ca证书sha256编码hash值&lt;/span&gt;
-$ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl rsa -pubin -outform der 2&amp;gt;/dev/null &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl dgst -sha256 -hex &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sed &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/^.* //&amp;#39;&lt;/span&gt;
-&amp;lt;hash&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后就可以通过：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubeadm join &amp;lt;ip&amp;gt;:6443 --token &amp;lt;token&amp;gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --discovery-token-ca-cert-hash &amp;lt;hash&amp;gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;　　--ignore-preflight-errors&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Swap
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;来join&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
                 
                 
                 
@@ -6483,6 +5873,327 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
                                 
                                 
                                     <category domain="https://blog.engine.wang/tags/tcp/ip/">TCP/IP</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Protobuf基础</title>
+                <link>https://blog.engine.wang/posts/protobuf-basic/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/protobuf-basic/</guid>
+                <pubDate>Wed, 26 Jan 2022 13:26:09 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (enginewang)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;protobuf&#34;&gt;protobuf&lt;/h2&gt;
+&lt;p&gt;是Protocol Buffers的简称，由Google开源，是一种轻便高效的结构化数据存储语言，定位是类似xml、json这样的数据描述语言。protobuf可以跨语言和跨平台。&lt;/p&gt;
+&lt;p&gt;官方页面：https://developers.google.com/protocol-buffers&lt;/p&gt;
+&lt;p&gt;对等的： dubbo、rmi、hessian、messagepack等协议&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/xFMfsWeLJPvlhpB.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;protobuf基础&#34;&gt;protobuf基础&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/proto3&#34;&gt;https://developers.google.com/protocol-buffers/docs/proto3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前都使用proto3版本，下面讲解如何编写proto文件来定义我们的结构。&lt;/p&gt;
+&lt;p&gt;注释还是&lt;code&gt;//&lt;/code&gt;和&lt;code&gt;/**/&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;syntax&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;proto3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+package proto&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+option &lt;span class=&#34;nv&#34;&gt;go_package&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+service HelloService &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  rpc Hello&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HelloRequest&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; returns &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HelloResponse&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+message HelloRequest &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  string &lt;span class=&#34;nv&#34;&gt;request&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+message HelloResponse &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  string &lt;span class=&#34;nv&#34;&gt;response&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第一行指明版本，目前是第三版。&lt;/p&gt;
+&lt;p&gt;后面通过service定义一个服务，通过message关键字定义了一个包含一个或多个Feild的结构体，message定义一个消息格式，每个字段都有一个唯一的数值标签。&lt;/p&gt;
+&lt;h4 id=&#34;通用字段类型&#34;&gt;通用字段类型&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/proto3#scalar&#34;&gt;https://developers.google.com/protocol-buffers/docs/proto3#scalar&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;字段修饰符&#34;&gt;字段修饰符&lt;/h4&gt;
+&lt;p&gt;singular表示有0或1个，通常不写
+repeated表示字段可以包含0-N个元素&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;HelloRequest&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;repeated&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;worlds&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意这里的Field包含不同的id&lt;/p&gt;
+&lt;h4 id=&#34;嵌套类型&#34;&gt;嵌套类型&lt;/h4&gt;
+&lt;p&gt;可以在message中嵌套其他message结构体&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;B&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;oneof&#34;&gt;oneof&lt;/h4&gt;
+&lt;p&gt;希望消息体包含多个字段，但同时只允许一个字段&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;oneof&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;nick_name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;true_name&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;map&#34;&gt;map&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;nx&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;kd&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;option-go_package&#34;&gt;option go_package&lt;/h4&gt;
+&lt;p&gt;比如说&lt;code&gt;option go_package = &amp;quot;./proto;user&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;是什么意义，其中分号之前的表示生成的文件放在什么目录下面&lt;/p&gt;
+&lt;h3 id=&#34;生成pbgo&#34;&gt;生成pb.go&lt;/h3&gt;
+&lt;p&gt;下面简单讲解一下在Golang中如何使用Protocol Buffer&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;protoc --go_out&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;./ --micro_out&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;./ ./*.proto
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;生成的pbgo内容解读&#34;&gt;生成的pb.go内容解读&lt;/h3&gt;
+&lt;p&gt;这里先从一个最简单的讲起，proto文件如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;syntax&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;proto3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+package proto&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+option &lt;span class=&#34;nv&#34;&gt;go_package&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+service HelloService &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  rpc Hello&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HelloRequest&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; returns &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HelloResponse&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+message HelloRequest &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  string &lt;span class=&#34;nv&#34;&gt;request&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+message HelloResponse &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+  string &lt;span class=&#34;nv&#34;&gt;response&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;首先先会为在&lt;code&gt;proto&lt;/code&gt;中定义的mesage结构生成结构体，并增加三个都有的字段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;HelloRequest&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt;         &lt;span class=&#34;nx&#34;&gt;protoimpl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;MessageState&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;sizeCache&lt;/span&gt;     &lt;span class=&#34;nx&#34;&gt;protoimpl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;SizeCache&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;unknownFields&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;protoimpl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;UnknownFields&lt;/span&gt;
+
+	&lt;span class=&#34;nx&#34;&gt;Request&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`protobuf:&amp;#34;bytes,1,opt,name=request,proto3&amp;#34; json:&amp;#34;request,omitempty&amp;#34;`&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;对于rpc方法，生成服务端和客户端的对应方法，首先是服务端接口：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// HelloService的Server端接口，包含一个在proto里定义的Hello方法
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 这里参数符合grpc，分别是context和*req，返回的是*rep和err
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;HelloServiceServer&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nf&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloResponse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;服务端注册：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;RegisterHelloServiceServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Server&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;srv&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;HelloServiceServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;RegisterService&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_HelloService_serviceDesc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;srv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后是客户端接口以及方法的实现：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 这里不一样的是多了一个option参数，这里可以传递一些选项
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;HelloServiceClient&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nf&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;opts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;CallOption&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloResponse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloServiceClient&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloRequest&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;opts&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;grpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;CallOption&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloResponse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;HelloResponse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Invoke&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;/proto.HelloService/Hello&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;opts&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;参考：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/protocol-buffers/docs/gotutorial&#34;&gt;https://developers.google.com/protocol-buffers/docs/gotutorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/protobuf/">Protobuf</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/rpc/">RPC</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</category>
                                 
                             
                         
