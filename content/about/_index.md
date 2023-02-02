@@ -18,8 +18,21 @@ draft: false
 
 目前感兴趣的技术领域有后端、机器学习、分布式、云原生、微服务、数据库、DevOps等内容。
 
-我兴趣广泛，除了计算机之外，我还喜欢动漫、音乐和平面设计，具有很强的信息检索能力和审美能力，喜欢折腾各种电子产品和探索未知的事物，精通PowerPoint、Photoshop、Premiere Pro等软件。
+我兴趣广泛，除了计算机之外，我还喜欢动漫、音乐和平面设计，具有很强的搜索能力和审美能力，喜欢折腾各种电子产品和探索未知的事物
 
+<!-- ，精通PowerPoint、Photoshop、Premiere Pro等软件。 -->
+
+## 技术能力
+
+- **计算机基础**：数据结构与算法、计算机网络、组成原理、操作系统、软件工程等计算机基础扎实。
+- **编程语言**：熟悉Go语言, 熟悉map、slice、channel等数据结构、net/http、sync、gmp、gc等原理，熟练使用gin、echo、gorm、go-micro。熟悉Python，了解Django、Scrapy、Selenium、Pytorch。
+- **Linux**：熟练使用Linux及常用命令，有Linux下开发部署的经验，熟悉git、Docker，了解k8s。
+- **计算机网络**：熟悉计算机网络OSI七层模型，熟悉TCP/IP、UDP、HTTP/HTTPS、DNS等协议。
+- **数据库**：熟悉MySQL，了解MySQL索引、事务、MVCC等原理。熟悉Redis、MongoDB等NoSQL，了解Redis的数据结构和底层原理。了解缓存高并发场景，如缓存穿透、缓存击穿、缓存雪崩等。
+- **分布式与微服务**：了解分布式理论，了解CAP、RPC、注册中心、链路追踪、熔断、限流等原理。
+- **前端**：了解HTML/css/javascript和Vue/Vuex/Vue-Router等前端开发技术，有多个全栈项目的经验。
+- **Data&Ai**：了解数据分析、数据挖掘、凸优化、经典的机器学习和深度学习算法并有一定的实践。
+- **英语**：CET-6，习惯使用Google，有较强的搜索能力，能基本无障碍阅读技术相关英文资料。
 
 ## 项目列表
 
@@ -43,11 +56,17 @@ draft: false
 
 部分界面预览：
 
-![](https://s2.loli.net/2023/02/02/xJYCoa1cduLzpiD.png)
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022135775.png)
 
-![](https://s2.loli.net/2023/02/02/CfE3brg57LKWdpQ.png)
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022136084.png)
 
-![](https://s2.loli.net/2023/02/02/d5Hw2CUjA1ISJsg.png)
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022136712.png)
+
+### MIT6.824 分布式系统 Lab
+
+- 底层实现MapReduce算法，多节点并发完成海量文本的词频统计任务。
+- 底层实现Raft分布式共识算法，包括集群Leader选举、日志复制、SnapShot持久化等功能。
+- 在此基础上实现基于Raft的可容错的分布式kv数据库，支持Put、Append、Get操作。
 
 ### 上海市智能建筑诊断与节能调适系统
 
@@ -59,7 +78,7 @@ draft: false
 
 ![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/%E7%BB%BF%E8%89%B2%E5%BB%BA%E7%AD%91%E7%B3%BB%E7%BB%9F-1.png)
 
-![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/2.png)
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022137495.png)
 
 
 ### 个人博客网站
@@ -100,11 +119,13 @@ Github地址：
 
 抗癌药物候选优化数据挖掘
 
-![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/1.png)
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022138084.png)
 
 ### 一种基于代价敏感的稀有肿瘤类别小样本分类的算法模型
 
-专利号【202111310276.6】，将预训练网络学习到的特征分布映射为类高斯分布并存储在特征库中，在元学习阶段基于注意力机制，并引入代价敏感函数，解决了稀有肿瘤小样本问题，得到了更好的分类效果
+专利号【202111310276.6】
+
+将预训练网络学习到的特征分布映射为类高斯分布并存储在特征库中，在元学习阶段基于注意力机制，并引入代价敏感函数，解决了稀有肿瘤小样本问题，得到了更好的分类效果
 
 
 
