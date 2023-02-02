@@ -15,13 +15,13 @@
     
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-    <title>Linux网络编程（二） socket网络编程基础 | enginewang的博客</title>
+    <title>Linux网络编程（二） socket网络编程基础 | 王毅诚的博客</title>
 
-    <link rel="stylesheet" href="/css/meme.min.a0103f2d9fc2fc38560ac654e0160afa925ba58c4639fff0729aa70330d3e5fd.css"/>
+    <link rel="stylesheet" href="/css/meme.min.08316a099d60db4ecc5ba29fc7763b23ff5f023596788694501f1e87192eeff2.css"/>
 
     
     
-        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js" defer></script><script src="/js/meme.min.2a2e8324d8bced5f1d03fec6197469c56385309c0a5a2f92bbd57d2c7464c624.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js" defer></script><script src="/js/meme.min.db36abd098db58582c469a4a36143b5c069fbcf00fd4d522470ebeb5f41b5c37.js"></script>
 
     
 
@@ -36,10 +36,10 @@
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="enginewang的博客" />
+    <meta name="apple-mobile-web-app-title" content="王毅诚的博客" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="application-name" content="enginewang的博客" />
+    <meta name="application-name" content="王毅诚的博客" />
     <meta name="msapplication-starturl" content="../../" />
     <meta name="msapplication-TileColor" content="#fff" />
     <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
@@ -76,7 +76,7 @@
         "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
         "publisher": {
             "@type": "Organization",
-            "name": "enginewang的博客",
+            "name": "王毅诚的博客",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://blog.engine.wang/icons/apple-touch-icon.png"
@@ -103,7 +103,7 @@
 <meta property="og:title" content="Linux网络编程（二） socket网络编程基础" />
 <meta property="og:description" content="概述 数据链路层、网络层和传输层的协议都是在操作系统内核中完成的，实现网络的系统调用的api目前最主流的就是socket。 socket是应用层与TCP/IP协议之……" />
 <meta property="og:url" content="https://blog.engine.wang/posts/linux-network-programming-2/" />
-<meta property="og:site_name" content="enginewang的博客" />
+<meta property="og:site_name" content="王毅诚的博客" />
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643894720/client-server-1.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-02-06T20:00:52&#43;08:00" />
@@ -129,7 +129,7 @@
                     
     <div class="site-brand">
         
-            <a href="/" class="brand">enginewang的博客</a>
+            <a href="/" class="brand">王毅诚的博客</a>
         
     </div>
 
@@ -162,14 +162,8 @@
             
         
             
-                
-                    
-                    
-                        <li class="menu-item">
-                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
-                        </li>
-                    
-                
+                <li class="menu-item"><a href=""></a>
+                </li>
             
         
             
@@ -815,15 +809,15 @@ type指的是类型，比如<code>SOCK_STREAM</code>表示字节流，对应TCP�
                     </li>
                 
                     <li class="related-item">
+                        <a href="/posts/gitlab-cicd-1/" class="related-link">Gitlab CI/CD搭建与部署实战</a>
+                    </li>
+                
+                    <li class="related-item">
                         <a href="/posts/cloudnative-1/" class="related-link">云原生概念</a>
                     </li>
                 
                     <li class="related-item">
                         <a href="/posts/k8s-kubeadm-setup/" class="related-link">通过kubeadm搭建Kubernetes集群</a>
-                    </li>
-                
-                    <li class="related-item">
-                        <a href="/posts/frp-notes/" class="related-link">frp内网穿透原理及配置记录</a>
                     </li>
                 
             </ul>

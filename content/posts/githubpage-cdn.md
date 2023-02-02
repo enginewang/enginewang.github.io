@@ -1,6 +1,6 @@
 ---
 title: "给博客网站上CDN"
-date: 2022-12-21T21:34:42+08:00
+date: 2022-04-10T21:34:42+08:00
 draft: false
 categories: ["技术"]
 tags: ["CDN", "github page", "网站"]
