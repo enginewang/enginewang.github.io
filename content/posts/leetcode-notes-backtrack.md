@@ -78,7 +78,42 @@ func backtrack(path []int, nums []int, choiceDict map[int] bool, result *[][]int
 }
 ```
 
-[LeetCode 46. 全排列II ☆☆](https://leetcode.cn/problems/permutations/)
+### [LeetCode 47. 全排列II ☆☆](https://leetcode.cn/problems/permutations-ii/)
+
+```go
+var result [][]int
+
+func permuteUnique(nums []int) [][]int {
+	sort.Ints(nums)
+	result = make([][]int, 0)
+	visited := make([]int, len(nums))
+	backtrack([]int{}, nums, visited)
+	return result
+}
+
+func backtrack(temp []int, nums []int, visited []int) {
+	if len(temp) == len(nums) {
+		tmp := make([]int, len(temp))
+		copy(tmp, temp)
+		result = append(result, tmp)
+	}
+	for i := 0; i < len(nums); i++ {
+		if visited[i] == 1 {
+			continue
+		}
+		// 为了去掉可能重复的情况，如果之前访问过i-1，那么下一个i直接pass
+		// 如果是说之前的没访问过，这里pass也正确，最后改成==0
+		if i > 0 && nums[i] == nums[i-1] && visited[i-1] == 1 {
+			continue
+		}
+		visited[i] = 1
+		temp = append(temp, nums[i])
+		backtrack(temp, nums, visited)
+		visited[i] = 0
+		temp = temp[:len(temp)-1]
+	}
+}
+```
 
 ## 组合问题
 
@@ -113,9 +148,7 @@ func backtrack(start int, cur []int, n int, k int) {
 
 
 
-[LeetCode 39. 组合总和 ☆☆](https://leetcode.cn/problems/combination-sum/)
-
-> 给你一个 **无重复元素** 的整数数组 `candidates` 和一个目标整数 `target` ，找出 `candidates` 中可以使数字和为目标数 `target` 的 所有 **不同组合** ，并以列表形式返回。你可以按 **任意顺序** 返回这些组合。candidates 中的 **同一个** 数字可以 **无限制重复被选取** 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
+### [LeetCode 39. 组合总和 ☆☆](https://leetcode.cn/problems/combination-sum/)
 
 可以被无限制选取，不过最后的结果中不能重复，仍然需要声明一个start，回溯时需要从start开始到最后，前面的元素可以无视，因为可以重复，start本身也要在考虑中。如果不能重复，则递归改成start+1即可。
 
@@ -149,17 +182,8 @@ func backtrack(temp []int, sum int, nums []int, start int, target int) {
 }
 ```
 
+### [LeetCode 40. 组合总和II ☆☆](https://leetcode.cn/problems/combination-sum-ii)
 
-
-
-
-[LeetCode 40. 组合总和II ☆☆](https://leetcode.cn/problems/combination-sum-ii)
-
-> 给定一个候选人编号的集合 `candidates` 和一个目标数 `target` ，找出 `candidates` 中所有可以使数字和为 `target` 的组合。
->
-> `candidates` 中的每个数字在每个组合中只能使用 **一次** 。
->
-> **注意：**解集不能包含重复的组合。 
 
 由于每个数字只能选取一次，递归改成start+1，然而这样做还不够，因为解集不能包含重复组合。需要去重，首先要排序，并且中间如何去重是比较难理解的。
 
@@ -201,12 +225,6 @@ func backtrack(temp []int, sum int, nums []int, start int, target int) {
 
 ### [LeetCode 216. 组合总和III ☆☆](https://leetcode.cn/problems/combination-sum-iii/description/)
 
-> 找出所有相加之和为 `n` 的 `k` 个数的组合，且满足下列条件：
->
-> - 只使用数字1到9
-> - 每个数字 **最多使用一次** 
->
-> 返回 *所有可能的有效组合的列表*。该列表不能包含相同的组合两次，组合可以以任何顺序返回。
 
 这边只需要1-9，所以不用nums直接用i表示1-9，不同的是每个数字最多使用一次，所以里面的回溯从i+1开始。
 
@@ -241,44 +259,6 @@ func backtrack(temp []int, sum int, start int, target int, count int) {
 		sum -= i
 		temp = temp[:len(temp)-1]
 	}
-}
-```
-
-### [LeetCode 17. 电话号码的字母组合 ☆☆](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
-
-> 给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
->
-> 给出数字到字母的映射如下（与电话按键相同）。
-
-![](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2021/11/09/200px-telephone-keypad2svg.png)
-
-```go
-var numberMap = map[int][]string{
-	2: {"a", "b", "c"},
-	3: {"d", "e", "f"},
-	4: {"g", "h", "i"},
-	5: {"j", "k", "l"},
-	6: {"m", "n", "o"},
-	7: {"p", "q", "r", "s"},
-	8: {"t", "u", "v"},
-	9: {"w", "x", "y", "z"},
-}
-
-func letterCombinations(digits string) []string {
-	d := []rune(digits)
-	var result []string
-	if len(d) == 0 {
-		return []string{}
-	}
-	if len(d) == 1 {
-		return numberMap[int(d[0])-48]
-	}
-	for _, str := range letterCombinations(string(d[:len(d)-1])) {
-		for _, cur := range numberMap[int(d[len(d)-1])-48] {
-			result = append(result, str+cur)
-		}
-	}
-	return result
 }
 ```
 
@@ -469,7 +449,7 @@ func backtrack(temp []int, nums []int, start int)  {
 }
 ```
 
-[LeetCode 491. 递增子序列 ☆☆](https://leetcode.cn/problems/non-decreasing-subsequences)
+### [LeetCode 491. 递增子序列 ☆☆](https://leetcode.cn/problems/non-decreasing-subsequences)
 
 ```go
 var result [][]int
@@ -576,27 +556,5 @@ func backtrack(k int, bucket int, nums []int, start int, used int, target int) b
 		bucket -= nums[i]
 	}
 	return false
-}
-```
-
-
-### LeetCode 51: N-Queens
-
-终止条件:
-```go
-// 遍历到了最后一行
-if row==n{
-  result = append(result, chessboard)
-}
-```
-
-处理本层结点，从第一列开始搜
-```go
-for col:=0;col<n;col++{
-  if(isValid(row, col, chessboard, n)){
-    chessboard[row][col] = 'Q' // 放置皇后
-    backtracking(n, row+1, chessboard)
-    chessboard[row][col] = '.' // 回溯，撤销
-  }
 }
 ```
