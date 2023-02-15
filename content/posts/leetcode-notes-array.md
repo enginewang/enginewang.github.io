@@ -1,5 +1,5 @@
 ---
-title: "LeetCode算法笔记（数组篇）"
+title: "算法笔记（数组篇）"
 date: 2022-11-27T17:19:49+08:00
 draft: false
 categories: ["技术"]
