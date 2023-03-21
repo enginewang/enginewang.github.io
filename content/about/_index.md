@@ -28,23 +28,23 @@ draft: false
 
 微信号：chatgptbot2023
 
-- [drive.engine.wang](drive.engine.wang)
+- [drive.engine.wang](https://drive.engine.wang)
 
 基于Cloudreve的私有网盘，支持aria2离线下载
 
-- [diffusion.engine.wang](diffusion.engine.wang)
+- [diffusion.engine.wang](https://diffusion.engine.wang)
 
 diffusion图片生成，已加载二次元风格，一块RTX3060
 
-- [gitlab.engine.wang](gitlab.engine.wang)
+- [gitlab.engine.wang](https://gitlab.engine.wang)
 
 私有gitlab服务器，用于托管私人仓库和CI/CD
 
-- [harbor.engine.wang](harbor.engine.wang)
+- [harbor.engine.wang](https://harbor.engine.wang)
 
 私有harbor，用于托管docker镜像
 
-- [film.engine.wang](film.engine.wang)
+- [film.engine.wang](https://film.engine.wang)
 
 emby，私有电影站点
 
