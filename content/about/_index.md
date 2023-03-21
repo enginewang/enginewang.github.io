@@ -32,10 +32,6 @@ draft: false
 
 基于Cloudreve的私有网盘，支持aria2离线下载
 
-- [diffusion.engine.wang](https://diffusion.engine.wang)
-
-diffusion图片生成，已加载二次元风格，一块RTX3060
-
 - [gitlab.engine.wang](https://gitlab.engine.wang)
 
 私有gitlab服务器，用于托管私人仓库和CI/CD
@@ -50,7 +46,15 @@ emby，私有电影站点
 
 - [nas.engine.wang](https://nas.engine.wang:5001/)
 
-群晖
+群晖NAS
+
+- [diffusion.engine.wang](https://diffusion.engine.wang)
+
+diffusion图片生成，已加载二次元风格，一块RTX3060
+
+- [app.jryy.site](https://app.jryy.site)
+
+嘉人有约，目前活动处于停止状态，今年年底会开启新的活动
 
 ## 技术能力
 
