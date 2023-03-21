@@ -22,6 +22,36 @@ draft: false
 
 <!-- ，精通PowerPoint、Photoshop、Premiere Pro等软件。 -->
 
+## 我部署的一些其他的有趣的东西
+
+- ChatGPT 微信机器人
+
+微信号：chatgptbot2023
+
+- [drive.engine.wang](drive.engine.wang)
+
+基于Cloudreve的私有网盘，支持aria2离线下载
+
+- [diffusion.engine.wang](diffusion.engine.wang)
+
+diffusion图片生成，已加载二次元风格，一块RTX3060
+
+- [gitlab.engine.wang](gitlab.engine.wang)
+
+私有gitlab服务器，用于托管私人仓库和CI/CD
+
+- [harbor.engine.wang](harbor.engine.wang)
+
+私有harbor，用于托管docker镜像
+
+- [film.engine.wang](film.engine.wang)
+
+emby，私有电影站点
+
+- [nas.engine.wang](https://nas.engine.wang:5001/)
+
+群晖
+
 ## 技术能力
 
 - **计算机基础**：数据结构与算法、计算机网络、组成原理、操作系统、软件工程等计算机基础扎实。
@@ -52,7 +82,7 @@ draft: false
 - 消息队列：RabbitMQ
 - 链路追踪：Jeager
 - 前端：Vue.js
-- UI库：Bootstrap、Element
+- UI：Bootstrap、Element
 
 部分界面预览：
 
@@ -62,11 +92,33 @@ draft: false
 
 ![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202302022136712.png)
 
+### 基于Go语言实现的简易分布式缓存系统
+
+独立开发
+
+- 采用TTL过期机制、LRU缓存淘汰算法，通过gob实现数据持久化，支持http、grpc通信协议。
+- 采用Gossip协议保证分布式集群的AP，采用一致性哈希实现集群的负载均衡。
+- 采用分段锁机制、异步技术等方法优化性能，采用singleflight机制防止缓存击穿。
+
+
 ### MIT6.824 分布式系统 Lab
 
 - 底层实现MapReduce算法，多节点并发完成海量文本的词频统计任务。
 - 底层实现Raft分布式共识算法，包括集群Leader选举、日志复制、SnapShot持久化等功能。
 - 在此基础上实现基于Raft的可容错的分布式kv数据库，支持Put、Append、Get操作。
+
+### 多模态肺癌病理学图像生存预测算法研究
+
+个人科研项目
+
+- 通过自监督对比学习方法训练得到适用于病理学patch的特征提取器，消除了病理学patch与自然图像的异质性
+- 通过Kaplan-Meier和Cox比例风险回归模型对临床特征进行筛选，选择16个有效临床特征
+- 提出Siamese MI-Dense并结合ABMIL学习病理学特征，对之前的方法进行改良
+- 提出GAMFB模块融合病理学和临床特征，首次将MFB用于此类任务
+- 采用多任务学习同时预测其他两种疾病。
+- 在大型肺癌数据集NLST上，五折交叉检验，与8种之前的方法进行对比，所提模型最终效果比SOTA高3%以上
+
+相关成果JBHI（Q1）在投。
 
 ### 上海市智能建筑诊断与节能调适系统
 
@@ -83,6 +135,8 @@ draft: false
 
 ### 个人博客网站
 
+（目前博客的上一个版本，由于不太想纠结于一些细节，就换回了hugo）
+
 - 类别：Web全栈
 - 语言：Go、JavaScript
 - 说明：独立开发项目
@@ -98,6 +152,8 @@ Github地址：
 ![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/yichengBlog-1.png)
 
 ### 乳腺癌患者生存预测系统
+
+本科毕设的一部分
 
 - 类别：算法 + Web全栈
 - 语言：Python、Go、JavaScript
@@ -127,5 +183,9 @@ Github地址：
 
 将预训练网络学习到的特征分布映射为类高斯分布并存储在特征库中，在元学习阶段基于注意力机制，并引入代价敏感函数，解决了稀有肿瘤小样本问题，得到了更好的分类效果
 
+### 基于虚幻4的局域网联机仿王者荣耀moba游戏
 
+课程作业，团队项目，主要负责各个核心类的C++代码编写。
+
+https://github.com/enginewang/ArenaOfValor
 
