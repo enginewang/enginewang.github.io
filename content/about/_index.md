@@ -24,6 +24,10 @@ draft: false
 
 ## 我部署的一些其他的有趣的东西
 
+- [chat.engine.wang](https://chat.engine.wang)
+
+ChatGPT私有站，国内裸连，接的openai plus账号的api key，秒回答，用户只有几十个亲友，体验可能是国内最好的。如果你能看到这里，就送你激活码：engine，自用即可，请勿宣传
+
 - ChatGPT 微信机器人
 
 微信号：chatgptbot2023
@@ -50,7 +54,7 @@ emby，私有电影站点
 
 - [diffusion.engine.wang](https://diffusion.engine.wang)
 
-diffusion图片生成，已加载二次元风格，一块RTX3060
+diffusion图片生成，已加载二次元风格，算力是一块RTX3060
 
 - [app.jryy.site](https://app.jryy.site)
 
