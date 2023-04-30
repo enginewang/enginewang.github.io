@@ -1,6 +1,6 @@
 ---
 title: "Prometheus + Grafana 监控系统部署"
-date: 2023-03-20T23:23:02+08:00
+date: 2023-04-30T23:23:02+08:00
 draft: false
 categories: ["技术"]
 tags: ["Prometheus", "Grafana", "Linux", "Docker", "GPU"]
