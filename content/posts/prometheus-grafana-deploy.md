@@ -241,7 +241,7 @@ remote_port = 23000
 
 不了解的可以查看：[https://blog.engine.wang/posts/frp-notes](https://blog.engine.wang/posts/frp-notes/)
 
-### 配置Grafana
+## Grafana的安装配置
 
 先Docker启动一个：
 
@@ -267,6 +267,6 @@ docker run -d \
 
 添加ID: 14282，Docker监控，https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/
 
-### 域名、HTTPS配置
+## 域名、HTTPS配置
 
 后续也可以配置域名和HTTPS，之前有写过，这里就不赘述了

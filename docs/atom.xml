@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-04-30T23:40:17&#43;08:00</updated>
+    <updated>2023-05-01T11:05:49&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Prometheus &#43; Grafana 监控系统部署</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/prometheus-grafana-deploy/" />
             <id>https://blog.engine.wang/posts/prometheus-grafana-deploy/</id>
-            <updated>2023-04-30T23:40:13&#43;08:00</updated>
+            <updated>2023-05-01T11:05:45&#43;08:00</updated>
             <published>2023-04-30T23:23:02&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -401,7 +401,7 @@ $ sudo systemctl start nvidia_gpu_exporter
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;具体的frps和frpc的搭建之前写过了，这里不再赘述。&lt;/p&gt;
 &lt;p&gt;不了解的可以查看：&lt;a href=&#34;https://blog.engine.wang/posts/frp-notes/&#34;&gt;https://blog.engine.wang/posts/frp-notes&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;配置grafana&#34;&gt;配置Grafana&lt;/h3&gt;
+&lt;h2 id=&#34;grafana的安装配置&#34;&gt;Grafana的安装配置&lt;/h2&gt;
 &lt;p&gt;先Docker启动一个：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -426,7 +426,7 @@ $ sudo systemctl start nvidia_gpu_exporter
 &lt;p&gt;添加ID: 1860，节点基本信息监控，https://grafana.com/grafana/dashboards/1860-node-exporter-full/&lt;/p&gt;
 &lt;p&gt;添加ID: 14574，GPU监控，https://grafana.com/grafana/dashboards/14574-nvidia-gpu-metrics/&lt;/p&gt;
 &lt;p&gt;添加ID: 14282，Docker监控，https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/&lt;/p&gt;
-&lt;h3 id=&#34;域名https配置&#34;&gt;域名、HTTPS配置&lt;/h3&gt;
+&lt;h2 id=&#34;域名https配置&#34;&gt;域名、HTTPS配置&lt;/h2&gt;
 &lt;p&gt;后续也可以配置域名和HTTPS，之前有写过，这里就不赘述了&lt;/p&gt;
 </content>
             
