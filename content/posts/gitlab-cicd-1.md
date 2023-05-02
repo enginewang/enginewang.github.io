@@ -1,6 +1,6 @@
 ---
-title: "Gitlab CI/CD搭建与部署实战"
-date: 2022-12-16T13:37:20+08:00
+title: "私有Gitlab和CI/CD搭建"
+date: 2023-04-10T13:37:20+08:00
 draft: false
 categories: ["技术"]
 tags: ["CI/CD", "Gitlab", "Linux"]

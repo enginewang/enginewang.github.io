@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 02 May 2023 10:21:47 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 02 May 2023 10:40:34 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
@@ -492,10 +492,949 @@ $ sudo systemctl start nvidia_gpu_exporter
             </item>
         
             <item>
+                <title>私有Gitlab和CI/CD搭建</title>
+                <link>https://blog.engine.wang/posts/gitlab-cicd-1/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/gitlab-cicd-1/</guid>
+                <pubDate>Mon, 10 Apr 2023 13:37:20 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;我搭建好的gitlab地址为&lt;a href=&#34;https://gitlab.engine.wang&#34;&gt;https://gitlab.engine.wang&lt;/a&gt;，欢迎访问。&lt;/p&gt;
+&lt;p&gt;体验账号：guest，密码：guest123456&lt;/p&gt;
+&lt;p&gt;（服务器将于23年11月左右到期）&lt;/p&gt;
+&lt;h2 id=&#34;搭建gitlab服务器&#34;&gt;搭建gitlab服务器&lt;/h2&gt;
+&lt;p&gt;Gitlab是一个类似于Github的代码托管软件，搭建一个私有的git服务器，类似于游戏中的私服，可以供内部使用，并且用国内服务器的话，网络也比较好。&lt;/p&gt;
+&lt;p&gt;买一台云服务器，配置不低于2核4G，否则跑不动Gitlab。&lt;/p&gt;
+&lt;p&gt;Gitlab有很多搭建方法，Docker、Docker-compose、k8s都比较好，我这里用的是docker-compose，下面是详细的搭建过程。&lt;/p&gt;
+&lt;h3 id=&#34;云服务器初始化&#34;&gt;云服务器初始化&lt;/h3&gt;
+&lt;p&gt;进入云服务器，在/srv/gitlab下新建config,data,logs三个文件夹&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /srv/gitlab
+$ sudo mkdir data logs config
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在&lt;code&gt;~/.zshrc&lt;/code&gt;添加&lt;code&gt;GITLAB_HOME&lt;/code&gt;并source&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;GITLAB_HOME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/srv/gitlab&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;改一下sshd的默认端口：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;
+注意是sshd_config，不是ssh_config&lt;/p&gt;
+&lt;p&gt;把Port取消注释并修改成其他端口，然后重启sshd服务，重启服务器，重新用新端口连接：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo service ssh restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;配置ssl证书&#34;&gt;配置SSL证书&lt;/h3&gt;
+&lt;p&gt;首先去提交一个证书申请，普通用户总共能申请20个免费的域名证书（二级域名分开算），但也足够了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/26/iEdQB9PKqsU7gYh.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;等待审核完成，下载证书，选择nginx&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/26/rq42VEoAHzPDiu8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将crt、key两个后缀的文件复制到/srv/gitlab/config/ssl和/root/.cert下面&lt;/p&gt;
+&lt;p&gt;写&lt;code&gt;docker-compose.yml&lt;/code&gt;文件，下面是我调试很久的版本&lt;/p&gt;
+&lt;p&gt;做了smtp邮件配置、nginx的https ssl配置、性能调节防止内存消耗过高等。&lt;/p&gt;
+&lt;p&gt;这台服务器只架设 Gitlab Server 和 Gitlab Runner，所以80和443都直接映射&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3.6&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;web&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gitlab/gitlab-ce:latest&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;hostname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gitlab.engine.wang&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;gitlab&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;GITLAB_OMNIBUS_CONFIG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        # /srv/gitlab/config/gitlab.rb
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        external_url &amp;#39;https://gitlab.engine.wang&amp;#39;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;time_zone&amp;#39;] = &amp;#39;Asia/Shanghai&amp;#39;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;backup_keep_time&amp;#39;] = 259200
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;gitlab_shell_ssh_port&amp;#39;] = 22
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_pool&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_enable&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_address&amp;#39;] = &amp;#34;smtp.qq.com&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_port&amp;#39;] = 465
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_user_name&amp;#39;] = &amp;#34;engine.wang@qq.com&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_password&amp;#39;] = &amp;#34;xxx&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_domain&amp;#39;] = &amp;#34;smtp.qq.com&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_authentication&amp;#39;] = &amp;#34;login&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_enable_starttls_auto&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_tls&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;gitlab_email_from&amp;#39;] = &amp;#39;engine.wang@qq.com&amp;#39;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        user[&amp;#34;git_user_email&amp;#34;] = &amp;#34;engine.wang@qq.com&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;client_max_body_size&amp;#39;] = &amp;#39;10240m&amp;#39;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;redirect_http_to_https&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_certificate&amp;#39;] = &amp;#34;/etc/gitlab/ssl/gitlab.engine.wang.crt&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_certificate_key&amp;#39;] = &amp;#34;/etc/gitlab/ssl/gitlab.engine.wang.key&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_ciphers&amp;#39;] = &amp;#34;ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_prefer_server_ciphers&amp;#39;] = &amp;#34;on&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_protocols&amp;#39;] = &amp;#34;TLSv1.1 TLSv1.2&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_session_cache&amp;#39;] = &amp;#34;builtin:1000  shared:SSL:10m&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;listen_addresses&amp;#39;] = [&amp;#34;0.0.0.0&amp;#34;]
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;http2_enabled&amp;#39;] = true
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        postgresql[&amp;#39;max_worker_processes&amp;#39;] = 8
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        postgresql[&amp;#39;shared_buffers&amp;#39;] = &amp;#34;256MB&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        puma[&amp;#39;worker_processes&amp;#39;] = 0
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        sidekiq[&amp;#39;max_concurrency&amp;#39;] = 5
+&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        alertmanager[&amp;#39;admin_email&amp;#39;] = &amp;#39;engine74396@gmail.com&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;80:80&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;443:443&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;22:22&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/config:/etc/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/logs:/var/log/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/data:/var/opt/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;restart&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 后台启动&lt;/span&gt;
+$ docker-compose up -d
+&lt;span class=&#34;c1&#34;&gt;# 查看实时日志&lt;/span&gt;
+$ docker logs -ft gitlab
+&lt;span class=&#34;c1&#34;&gt;# 查看初始密码&lt;/span&gt;
+$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab grep &lt;span class=&#34;s1&#34;&gt;&amp;#39;Password:&amp;#39;&lt;/span&gt; /etc/gitlab/initial_root_password
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;测试邮件服务，这里用的是qq，其他的很多邮箱都可以。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab bash
+$ root@engine:/# gitlab-rails console
+
+Notify.test_email&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine74396@gmail.com&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;Message Subject&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;Message Body&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.deliver_now
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;配置swap&#34;&gt;配置swap&lt;/h3&gt;
+&lt;p&gt;4G不够，通过swap加点虚拟内存，这里加2G&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 当前没有开启swap&lt;/span&gt;
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:          3.3Gi       212Mi       2.2Gi       2.0Mi       996Mi       2.9Gi
+Swap:            0B          0B          0B
+
+&lt;span class=&#34;c1&#34;&gt;# 创建swap文件，这里给了2G虚拟内存&lt;/span&gt;
+$ sudo dd &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/dev/zero &lt;span class=&#34;nv&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/swapfile &lt;span class=&#34;nv&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;bs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1M
+2048+0 records in
+2048+0 records out
+&lt;span class=&#34;m&#34;&gt;2147483648&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;2.1 GB, 2.0 GiB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; copied, 10.2516 s, &lt;span class=&#34;m&#34;&gt;209&lt;/span&gt; MB/s
+&lt;span class=&#34;c1&#34;&gt;# 查看swap文件，存在&lt;/span&gt;
+$ ls / &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep swapfile
+swapfile
+
+$ sudo chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; /swapfile
+
+&lt;span class=&#34;c1&#34;&gt;# 开启swap&lt;/span&gt;
+$ sudo mkswap /swapfile
+Setting up swapspace version 1, &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; GiB &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2147479552&lt;/span&gt; bytes&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+no label, &lt;span class=&#34;nv&#34;&gt;UUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0bba6fce-e4a1-4cdf-8288-6770e4dd4266
+$ sudo swapon /swapfile
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           &lt;span class=&#34;m&#34;&gt;3419&lt;/span&gt;         &lt;span class=&#34;m&#34;&gt;234&lt;/span&gt;         &lt;span class=&#34;m&#34;&gt;105&lt;/span&gt;           &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;3079&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;2909&lt;/span&gt;
+Swap:          &lt;span class=&#34;m&#34;&gt;2047&lt;/span&gt;           &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;2047&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo vim /etc/fstab
+&lt;span class=&#34;c1&#34;&gt;# 最后一行加入：&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# /swapfile none swap sw 0 0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以看到内存降了一些，服务器不会很卡了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/TgqO5jHit6Ac2v9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;浏览器打开：&lt;code&gt;https://gitlab.engine.wang&lt;/code&gt;，就可以访问到gitlab：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/lmbC9KkuJ5oqF6S.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;后续工作&#34;&gt;后续工作&lt;/h3&gt;
+&lt;p&gt;修改root账户的密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/wqsKuMnyTDzFxfR.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;改一下邮箱，默认是admin@example.com，无法发送通知
+&lt;img src=&#34;https://s2.loli.net/2022/11/28/WkAHCgIQqYwPzib.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接去容器里改数据库：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab bash
+&lt;span class=&#34;c1&#34;&gt;# root@gitlab:/#&lt;/span&gt;
+$ gitlab-psql -d gitlabhq_production
+psql &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;13.8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+Type &lt;span class=&#34;s2&#34;&gt;&amp;#34;help&amp;#34;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; help.
+&lt;span class=&#34;c1&#34;&gt;# gitlabhq_production=# &lt;/span&gt;
+$ update users &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt;,notification_email&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt;,commit_email&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt; where &lt;span class=&#34;nv&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+UPDATE &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;就可以了：
+&lt;img src=&#34;https://s2.loli.net/2022/11/28/arl2pEFfzM7vQme.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;mailto:git@gitlab.engine.wang&#34;&gt;git@gitlab.engine.wang&lt;/a&gt;:enginewang/JRYY.git&lt;/p&gt;
+&lt;h2 id=&#34;本地机器配置&#34;&gt;本地机器配置&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fatal: could not read Username for &#39;https://gitlab.engine.wang&#39;: terminal prompts disabled&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config --global url.&lt;span class=&#34;s2&#34;&gt;&amp;#34;git@gitlab.engine.wang/&amp;#34;&lt;/span&gt;.insteadof &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://gitlab.engine.wang/&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;配置gitlab-runner&#34;&gt;配置Gitlab runner&lt;/h2&gt;
+&lt;p&gt;官方文档：https://docs.gitlab.com/runner/install/&lt;/p&gt;
+&lt;p&gt;我们需要一个runner来执行相关的代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -d --name gitlab-runner --restart always &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    -v /srv/gitlab-runner/config:/etc/gitlab-runner &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    gitlab/gitlab-runner
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab-runner gitlab-runner register --docker-privileged
+...
+&lt;span class=&#34;c1&#34;&gt;# Gitlab地址&lt;/span&gt;
+Enter the GitLab instance URL &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, https://gitlab.com/&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+https://gitlab.engine.wang/
+&lt;span class=&#34;c1&#34;&gt;# Gitlab token，这里是Repo-&amp;gt;Setting-&amp;gt;Runner里的token&lt;/span&gt;
+Enter the registration token:
+sWc-exXVycJv7dzN36u9
+&lt;span class=&#34;c1&#34;&gt;# 描述信息，自定义即可&lt;/span&gt;
+Enter a description &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the runner:
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;47e468388f03&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: default
+&lt;span class=&#34;c1&#34;&gt;# tag，自定义即可&lt;/span&gt;
+Enter tags &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the runner &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;comma-separated&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+default
+Registering runner... succeeded                     &lt;span class=&#34;nv&#34;&gt;runner&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sWc-exXV
+&lt;span class=&#34;c1&#34;&gt;# Runner运行的平台方式，一般选Docker&lt;/span&gt;
+Enter an executor: docker-ssh+machine, kubernetes, custom, docker, ssh, virtualbox, docker-ssh, parallels, shell, docker+machine:
+docker
+&lt;span class=&#34;c1&#34;&gt;# 默认镜像（如果没指定的话就会用这个）&lt;/span&gt;
+Enter the default Docker image &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, ruby:2.6&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
+alpine:latest
+Runner registered successfully. Feel free to start it, but &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; it&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;s running already the config should be automatically reloaded!
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker restart gitlab-runner
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;刷新仓库的Runner页面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012104978.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;就可以看到这个Runner了&lt;/p&gt;
+&lt;p&gt;顺便设置一下这个Runner，因为我们就一个runner，所以将 Run untagged jobs打上勾，这样后面写job的时候就不需要指定tags就能通过这个runner运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012225133.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hello-world测试&#34;&gt;Hello World测试&lt;/h2&gt;
+&lt;p&gt;验证一下Runner是否正常运行CI/CD&lt;/p&gt;
+&lt;p&gt;在那个仓库下提交一个&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;文件，填写下面的内容并push到仓库中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;alpine:latest&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;echo &amp;#34;Hello, GitLab Runner!&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;提交到gitlab，查看CI/CD job是否正常运行，如果正常就说明配置成功。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012131300.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/ci/cd/">CI/CD</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/gitlab/">Gitlab</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Cloudreve&#43;aria2&#43;群晖&#43;frp&#43;nginx&#43;https搭建私有云</title>
+                <link>https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</link>
+                <guid isPermaLink="true">https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</guid>
+                <pubDate>Sun, 12 Feb 2023 16:21:02 &#43;0800</pubDate>
+                
+                    <author>engine74396@gmail.com (王毅诚)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;为什么需要一个私有云盘&#34;&gt;为什么需要一个私有云盘？&lt;/h2&gt;
+&lt;p&gt;公有云，诸如百度云盘等，不充会员的话速度感人，超级会员价格很贵，而且界面冗杂广告多。另外存储空间也比较有限，买空间非常不划算。&lt;/p&gt;
+&lt;p&gt;即使我目前还是百度云盘超级会员，但我依然不会用公有云作为主力，一个最致命的点在于国内的云服务商有内容版权审查机制，甚至会自己删文件，还可能造成隐私泄露，所以我最多保存网友分享的一些资源，然后下载到本地，几乎不会用这些公有云来存储备份自己的文件。&lt;/p&gt;
+&lt;p&gt;私有云就是版本答案，也就是自己搭建一个云盘，一些比较老牌的私有云比如Seafile、Owncloud、NextCloud，但是我最后还是选择了Cloudreve。&lt;/p&gt;
+&lt;p&gt;Cloudreve是一款国人开发的公私兼备的网盘系统，技术栈是 Go + Gin + React + Redux + Material-UI，我正好也比较熟悉这一套后端架构，顺便买了一个pro版支持了一波，之后有时间的话也可以学习一下源码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/01/fqOMpRr4Kaum9Zn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Cloudreve官网：https://cloudreve.org/
+Cloudreve Github：https://github.com/cloudreve/Cloudreve 目前有17k star了&lt;/p&gt;
+&lt;p&gt;它的特点包括：支持密码分享、直链提取、外部云存储、aria2离线下载、在线预览、多用户、在线解压打包等等。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;唯一让我感到遗憾的是不支持文件同步
+Dropbox（全程科学上网+免费版只能三个设备、付费版巨贵+容量只有十几G）和Synnology Drive（用户体验差、经常卡死不同步）都有不小的瑕疵，很想找个代替品。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一个更好的方式其实是在云服务器上直接搭建Cloudreve，配合阿里云OSS或者腾讯云COS等存储，这样带宽也拉满，但是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;租云服务器太贵了，就算第一年很便宜，续费会很贵。之后换服务器的话迁移比较麻烦。&lt;/li&gt;
+&lt;li&gt;存储资源不在本地，仍然有审查风险。&lt;/li&gt;
+&lt;li&gt;COS、OSS之类的存储服务或者云硬盘也是按年买的，也很贵&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以把群晖利用起来，通过内网穿透作为一块永久的10T的云硬盘。这倒不是说这种方式就没有缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;自己没有公网ip，还是要租高带宽的云服务器，这里我租的是10M带宽的，每次换新账号，一年也要大几百&lt;/li&gt;
+&lt;li&gt;传输的路径变长，同时吃frps服务器和内网的上行带宽，上传下载的速度会低于云服务器搭建&lt;/li&gt;
+&lt;li&gt;最致命的点在于不能接受本地停电，nas断电直接瘫痪。（我的群晖就放在学校结果放寒假被宿管阿姨拔掉了总闸，非常难受）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;整个记录包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;群晖部署和配置Cloudreve&lt;/li&gt;
+&lt;li&gt;群晖部署和配置aria2&lt;/li&gt;
+&lt;li&gt;云服务器配置frps&lt;/li&gt;
+&lt;li&gt;群晖部署和配置frpc&lt;/li&gt;
+&lt;li&gt;云服务器配置nginx&lt;/li&gt;
+&lt;li&gt;云服务器配置https、DNS解析&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;群晖部署和配置cloudreve&#34;&gt;群晖部署和配置Cloudreve&lt;/h2&gt;
+&lt;p&gt;因为我用的是捐赠付费版Cloudreve，所以就采用可执行文件的传统搭建方式不用docker了，其实也很方便。&lt;/p&gt;
+&lt;p&gt;如果是免费版，就去 &lt;a href=&#34;http://github.com/cloudreve/Cloudreve/releases&#34;&gt;http://github.com/cloudreve/Cloudreve/releases&lt;/a&gt; 下载对应版本的cloudreve。付费版直接去内部渠道下载，与根域名授权密钥一起传输到nas里，然后解压，给权限、运行：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先开nas的ssh服务，然后ssh连接到nas&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#解压获取到的主程序&lt;/span&gt;
+$ tar -zxvf cloudreve_VERSION_OS_ARCH.tar.gz
+&lt;span class=&#34;c1&#34;&gt;# 赋予执行权限&lt;/span&gt;
+$ chmod +x ./cloudreve
+&lt;span class=&#34;c1&#34;&gt;# 启动 Cloudreve&lt;/span&gt;
+$ ./cloudreve
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第一次先运行，会显示初始admin密码，记录一下，可以登录然后修改密码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@SynologyNas:/volume1/Applications/cloudreve# ./cloudreve
+
+   ___ _                 _
+  / __&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ___  _   _  __&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ __ _____   _____
+ / /  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ _ &lt;span class=&#34;se&#34;&gt;\|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ _  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;__/ _ &lt;span class=&#34;se&#34;&gt;\ \ &lt;/span&gt;/ / _ &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;/ /___&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;_&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  __/&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;V /  __/
+&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;___/&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__/ &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_,_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_,_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;/ &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+
+   V3.6.2  Commit &lt;span class=&#34;c1&#34;&gt;#b1d8e44  Pro=true&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;================================================&lt;/span&gt;
+
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:51:56 Initializing database connection...
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:51:56 Start initializing database schema...
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:52:03 Admin user name: admin@cloudreve.org
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:52:03 Admin password: XXX
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;之后就可以通过nohup来后台运行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ nohup ./cloudreve &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;更好的方式还是配置systemd进程守护，这样断了还能重启：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo -i
+$ vim /usr/lib/systemd/system/cloudreve.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Unit&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Cloudreve
+&lt;span class=&#34;nv&#34;&gt;Documentation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;https://docs.cloudreve.org
+&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target
+&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mysqld.service
+&lt;span class=&#34;nv&#34;&gt;Wants&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target
+
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;WorkingDirectory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/volume1/Applications/cloudreve
+&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/bin/nohup /volume1/Applications/cloudreve/cloudreve  &amp;gt;/dev/null 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Restart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;on-abnormal
+&lt;span class=&#34;nv&#34;&gt;RestartSec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;5s
+&lt;span class=&#34;nv&#34;&gt;KillMode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mixed
+
+&lt;span class=&#34;nv&#34;&gt;StandardOutput&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;null
+&lt;span class=&#34;nv&#34;&gt;StandardError&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;syslog
+
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Install&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动服务&lt;/span&gt;
+systemctl start cloudreve
+
+&lt;span class=&#34;c1&#34;&gt;# 停止服务&lt;/span&gt;
+systemctl stop cloudreve
+
+&lt;span class=&#34;c1&#34;&gt;# 重启服务&lt;/span&gt;
+systemctl restart cloudreve
+
+&lt;span class=&#34;c1&#34;&gt;# 查看状态&lt;/span&gt;
+systemctl status cloudreve
+
+&lt;span class=&#34;c1&#34;&gt;# 设置为开机启动&lt;/span&gt;
+systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;局域网访问配置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果是捐赠pro版，设置了域名限制，所以需要去路由器改host，直接本地局域网192.168.x.x无法访问：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;addn-hosts=/jffs/configs/hosts&amp;#34;&lt;/span&gt; &amp;gt; /jffs/configs/dnsmasq.conf.add
+$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;192.168.50.98 nas.engine.wang&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /jffs/configs/hosts
+$ service restart_dnsmasq
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过&lt;code&gt;http://nas.engine.wang:5212&lt;/code&gt;即可局域网访问（不吃内网穿透，非常快）&lt;/p&gt;
+&lt;h2 id=&#34;配置内网穿透&#34;&gt;配置内网穿透&lt;/h2&gt;
+&lt;h3 id=&#34;购买服务器和配置frps&#34;&gt;购买服务器和配置frps&lt;/h3&gt;
+&lt;p&gt;购买服务器和搭建frps的部分见我之前的文章：&lt;a href=&#34;https://blog.engine.wang/posts/frp-notes&#34;&gt;https://blog.engine.wang/posts/frp-notes&lt;/a&gt;，这里就不赘述了。&lt;/p&gt;
+&lt;p&gt;推荐腾讯云的轻量应用服务器，带宽高，这里选了10M的，勉强够用，再高的也买不起了。&lt;/p&gt;
+&lt;h3 id=&#34;群晖的frpc配置&#34;&gt;群晖的frpc配置&lt;/h3&gt;
+&lt;p&gt;内网穿透时，将nas的5212端口映射到服务器的某个端口，比如这里我设的是15212。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;nas_cloudreve_5212&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; tcp
+&lt;span class=&#34;nv&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 192.168.50.98
+&lt;span class=&#34;nv&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5212&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;15212&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样就可以通过服务器的15212端口穿透到本机的5212端口了。&lt;/p&gt;
+&lt;h2 id=&#34;https和nginx配置&#34;&gt;https和nginx配置&lt;/h2&gt;
+&lt;p&gt;https的ssl证书可以用免费的Let&#39;s Encrypt之类的第三方免费证书服务，因为我的云服务器是腾讯云的，也有20个额度的免费ssl证书，就用腾讯云的也比较方便:&lt;/p&gt;
+&lt;p&gt;下载SSL证书的crt和key，放到云服务器上。&lt;/p&gt;
+&lt;p&gt;然后在云服务器上配置nginx，在nginx配置文件中添加下面的内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;443&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;drive.engine.wang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_certificate&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/home/ubuntu/nginx/cert/drive.engine.wang.crt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_certificate_key&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/home/ubuntu/nginx/cert/drive.engine.wang.key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_session_timeout&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_protocols&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.1&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_ciphers&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;kn&#34;&gt;ssl_prefer_server_ciphers&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kn&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1024m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;HOST&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-Proto&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Real-IP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-For&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;kn&#34;&gt;proxy_pass&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;http://&amp;lt;服务器内网ip&amp;gt;:5222&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+     &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+     &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;drive.engine.wang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+     &lt;span class=&#34;kn&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;301&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$host$request_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;重载nginx即可生效：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo nginx -s reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后加一条dns解析：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/02/8NBjAlIQ36MuESh.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;现在访问&lt;code&gt;drive.engine.wang&lt;/code&gt;即可进入Cloudreve。&lt;/p&gt;
+&lt;h2 id=&#34;aria2配置&#34;&gt;aria2配置&lt;/h2&gt;
+&lt;p&gt;光有Cloudreve还不够，这里再配置一个非常方便的下载神器：aria2。aria2可以支持离线下载https、磁力等链接，相当于多了个云端的迅雷，而且速度拉满非常爽。这里建议还是配置一下。&lt;/p&gt;
+&lt;p&gt;我用的 &lt;a href=&#34;https://github.com/P3TERX/aria2.sh&#34;&gt;https://github.com/P3TERX/aria2.sh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;将sh执行文件下载到群晖中，然后安装一些必要的包，因为群晖不支持apt、yum等，所以使用ipkg：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 先安装bootstrap，才有ipkg、wget等。&lt;/span&gt;
+$ wget http://ipkg.nslu2-linux.org/feeds/optware/syno-i686/cross/unstable/syno-i686-bootstrap_1.2-7_i686.xsh
+$ chmod +x syno-i686-bootstrap_1.2-7_i686.xsh
+$ sh syno-i686-bootstrap_1.2-7_i686.xsh
+$ ipkg update
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果下不动就自己电脑下再传输到nas&lt;/span&gt;
+$ wget -N git.io/aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x aria2.sh
+$ ./aria2.sh
+&lt;span class=&#34;c1&#34;&gt;# 先安装aria2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;配置文件位于&lt;code&gt;/root/.aria2c/aria2.conf &lt;/code&gt;，默认下载目录为：&lt;code&gt;/root/downloads&lt;/code&gt;，这里修改为 &lt;code&gt;/volume1/Download/aria2&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 修改配置文件&lt;/span&gt;
+$ su -i
+$ vim /root/.aria2c/aria2.conf
+&lt;span class=&#34;c1&#34;&gt;# 修改为：dir=/volume1/Download/aria2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后再次：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./aria2.sh
+&lt;span class=&#34;c1&#34;&gt;# 启动aria2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;会打印一些信息，可以修改，先记下来。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; IPv4 地址	: 182.255.34.12
+ IPv6 地址	: IPv6 地址检测失败
+ RPC 端口	: &lt;span class=&#34;m&#34;&gt;6800&lt;/span&gt;
+ RPC 密钥	: &lt;span class=&#34;m&#34;&gt;12345687&lt;/span&gt;
+ 下载目录	: /volume1/Download/aria2
+ AriaNg 链接	: http://ariang.js.org/#!/settings/rpc/set/ws/182.255.34.12/6800/jsonrpc/MTIzNDU2ODc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; IPv4 地址	: 117.170.156.207
+ IPv6 地址	: 2409:8a38:1623:b500:2e2:69ff:fe2c:c6e0
+ RPC 端口	: &lt;span class=&#34;m&#34;&gt;6800&lt;/span&gt;
+ RPC 密钥	: 28e5d89b6bf2c951cb4e
+ 下载目录	: /volume1/Applications/cloudreve/aria2
+ AriaNg 链接	: http://ariang.js.org/#!/settings/rpc/set/ws/117.170.156.207/6800/jsonrpc/MjhlNWQ4OWI2YmYyYzk1MWNiNGU&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;浏览器打开AriaNg链接，也有一个UI，这个可以保存着用，不过我们的重点还是跟Cloudreve集成&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/01/iM3HmOjpy5ArhwS.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Aria2 离线下载最大的速度取决于服务器带宽。&lt;/p&gt;
+&lt;p&gt;将信息填写到Cloudreve中：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/2TXKYm7pSwOft4o.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;后续工作&#34;&gt;后续工作&lt;/h2&gt;
+&lt;p&gt;配置存储策略、用户策略等，自行配置即可&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/nas/">nas</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E7%BE%A4%E6%99%96/">群晖</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/cloudreve/">Cloudreve</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E7%A7%81%E6%9C%89%E4%BA%91/">私有云</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://blog.engine.wang/tags/nginx/">nginx</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
                 <title>算法笔记（回溯法）</title>
                 <link>https://blog.engine.wang/posts/leetcode-notes-backtrack/</link>
                 <guid isPermaLink="true">https://blog.engine.wang/posts/leetcode-notes-backtrack/</guid>
-                <pubDate>Wed, 15 Feb 2023 19:11:03 &#43;0800</pubDate>
+                <pubDate>Mon, 30 Jan 2023 19:11:03 &#43;0800</pubDate>
                 
                     <author>engine74396@gmail.com (王毅诚)</author>
                 
@@ -1480,485 +2419,6 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
             </item>
         
             <item>
-                <title>Cloudreve&#43;aria2&#43;群晖&#43;frp&#43;nginx&#43;https搭建私有云</title>
-                <link>https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</link>
-                <guid isPermaLink="true">https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</guid>
-                <pubDate>Sun, 29 Jan 2023 16:21:02 &#43;0800</pubDate>
-                
-                    <author>engine74396@gmail.com (王毅诚)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;h2 id=&#34;为什么需要一个私有云盘&#34;&gt;为什么需要一个私有云盘？&lt;/h2&gt;
-&lt;p&gt;公有云，诸如百度云盘等，不充会员的话速度感人，超级会员价格很贵，而且界面冗杂广告多。另外存储空间也比较有限，买空间非常不划算。&lt;/p&gt;
-&lt;p&gt;即使我目前还是百度云盘超级会员，但我依然不会用公有云作为主力，一个最致命的点在于国内的云服务商有内容版权审查机制，甚至会自己删文件，还可能造成隐私泄露，所以我最多保存网友分享的一些资源，然后下载到本地，几乎不会用这些公有云来存储备份自己的文件。&lt;/p&gt;
-&lt;p&gt;私有云就是版本答案，也就是自己搭建一个云盘，一些比较老牌的私有云比如Seafile、Owncloud、NextCloud，但是我最后还是选择了Cloudreve。&lt;/p&gt;
-&lt;p&gt;Cloudreve是一款国人开发的公私兼备的网盘系统，技术栈是 Go + Gin + React + Redux + Material-UI，我正好也比较熟悉这一套后端架构，顺便买了一个pro版支持了一波，之后有时间的话也可以学习一下源码。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/01/fqOMpRr4Kaum9Zn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Cloudreve官网：https://cloudreve.org/
-Cloudreve Github：https://github.com/cloudreve/Cloudreve 目前有17k star了&lt;/p&gt;
-&lt;p&gt;它的特点包括：支持密码分享、直链提取、外部云存储、aria2离线下载、在线预览、多用户、在线解压打包等等。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;唯一让我感到遗憾的是不支持文件同步
-Dropbox（全程科学上网+免费版只能三个设备、付费版巨贵+容量只有十几G）和Synnology Drive（用户体验差、经常卡死不同步）都有不小的瑕疵，很想找个代替品。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;一个更好的方式其实是在云服务器上直接搭建Cloudreve，配合阿里云OSS或者腾讯云COS等存储，这样带宽也拉满，但是：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;租云服务器太贵了，就算第一年很便宜，续费会很贵。之后换服务器的话迁移比较麻烦。&lt;/li&gt;
-&lt;li&gt;存储资源不在本地，仍然有审查风险。&lt;/li&gt;
-&lt;li&gt;COS、OSS之类的存储服务或者云硬盘也是按年买的，也很贵&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;可以把群晖利用起来，通过内网穿透作为一块永久的10T的云硬盘。这倒不是说这种方式就没有缺点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;自己没有公网ip，还是要租高带宽的云服务器，这里我租的是10M带宽的，每次换新账号，一年也要大几百&lt;/li&gt;
-&lt;li&gt;传输的路径变长，同时吃frps服务器和内网的上行带宽，上传下载的速度会低于云服务器搭建&lt;/li&gt;
-&lt;li&gt;最致命的点在于不能接受本地停电，nas断电直接瘫痪。（我的群晖就放在学校结果放寒假被宿管阿姨拔掉了总闸，非常难受）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;整个记录包括：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;群晖部署和配置Cloudreve&lt;/li&gt;
-&lt;li&gt;群晖部署和配置aria2&lt;/li&gt;
-&lt;li&gt;云服务器配置frps&lt;/li&gt;
-&lt;li&gt;群晖部署和配置frpc&lt;/li&gt;
-&lt;li&gt;云服务器配置nginx&lt;/li&gt;
-&lt;li&gt;云服务器配置https、DNS解析&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;群晖部署和配置cloudreve&#34;&gt;群晖部署和配置Cloudreve&lt;/h2&gt;
-&lt;p&gt;因为我用的是捐赠付费版Cloudreve，所以就采用可执行文件的传统搭建方式不用docker了，其实也很方便。&lt;/p&gt;
-&lt;p&gt;如果是免费版，就去 &lt;a href=&#34;http://github.com/cloudreve/Cloudreve/releases&#34;&gt;http://github.com/cloudreve/Cloudreve/releases&lt;/a&gt; 下载对应版本的cloudreve。付费版直接去内部渠道下载，与根域名授权密钥一起传输到nas里，然后解压，给权限、运行：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;先开nas的ssh服务，然后ssh连接到nas&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#解压获取到的主程序&lt;/span&gt;
-$ tar -zxvf cloudreve_VERSION_OS_ARCH.tar.gz
-&lt;span class=&#34;c1&#34;&gt;# 赋予执行权限&lt;/span&gt;
-$ chmod +x ./cloudreve
-&lt;span class=&#34;c1&#34;&gt;# 启动 Cloudreve&lt;/span&gt;
-$ ./cloudreve
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;第一次先运行，会显示初始admin密码，记录一下，可以登录然后修改密码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@SynologyNas:/volume1/Applications/cloudreve# ./cloudreve
-
-   ___ _                 _
-  / __&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ___  _   _  __&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_ __ _____   _____
- / /  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ _ &lt;span class=&#34;se&#34;&gt;\|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ _  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;__/ _ &lt;span class=&#34;se&#34;&gt;\ \ &lt;/span&gt;/ / _ &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;/ /___&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;_&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  __/&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;V /  __/
-&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;___/&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__/ &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_,_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_,_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;/ &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
-
-   V3.6.2  Commit &lt;span class=&#34;c1&#34;&gt;#b1d8e44  Pro=true&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;================================================&lt;/span&gt;
-
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:51:56 Initializing database connection...
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:51:56 Start initializing database schema...
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:52:03 Admin user name: admin@cloudreve.org
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Info&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;    2023-01-31 14:52:03 Admin password: XXX
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;之后就可以通过nohup来后台运行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ nohup ./cloudreve &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;更好的方式还是配置systemd进程守护，这样断了还能重启：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo -i
-$ vim /usr/lib/systemd/system/cloudreve.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Unit&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Cloudreve
-&lt;span class=&#34;nv&#34;&gt;Documentation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;https://docs.cloudreve.org
-&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target
-&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mysqld.service
-&lt;span class=&#34;nv&#34;&gt;Wants&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target
-
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;WorkingDirectory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/volume1/Applications/cloudreve
-&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/bin/nohup /volume1/Applications/cloudreve/cloudreve  &amp;gt;/dev/null 2&amp;gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;Restart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;on-abnormal
-&lt;span class=&#34;nv&#34;&gt;RestartSec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;5s
-&lt;span class=&#34;nv&#34;&gt;KillMode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;mixed
-
-&lt;span class=&#34;nv&#34;&gt;StandardOutput&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;null
-&lt;span class=&#34;nv&#34;&gt;StandardError&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;syslog
-
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Install&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;multi-user.target
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动服务&lt;/span&gt;
-systemctl start cloudreve
-
-&lt;span class=&#34;c1&#34;&gt;# 停止服务&lt;/span&gt;
-systemctl stop cloudreve
-
-&lt;span class=&#34;c1&#34;&gt;# 重启服务&lt;/span&gt;
-systemctl restart cloudreve
-
-&lt;span class=&#34;c1&#34;&gt;# 查看状态&lt;/span&gt;
-systemctl status cloudreve
-
-&lt;span class=&#34;c1&#34;&gt;# 设置为开机启动&lt;/span&gt;
-systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;局域网访问配置&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;如果是捐赠pro版，设置了域名限制，所以需要去路由器改host，直接本地局域网192.168.x.x无法访问：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;addn-hosts=/jffs/configs/hosts&amp;#34;&lt;/span&gt; &amp;gt; /jffs/configs/dnsmasq.conf.add
-$ &lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;192.168.50.98 nas.engine.wang&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /jffs/configs/hosts
-$ service restart_dnsmasq
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;通过&lt;code&gt;http://nas.engine.wang:5212&lt;/code&gt;即可局域网访问（不吃内网穿透，非常快）&lt;/p&gt;
-&lt;h2 id=&#34;配置内网穿透&#34;&gt;配置内网穿透&lt;/h2&gt;
-&lt;h3 id=&#34;购买服务器和配置frps&#34;&gt;购买服务器和配置frps&lt;/h3&gt;
-&lt;p&gt;购买服务器和搭建frps的部分见我之前的文章：&lt;a href=&#34;https://blog.engine.wang/posts/frp-notes&#34;&gt;https://blog.engine.wang/posts/frp-notes&lt;/a&gt;，这里就不赘述了。&lt;/p&gt;
-&lt;p&gt;推荐腾讯云的轻量应用服务器，带宽高，这里选了10M的，勉强够用，再高的也买不起了。&lt;/p&gt;
-&lt;h3 id=&#34;群晖的frpc配置&#34;&gt;群晖的frpc配置&lt;/h3&gt;
-&lt;p&gt;内网穿透时，将nas的5212端口映射到服务器的某个端口，比如这里我设的是15212。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;nas_cloudreve_5212&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; tcp
-&lt;span class=&#34;nv&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 192.168.50.98
-&lt;span class=&#34;nv&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5212&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;15212&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这样就可以通过服务器的15212端口穿透到本机的5212端口了。&lt;/p&gt;
-&lt;h2 id=&#34;https和nginx配置&#34;&gt;https和nginx配置&lt;/h2&gt;
-&lt;p&gt;https的ssl证书可以用免费的Let&#39;s Encrypt之类的第三方免费证书服务，因为我的云服务器是腾讯云的，也有20个额度的免费ssl证书，就用腾讯云的也比较方便:&lt;/p&gt;
-&lt;p&gt;下载SSL证书的crt和key，放到云服务器上。&lt;/p&gt;
-&lt;p&gt;然后在云服务器上配置nginx，在nginx配置文件中添加下面的内容：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;443&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;ssl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;drive.engine.wang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_certificate&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/home/ubuntu/nginx/cert/drive.engine.wang.crt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_certificate_key&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/home/ubuntu/nginx/cert/drive.engine.wang.key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_session_timeout&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_protocols&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.1&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;TLSv1.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_ciphers&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kn&#34;&gt;ssl_prefer_server_ciphers&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;kn&#34;&gt;client_max_body_size&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1024m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;kn&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;HOST&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-Proto&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Real-IP&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;kn&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;X-Forwarded-For&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;kn&#34;&gt;proxy_pass&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;http://&amp;lt;服务器内网ip&amp;gt;:5222&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;server&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-     &lt;span class=&#34;kn&#34;&gt;listen&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;80&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-     &lt;span class=&#34;kn&#34;&gt;server_name&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;drive.engine.wang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-     &lt;span class=&#34;kn&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;301&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$host$request_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;重载nginx即可生效：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo nginx -s reload
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后加一条dns解析：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/02/8NBjAlIQ36MuESh.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;现在访问&lt;code&gt;drive.engine.wang&lt;/code&gt;即可进入Cloudreve。&lt;/p&gt;
-&lt;h2 id=&#34;aria2配置&#34;&gt;aria2配置&lt;/h2&gt;
-&lt;p&gt;光有Cloudreve还不够，这里再配置一个非常方便的下载神器：aria2。aria2可以支持离线下载https、磁力等链接，相当于多了个云端的迅雷，而且速度拉满非常爽。这里建议还是配置一下。&lt;/p&gt;
-&lt;p&gt;我用的 &lt;a href=&#34;https://github.com/P3TERX/aria2.sh&#34;&gt;https://github.com/P3TERX/aria2.sh&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;将sh执行文件下载到群晖中，然后安装一些必要的包，因为群晖不支持apt、yum等，所以使用ipkg：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 先安装bootstrap，才有ipkg、wget等。&lt;/span&gt;
-$ wget http://ipkg.nslu2-linux.org/feeds/optware/syno-i686/cross/unstable/syno-i686-bootstrap_1.2-7_i686.xsh
-$ chmod +x syno-i686-bootstrap_1.2-7_i686.xsh
-$ sh syno-i686-bootstrap_1.2-7_i686.xsh
-$ ipkg update
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果下不动就自己电脑下再传输到nas&lt;/span&gt;
-$ wget -N git.io/aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x aria2.sh
-$ ./aria2.sh
-&lt;span class=&#34;c1&#34;&gt;# 先安装aria2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;配置文件位于&lt;code&gt;/root/.aria2c/aria2.conf &lt;/code&gt;，默认下载目录为：&lt;code&gt;/root/downloads&lt;/code&gt;，这里修改为 &lt;code&gt;/volume1/Download/aria2&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 修改配置文件&lt;/span&gt;
-$ su -i
-$ vim /root/.aria2c/aria2.conf
-&lt;span class=&#34;c1&#34;&gt;# 修改为：dir=/volume1/Download/aria2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;然后再次：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./aria2.sh
-&lt;span class=&#34;c1&#34;&gt;# 启动aria2&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;会打印一些信息，可以修改，先记下来。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; IPv4 地址	: 182.255.34.12
- IPv6 地址	: IPv6 地址检测失败
- RPC 端口	: &lt;span class=&#34;m&#34;&gt;6800&lt;/span&gt;
- RPC 密钥	: &lt;span class=&#34;m&#34;&gt;12345687&lt;/span&gt;
- 下载目录	: /volume1/Download/aria2
- AriaNg 链接	: http://ariang.js.org/#!/settings/rpc/set/ws/182.255.34.12/6800/jsonrpc/MTIzNDU2ODc&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt; IPv4 地址	: 117.170.156.207
- IPv6 地址	: 2409:8a38:1623:b500:2e2:69ff:fe2c:c6e0
- RPC 端口	: &lt;span class=&#34;m&#34;&gt;6800&lt;/span&gt;
- RPC 密钥	: 28e5d89b6bf2c951cb4e
- 下载目录	: /volume1/Applications/cloudreve/aria2
- AriaNg 链接	: http://ariang.js.org/#!/settings/rpc/set/ws/117.170.156.207/6800/jsonrpc/MjhlNWQ4OWI2YmYyYzk1MWNiNGU&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;浏览器打开AriaNg链接，也有一个UI，这个可以保存着用，不过我们的重点还是跟Cloudreve集成&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/12/01/iM3HmOjpy5ArhwS.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Aria2 离线下载最大的速度取决于服务器带宽。&lt;/p&gt;
-&lt;p&gt;将信息填写到Cloudreve中：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/01/31/2TXKYm7pSwOft4o.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;后续工作&#34;&gt;后续工作&lt;/h2&gt;
-&lt;p&gt;配置存储策略、用户策略等，自行配置即可&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/">生活</category>
-                                
-                            
-                        
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/nas/">nas</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/%E7%BE%A4%E6%99%96/">群晖</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/cloudreve/">Cloudreve</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/%E7%A7%81%E6%9C%89%E4%BA%91/">私有云</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/nginx/">nginx</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
                 <title>算法笔记（二叉树篇）</title>
                 <link>https://blog.engine.wang/posts/leetcode-notes-binarytree/</link>
                 <guid isPermaLink="true">https://blog.engine.wang/posts/leetcode-notes-binarytree/</guid>
@@ -2859,466 +3319,6 @@ $ vim /root/.aria2c/aria2.conf
                                 
                                 
                                     <category domain="https://blog.engine.wang/tags/leetcode/">LeetCode</category>
-                                
-                            
-                        
-                    
-                
-            </item>
-        
-            <item>
-                <title>Gitlab CI/CD搭建与部署实战</title>
-                <link>https://blog.engine.wang/posts/gitlab-cicd-1/</link>
-                <guid isPermaLink="true">https://blog.engine.wang/posts/gitlab-cicd-1/</guid>
-                <pubDate>Fri, 16 Dec 2022 13:37:20 &#43;0800</pubDate>
-                
-                    <author>engine74396@gmail.com (王毅诚)</author>
-                
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-                
-                    <description>&lt;p&gt;我搭建好的gitlab地址为&lt;a href=&#34;https://gitlab.engine.wang&#34;&gt;https://gitlab.engine.wang&lt;/a&gt;，欢迎访问。&lt;/p&gt;
-&lt;p&gt;体验账号：guest，密码：guest123456&lt;/p&gt;
-&lt;p&gt;（服务器将于23年11月左右到期）&lt;/p&gt;
-&lt;h2 id=&#34;搭建gitlab服务器&#34;&gt;搭建gitlab服务器&lt;/h2&gt;
-&lt;p&gt;Gitlab是一个类似于Github的代码托管软件，搭建一个私有的git服务器，类似于游戏中的私服，可以供内部使用，并且用国内服务器的话，网络也比较好。&lt;/p&gt;
-&lt;p&gt;买一台云服务器，配置不低于2核4G，否则跑不动Gitlab。&lt;/p&gt;
-&lt;p&gt;Gitlab有很多搭建方法，Docker、Docker-compose、k8s都比较好，我这里用的是docker-compose，下面是详细的搭建过程。&lt;/p&gt;
-&lt;h3 id=&#34;云服务器初始化&#34;&gt;云服务器初始化&lt;/h3&gt;
-&lt;p&gt;进入云服务器，在/srv/gitlab下新建config,data,logs三个文件夹&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /srv/gitlab
-$ sudo mkdir data logs config
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在&lt;code&gt;~/.zshrc&lt;/code&gt;添加&lt;code&gt;GITLAB_HOME&lt;/code&gt;并source&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;GITLAB_HOME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/srv/gitlab&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;改一下sshd的默认端口：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;
-注意是sshd_config，不是ssh_config&lt;/p&gt;
-&lt;p&gt;把Port取消注释并修改成其他端口，然后重启sshd服务，重启服务器，重新用新端口连接：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo service ssh restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;配置ssl证书&#34;&gt;配置SSL证书&lt;/h3&gt;
-&lt;p&gt;首先去提交一个证书申请，普通用户总共能申请20个免费的域名证书（二级域名分开算），但也足够了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/26/iEdQB9PKqsU7gYh.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;等待审核完成，下载证书，选择nginx&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/26/rq42VEoAHzPDiu8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;将crt、key两个后缀的文件复制到/srv/gitlab/config/ssl和/root/.cert下面&lt;/p&gt;
-&lt;p&gt;写&lt;code&gt;docker-compose.yml&lt;/code&gt;文件，下面是我调试很久的版本&lt;/p&gt;
-&lt;p&gt;做了smtp邮件配置、nginx的https ssl配置、性能调节防止内存消耗过高等。&lt;/p&gt;
-&lt;p&gt;这台服务器只架设 Gitlab Server 和 Gitlab Runner，所以80和443都直接映射&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;version&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;3.6&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;services&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;web&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gitlab/gitlab-ce:latest&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;hostname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;gitlab.engine.wang&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;container_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;gitlab&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;environment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;GITLAB_OMNIBUS_CONFIG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        # /srv/gitlab/config/gitlab.rb
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        external_url &amp;#39;https://gitlab.engine.wang&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;time_zone&amp;#39;] = &amp;#39;Asia/Shanghai&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;backup_keep_time&amp;#39;] = 259200
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;gitlab_shell_ssh_port&amp;#39;] = 22
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_pool&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_enable&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_address&amp;#39;] = &amp;#34;smtp.qq.com&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_port&amp;#39;] = 465
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_user_name&amp;#39;] = &amp;#34;engine.wang@qq.com&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_password&amp;#39;] = &amp;#34;xxx&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_domain&amp;#39;] = &amp;#34;smtp.qq.com&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_authentication&amp;#39;] = &amp;#34;login&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_enable_starttls_auto&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;smtp_tls&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        gitlab_rails[&amp;#39;gitlab_email_from&amp;#39;] = &amp;#39;engine.wang@qq.com&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        user[&amp;#34;git_user_email&amp;#34;] = &amp;#34;engine.wang@qq.com&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;client_max_body_size&amp;#39;] = &amp;#39;10240m&amp;#39;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;redirect_http_to_https&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_certificate&amp;#39;] = &amp;#34;/etc/gitlab/ssl/gitlab.engine.wang.crt&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_certificate_key&amp;#39;] = &amp;#34;/etc/gitlab/ssl/gitlab.engine.wang.key&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_ciphers&amp;#39;] = &amp;#34;ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_prefer_server_ciphers&amp;#39;] = &amp;#34;on&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_protocols&amp;#39;] = &amp;#34;TLSv1.1 TLSv1.2&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;ssl_session_cache&amp;#39;] = &amp;#34;builtin:1000  shared:SSL:10m&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;listen_addresses&amp;#39;] = [&amp;#34;0.0.0.0&amp;#34;]
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        nginx[&amp;#39;http2_enabled&amp;#39;] = true
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        postgresql[&amp;#39;max_worker_processes&amp;#39;] = 8
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        postgresql[&amp;#39;shared_buffers&amp;#39;] = &amp;#34;256MB&amp;#34;
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        puma[&amp;#39;worker_processes&amp;#39;] = 0
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        sidekiq[&amp;#39;max_concurrency&amp;#39;] = 5
-&lt;/span&gt;&lt;span class=&#34;sd&#34;&gt;        alertmanager[&amp;#39;admin_email&amp;#39;] = &amp;#39;engine74396@gmail.com&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;80:80&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;443:443&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;22:22&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;volumes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/config:/etc/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/logs:/var/log/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;- &lt;span class=&#34;s1&#34;&gt;&amp;#39;$GITLAB_HOME/data:/var/opt/gitlab&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;restart&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;always&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 后台启动&lt;/span&gt;
-$ docker-compose up -d
-&lt;span class=&#34;c1&#34;&gt;# 查看实时日志&lt;/span&gt;
-$ docker logs -ft gitlab
-&lt;span class=&#34;c1&#34;&gt;# 查看初始密码&lt;/span&gt;
-$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab grep &lt;span class=&#34;s1&#34;&gt;&amp;#39;Password:&amp;#39;&lt;/span&gt; /etc/gitlab/initial_root_password
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;测试邮件服务，这里用的是qq，其他的很多邮箱都可以。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab bash
-$ root@engine:/# gitlab-rails console
-
-Notify.test_email&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine74396@gmail.com&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;Message Subject&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;Message Body&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.deliver_now
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;配置swap&#34;&gt;配置swap&lt;/h3&gt;
-&lt;p&gt;4G不够，通过swap加点虚拟内存，这里加2G&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 当前没有开启swap&lt;/span&gt;
-$ free -m
-              total        used        free      shared  buff/cache   available
-Mem:          3.3Gi       212Mi       2.2Gi       2.0Mi       996Mi       2.9Gi
-Swap:            0B          0B          0B
-
-&lt;span class=&#34;c1&#34;&gt;# 创建swap文件，这里给了2G虚拟内存&lt;/span&gt;
-$ sudo dd &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/dev/zero &lt;span class=&#34;nv&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/swapfile &lt;span class=&#34;nv&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;bs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1M
-2048+0 records in
-2048+0 records out
-&lt;span class=&#34;m&#34;&gt;2147483648&lt;/span&gt; bytes &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;2.1 GB, 2.0 GiB&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; copied, 10.2516 s, &lt;span class=&#34;m&#34;&gt;209&lt;/span&gt; MB/s
-&lt;span class=&#34;c1&#34;&gt;# 查看swap文件，存在&lt;/span&gt;
-$ ls / &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep swapfile
-swapfile
-
-$ sudo chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; /swapfile
-
-&lt;span class=&#34;c1&#34;&gt;# 开启swap&lt;/span&gt;
-$ sudo mkswap /swapfile
-Setting up swapspace version 1, &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; GiB &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2147479552&lt;/span&gt; bytes&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-no label, &lt;span class=&#34;nv&#34;&gt;UUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;0bba6fce-e4a1-4cdf-8288-6770e4dd4266
-$ sudo swapon /swapfile
-$ free -m
-              total        used        free      shared  buff/cache   available
-Mem:           &lt;span class=&#34;m&#34;&gt;3419&lt;/span&gt;         &lt;span class=&#34;m&#34;&gt;234&lt;/span&gt;         &lt;span class=&#34;m&#34;&gt;105&lt;/span&gt;           &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;3079&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;2909&lt;/span&gt;
-Swap:          &lt;span class=&#34;m&#34;&gt;2047&lt;/span&gt;           &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;        &lt;span class=&#34;m&#34;&gt;2047&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo vim /etc/fstab
-&lt;span class=&#34;c1&#34;&gt;# 最后一行加入：&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# /swapfile none swap sw 0 0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;可以看到内存降了一些，服务器不会很卡了&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/TgqO5jHit6Ac2v9.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;浏览器打开：&lt;code&gt;https://gitlab.engine.wang&lt;/code&gt;，就可以访问到gitlab：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/lmbC9KkuJ5oqF6S.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;后续工作&#34;&gt;后续工作&lt;/h3&gt;
-&lt;p&gt;修改root账户的密码&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2022/11/28/wqsKuMnyTDzFxfR.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;改一下邮箱，默认是admin@example.com，无法发送通知
-&lt;img src=&#34;https://s2.loli.net/2022/11/28/WkAHCgIQqYwPzib.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;直接去容器里改数据库：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab bash
-&lt;span class=&#34;c1&#34;&gt;# root@gitlab:/#&lt;/span&gt;
-$ gitlab-psql -d gitlabhq_production
-psql &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;13.8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-Type &lt;span class=&#34;s2&#34;&gt;&amp;#34;help&amp;#34;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; help.
-&lt;span class=&#34;c1&#34;&gt;# gitlabhq_production=# &lt;/span&gt;
-$ update users &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt;,notification_email&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt;,commit_email&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine.wang@qq.com&amp;#39;&lt;/span&gt; where &lt;span class=&#34;nv&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-UPDATE &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;就可以了：
-&lt;img src=&#34;https://s2.loli.net/2022/11/28/arl2pEFfzM7vQme.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;mailto:git@gitlab.engine.wang&#34;&gt;git@gitlab.engine.wang&lt;/a&gt;:enginewang/JRYY.git&lt;/p&gt;
-&lt;h2 id=&#34;本地机器配置&#34;&gt;本地机器配置&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;fatal: could not read Username for &#39;https://gitlab.engine.wang&#39;: terminal prompts disabled&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git config --global url.&lt;span class=&#34;s2&#34;&gt;&amp;#34;git@gitlab.engine.wang/&amp;#34;&lt;/span&gt;.insteadof &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://gitlab.engine.wang/&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;配置gitlab-runner&#34;&gt;配置Gitlab runner&lt;/h2&gt;
-&lt;p&gt;官方文档：https://docs.gitlab.com/runner/install/&lt;/p&gt;
-&lt;p&gt;我们需要一个runner来执行相关的代码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;docker run -d --name gitlab-runner --restart always &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    -v /srv/gitlab-runner/config:/etc/gitlab-runner &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    -v /var/run/docker.sock:/var/run/docker.sock &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    gitlab/gitlab-runner
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it gitlab-runner gitlab-runner register --docker-privileged
-...
-&lt;span class=&#34;c1&#34;&gt;# Gitlab地址&lt;/span&gt;
-Enter the GitLab instance URL &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, https://gitlab.com/&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
-https://gitlab.engine.wang/
-&lt;span class=&#34;c1&#34;&gt;# Gitlab token，这里是Repo-&amp;gt;Setting-&amp;gt;Runner里的token&lt;/span&gt;
-Enter the registration token:
-sWc-exXVycJv7dzN36u9
-&lt;span class=&#34;c1&#34;&gt;# 描述信息，自定义即可&lt;/span&gt;
-Enter a description &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the runner:
-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;47e468388f03&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: default
-&lt;span class=&#34;c1&#34;&gt;# tag，自定义即可&lt;/span&gt;
-Enter tags &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; the runner &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;comma-separated&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
-default
-Registering runner... succeeded                     &lt;span class=&#34;nv&#34;&gt;runner&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;sWc-exXV
-&lt;span class=&#34;c1&#34;&gt;# Runner运行的平台方式，一般选Docker&lt;/span&gt;
-Enter an executor: docker-ssh+machine, kubernetes, custom, docker, ssh, virtualbox, docker-ssh, parallels, shell, docker+machine:
-docker
-&lt;span class=&#34;c1&#34;&gt;# 默认镜像（如果没指定的话就会用这个）&lt;/span&gt;
-Enter the default Docker image &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, ruby:2.6&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;:
-alpine:latest
-Runner registered successfully. Feel free to start it, but &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; it&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;s running already the config should be automatically reloaded!
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ docker restart gitlab-runner
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;刷新仓库的Runner页面&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012104978.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;就可以看到这个Runner了&lt;/p&gt;
-&lt;p&gt;顺便设置一下这个Runner，因为我们就一个runner，所以将 Run untagged jobs打上勾，这样后面写job的时候就不需要指定tags就能通过这个runner运行了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012225133.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;hello-world测试&#34;&gt;Hello World测试&lt;/h2&gt;
-&lt;p&gt;验证一下Runner是否正常运行CI/CD&lt;/p&gt;
-&lt;p&gt;在那个仓库下提交一个&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;文件，填写下面的内容并push到仓库中。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;alpine:latest&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;echo &amp;#34;Hello, GitLab Runner!&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;提交到gitlab，查看CI/CD job是否正常运行，如果正常就说明配置成功。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012131300.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-</description>
-                
-                
-                
-                
-                
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
-                                
-                            
-                        
-                    
-                        
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/ci/cd/">CI/CD</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/gitlab/">Gitlab</category>
-                                
-                            
-                                
-                                
-                                
-                                    <category domain="https://blog.engine.wang/tags/linux/">Linux</category>
                                 
                             
                         
