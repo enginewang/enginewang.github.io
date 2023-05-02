@@ -1,16 +1,12 @@
 ---
-title: "私有Gitlab和CI/CD搭建"
+title: "私有Gitlab部署和CI/CD搭建"
 date: 2023-04-10T13:37:20+08:00
 draft: false
 categories: ["技术"]
 tags: ["CI/CD", "Gitlab", "Linux"]
 ---
 
-我搭建好的gitlab地址为[https://gitlab.engine.wang](https://gitlab.engine.wang)，欢迎访问。
-
-体验账号：guest，密码：guest123456
-
-（服务器将于23年11月左右到期）
+我搭建好的gitlab地址为[https://gitlab.engine.wang](https://gitlab.engine.wang)，欢迎访问。可自行注册。
 
 ## 搭建gitlab服务器
 

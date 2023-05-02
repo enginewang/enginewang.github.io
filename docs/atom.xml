@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-05-02T10:40:34&#43;08:00</updated>
+    <updated>2023-05-02T10:43:10&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -483,21 +483,19 @@ $ sudo systemctl start nvidia_gpu_exporter
         </entry>
     
         <entry>
-            <title type="text">私有Gitlab和CI/CD搭建</title>
+            <title type="text">私有Gitlab部署和CI/CD搭建</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/gitlab-cicd-1/" />
             <id>https://blog.engine.wang/posts/gitlab-cicd-1/</id>
-            <updated>2023-05-02T10:39:20&#43;08:00</updated>
+            <updated>2023-05-02T10:43:06&#43;08:00</updated>
             <published>2023-04-10T13:37:20&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">我搭建好的gitlab地址为https://gitlab.engine.wang，欢迎访问。 体验账号：guest，密码：guest123456 （服务器将于23年……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">我搭建好的gitlab地址为https://gitlab.engine.wang，欢迎访问。可自行注册。 搭建gitlab服务器 Gitlab是一个类似于Githu……</summary>
             
-                <content type="html">&lt;p&gt;我搭建好的gitlab地址为&lt;a href=&#34;https://gitlab.engine.wang&#34;&gt;https://gitlab.engine.wang&lt;/a&gt;，欢迎访问。&lt;/p&gt;
-&lt;p&gt;体验账号：guest，密码：guest123456&lt;/p&gt;
-&lt;p&gt;（服务器将于23年11月左右到期）&lt;/p&gt;
+                <content type="html">&lt;p&gt;我搭建好的gitlab地址为&lt;a href=&#34;https://gitlab.engine.wang&#34;&gt;https://gitlab.engine.wang&lt;/a&gt;，欢迎访问。可自行注册。&lt;/p&gt;
 &lt;h2 id=&#34;搭建gitlab服务器&#34;&gt;搭建gitlab服务器&lt;/h2&gt;
 &lt;p&gt;Gitlab是一个类似于Github的代码托管软件，搭建一个私有的git服务器，类似于游戏中的私服，可以供内部使用，并且用国内服务器的话，网络也比较好。&lt;/p&gt;
 &lt;p&gt;买一台云服务器，配置不低于2核4G，否则跑不动Gitlab。&lt;/p&gt;
