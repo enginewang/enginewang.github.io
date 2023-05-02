@@ -2,7 +2,7 @@
 title: "凸优化（五）算法"
 date: 2022-01-11T01:09:12+08:00
 draft: false
-categories: ["技术"]
+categories: ["算法"]
 tags: ["凸优化", "数学"]
 ---
 

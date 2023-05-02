@@ -2,7 +2,7 @@
 title: "给博客网站上CDN"
 date: 2022-04-10T21:34:42+08:00
 draft: false
-categories: ["技术"]
+categories: ["实战"]
 tags: ["CDN", "github page", "网站"]
 ---
 

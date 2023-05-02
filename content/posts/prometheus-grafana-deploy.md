@@ -2,7 +2,7 @@
 title: "Prometheus + Grafana 监控系统搭建"
 date: 2023-04-30T23:23:02+08:00
 draft: false
-categories: ["技术"]
+categories: ["实战"]
 tags: ["Prometheus", "Grafana", "Linux", "Docker", "GPU"]
 ---
 

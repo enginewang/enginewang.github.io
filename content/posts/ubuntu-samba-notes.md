@@ -2,7 +2,7 @@
 title: "Ubuntu配置samba共享简易记录"
 date: 2021-07-23T14:47:14+08:00
 draft: false
-categories: ["技术"]
+categories: ["实战"]
 tags: ["nas", "Linux"]
 ---
 

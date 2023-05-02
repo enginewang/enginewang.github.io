@@ -2,7 +2,7 @@
 title: "浅谈深度学习模型的可解释性"
 date: 2021-11-01T23:41:33+08:00
 draft: false
-categories: ["技术"]
+categories: ["算法"]
 tags: ["深度学习", "计算机视觉", "可解释性"]
 ---
 

@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-05-02T10:43:10&#43;08:00</updated>
+    <updated>2023-05-02T10:50:50&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Prometheus &#43; Grafana 监控系统搭建</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/prometheus-grafana-deploy/" />
             <id>https://blog.engine.wang/posts/prometheus-grafana-deploy/</id>
-            <updated>2023-05-02T10:16:17&#43;08:00</updated>
+            <updated>2023-05-02T10:49:42&#43;08:00</updated>
             <published>2023-04-30T23:23:02&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -440,7 +440,7 @@ $ sudo systemctl start nvidia_gpu_exporter
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -486,7 +486,7 @@ $ sudo systemctl start nvidia_gpu_exporter
             <title type="text">私有Gitlab部署和CI/CD搭建</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/gitlab-cicd-1/" />
             <id>https://blog.engine.wang/posts/gitlab-cicd-1/</id>
-            <updated>2023-05-02T10:43:06&#43;08:00</updated>
+            <updated>2023-05-02T10:49:20&#43;08:00</updated>
             <published>2023-04-10T13:37:20&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -913,7 +913,7 @@ Runner registered successfully. Feel free to start it, but &lt;span class=&#34;k
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -947,7 +947,7 @@ Runner registered successfully. Feel free to start it, but &lt;span class=&#34;k
             <title type="text">Cloudreve&#43;aria2&#43;群晖&#43;frp&#43;nginx&#43;https搭建私有云</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/" />
             <id>https://blog.engine.wang/posts/nas-cloudreve-aria2-frp-https-tutorial/</id>
-            <updated>2023-05-02T10:40:26&#43;08:00</updated>
+            <updated>2023-05-02T10:49:33&#43;08:00</updated>
             <published>2023-02-12T16:21:02&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -1377,7 +1377,7 @@ $ vim /root/.aria2c/aria2.conf
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -7114,7 +7114,7 @@ Events:
             <title type="text">云原生概念</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/cloudnative-1/" />
             <id>https://blog.engine.wang/posts/cloudnative-1/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:48&#43;08:00</updated>
             <published>2022-08-21T13:22:25&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -8045,7 +8045,7 @@ kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Runn
             <title type="text">frp内网穿透原理及配置记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/frp-notes/" />
             <id>https://blog.engine.wang/posts/frp-notes/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:49:09&#43;08:00</updated>
             <published>2022-07-17T13:43:38&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -8799,7 +8799,7 @@ systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; cloudreve
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -9965,7 +9965,7 @@ cpuacct.usage          cpuacct.usage_sys          cpu.rt_runtime_us   onion     
             <title type="text">给博客网站上CDN</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/githubpage-cdn/" />
             <id>https://blog.engine.wang/posts/githubpage-cdn/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:49:14&#43;08:00</updated>
             <published>2022-04-10T21:34:42&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -10052,7 +10052,7 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -12674,7 +12674,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-5/" />
             <id>https://blog.engine.wang/posts/convex-5/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:18&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -13064,7 +13064,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -13092,7 +13092,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（四）对偶</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-4/" />
             <id>https://blog.engine.wang/posts/convex-4/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:20&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -13461,7 +13461,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -13489,7 +13489,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
             <title type="text">凸优化（三）凸优化问题</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-3/" />
             <id>https://blog.engine.wang/posts/convex-3/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:22&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -13769,7 +13769,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -13797,7 +13797,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-2/" />
             <id>https://blog.engine.wang/posts/convex-2/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:24&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -14184,7 +14184,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -14212,7 +14212,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（一）绪论与凸集</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-1/" />
             <id>https://blog.engine.wang/posts/convex-1/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:26&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -14540,7 +14540,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -14620,7 +14620,7 @@ $\sum_{i=k+1}^{n} p_{i} \geq 0.25$
             <title type="text">分布式系统（二）：共识算法</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/distribution-system-2/" />
             <id>https://blog.engine.wang/posts/distribution-system-2/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:26&#43;08:00</updated>
             <published>2021-12-19T23:18:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -14909,7 +14909,7 @@ Failover：只要有半数的节点存活就可以正常运行。&lt;/p&gt;
             <title type="text">分布式系统（一）：CAP及基础理论</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/distribution-system-1/" />
             <id>https://blog.engine.wang/posts/distribution-system-1/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:27&#43;08:00</updated>
             <published>2021-11-19T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15126,7 +15126,7 @@ R + R &amp;gt; N：&lt;/p&gt;
             <title type="text">浅谈深度学习模型的可解释性</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/talk-about-model-interpreter/" />
             <id>https://blog.engine.wang/posts/talk-about-model-interpreter/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:43&#43;08:00</updated>
             <published>2021-11-01T23:41:33&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15254,7 +15254,7 @@ $$&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -15288,7 +15288,7 @@ $$&lt;/p&gt;
             <title type="text">Google三驾马车（三）—— Bigtable</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/bigtable/" />
             <id>https://blog.engine.wang/posts/bigtable/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:52&#43;08:00</updated>
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15851,7 +15851,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
             <title type="text">Docker基础</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/docker-basics/" />
             <id>https://blog.engine.wang/posts/docker-basics/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:21&#43;08:00</updated>
             <published>2021-08-19T17:27:34&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -16284,7 +16284,7 @@ docker search &amp;lt;image&amp;gt; -f is-official&lt;span class=&#34;o&#34;&gt;
             <title type="text">Ubuntu配置samba共享简易记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/ubuntu-samba-notes/" />
             <id>https://blog.engine.wang/posts/ubuntu-samba-notes/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:39&#43;08:00</updated>
             <published>2021-07-23T14:47:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -16529,7 +16529,7 @@ wlp4s0: &lt;span class=&#34;nv&#34;&gt;flags&lt;/span&gt;&lt;span class=&#34;o&#
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -18212,7 +18212,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
             <title type="text">生存分析基础</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/survival-analysis-basic/" />
             <id>https://blog.engine.wang/posts/survival-analysis-basic/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:50:02&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -18377,7 +18377,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -18405,7 +18405,7 @@ $$\frac{\partial l(\beta)}{\partial \beta}=\sum_{i=1}^{N}\left[\beta-\frac{\sum_
             <title type="text">计算机系统结构</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/computer-system-structure-1/" />
             <id>https://blog.engine.wang/posts/computer-system-structure-1/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:43&#43;08:00</updated>
             <published>2020-06-04T15:05:09&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -21050,7 +21050,7 @@ P V操作修改为&lt;/p&gt;
             <title type="text">Django2&#43;nginx&#43;uwsgi&#43;Ubuntu部署记录</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/" />
             <id>https://blog.engine.wang/posts/django2&#43;nginx&#43;uwsgi&#43;ubuntu%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-02T10:48:56&#43;08:00</updated>
             <published>2019-12-22T00:57:19&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -21394,7 +21394,7 @@ systemctl reload nginx.service
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     

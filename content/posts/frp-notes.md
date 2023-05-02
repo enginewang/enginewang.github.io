@@ -2,7 +2,7 @@
 title: "frp内网穿透原理及配置记录"
 date: 2022-07-17T13:43:38+08:00
 draft: false
-categories: ["技术"]
+categories: ["实战"]
 tags: ["内网穿透", "frp", "Linux"]
 ---
 
