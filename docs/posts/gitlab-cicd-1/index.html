@@ -57,13 +57,13 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2022-12-16T13:37:20+08:00",
-        "dateModified": "2023-05-02T10:17:26+08:00",
+        "dateModified": "2023-05-02T10:21:42+08:00",
         "url": "https://blog.engine.wang/posts/gitlab-cicd-1/",
         "headline": "Gitlab CI/CD搭建与部署实战",
         "description": "我搭建好的gitlab地址为https://gitlab.engine.wang，欢迎访问。 体验账号：guest，密码：guest123456 （服务器将于23年……",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
-        "wordCount":  1925 ,
+        "wordCount":  1901 ,
         "image": ["https://s2.loli.net/2022/11/26/iEdQB9PKqsU7gYh.png","https://s2.loli.net/2022/11/26/rq42VEoAHzPDiu8.png","https://s2.loli.net/2022/11/28/TgqO5jHit6Ac2v9.png","https://s2.loli.net/2022/11/28/lmbC9KkuJ5oqF6S.png","https://s2.loli.net/2022/11/28/wqsKuMnyTDzFxfR.png","https://s2.loli.net/2022/11/28/WkAHCgIQqYwPzib.png","https://s2.loli.net/2022/11/28/arl2pEFfzM7vQme.png","https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012104978.png","https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012225133.png","https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012131300.png"],
         "author": {
             "@type": "Person",
@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://s2.loli.net/2022/11/26/iEdQB9PKqsU7gYh.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2022-12-16T13:37:20&#43;08:00" />
-    <meta property="article:modified_time" content="2023-05-02T10:17:26&#43;08:00" />
+    <meta property="article:modified_time" content="2023-05-02T10:21:42&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -247,7 +247,7 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1925</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;1901</span>
     
     
         
@@ -375,14 +375,12 @@ $ sudo mkdir data logs config
 </span><span class="lnt">48
 </span><span class="lnt">49
 </span><span class="lnt">50
-</span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.6&#39;</span><span class="w">
 </span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">web</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gitlab/gitlab-ce:latest&#39;</span><span class="w">
-</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
 </span><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;gitlab.engine.wang&#39;</span><span class="w">
 </span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;gitlab&#34;</span><span class="w">
 </span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
@@ -391,13 +389,13 @@ $ sudo mkdir data logs config
 </span><span class="sd">        external_url &#39;https://gitlab.engine.wang&#39;
 </span><span class="sd">        gitlab_rails[&#39;time_zone&#39;] = &#39;Asia/Shanghai&#39;
 </span><span class="sd">        gitlab_rails[&#39;backup_keep_time&#39;] = 259200
-</span><span class="sd">        gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] = 20022
+</span><span class="sd">        gitlab_rails[&#39;gitlab_shell_ssh_port&#39;] = 22
 </span><span class="sd">        gitlab_rails[&#39;smtp_pool&#39;] = true
 </span><span class="sd">        gitlab_rails[&#39;smtp_enable&#39;] = true
 </span><span class="sd">        gitlab_rails[&#39;smtp_address&#39;] = &#34;smtp.qq.com&#34;
 </span><span class="sd">        gitlab_rails[&#39;smtp_port&#39;] = 465
 </span><span class="sd">        gitlab_rails[&#39;smtp_user_name&#39;] = &#34;engine.wang@qq.com&#34;
-</span><span class="sd">        gitlab_rails[&#39;smtp_password&#39;] = &#34;&lt;SMTP密码&gt;&#34;
+</span><span class="sd">        gitlab_rails[&#39;smtp_password&#39;] = &#34;xxx&#34;
 </span><span class="sd">        gitlab_rails[&#39;smtp_domain&#39;] = &#34;smtp.qq.com&#34;
 </span><span class="sd">        gitlab_rails[&#39;smtp_authentication&#39;] = &#34;login&#34;
 </span><span class="sd">        gitlab_rails[&#39;smtp_enable_starttls_auto&#39;] = true
@@ -422,7 +420,7 @@ $ sudo mkdir data logs config
 </span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
 </span><span class="w">      </span>- <span class="s1">&#39;80:80&#39;</span><span class="w">
 </span><span class="w">      </span>- <span class="s1">&#39;443:443&#39;</span><span class="w">
-</span><span class="w">      </span>- <span class="s1">&#39;20022:22&#39;</span><span class="w">
+</span><span class="w">      </span>- <span class="s1">&#39;22:22&#39;</span><span class="w">
 </span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
 </span><span class="w">      </span>- <span class="s1">&#39;$GITLAB_HOME/config:/etc/gitlab&#39;</span><span class="w">
 </span><span class="w">      </span>- <span class="s1">&#39;$GITLAB_HOME/logs:/var/log/gitlab&#39;</span><span class="w">

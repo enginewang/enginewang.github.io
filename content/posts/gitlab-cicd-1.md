@@ -70,7 +70,6 @@ version: '3.6'
 services:
   web:
     image: 'gitlab/gitlab-ce:latest'
-    restart: always
     hostname: 'gitlab.engine.wang'
     container_name: "gitlab"
     environment:
@@ -79,13 +78,13 @@ services:
         external_url 'https://gitlab.engine.wang'
         gitlab_rails['time_zone'] = 'Asia/Shanghai'
         gitlab_rails['backup_keep_time'] = 259200
-        gitlab_rails['gitlab_shell_ssh_port'] = 20022
+        gitlab_rails['gitlab_shell_ssh_port'] = 22
         gitlab_rails['smtp_pool'] = true
         gitlab_rails['smtp_enable'] = true
         gitlab_rails['smtp_address'] = "smtp.qq.com"
         gitlab_rails['smtp_port'] = 465
         gitlab_rails['smtp_user_name'] = "engine.wang@qq.com"
-        gitlab_rails['smtp_password'] = "<SMTP密码>"
+        gitlab_rails['smtp_password'] = "xxx"
         gitlab_rails['smtp_domain'] = "smtp.qq.com"
         gitlab_rails['smtp_authentication'] = "login"
         gitlab_rails['smtp_enable_starttls_auto'] = true
@@ -110,7 +109,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
-      - '20022:22'
+      - '22:22'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'
