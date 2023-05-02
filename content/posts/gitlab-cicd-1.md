@@ -228,11 +228,67 @@ git config --global url."git@gitlab.engine.wang/".insteadof "https://gitlab.engi
 
 我们需要一个runner来执行相关的代码
 
-参考：
-https://blog.csdn.net/ken1583096683/article/details/83117481
+```bash
+docker run -d --name gitlab-runner --restart always \
+    -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    gitlab/gitlab-runner
+```
 
-## 实战 Gitlab CI/CD
+```bash
+$ docker exec -it gitlab-runner gitlab-runner register --docker-privileged
+...
+# Gitlab地址
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+https://gitlab.engine.wang/
+# Gitlab token，这里是Repo->Setting->Runner里的token
+Enter the registration token:
+sWc-exXVycJv7dzN36u9
+# 描述信息，自定义即可
+Enter a description for the runner:
+[47e468388f03]: default
+# tag，自定义即可
+Enter tags for the runner (comma-separated):
+default
+Registering runner... succeeded                     runner=sWc-exXV
+# Runner运行的平台方式，一般选Docker
+Enter an executor: docker-ssh+machine, kubernetes, custom, docker, ssh, virtualbox, docker-ssh, parallels, shell, docker+machine:
+docker
+# 默认镜像（如果没指定的话就会用这个）
+Enter the default Docker image (for example, ruby:2.6):
+alpine:latest
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+```
 
-![](https://s2.loli.net/2022/11/28/zgu9wiSUTXscODk.png)
+```bash
+$ docker restart gitlab-runner
+```
 
-未完待续
+刷新仓库的Runner页面
+
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012104978.png)
+
+就可以看到这个Runner了
+
+顺便设置一下这个Runner，因为我们就一个runner，所以将 Run untagged jobs打上勾，这样后面写job的时候就不需要指定tags就能通过这个runner运行了。
+
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012225133.png)
+
+
+## Hello World测试
+
+验证一下Runner是否正常运行CI/CD
+
+在那个仓库下提交一个`.gitlab-ci.yml`文件，填写下面的内容并push到仓库中。
+
+```yaml
+image: alpine:latest
+
+test:
+  script:
+    - echo "Hello, GitLab Runner!"
+```
+
+提交到gitlab，查看CI/CD job是否正常运行，如果正常就说明配置成功。
+
+![](https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202305012131300.png)
