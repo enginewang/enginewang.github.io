@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-05-02T10:50:50&#43;08:00</updated>
+    <updated>2023-05-05T11:17:45&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -10258,25 +10258,100 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
             <title type="text">MySQL进阶（四）索引</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/mysql-advanced-4-index/" />
             <id>https://blog.engine.wang/posts/mysql-advanced-4-index/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-05T11:14:54&#43;08:00</updated>
             <published>2022-03-17T14:21:14&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">索引的概念与意义 索引是数据库中最重要的概念之一，它是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。 索引可大大提高SELECT和WHERE的查询速度，……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">索引的概念与意义 索引是数据库中最重要的概念之一，它是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。索引能实现快速定位数据的一种存储结构，其设计思想是……</summary>
             
                 <content type="html">&lt;h2 id=&#34;索引的概念与意义&#34;&gt;索引的概念与意义&lt;/h2&gt;
-&lt;p&gt;索引是数据库中最重要的概念之一，它是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。&lt;/p&gt;
+&lt;p&gt;索引是数据库中最重要的概念之一，它是一种特殊的查询表，可以被数据库搜索引擎用来加速数据的检索。索引能实现快速定位数据的一种存储结构，其设计思想是以空间换时间。&lt;/p&gt;
 &lt;p&gt;索引可大大提高SELECT和WHERE的查询速度，不过会降低UPDATE和INSERT的速度。&lt;/p&gt;
 &lt;p&gt;可以理解为查阅某本书的章节名，目录就是一个索引，可以通过目录快速找到有没有自己想要的内容，而不必翻遍这本书。&lt;/p&gt;
+&lt;h3 id=&#34;索引的优缺点&#34;&gt;索引的优缺点&lt;/h3&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;索引能够提高数据检索的效率，降低数据库的IO成本。&lt;/li&gt;
+&lt;li&gt;通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性，创建唯一索引&lt;/li&gt;
+&lt;li&gt;在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间&lt;/li&gt;
+&lt;li&gt;加速两个表之间的连接，一般是在外键上创建索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要占用物理空间,建立的索引越多需要的空间越大&lt;/li&gt;
+&lt;li&gt;创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加&lt;/li&gt;
+&lt;li&gt;会降低表的增删改的效率，因为每次增删改索引需要进行动态维护，导致时间变长&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;何时使用索引&#34;&gt;何时使用索引&lt;/h3&gt;
+&lt;p&gt;什么时候不用索引：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查询频度比较少的字段不要创建索引，因为索引主要就是为了查询加速&lt;/li&gt;
+&lt;li&gt;对于字段中存在大量重复数据的不要创建索引，比如性别，因为 MySQL 还有一个查询优化器，查询优化器发现某个值出现在表的数据行中的百分比很高的时候，它一般会忽略索引，进行全表扫描。&lt;/li&gt;
+&lt;li&gt;表数据本身就很少，全局扫描成本很低&lt;/li&gt;
+&lt;li&gt;经常更新的字段，因为有增删改的B+树的成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;什么时候用索引：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;字段有唯一性限制&lt;/li&gt;
+&lt;li&gt;经常用where查询的字段&lt;/li&gt;
+&lt;li&gt;进程用GROUP BY、ORDER BY的字段，不需要排序了，索引排好了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;索引的分类&#34;&gt;索引的分类&lt;/h2&gt;
+&lt;p&gt;按照物理结构：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;B+树索引&lt;/li&gt;
+&lt;li&gt;Hash索引&lt;/li&gt;
+&lt;li&gt;Full-text索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;按照物理存储分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;聚簇索引（主键索引）&lt;/li&gt;
+&lt;li&gt;二级索引（辅助索引）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按照字段特性分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主键索引&lt;/li&gt;
+&lt;li&gt;唯一索引&lt;/li&gt;
+&lt;li&gt;普通索引&lt;/li&gt;
+&lt;li&gt;前缀索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按照字段个数分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单列索引&lt;/li&gt;
+&lt;li&gt;联合索引&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mysql索引的使用&#34;&gt;MySQL索引的使用&lt;/h2&gt;
 &lt;p&gt;通过&lt;code&gt;CREATE INDEX&lt;/code&gt;创建索引：&lt;/p&gt;
+&lt;p&gt;创建表t1的c1字段的单字段索引，索引名是index_c1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index_c1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;对于主键，MySQL会自动创建索引。&lt;/p&gt;
+&lt;p&gt;创建组合索引&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;index_c2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;怎么看实际使用了什么索引&#34;&gt;怎么看实际使用了什么索引？&lt;/h3&gt;
+&lt;p&gt;通过explain命令的type字段，可以看到是否使用了索引&lt;/p&gt;
+&lt;p&gt;ALL全表扫描 &amp;lt; index全索引扫描 &amp;lt; range ~ index_merge 范围扫描 &amp;lt; ref &amp;lt; eq_ref &amp;lt; const &amp;lt; system&lt;/p&gt;
 &lt;h2 id=&#34;索引的多种实现方式&#34;&gt;索引的多种实现方式&lt;/h2&gt;
-&lt;p&gt;索引有很多种实现方式，其中叫为简单的有哈希表、有序数组、搜索树。&lt;/p&gt;
 &lt;h3 id=&#34;哈希表&#34;&gt;哈希表&lt;/h3&gt;
 &lt;p&gt;哈希表的概念不做介绍，理论上它可以在$O(1)$时间内找到这个key对应的元素，然而多个key在hash之后出现同一个值的话，也就是哈希冲突，会挂在后面退化成链表，这个倒是有解决方法。&lt;/p&gt;
-&lt;p&gt;但是哈希表不能自持快速的范围查询，比如查询[a,b]之间的数据，哈希表就只能$O(n)$&lt;/p&gt;
+&lt;p&gt;但是哈希表一方面不支持排序，也不能自持快速的范围查询，比如查询[a,b]之间的数据，哈希表就只能$O(n)$&lt;/p&gt;
 &lt;p&gt;哈希表做等值kv查询的效率不错，比如NoSQL、Memcached的一些，但是范围查询表现不佳。&lt;/p&gt;
 &lt;h3 id=&#34;有序数组&#34;&gt;有序数组&lt;/h3&gt;
 &lt;p&gt;有序数组字在等值和范围查询的效率都很高，但是缺点也非常明显，插入和删除的复杂度很高。&lt;/p&gt;
@@ -10288,11 +10363,57 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;h3 id=&#34;跳表&#34;&gt;跳表&lt;/h3&gt;
 &lt;p&gt;Redis用的就是跳表，跳表的原理见&lt;code&gt;跳表.md&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id=&#34;b树&#34;&gt;B+树&lt;/h3&gt;
-&lt;p&gt;MySQL的InnoDB采用的就是B+树，其基本原理之后再补充。&lt;/p&gt;
-&lt;h2 id=&#34;innodb索引结构&#34;&gt;InnoDB索引结构&lt;/h2&gt;
-&lt;p&gt;聚簇索引：存的是主键，叶子节点的内容是整行数据
-二次索引：存的是非主键，叶子节点的内容是主键&lt;/p&gt;
-&lt;p&gt;每个索引都会新建一个B+树来存储。&lt;/p&gt;
+&lt;p&gt;MySQL的InnoDB采用的就是B+树。其查找的复杂度是$O(log2(N))$，效率很高&lt;/p&gt;
+&lt;p&gt;B+树是一种多叉树，只在叶子节点保存数据，非叶子节点存放索引，并且是按照主键的顺序存放。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/btree.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;B+树查找数据的过程：
+查找数据时，B+树会从根节点开始，按照从左到右的顺序比较查询条件和节点中的键值。如果查询条件小于节点中的键值，则跳到该节点的左子节点继续查找；如果查询条件大于节点中的键值，则跳到该节点的右子节点继续查找；如果查询条件等于节点中的键值，则继续查找该节点的下一个节点。&lt;/p&gt;
+&lt;p&gt;B+Tree 存储千万级的数据只需要 3-4 层高度就可以满足，这意味着从千万级的表查询目标数据最多需要 3-4 次磁盘 I/O，所以B+Tree 相比于 B 树和二叉树来说，最大的优势在于查询效率很高，因为即使在数据量很大的情况，查询一个数据的磁盘 I/O 依然维持在 3-4次。&lt;/p&gt;
+&lt;h3 id=&#34;为什么innodb选择了b树&#34;&gt;为什么InnoDB选择了B+树？&lt;/h3&gt;
+&lt;p&gt;相比于B树，B树的非叶子结点也存数据，B+树在相同 的深度下能存储更多的数据。并且B+树叶子节点采用双链表连接，适合基于范围的查找，B树没有。&lt;/p&gt;
+&lt;p&gt;相比于二叉树，数据量较大时，二叉树的深度很大，效率很低，IO次数太高。&lt;/p&gt;
+&lt;p&gt;想比于哈希，哈希不支持运算和范围查找，只适合等值查询。&lt;/p&gt;
+&lt;h2 id=&#34;innodb的索引&#34;&gt;InnoDB的索引&lt;/h2&gt;
+&lt;h3 id=&#34;innodb的数据页&#34;&gt;InnoDB的数据页&lt;/h3&gt;
+&lt;p&gt;InnoDB按照数据页来存储数据，读取记录的时候，以页为单位整体读入内存。InnoDB中，数据页的大小默认是16kb。数据库一次最少从磁盘中读取 16K 的内容到内存中，一次最少把内存中的 16K 内容刷新到磁盘中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/243b1466779a9e107ae3ef0155604a17.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/fabd6dadd61a0aa342d7107213955a72.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;File Header中包含两个指针，分别指向前一个和后一个数据页。从而使得在逻辑上是连续的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/557d17e05ce90f18591c2305871af665.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;数据页的记录会按照主键顺序组成单向链表。但是这样查询效率很低，所以就用到页目录来起到索引作用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/261011d237bec993821aa198b97ae8ce.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;页中的行记录会划分为多个组，页目录用来存储每组最后一条记录的偏移量。这些槽会按照顺序存储起来，相当于指向了不同组的最后一个记录。&lt;/p&gt;
+&lt;p&gt;通过槽查找记录，因为有序，可以通过二分法进行查找。定位到槽之后再遍历槽的记录。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;InnoDB的分组规定
+第一个分组只有1条记录，也就是这个数据页的第一条最小记录
+最后一个分组的条在1-8条之间
+中间分组的条目在4-8条之间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;从数据页到b数索引&#34;&gt;从数据页到B+数索引&lt;/h3&gt;
+&lt;p&gt;实际上会有多个数据页，如何建立索引来定位记录所在的页。InnoDB利用B+树来存储，每个结点都是一个数据页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/7c635d682bd3cdc421bb9eea33a5a413.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其中叶子节点才存放数据，而非叶子结点只存放目录项作为索引。&lt;/p&gt;
+&lt;h2 id=&#34;聚簇索引和非聚簇索引&#34;&gt;聚簇索引和非聚簇索引&lt;/h2&gt;
+&lt;h3 id=&#34;聚簇索引&#34;&gt;聚簇索引&lt;/h3&gt;
+&lt;p&gt;存的是主键，叶子节点的内容是整行数据&lt;/p&gt;
+&lt;p&gt;通过聚簇索引只需要查询一次，因为可以获取表的完整数据。&lt;/p&gt;
+&lt;h3 id=&#34;非聚簇索引二级索引辅助索引&#34;&gt;非聚簇索引（二级索引/辅助索引）&lt;/h3&gt;
+&lt;p&gt;存的是非主键，叶子节点的内容是主键，需要第一次查询索引树，获取数据页的地址，然后通过地址查询数据。（除非是覆盖索引）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95btree.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;(橙色的是非主键索引的key，绿色的是主键值)&lt;/p&gt;
+&lt;p&gt;为什么不也存完整数据呢？因为数据是会增删改变动的，如果非聚簇索引也保存完整数据，那么成本非常高。&lt;/p&gt;
+&lt;p&gt;一个表中聚簇索引只能有一个，因为只能有一个主键，但是非聚簇索引可以有很多个。&lt;/p&gt;
+&lt;h3 id=&#34;innodb如何选择聚簇索引的索引键&#34;&gt;InnoDB如何选择聚簇索引的索引键&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建的主键索引和二级索引默认使用的是 B+Tree 索引。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如果有主键，就默认使用主键作为聚簇索引的索引键&lt;/li&gt;
+&lt;li&gt;如果没有主键，就选择第一个不包含NULL的唯一值&lt;/li&gt;
+&lt;li&gt;如果上面两个都没有，InnoDB会使用一个隐藏的、自动生成的自增id列作为索引项。因此，在InnoDB中，即使表没有明确的主键索引，也会创建一个B+树索引。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;查询时聚簇索引和非聚簇索引如何工作&#34;&gt;查询时聚簇索引和非聚簇索引如何工作&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;如果查询语句是关于主键的查询&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -10334,6 +10455,7 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;/div&gt;&lt;p&gt;首先会在字段c1的索引表上找c1=1的记录，取得主键ID，然后回聚簇索引里取对应的行，接下来找c1索引的下一个值，取得主键ID...一直找到c1索引的c1值大于3，循环结束。&lt;/p&gt;
 &lt;p&gt;这种范围查询的情况会产生很多次回表。&lt;/p&gt;
 &lt;p&gt;这也说明了，我们应该尽量用主键进行查询。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://s2.loli.net/2023/03/02/JMvPT6CHBSRh3wn.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;联合索引&#34;&gt;联合索引&lt;/h2&gt;
 &lt;p&gt;联合多个键进行索引，好处有：&lt;/p&gt;
 &lt;ol&gt;
@@ -10341,46 +10463,46 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;li&gt;如果是覆盖，也就是只通过一些索引的列选取索引的其他列，可以不用回表，提高性能&lt;/li&gt;
 &lt;li&gt;如果是where...and查询，只有单条索引就需要筛选很多元素然后回表，但是联合索引可以让筛选出的量大大减少。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;一些补充&#34;&gt;一些补充&lt;/h2&gt;
-&lt;h3 id=&#34;覆盖索引&#34;&gt;覆盖索引&lt;/h3&gt;
-&lt;p&gt;覆盖索引（Covering Index）就是可以从非主键索引中就能查到的记录，而不需要回表。从而提升性能。&lt;/p&gt;
-&lt;p&gt;比如我们有一个需求就是通过查询c1获得c2的内容，如果正常的建立c1和主键ID的索引，那么每次查询一行都要回表。&lt;/p&gt;
-&lt;p&gt;而可以建立联合索引：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;ALTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;I_c1_c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;之后再通过c1查询c2的话：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;在联合索引上找到c1，就可以直接返回c2&lt;/p&gt;
-&lt;h3 id=&#34;关于自增主键&#34;&gt;关于自增主键&lt;/h3&gt;
-&lt;p&gt;表中可以定义自增主键：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;NOT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;NULL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIMARY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;KEY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AUTO_INCREMENT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;插入记录不需要指定ID，数据库会自动获取ID最大值+1作为其主键然后插入。&lt;/p&gt;
-&lt;p&gt;很多业务都可以用自增主键，节约空间从而提高效率。&lt;/p&gt;
-&lt;p&gt;除了kv场景，一般用业务字段做主键。&lt;/p&gt;
-&lt;h3 id=&#34;前缀索引&#34;&gt;前缀索引&lt;/h3&gt;
-&lt;p&gt;可以通过&lt;code&gt;col(n)&lt;/code&gt;的语法来为该列的前n个字符创建索引，这样创建的索引文件会小很多。对&lt;code&gt;BLOB&lt;/code&gt;和&lt;code&gt;TEXT&lt;/code&gt;创建索引也必须采用这种方式。&lt;/p&gt;
+&lt;h3 id=&#34;联合索引的原理&#34;&gt;联合索引的原理&lt;/h3&gt;
+&lt;p&gt;比如建立(a,b,c)的联合索引，能查到的数据包含a,b,c。&lt;/p&gt;
+&lt;p&gt;其中的顺序就是先对a排序，然后对b排序，然后对c排序。&lt;strong&gt;b 和 c 是全局无序，局部相对有序的，在没有遵循最左匹配原则的情况下，                                                     无法利用到索引的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;举个例子，这些数字会按照下面的顺序存储到B+树中，先满足a有序，a相等再看b，b相等再看c&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;a&lt;/th&gt;
+&lt;th&gt;b&lt;/th&gt;
+&lt;th&gt;c&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;最左前缀原则&#34;&gt;最左前缀原则&lt;/h3&gt;
 &lt;p&gt;建立&lt;strong&gt;联合索引&lt;/strong&gt;的时候，索引内的字段顺序，可以通过调整顺序来少维护索引，但是必须保持最左前缀原则。&lt;/p&gt;
 &lt;p&gt;比如该表：&lt;/p&gt;
@@ -10406,8 +10528,64 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;为&lt;code&gt;last_name&lt;/code&gt;和&lt;code&gt;first_name&lt;/code&gt;创建了一个联合索引&lt;code&gt;name&lt;/code&gt;，这个索引支持&lt;code&gt;last_name&lt;/code&gt;和&lt;code&gt;first_name&lt;/code&gt;的联合查询，也支持只有&lt;code&gt;last_name&lt;/code&gt;的查询，但是不支持只有&lt;code&gt;first_name&lt;/code&gt;的查询&lt;/p&gt;
 &lt;p&gt;联合索引的任何一个索引的最左前缀都会被优化器用于查找列。比如，一个包含三列的联合索引 (col1, col2, col3)，索引会生效于 (col1), (col1, col2), and (col1, col2, col3)，但是其他情况的组合则不会生效。&lt;/p&gt;
-&lt;h3 id=&#34;索引下推&#34;&gt;索引下推&lt;/h3&gt;
-&lt;p&gt;MySQL5.6之后引入索引下推，在遍历的过程中可以直接过滤掉不满足条件的记录，从而减少回表次数。&lt;/p&gt;
+&lt;p&gt;另外，由于是按照从左往右的顺序建立的索引，遇到范围值就会停止，比如建立了(a,b,c)联合索引，查询语句为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;会用到(a,b)索引，不会用到c，因为b是范围值。联合索引遇到范围值，那么之后的查询条件就不能再用到联合索引。&lt;/p&gt;
+&lt;h3 id=&#34;建立联合索引的顺序&#34;&gt;建立联合索引的顺序&lt;/h3&gt;
+&lt;p&gt;应该把区分度更大的字段排在前面，这样更容易检索，比如某个id就适合放在前面，性别就适合放在后面。&lt;/p&gt;
+&lt;h3 id=&#34;建立联合索引的好处&#34;&gt;建立联合索引的好处&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;建立一个联合索引的成本略微高于单个字段索引，但是相当于建立了多个索引，比如(a,b,c)相当于建立了(a)，(a,b)，(a,b,c)三个索引&lt;/li&gt;
+&lt;li&gt;更容易覆盖索引，查询的字段如果在联合索引中，如果索引没失效，就可以直接返回不需要回表
+...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;覆盖索引&#34;&gt;覆盖索引&lt;/h2&gt;
+&lt;p&gt;覆盖索引（Covering Index）就是可以从非主键索引中就能查到的记录，而不需要回表，从而提升性能。&lt;/p&gt;
+&lt;p&gt;比如我们有一个需求就是通过查询c1获得c2的内容，如果正常的建立c1和主键ID的索引，那么每次查询一行都要回表。&lt;/p&gt;
+&lt;p&gt;而可以建立联合索引：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;ALTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ADD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INDEX&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;I_c1_c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;之后再通过c1查询c2的话：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在联合索引上找到c1，就可以直接返回c2。&lt;/p&gt;
+&lt;p&gt;覆盖索引能够显著提高查询效率，因此在建立索引时应尽量考虑包含查询语句中所需的所有列。&lt;/p&gt;
+&lt;h2 id=&#34;唯一索引&#34;&gt;唯一索引&lt;/h2&gt;
+&lt;p&gt;唯一索引的值必须唯一，但是允许有空值，唯一索引的最大作用就是确保写入数据库的该列的值是唯一的&lt;/p&gt;
+&lt;p&gt;有些时候需要绝对的唯一，但是这个字段又不想使用主键索引，比如身份证号，因为比较长，作为主键的效率很低，就可以加唯一索引，并且允许空值，如果是主键索引是不行的。&lt;/p&gt;
+&lt;h3 id=&#34;唯一索引vs普通索引&#34;&gt;唯一索引vs普通索引&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;普通索引查找到第一条记录就会继续查找下一条。而唯一索引查找到第一个满足的记录就会停止搜索。普通索引多了一个查找和判断下一条的操作。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;插入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;唯一索引多了判断是否有冲突的逻辑，成本会比较高&lt;/p&gt;
+&lt;p&gt;实际场景中，如果有对某个字段需要保证唯一性的业务需求，则使用唯一索引，否则还是使用普通索引。&lt;/p&gt;
+&lt;h2 id=&#34;前缀索引&#34;&gt;前缀索引&lt;/h2&gt;
+&lt;p&gt;可以通过&lt;code&gt;col(n)&lt;/code&gt;的语法来为该列的前n个字符创建索引，这样创建的索引文件会小很多。对&lt;code&gt;BLOB&lt;/code&gt;和&lt;code&gt;TEXT&lt;/code&gt;创建索引也必须采用这种方式。&lt;/p&gt;
 &lt;h3 id=&#34;字符串字段的前缀索引&#34;&gt;字符串字段的前缀索引&lt;/h3&gt;
 &lt;p&gt;正常情况来说，给字符串字段加索引，会给整个字符串建立索引，但有有些时候字符串很长，比较浪费空间，我们没必要全部存，存一部分即可。&lt;/p&gt;
 &lt;p&gt;比如有&lt;/p&gt;
@@ -10447,6 +10625,104 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;/div&gt;&lt;p&gt;除了前缀索引之外，如果一些字符串是后面的不一样前面的一样，比如一个地区的身份证，那么可以考虑倒序存储，每次存的时候倒过来存，查的时候再倒回来。
 另一个方式是使用哈希字段，也就在表上再增加一个字段，这个字段是我们需要做索引的字段的哈希值。我们在这个哈希值字段上做索引，这样索引的长度就变成了四个字节。&lt;/p&gt;
 &lt;p&gt;但是倒序和哈希的缺点是不再支持范围查询。&lt;/p&gt;
+&lt;h2 id=&#34;索引下推&#34;&gt;索引下推&lt;/h2&gt;
+&lt;p&gt;MySQL5.6之后引入索引下推（INDEX CONDITION PUSHDOWN，ICP），InnoDB引擎包含该功能，通过把索引过滤条件从服务层下推给存储引擎，来减少 MySQL 存储引擎访问基表的次数以及 MySQL 服务层访问存储引擎的次数。&lt;/p&gt;
+&lt;p&gt;如果没有ICP，通过二级索引查找时，会检索到所有数据的主键然后回表，其他的字段索引不会使用，再把所有的这些数据返回给MySQL服务器，然后服务层进行筛选。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ask.qcloudimg.com/http-save/yehe-7565276/9e03e63bd581e9b9c14625003b3e1511.png?imageView2/2/w/1620&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;使用ICP，如果有一些关于索引列的判断条件，就会将这些判断条件一起传给存储引擎，存储引擎直接进行筛选，最后给服务层筛选where条件的其他部分。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ask.qcloudimg.com/http-save/yehe-7565276/a5cebfa6295030c3906fc43dde51a9ad.png?imageView2/2/w/1620&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;索引条件下推默认是开启的，可以使用系统参数optimizer_switch来控制器是否开启。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 开启索引下推&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;optimizer_switch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;index_condition_pushdown=on&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 关闭索引下推&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;optimizer_switch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;index_condition_pushdown=off&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;哈希索引&#34;&gt;哈希索引&lt;/h2&gt;
+&lt;p&gt;MySQL中只有Memory引擎支持哈希索引。具有下面的特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;精确查找效率极高，为$O(1)$，当然效率会随着哈希冲突而下降&lt;/li&gt;
+&lt;li&gt;只支持完整建立索引项的对应查找，比如建立了(a,b)的哈希索引，只查找a不会走索引&lt;/li&gt;
+&lt;li&gt;不支持比较和IN等运算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;多个索引mysql会选择哪个&#34;&gt;多个索引，MySQL会选择哪个&lt;/h2&gt;
+&lt;h2 id=&#34;索引失效&#34;&gt;索引失效&lt;/h2&gt;
+&lt;p&gt;在一些情况下，索引是会失效的，包括：&lt;/p&gt;
+&lt;h3 id=&#34;使用左边带的like模糊查询&#34;&gt;使用左边带%的like模糊查询&lt;/h3&gt;
+&lt;p&gt;如果右边带%是可以使用索引的，但是左边带，索引就失效了&lt;/p&gt;
+&lt;p&gt;因为索引 B+ 树是按照「索引值」有序排列存储的，只能根据前缀进行比较。&lt;/p&gt;
+&lt;h3 id=&#34;where里面对索引列进行运算或者函数&#34;&gt;where里面对索引列进行运算或者函数&lt;/h3&gt;
+&lt;p&gt;比如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t_user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t_user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;因为索引保存的是索引字段的原始值，而不是经过函数或者表达式计算后的值，自然就没办法走索引了。&lt;/p&gt;
+&lt;p&gt;如果频繁用到该函数，可以直接将计算结果建立一个索引值：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;alter&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;table&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t_user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;idx_name_length&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;联合索引不满足最左匹配原则的时候联合索引会失效&#34;&gt;联合索引不满足最左匹配原则的时候，联合索引会失效&lt;/h3&gt;
+&lt;p&gt;联合索引要能正确使用需要遵循最左匹配原则，也就是按照最左优先的方式进行索引的匹配。&lt;/p&gt;
+&lt;p&gt;如果创建了一个 (a, b, c) 联合索引，如果查询条件是以下这几种，就可以匹配上联合索引：&lt;/p&gt;
+&lt;p&gt;where a=?；
+where a=? and b=?；
+where a=? and b=? and c=?；&lt;/p&gt;
+&lt;p&gt;其他的情况，联合索引都会失效。&lt;/p&gt;
+&lt;p&gt;当然a的位置不重要，因为有优化器，比如：
+&lt;code&gt;where b=? and a=?&lt;/code&gt; 跟&lt;code&gt;where a=? and b=?&lt;/code&gt;是一样的。&lt;/p&gt;
+&lt;h3 id=&#34;where中使用or且存在非索引项&#34;&gt;where中使用OR且存在非索引项&lt;/h3&gt;
+&lt;p&gt;比如OR前面是索引项，后面是非索引项。&lt;/p&gt;
+&lt;p&gt;如果想要走索引，右边的也需要设置为索引。&lt;/p&gt;
+&lt;h2 id=&#34;索引优化&#34;&gt;索引优化&lt;/h2&gt;
+&lt;h3 id=&#34;前缀索引优化&#34;&gt;前缀索引优化&lt;/h3&gt;
+&lt;p&gt;采用前缀索引，用字符串的前面几个字符建立索引，而不是完整的字符串&lt;/p&gt;
+&lt;h3 id=&#34;覆盖索引优化&#34;&gt;覆盖索引优化&lt;/h3&gt;
+&lt;p&gt;经常select的一些字段放在一起作为联合索引，这样不需要回表。&lt;/p&gt;
+&lt;h3 id=&#34;主键索引最好自增&#34;&gt;主键索引最好自增&lt;/h3&gt;
+&lt;p&gt;每次插入的时候直接插入到最后，不需要进行额外的B+树一些的移动或者页分裂的情况，只会开辟新页。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E9%A1%B5%E5%88%86%E8%A3%82.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E5%BC%80%E8%BE%9F%E6%96%B0%E9%A1%B5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;另外，主键索引的字段最好别太长，因为二级索引也要存储主键。&lt;/p&gt;
+&lt;h3 id=&#34;索引最好设置为not-null&#34;&gt;索引最好设置为NOT NULL&lt;/h3&gt;
+&lt;p&gt;索引存在NULL会导致优化器做索引选择的时候更困难。而且也会占用空间。&lt;/p&gt;
+&lt;h2 id=&#34;其他有关索引的问题&#34;&gt;其他有关索引的问题&lt;/h2&gt;
+&lt;h3 id=&#34;关于count&#34;&gt;关于COUNT&lt;/h3&gt;
+&lt;p&gt;众所周知，SELECT(*)效率很低，那么COUNT(*)呢?&lt;/p&gt;
+&lt;p&gt;效率：&lt;/p&gt;
+&lt;p&gt;COUNT(*) = COUNT(1) &amp;gt; COUNT(主键) &amp;gt; COUNT(字段)&lt;/p&gt;
+&lt;p&gt;count是一种聚合函数，用于统计符合查询条件的记录的个数。（不包括NULL）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;count(字段)&lt;/code&gt;就是统计有多少个该字段不为NULL的记录个数，需要全局扫描，效率最低。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;count(1)&lt;/code&gt;和&lt;code&gt;count(*)&lt;/code&gt;都是统计所有不为NULL的记录个数&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;count(主键)&lt;/code&gt;时，如果只有主键的聚簇索引，那么就会遍历聚簇索引，如果有二级索引，就会遍历二级索引，因为二级索引包含了所有的主键，并且遍历成本低。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;count(1)&lt;/code&gt;相比于&lt;code&gt;count(主键)&lt;/code&gt;而言，不会读取任何字段，因为1不可能是NULL，读到一条记录就直接+1。所以&lt;code&gt;count(1)&lt;/code&gt;效率略高于&lt;code&gt;count(主键)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于MVCC，InnoDB无法确定返回多少行，所以没有记录表的条目个数的信息，而MyISAM是包含的，MyISAM的count的复杂度是$O(1)$&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/04d714293f5c687810562e984b67d2e7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;比如最后的时刻，同时查询表的条目数，是不一样的。所以没法记录。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;优化COUNT(*)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;采用explain或者show table status来查看近似值&lt;/p&gt;
+&lt;p&gt;将这个计数值单独保存到另一张专门的计数表中&lt;/p&gt;
 </content>
             
             
@@ -10481,7 +10757,7 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
             <title type="text">MySQL进阶（三）再谈事务</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/mysql-advanced-3-transaction/" />
             <id>https://blog.engine.wang/posts/mysql-advanced-3-transaction/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-05T11:14:00&#43;08:00</updated>
             <published>2022-03-07T10:00:11&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -10494,12 +10770,29 @@ PING qtywpeac.slt.sched.tdnsv8.com &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;1
 &lt;p&gt;一个行为可能涉及到多个操作，如果进行到中途系统忽然崩溃，那么可能会造成巨大的损失。&lt;/p&gt;
 &lt;p&gt;我们想要保证一系列的数据库操作，要么全部成功，要么全部失败。这就是事务。&lt;/p&gt;
 &lt;p&gt;MySQL的InnoDB支持事务，而MyISAM不支持，所以我们这里谈的MySQL事务都基于InnoDB引擎。&lt;/p&gt;
+&lt;h2 id=&#34;mysql事务的使用&#34;&gt;MySQL事务的使用&lt;/h2&gt;
+&lt;p&gt;MySQL的事务可以保证数据一致性，可以自己创建事务：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;START&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;-- 一系列数据库操作
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COMMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ROLLBACK&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果事务有一条出错了，后面的还会继续执行，所以需要用到回滚机制。如果某一条执行错误就回滚。&lt;/p&gt;
 &lt;h2 id=&#34;acid&#34;&gt;ACID&lt;/h2&gt;
 &lt;p&gt;事务的ACID&lt;/p&gt;
-&lt;p&gt;Atomicity：原子性
-Consistency：一致性
-Isolation：隔离性
-Durability：持久性&lt;/p&gt;
+&lt;p&gt;Atomicity 原子性：事务的操作要么都执行，要么都不执行
+Consistency 一致性：数据的完整性不会因为事务而破坏
+Isolation 隔离性：多个事务同时执行的时候互不干扰
+Durability 持久性：事务对数据的更改是永久的&lt;/p&gt;
 &lt;h2 id=&#34;隔离级别&#34;&gt;隔离级别&lt;/h2&gt;
 &lt;p&gt;隔离的越少，越容易出现问题，隔离的越严密，效率越低。&lt;/p&gt;
 &lt;p&gt;这就有点像分布式系统对一致性的追求，我们需要根据实际场景来选择隔离等级。&lt;/p&gt;
@@ -10533,8 +10826,9 @@ Durability：持久性&lt;/p&gt;
 &lt;p&gt;在介绍MVCC之前，先引出ReadView的概念。&lt;/p&gt;
 &lt;h3 id=&#34;readview&#34;&gt;ReadView&lt;/h3&gt;
 &lt;p&gt;是数据库某一时刻所有未提交事务的快照。&lt;/p&gt;
-&lt;p&gt;如果是读提交RC，每次开始查询时都会生成一个ReadView。
-如果是可重复读RR，事务在第一次读取数据的时候就生成一个ReadView，之后再也不会生成。&lt;/p&gt;
+&lt;p&gt;读未提交和串行都不会用到MVCC&lt;/p&gt;
+&lt;p&gt;如果是读已提交RC，每次开始查询时都会生成一个ReadView。&lt;/p&gt;
+&lt;p&gt;如果是可重复读RR，事务在第一次读取数据的时候就生成一个ReadView，之后再也不会生成。&lt;/p&gt;
 &lt;p&gt;包括几个参数：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -10562,6 +10856,7 @@ Durability：持久性&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;注意，这里的min_trx_id就是m_ids列表的最小值，而max_trx_id并不是m_ids的最大值，而是下次要分配的事务id&lt;/p&gt;
 &lt;p&gt;当一个事务创建的瞬间，已提交的事务、正在活跃但还未提交的事务、未开始的事务构成了这个事务的ReadView。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1645776219/mysql-tran-2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;隐藏列&#34;&gt;隐藏列&lt;/h3&gt;
@@ -10569,14 +10864,21 @@ Durability：持久性&lt;/p&gt;
 &lt;p&gt;trx_id：事务Id，把改变某条聚簇索引的事务Id记录到这个列&lt;/p&gt;
 &lt;p&gt;roll_pointer：回滚指针，也就是指向对应undo log的指针&lt;/p&gt;
 &lt;p&gt;通过roll_pointer可以串成一个undo log链表，称为事务链&lt;/p&gt;
+&lt;p&gt;这种通过「版本链」来控制并发事务访问同一个记录时的行为就叫 MVCC（多版本并发控制）。&lt;/p&gt;
 &lt;h3 id=&#34;判断事务使用的版本&#34;&gt;判断事务使用的版本&lt;/h3&gt;
 &lt;p&gt;如果被访问的trx_id小于ReadView的低水位Id，即落在上图的绿色区域。那么说明该版本的事务在生成ReadView之前就提交了，所以可以被当前事务访问。&lt;/p&gt;
 &lt;p&gt;如果被访问的trx_id大于ReadView的高水位Id，即落在上图的红色区域。那么说明该版本事务在生成ReadView之后才生成，不能被当前事务访问。&lt;/p&gt;
 &lt;p&gt;如果介于最小Id和最大Id值之间，即落在上图的蓝色区域。需要判断trx_id是否在m_ids列表中，如果在的话说明创建ReadView时该版本事务还活跃，不能访问。如果不在的话说明创建ReadView时该版本已经提交，可以访问。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;举个例子，当前事务id=10，目前正在活跃的事务 &lt;code&gt;m_ids = [5,7,8]&lt;/code&gt;，那么&lt;code&gt;min_trx_id = 5&lt;/code&gt;，也就是最小值，而&lt;code&gt;max_trx_id&lt;/code&gt;是11。
+对于每一行数据，都有一串事务版本链，会顺着去往前看，如果当前版本的事务id小于min_trx_id，也就是这一行的事务id如果&amp;lt;5，那么就说明这条记录的更新一定在创建事务之前就提交了，所以可以访问。
+如果当前版本的事务id大于max_trx_id，也就是这条记录的当前事务版本&amp;gt;=11，那也就是说这个版本一定是当前事务不可见的。会往前寻找更旧的版本。
+如果当前事务的版本介于二者之间，也就是处于[5:9]之间（自己的当前版本10肯定是可见的），然后就会看是否处于&lt;code&gt;m_ids&lt;/code&gt;里面，如果在里面就说明是还没提交的，就不可见，如果不在里面就说明事务创建的时候已经提交了，就可见。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;长事务的问题&#34;&gt;长事务的问题&lt;/h2&gt;
-&lt;p&gt;所谓长事务，也就是运行时间比较长，长时间没有提交的事务，长事务会导致阻塞、占用锁资源、影响性能，应该尽量避免使用长事务。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;information_schema.innodb_trx&lt;/code&gt;表包含当前innoDB正在运行的事务信息，包含了事务的开始时间。&lt;/p&gt;
-&lt;p&gt;可以通过以下命令查看时间超过一分钟的长事务，然后kill掉。&lt;/p&gt;
+&lt;p&gt;所谓长事务，也就是运行时间比较长，长时间没有提交的事务。&lt;/p&gt;
+&lt;p&gt;长事务会导致阻塞、占用锁资源、影响性能，应该尽量避免。&lt;/p&gt;
+&lt;p&gt;可以通过以下命令查看时间超过一分钟的长事务：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -10741,7 +11043,7 @@ Durability：持久性&lt;/p&gt;
             <title type="text">MySQL进阶（一）MySQL架构</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/mysql-advanced-1-architecture/" />
             <id>https://blog.engine.wang/posts/mysql-advanced-1-architecture/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-05T11:13:05&#43;08:00</updated>
             <published>2022-02-19T09:32:17&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -10762,20 +11064,86 @@ Durability：持久性&lt;/p&gt;
 &lt;p&gt;和MySQL建立连接的方式是TCP/IP或者socket（取决于是连接远程服务器的MySQL还是本地的）&lt;/p&gt;
 &lt;p&gt;建立连接后，MySQL会检查权限表，查看该用户有没有权限连接到MySQL实例。验证通过之后会将用户的权限信息缓存起来，之后都基于缓存中的权限信息来执行sql。&lt;/p&gt;
 &lt;p&gt;连接后如果超过&lt;code&gt;wait_timeout&lt;/code&gt;（默认是8小时）一直都没有操作，就会自动断开。下一次就要重连。&lt;/p&gt;
+&lt;p&gt;MySQL 服务支持的最大连接数由max_connections 参数控制，超过这个值，连接器就会拒绝接下来的连接请求&lt;/p&gt;
 &lt;h3 id=&#34;2-查询缓存&#34;&gt;2. 查询缓存&lt;/h3&gt;
 &lt;p&gt;把之前查询过的语句和结果通过k-v对的形式缓存在内存中，如果之后某次的查询在缓存中找到了，就直接返回。
 不过实际上这个功能并不好，只要表被更新了就会失效，而且还占缓存，除非是经常不更新的表，所以MySQL8.0直接删除了查询缓存。&lt;/p&gt;
 &lt;h3 id=&#34;3-分析器&#34;&gt;3. 分析器&lt;/h3&gt;
-&lt;p&gt;MySQL需要解析这条语句，先做词法分析，再做语法分析。
-从而理解这条语句的需求。属于编译原理的内容，这里就不细说。&lt;/p&gt;
-&lt;h3 id=&#34;4-优化器&#34;&gt;4. 优化器&lt;/h3&gt;
+&lt;p&gt;MySQL需要解析这条语句，先做词法分析，再做语法分析，从而理解这条语句的需求。属于编译原理的内容，这里就不细说。&lt;/p&gt;
+&lt;p&gt;如果遇到一些语法问题，就会在这里返回报错。&lt;/p&gt;
+&lt;h3 id=&#34;4-预处理器&#34;&gt;4. 预处理器&lt;/h3&gt;
 &lt;p&gt;在分析好了SQL语句后，MySQL就了解了具体的需求，但是在实际执行之前还需要进入优化器进行优化。&lt;/p&gt;
-&lt;p&gt;在表里有多张索引的时候，决定使用哪个索引，或者比较复杂的查询语句，有多种查询的嵌套方式，优化器的作用就是选择一种最佳方案来执行，从而提高效率&lt;/p&gt;
-&lt;h3 id=&#34;5-执行器&#34;&gt;5. 执行器&lt;/h3&gt;
+&lt;p&gt;在预处理阶段，首先检查SQL查询的表和字段是否存在，如果有*，就将*替换为所有的字段。&lt;/p&gt;
+&lt;h3 id=&#34;5-优化器&#34;&gt;5. 优化器&lt;/h3&gt;
+&lt;p&gt;优化器主要负责将 SQL 查询语句的执行方案确定下来，比如在表里面有多个索引的时候，优化器会基于查询成本的考虑，来决定选择使用哪个索引。或者比较复杂的查询语句，有多种查询的嵌套方式，优化器的作用就是选择一种最佳方案来执行，从而提高效率&lt;/p&gt;
+&lt;h3 id=&#34;6-执行器&#34;&gt;6. 执行器&lt;/h3&gt;
 &lt;p&gt;首先判断用户是否有权限使用这张表。最前面的连接器鉴权是判断是够能够连接MySQL实体，而这里是精确到表的权限。&lt;/p&gt;
-&lt;p&gt;然后根据对应表的引擎定义，使用存储引擎的接口执行查询。&lt;/p&gt;
-&lt;p&gt;执行器会维护一个结果集，在查询的过程中如果查询到了符合要求的记录，就会追加进结果表，最后将这个结果表返回给用户。&lt;/p&gt;
-&lt;p&gt;至此就完成了一条SQL查询语句的执行。&lt;/p&gt;
+&lt;p&gt;然后根据对应表的引擎定义，使用存储引擎的接口执行查询，执行器是与存储引擎对接的。&lt;/p&gt;
+&lt;p&gt;列举以下三种场景，看执行器与存储引擎如何交互。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主键索引查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果是主键索引查询，比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;执行器首先调用 read_first_record 函数指针指向的函数，然后InnoDB定位符合条件的第一条记录&lt;/li&gt;
+&lt;li&gt;如果存在就会将记录返回给执行器，不存在就会报错&lt;/li&gt;
+&lt;li&gt;执行器拿到记录后判断记录是否符合所有查询条件，进行筛选&lt;/li&gt;
+&lt;li&gt;查询是while循环，下一次会指向一个永远返回-1的函数，跳出循环&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;全表扫描&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;没有索引，优化器选择ALL的方式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;engine&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;执行器调用read_first_record 函数指针指向的函数，因为是all，这个函数会指向InnoDB全扫描接口。&lt;/li&gt;
+&lt;li&gt;执行器会判断这条记录的name是不是&amp;quot;engine&amp;quot;，如果是的话就会一条条发送给客户端。（实际一下全部返回是因为客户端会等待查询完成才会显示所有记录）&lt;/li&gt;
+&lt;li&gt;查询是while循环，下一次调用read_record指向的还是全扫描接口，存储引擎会扫描下一条记录。&lt;/li&gt;
+&lt;li&gt;不断重复，直到读取完&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;索引下推&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;索引下推可以将server层负责的索引条件筛选操作下放到存储引擎。&lt;/p&gt;
+&lt;p&gt;比如建立了(a, b)联合索引&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;联合索引遇到范围查询，之后的会停止匹配，索引到a为止，b用不到联合索引。&lt;/p&gt;
+&lt;p&gt;如果不使用索引下推：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;server层定位到满足a&amp;gt;20的第一条记录（因为有索引）&lt;/li&gt;
+&lt;li&gt;存储引擎将这条记录进行回表，查询完整的记录返回给server层&lt;/li&gt;
+&lt;li&gt;server层再判断是否b=10,c=1，然后依次遍历...&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果使用索引下推，判断b的过程就给了存储引擎&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;server层定位到满足a&amp;gt;20的第一条记录（因为有索引）&lt;/li&gt;
+&lt;li&gt;存储引擎不回表，而是先判断b=10是否成立，如果不成立就直接跳过，成立才回表&lt;/li&gt;
+&lt;li&gt;server层拿到数据后再判断其他的查询条件，比如这里是判断c=1。之后依次遍历。。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以可以看到，索引下推可以减少很多回表操作，提高查询效率。&lt;/p&gt;
+&lt;p&gt;执行器会维护一个结果集，在查询的过程中如果查询到了符合要求的记录，就会追加进结果表，最后将这个结果表返回给用户。至此就完成了一条SQL查询语句的执行。&lt;/p&gt;
 &lt;h2 id=&#34;innodb引擎架构简述&#34;&gt;InnoDB引擎架构简述&lt;/h2&gt;
 &lt;p&gt;MySQL默认的存储引擎是InnoDB，其架构图如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://static001.geekbang.org/infoq/bf/bf3d9fb7acbf4482434107aba9731eb8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -11630,16 +11998,17 @@ type指的是类型，比如&lt;code&gt;SOCK_STREAM&lt;/code&gt;表示字节流�
             <title type="text">Linux网络编程（一） 从TCP/IP协议开始</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/linux-network-programming-1/" />
             <id>https://blog.engine.wang/posts/linux-network-programming-1/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-05-05T11:11:37&#43;08:00</updated>
             <published>2022-02-01T14:44:13&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
                     <uri>https://engine.wang/</uri>
                     <email>engine74396@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">重温计算机网络 TCP/IP协议是目前互联网的主流协议簇，早在计算机网络中我们就已经学习过大部分的内容，现在我们从协议的角度出发再次重温计算机网络的内容，作为后续……</summary>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">重温计算机网络协议栈 四层协议 TCP/IP协议是目前互联网的主流协议簇，早在计算机网络中我们就已经学习过大部分的内容，现在我们从协议的角度出发再次重温计算机网络的……</summary>
             
-                <content type="html">&lt;h2 id=&#34;重温计算机网络&#34;&gt;重温计算机网络&lt;/h2&gt;
+                <content type="html">&lt;h2 id=&#34;重温计算机网络协议栈&#34;&gt;重温计算机网络协议栈&lt;/h2&gt;
+&lt;h3 id=&#34;四层协议&#34;&gt;四层协议&lt;/h3&gt;
 &lt;p&gt;TCP/IP协议是目前互联网的主流协议簇，早在计算机网络中我们就已经学习过大部分的内容，现在我们从协议的角度出发再次重温计算机网络的内容，作为后续内容的基础。&lt;/p&gt;
 &lt;p&gt;在物理传输媒介的基础上的四层网络模型，自底向上分别是数据链路层、网络层、传输层、应用层，各层包含的协议如图所示：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643112994/TCP-IP-1.png&#34; alt=&#34;tcp-ip-1&#34;&gt;&lt;/p&gt;
@@ -11652,7 +12021,7 @@ ICMP协议：网络层协议，IP协议的补充，用于检测网络连接
 TCP协议：传输层协议，提供可靠的、面向连接的基于流的服务
 UDP协议：传输层协议，提供不可靠的、无连接的基于数据报的服务
 DNS协议：应用层协议，完成域名到IP地址的转换&lt;/p&gt;
-&lt;h2 id=&#34;封装与分用&#34;&gt;封装与分用&lt;/h2&gt;
+&lt;h3 id=&#34;封装与分用&#34;&gt;封装与分用&lt;/h3&gt;
 &lt;p&gt;封装指的是上层协议的数据沿协议栈往下传递，每经过一个协议栈就加上头部信息，最终合成以太网帧或令牌环帧在物理层上传递：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643166755/TCP-IP-3.png&#34; alt=&#34;tcp-ip-2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;分用指的是帧到了目的地后的从底向上传递的过程，每个协议栈取出自己的头部，将信息往上传递。头部包含了具体的类型参数，根据头部信息递交给不同的上层。&lt;/p&gt;
@@ -11690,6 +12059,8 @@ www.a.shifen.com has address 36.152.44.96
 www.a.shifen.com has address 36.152.44.95
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;ip协议&#34;&gt;IP协议&lt;/h2&gt;
 &lt;p&gt;IP协议是网络层协议，是TCP/UDP的基础，它为上层提供无连接、不可靠、无状态的服务。&lt;/p&gt;
+&lt;p&gt;MAC的链路层协议是直连的两个设备的连接，而IP协议则负责没有直连的两个网络之间的连接。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/3.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;ipv4的ip头部与分片传输&#34;&gt;ipv4的IP头部与分片传输&lt;/h3&gt;
 &lt;p&gt;ipv4的IP头部：
 &lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643256162/TCP-IP-5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -11700,10 +12071,42 @@ www.a.shifen.com has address 36.152.44.95
 &lt;p&gt;IP协议的核心是路由，即从源机器如何通过网络转发给目标机器。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643261497/TCP-IP-7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;接受到了来自链路层的IP数据报后，先通过CRC校验，然后判断是否是发给本机网络或者广播的数据报，如果是的话就依据具体的头部信息传递给TCP/UDP/ICMP模块。如果不是的话就转发给下一跳，具体转发方式是路由协议的内容，比如RIP、OSPF算法等，这个在之前的计算机网络中已经学过了，就不在此细说了。&lt;/p&gt;
+&lt;h3 id=&#34;ip地址分类&#34;&gt;IP地址分类&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/7.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/8.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;主机号全为1指定某个网络下的全部主机，用于广播
+主机号全为0指定某个网络&lt;/p&gt;
+&lt;h4 id=&#34;cidr&#34;&gt;CIDR&lt;/h4&gt;
+&lt;p&gt;通过子网掩码和IP地址按位计算AND，得到网络号&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/IP/16.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;tcp协议&#34;&gt;TCP协议&lt;/h2&gt;
-&lt;p&gt;TCP的特征：一对一、全双工、先建立连接、字节流传输、可靠传输&lt;/p&gt;
-&lt;p&gt;其他几个很简单，提一下字节流传输，TCP使用字节流传输，而UDP使用数据报传输，字节流的特点就是：发送端执行的写操作次数和接收端执行的读操作次数没有任何数量关系，因为发送缓冲区和接受缓冲区的存在。&lt;/p&gt;
+&lt;h3 id=&#34;tcp的定义&#34;&gt;TCP的定义&lt;/h3&gt;
+&lt;p&gt;TCP 是面向连接的、可靠的、基于字节流的传输层通信协议。&lt;/p&gt;
+&lt;p&gt;特点：一对一、全双工、先建立连接、字节流传输、可靠传输&lt;/p&gt;
+&lt;p&gt;面向连接：一定是「一对一」才能连接，不能像 UDP 协议可以一个主机同时向多个主机发送消息，也就是一对多是无法做到的；&lt;/p&gt;
+&lt;p&gt;可靠的：无论的网络链路中出现了怎样的链路变化，TCP 都可以保证一个报文一定能够到达接收端；&lt;/p&gt;
+&lt;p&gt;字节流：用户消息通过 TCP 协议传输时，消息可能会被操作系统「分组」成多个的 TCP 报文，如果接收方的程序如果不知道「消息的边界」，是无法读出一个有效的用户消息的。并且 TCP 报文是「有序的」，当「前一个」TCP 报文没有收到的时候，即使它先收到了后面的 TCP 报文，那么也不能扔给应用层去处理，同时对「重复」的 TCP 报文会自动丢弃。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TCP四元组&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;TCP四元组可以确定一个TCP连接，它们是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;源地址&lt;/li&gt;
+&lt;li&gt;源端口&lt;/li&gt;
+&lt;li&gt;目的地址&lt;/li&gt;
+&lt;li&gt;目的端口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tcp头部&#34;&gt;TCP头部&lt;/h3&gt;
+&lt;p&gt;TCP头部格式如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3hpYW9saW5jb2Rlci9JbWFnZUhvc3QyLyVFOCVBRSVBMSVFNyVBRSU5NyVFNiU5QyVCQSVFNyVCRCU5MSVFNyVCQiU5Qy9UQ1AtJUU0JUI4JTg5JUU2JUFDJUExJUU2JThGJUExJUU2JTg5JThCJUU1JTkyJThDJUU1JTlCJTlCJUU2JUFDJUExJUU2JThDJUE1JUU2JTg5JThCLzYuanBn?x-oss-process=image/format,png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;序列号：用来解决网络报乱序的问题
+确认应答号：下一次期望收到的序列号，之前的说明&lt;/p&gt;
+&lt;p&gt;ACK：该位为 1 时，「确认应答」的字段变为有效，TCP 规定除了最初建立连接时的 SYN 包之外该位必须设置为 1 。
+RST：该位为 1 时，表示 TCP 连接中出现异常必须强制断开连接。
+SYN：该位为 1 时，表示希望建立连接，并在其「序列号」的字段进行序列号初始值的设定。
+FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连接。当通信结束希望断开连接时，通信双方的主机之间就可以相互交换 FIN 位为 1 的 TCP 段。&lt;/p&gt;
 &lt;h3 id=&#34;发送缓冲区与接收缓冲区&#34;&gt;发送缓冲区与接收缓冲区&lt;/h3&gt;
+&lt;p&gt;TCP使用字节流传输，而UDP使用数据报传输，字节流的特点就是：发送端执行的写操作次数和接收端执行的读操作次数没有任何数量关系，因为发送缓冲区和接受缓冲区的存在。&lt;/p&gt;
 &lt;p&gt;TCP三次握手建立之后，内核会为每一个连接建立配套的基础设施，其中就包括发送缓冲区。&lt;/p&gt;
 &lt;p&gt;发送缓冲区的大小可以通过套接字的选项来调整，假如客户端调用write，实际上是将数据从应用程序拷贝到内核中的发送缓冲区中，而不是通过socket。&lt;/p&gt;
 &lt;p&gt;如果发送缓冲区足够大，那么write调用成功返回写入的字节数。
@@ -11715,62 +12118,299 @@ www.a.shifen.com has address 36.152.44.95
 &lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643272895/TCP-IP-10.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;UDP数据报传输：
 &lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643272895/TCP-IP-11.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;tcp底层&#34;&gt;TCP底层&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/28e4d6b004530fbf75fe346d181baa81.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发送消息时，一个数据报首先会从用户空间拷贝到内核空间的发送缓冲区，然后顺着传输层、网络层、数据链路层，经过流控（qdisc），再经过RingBuffer发到物理层的网卡，然后顺着网卡经过多个路由器和交换机的跳转，最后到目的机器的网卡。&lt;/p&gt;
+&lt;p&gt;目的机器的网卡会通知DMA将数据包信息放入RingBuffer，然后发送硬中断给CPU，CPU触发软中断让ksoftirqd去RingBuffer收包，然后顺着物理层、数据链路层、网络层、传输层，最后拷贝到用户空间的应用程序中。&lt;/p&gt;
+&lt;h3 id=&#34;tcp粘包问题&#34;&gt;TCP粘包问题&lt;/h3&gt;
+&lt;p&gt;由于TCP是面向字节流的协议，跟UDP不一样。每个UDP报文是一个完整的用户边界，但是用TCP传输数据时，用户消息可能会被拆分为多个TCP报文，并且一个报文里可能有两个消息分别的某个部分，如果接收方不知道消息边界就会产生粘包问题。&lt;/p&gt;
+&lt;p&gt;一般是应用程序来解决这个问题，比如通过特殊字符作为边界，还可以自定义消息结构，从包头中获取。&lt;/p&gt;
+&lt;h3 id=&#34;tcp-keep-alive&#34;&gt;TCP Keep-Alive&lt;/h3&gt;
+&lt;p&gt;TCP的保活机制，如果没有连接活动，就会每隔一段时间发送一个探测报文，如果连续的几个报文都没响应，就说明TCP连接挂了。&lt;/p&gt;
 &lt;h3 id=&#34;tcp的建立三次握手&#34;&gt;TCP的建立：三次握手&lt;/h3&gt;
 &lt;p&gt;著名的TCP三次握手：
 &lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643272895/TCP-IP-8.png&#34; alt=&#34;tcp三次握手-1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最开始，客户端和服务端都处于CLOSED状态，服务端先主动监听某个端口，处于LISTEN状态。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;客户端协议栈向服务端发送SYN包，并表明当前发送序列号为j，客户端进入SYN_SENT状态&lt;/li&gt;
-&lt;li&gt;服务端的协议栈收到了这个包之后，对客户端的这个SYN进行应答，值为j+1，同时服务器也发送一个SYN包，内容是k，服务器进入SYNC_RCVD状态&lt;/li&gt;
-&lt;li&gt;客户端协议栈收到了ACK之后，应用程序的connect调用返回，客户端到服务端的单向通信建立成功。并进入ESTABLISH状态，同时对服务端进行ACK应答，应答值为k+1&lt;/li&gt;
-&lt;li&gt;应答包到达服务器，服务器协议端的accept阻塞调用返回，服务器到客户端的单向通信也建立成功。&lt;/li&gt;
+&lt;li&gt;客户端随机初始化一个序号&lt;code&gt;client_isn&lt;/code&gt;，将其置于TCO首部的序号字段中，SYN置为1，然后向服务端发送这个SYN报文，客户端进入&lt;code&gt;SYN_SENT&lt;/code&gt;状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3hpYW9saW5jb2Rlci9JbWFnZUhvc3QyLyVFOCVBRSVBMSVFNyVBRSU5NyVFNiU5QyVCQSVFNyVCRCU5MSVFNyVCQiU5Qy9UQ1AtJUU0JUI4JTg5JUU2JUFDJUExJUU2JThGJUExJUU2JTg5JThCJUU1JTkyJThDJUU1JTlCJTlCJUU2JUFDJUExJUU2JThDJUE1JUU2JTg5JThCLzE1LmpwZw?x-oss-process=image/format,png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;服务端的协议栈收到了这个SYN报文之后，对客户端的这个SYN进行应答，值为&lt;code&gt;client_isn+1&lt;/code&gt;，放入确认应答号中，同时服务器也发送一个SYN包，内容是&lt;code&gt;server_isn&lt;/code&gt;放入首部的序号号中，服务器进入&lt;code&gt;SYNC_RCVD&lt;/code&gt;状态&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3hpYW9saW5jb2Rlci9JbWFnZUhvc3QyLyVFOCVBRSVBMSVFNyVBRSU5NyVFNiU5QyVCQSVFNyVCRCU5MSVFNyVCQiU5Qy9UQ1AtJUU0JUI4JTg5JUU2JUFDJUExJUU2JThGJUExJUU2JTg5JThCJUU1JTkyJThDJUU1JTlCJTlCJUU2JUFDJUExJUU2JThDJUE1JUU2JTg5JThCLzE2LmpwZw?x-oss-process=image/format,png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;客户端协议栈收到了ACK之后，应用程序的connect调用返回，客户端到服务端的单向通信建立成功。并进入ESTABLISH状态，同时对服务端进行ACK应答，应答值为&lt;code&gt;server_isn+1&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3hpYW9saW5jb2Rlci9JbWFnZUhvc3QyLyVFOCVBRSVBMSVFNyVBRSU5NyVFNiU5QyVCQSVFNyVCRCU5MSVFNyVCQiU5Qy9UQ1AtJUU0JUI4JTg5JUU2JUFDJUExJUU2JThGJUExJUU2JTg5JThCJUU1JTkyJThDJUU1JTlCJTlCJUU2JUFDJUExJUU2JThDJUE1JUU2JTg5JThCLzE3LmpwZw?x-oss-process=image/format,png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;应答包到达服务器，服务器协议端的accept阻塞调用返回，也进入ESTABLISH状态，至此，服务器与客户端的点对点通信建立成功。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;思考一下为什么是三次。
-我的理解是，如果A到B的传输连接要成功，至少需要两步，A尝试传一个信息到B，B再返回一个应答。这样就说明了A到B的单向没有问题。反过来也一样。正常来说应该需要四次握手，不过在服务端应答客户端的时候服务端顺便发送请求包，这样节省了一步。所以说最少是三次握手，两次必然不能保证一定连接成功，四次则多浪费了一次。&lt;/p&gt;
+&lt;p&gt;其实第三次握手的时候是可以携带数据的，前两次不可以。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;思考一下为什么是三次。
+我的理解是，如果A到B的传输连接要成功，至少需要两步，A尝试传一个信息到B，B再返回一个应答。这样就说明了A到B的单向没有问题。反过来也一样。正常来说应该需要四次握手，不过在服务端应答客户端的时候服务端顺便发送请求包，这样节省了一步。所以说最少是三次握手，两次必然不能保证一定连接成功，四次则多浪费了一次。
+官方指出的三次握手的首要原因是为了防止旧的重复连接初始化造成混乱。如果采用两次握手，那么假如服务端收到了一个历史连接（可能中途因为一些原因传了很久），然后服务端直接进入ESTABLISHED，&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;每次握手失败的处理&#34;&gt;每次握手失败的处理&lt;/h4&gt;
+&lt;p&gt;每个TCP报文都维护了一个重传定时器，如果超过时间没有收到对方的应答，发送方就会重传TCP报文并reset定时器。&lt;/p&gt;
+&lt;p&gt;一般每次重传都比之前的时间间隔更长（比如是上一次的两倍），并且设置最多重传次数，超过这个次数就放弃。&lt;/p&gt;
+&lt;p&gt;细讲的话，我们看在TCP三次握手时每个阶段的重传策略：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次握手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端发送了第一次握手，没接收到服务端的ACK，那么就会触发超时重传机制，重传SYN报文，序列号是一样的。&lt;/p&gt;
+&lt;p&gt;重传次数由内核参数&lt;code&gt;tcp_syn_retries&lt;/code&gt;控制，一般是5.&lt;/p&gt;
+&lt;p&gt;每次重传时间翻倍，第一次隔1s，第二次隔2s，以此类推，最后五次重传总耗时63秒，如果还没收到连接就认为网络有问题或者服务器宕机，不再发送SYN&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/%E7%AC%AC1%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%A2%E5%A4%B1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第二次握手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第二次如果丢失，客户端还是收不到ACK，所以还是会重传SYN报文，跟前一个一样。&lt;/p&gt;
+&lt;p&gt;服务端则是收不到第三次的握手，会重传SYN-ACK报文。重传次数由&lt;code&gt;tcp_synack_retries&lt;/code&gt;决定，默认也是5次。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/%E7%AC%AC2%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%A2%E5%A4%B1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第三次握手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;跟上一个一样，服务端则是收不到第三次的握手，会重传SYN-ACK报文。重传次数由&lt;code&gt;tcp_synack_retries&lt;/code&gt;决定，默认也是5次。&lt;/p&gt;
+&lt;p&gt;ACK是不会重传的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%A2%E5%A4%B1.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;tcp的关闭四次挥手与time_wait&#34;&gt;TCP的关闭：四次挥手与TIME_WAIT&lt;/h3&gt;
 &lt;p&gt;TCP是全双工的，所以存在一种半关闭状态，也就是A可以接受B发送来的数据，但是A不再发送数据给B，也就是说一端可以告诉对方自己发送的数据已经发完了，但仍然可以接受对方发送的数据，进入半关闭状态，如果对方也发送完了，就进入关闭状态。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643272895/TCP-IP-12.png&#34; alt=&#34;time_wait-1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;一个完整的建立和关闭的过程：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643549232/TCP-IP-14.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;time_wait&#34;&gt;TIME_WAIT&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;客户端想关闭连接，发送一个FIN置为1的报文FIN，之后客户端进入&lt;code&gt;FIN_WAIT_1&lt;/code&gt;状态。这个的意思是客户端不再发送数据了，但是还是能接受数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端收到该报文，发送ACK，然后进入&lt;code&gt;CLOSE_WAIT&lt;/code&gt;状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端收到ACK报文之后，进入&lt;code&gt;FIN_WAIT_2&lt;/code&gt;状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;等待服务器处理完数据，服务器也没有数据要向客户端发送了，就发送FIN报文告诉客户端自己也发完了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端收到FIN报文后，回复ACK，进入&lt;code&gt;TIME_WAIT&lt;/code&gt;状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务器收到ACK报文，进入&lt;code&gt;CLOSED&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端经过2MSL，也&lt;code&gt;CLOSED&lt;/code&gt;，这里是防止最后的ACK没有到达，可以允许报文丢失一次然后重发，没必要等更久，因为丢失多次的概率极低。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;每次挥手失败的处理&#34;&gt;每次挥手失败的处理&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;第一次挥手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端收不到ACK，在&lt;code&gt;FIN_WAIT_1&lt;/code&gt;状态，就会重发FIN报文。如果几次都丢失，就close&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8C%A5%E6%89%8B%E4%B8%A2%E5%A4%B1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第二次挥手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ACK不会重传，客户端收不到ACK，还是重传FIN，几次都没收到的话客户端就close&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/fin_wait_2.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第三次挥手丢失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端不知道服务端是否传输完了，会一直在FIN_WAIT_2等待，服务端因为收不到ACK，会重发FIN报文。&lt;/p&gt;
+&lt;p&gt;如果客户端是通过&lt;code&gt;close&lt;/code&gt;关闭的，&lt;code&gt;FIN_WAIT_2&lt;/code&gt;不会持续太久，超过&lt;code&gt;tcp_fin_timeout&lt;/code&gt;（默认是60s）还没收到FIN报文就会close。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/%E7%AC%AC%E4%B8%89%E6%AC%A1%E6%8C%A5%E6%89%8B%E4%B8%A2%E5%A4%B1.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果客户端是通过&lt;code&gt;shutdown&lt;/code&gt;关闭的，那么只说明它不再发送，还可以接收，那么客户端可以一直处于&lt;code&gt;FIN_WAIT_2&lt;/code&gt;，第三次报文丢失的话客户端会死等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/tcp/fin_wait_2%E6%AD%BB%E7%AD%89.drawio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第四次挥手丢失，此时客户端收到服务器的&lt;code&gt;FIN&lt;/code&gt;报文了，开启了2MSL的定时器并返回ACK，但是这个ACK丢失了，服务端一直收不到ACK就会重传FIN，如果这个FIN能到达客户端，客户端的定时器就会重置，直到最后因为翻倍传输的原因，两边分别因为定时器超时和重传次数达到上限会都close。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个完整的建立和关闭的过程：
+&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643549232/TCP-IP-14.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;为什么要有time_wait&#34;&gt;为什么要有TIME_WAIT&lt;/h3&gt;
 &lt;p&gt;这里提一下TIME_WAIT状态。假设是主机一发送FIN到主机二，在收到FIN n的时候，主机一会进入TIME_WAIT的状态，停留时间是固定的。Linux下是两个最长份节生命周期的时间（即2MSL）。只有发起连接终止的一方会进入TIME_WAIT状态。&lt;/p&gt;
-&lt;p&gt;为什么有TIME_WAIT？因为TCP要考虑各种错误情况，假如最后一次挥手客户端的ACK没有传到服务端，那么服务端之后会重发FIN报文。此时如果客户端没有维护TIME_WAIT而是直接关闭，就会失去上下文。坚持2MSL，使得这次连接所有的迟到的报文来得及被丢弃&lt;/p&gt;
-&lt;p&gt;但是TIME_WAIT过多，会导致端口资源被占用，有时候可能由于TIME_WAIT导致性能下降。&lt;/p&gt;
+&lt;p&gt;为什么有TIME_WAIT？因为TCP要考虑各种错误情况，假如最后一次挥手客户端的ACK没有传到服务端，那么服务端之后会重发FIN报文。此时如果客户端没有维护TIME_WAIT而是直接关闭，就会失去上下文。坚持2MSL，使得这次连接所有的迟到的报文来得及被丢弃。&lt;/p&gt;
+&lt;p&gt;但是TIME_WAIT过多，会导致系统资源和端口资源被占用，有时候可能由于TIME_WAIT导致性能下降。&lt;/p&gt;
+&lt;h3 id=&#34;如何优化time_wait&#34;&gt;如何优化TIME_WAIT&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;开启net.ipv4.tcp_tw_reuse 和 tcp_timestamps，可以复用处于TIME_WAIT的socket为新的连接使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改 net.ipv4.tcp_max_tw_buckets，这个是TIME_WAIT的上限，超过之后系统就会将之后的TIME_WAIT重置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;程序中在socket里使用SO_LINGER参数，设置close的关闭行为。可以通过设置让close调用直接发送RST标志从而跳过四次回收，不过这样做很危险&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;tcp状态转移&#34;&gt;TCP状态转移&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643273832/TCP-IP-13.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;虚线为服务端，粗实线为客户端。&lt;/p&gt;
-&lt;h3 id=&#34;tcp超时重传策略&#34;&gt;TCP超时重传策略&lt;/h3&gt;
-&lt;p&gt;每个TCP报文都维护了一个重传定时器，如果超过时间没有收到对方的应答，发送方就会重传TCP报文并reset定时器。&lt;/p&gt;
-&lt;p&gt;一般每次重传都比之前的时间间隔更长（比如是上一次的两倍），并且设置最多重传次数，超过这个次数就放弃。&lt;/p&gt;
+&lt;h4 id=&#34;rst复位&#34;&gt;RST复位&lt;/h4&gt;
+&lt;h3 id=&#34;tcp重传机制&#34;&gt;TCP重传机制&lt;/h3&gt;
+&lt;p&gt;通过序列号与应答，可以确保一条通信的可靠传输。如果数据包丢失，就采用重传机制解决。前面在握手和挥手也提到了超时重传等策略，不过实际上有更多的重传策略。&lt;/p&gt;
+&lt;h4 id=&#34;超时重传&#34;&gt;超时重传&lt;/h4&gt;
+&lt;p&gt;发送数据时设置一个定时器，如果在规定的时间之内还收到ACK就会重发数据。可能是数据包丢失，也可能是ACK丢失。ACK是不会重传的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/5.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;超时时间RTO的具体数值需要设定好，如果它较小，可能导致并没有丢就重发，如果过大就导致效率下降。&lt;/p&gt;
+&lt;p&gt;一般重传时间RTO会略大于报文往返时间RTT。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/8.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;具体的计算非常复杂，是一个经验公式，并且RTT也是随时变化的。&lt;/p&gt;
+&lt;p&gt;重传仍然失败后会等待加倍的时间然后继续重传，这个之前也说过。&lt;/p&gt;
+&lt;h4 id=&#34;快速重传&#34;&gt;快速重传&lt;/h4&gt;
+&lt;p&gt;TCP另一个重传机制，不基于时间而是基于数据。&lt;/p&gt;
+&lt;p&gt;比如发送了一个seq1，ACK返回2，但是seq2丢失了，seq3 4 5都传到了，但是ACK仍然只返回2，因为服务器没收到seq2。这样客户端收到了几个相同的ACK就会触发重传。&lt;/p&gt;
+&lt;p&gt;由于如果中途漏掉了若干报文，不知道该重传哪些，于是出现了SACK方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SACK选择性确认&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在TCP头部加一个SACK，将已收到的信息发送给发送方，这样就可以让发送方知道哪些数据没有收到，从而只重传丢失的数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/11.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Duplicate Sack&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;另一个是Duplicate Sack（D-SACK），用SACK来告诉发送方哪些数据被重复接受了。&lt;/p&gt;
+&lt;p&gt;如果是ACK丢失，那么发送方并不知道而是会重传数据，但是接收方已经收到过了，就会使用D-SACK来告诉发送方。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/12.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可见，D-SACK 有这么几个好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以让「发送方」知道，是发出去的包丢了，还是接收方回应的 ACK 包丢了;&lt;/li&gt;
+&lt;li&gt;可以知道是不是「发送方」的数据包被网络延迟了;&lt;/li&gt;
+&lt;li&gt;可以知道网络中是不是把「发送方」的数据包给复制了;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;滑动窗口&#34;&gt;滑动窗口&lt;/h4&gt;
+&lt;p&gt;之前都是一个数据一次应答，这样效率不高。TCP引入窗口缓冲区机制。无需等待ACK就可以连续发送。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/15.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;ACK k说明k之前的报文都收到了，这种方式称为累积确认。&lt;/p&gt;
+&lt;p&gt;发送方发送的数据大小不能超过接收方的窗口大小，否则接收方就无法正常接收到数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/16.jpg?&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;总共通过三个指针来区分这四块区域&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/19.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;tcp流量控制&#34;&gt;TCP流量控制&lt;/h3&gt;
+&lt;p&gt;发送方需要考虑到接收方的处理能力，不能无脑的发送数据。&lt;/p&gt;
+&lt;p&gt;流量控制就是让发送方根据接收方的实际能力控制发送的数据量的机制。&lt;/p&gt;
 &lt;h3 id=&#34;tcp拥塞控制&#34;&gt;TCP拥塞控制&lt;/h3&gt;
-&lt;p&gt;由于链路层的承载量有限，需要进行控制。&lt;/p&gt;
+&lt;p&gt;由于链路层的承载量有限，需要进行控制。拥塞控制的目的就是避免发送方的数据填满整个网络。&lt;/p&gt;
 &lt;p&gt;SWND（Send WiNDow，发送窗口）：指的是发送端向网络一次性发送的数据量。&lt;/p&gt;
 &lt;p&gt;如果RWND过小，则延迟会比较大。如果RWND过大，则容易网络拥塞。&lt;/p&gt;
 &lt;p&gt;RWND（Receive WiNDow，接收窗口）：指的是接收端一次性能接收的数据量。&lt;/p&gt;
-&lt;p&gt;CWND（Congestion WiNDow，拥塞窗口）：不造成拥塞的最大数据量&lt;/p&gt;
+&lt;p&gt;CWND（Congestion WiNDow，拥塞窗口）：不造成拥塞的最大数据量，这个会根据网络的拥塞程度动态变化。&lt;/p&gt;
 &lt;p&gt;实际的 $\text{SWND} = \min(\text{RWND}, \text{CWND})$&lt;/p&gt;
-&lt;p&gt;启动阶段包括以下两种算法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;慢启动&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;CWND的变化规则：如果出现了拥塞，就减少；如果没有拥塞，就增大。&lt;/p&gt;
+&lt;p&gt;只要发送方没在规定时间内接受到ACK，发生了超时重传，就认为网络拥塞了。主要通过下面的四个算法进行控制，其中前两个属于启动阶段的算法，后两个属于拥塞处理的算法。&lt;/p&gt;
+&lt;h4 id=&#34;慢启动&#34;&gt;慢启动&lt;/h4&gt;
 &lt;p&gt;设置了一个慢启动门限ssthresh，最开始启动的时候CWND设置一个较小的值（2-4个SMSS），然后慢慢按照指数方式增大CWND的值，直到超过这个门限，然后进入拥塞避免控制。&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;拥塞避免&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;每经过一个轮次，线性增加其大小而不是加倍，让其缓慢增大，出现一次超时后（发生拥塞），就让慢开始门限等于当前cwnd的一半，cwnd重新设为1&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/27.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;拥塞避免&#34;&gt;拥塞避免&lt;/h4&gt;
+&lt;p&gt;当CWND超过了ssthresh之后，每经过一个轮次，线性增加其大小而不是加倍，让其缓慢增大，出现一次超时后（发生拥塞），就让慢开始门限等于当前cwnd的一半，cwnd重新设为1。&lt;/p&gt;
+&lt;p&gt;本质上就是将指数增长变成了线性增长。&lt;/p&gt;
 &lt;p&gt;cwnd &amp;gt; ssthresh: 慢启动
 cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643557367/TCP-IP-15.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;拥塞处理包括以下两种算法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;快重传&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;当发送方连续收到三个重复的ACK报文时，直接重传对方尚未收到的报文段，而不必等待那个报文段设置的重传计时器超时。&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;快恢复&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;快恢复前面和避免算法一样，不同之处是它把cwnd的值设置为慢开始门限ssthresh改变后的数值，然后开始执行拥塞避免算法&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/28.jpg?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;拥塞避免算法实际上就是将慢启动的指数增长变成了缓慢的线性增长，之后会进入拥塞。触发了重传后就开始使用下面两种拥塞处理算法。&lt;/p&gt;
+&lt;h4 id=&#34;快重传&#34;&gt;快重传&lt;/h4&gt;
+&lt;p&gt;当发送方连续收到三个重复的ACK报文时，也就是发生前面说的快速重传，会直接重传对方尚未收到的报文段，而不必等待那个报文段设置的重传计时器超时。&lt;/p&gt;
+&lt;p&gt;此时cwnd设为cwnd/2，ssthresh设为cwnd，进入快速恢复算法。&lt;/p&gt;
+&lt;h4 id=&#34;快恢复&#34;&gt;快恢复&lt;/h4&gt;
+&lt;p&gt;如果能收到三个重复的ACK，说明网络也没那么差，所以没必要那么强烈，在快重传的ssthresh和cwnd更改之后，拥塞窗口cwnd=ssthresh+3（意思是有三个数据包收到了）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/%E6%8B%A5%E5%A1%9E%E5%8F%91%E7%94%9F-%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0.drawio.png?image_process=watermark,text_5YWs5LyX5Y-377ya5bCP5p6XY29kaW5n,type_ZnpsdHpoaw,x_10,y_10,g_se,size_20,color_0000CD,t_70,fill_0&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;tcp的缺陷&#34;&gt;TCP的缺陷&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;升级TCP的功能非常困难&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TCP建立连接时有延迟&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要三次握手才能建立连接&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存在队头阻塞问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果后面的报文先到也无法处理，必须要等中间缺的补齐，从而保证有序性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络迁移需要重新建立TCP连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如更换ip端口什么的，需要重新建立，因为TCP连接由四元组确定。&lt;/p&gt;
+&lt;h3 id=&#34;一些实际的情况分析&#34;&gt;一些实际的情况分析&lt;/h3&gt;
+&lt;h4 id=&#34;syn何时会被丢弃&#34;&gt;SYN何时会被丢弃&lt;/h4&gt;
+&lt;p&gt;如果服务器遭受SYN攻击，TCP半连接队列满了，后面的SYN包就会被丢弃。除非开启syncookies。&lt;/p&gt;
+&lt;h4 id=&#34;已经建立连接的tcp重新收到syn会发生什么&#34;&gt;已经建立连接的TCP，重新收到SYN会发生什么&lt;/h4&gt;
+&lt;p&gt;比如TCP连接已经建立了，但是客户端忽然断线，服务端不知道还处于ESTABLISHED状态，过了一段时间客户端恢复，重新发送SYN请求连接，如果端口号不一样，会建立新的连接，之前的会超时被释放。&lt;/p&gt;
+&lt;p&gt;如果端口号一样，服务端会返回之前的SYN的ACK，客户端收到后发现不是现在的sql+1，就会返回RST通知服务端关闭掉连接。重新连接。&lt;/p&gt;
+&lt;h4 id=&#34;time_wait时收到syn&#34;&gt;TIME_WAIT时收到SYN&lt;/h4&gt;
+&lt;p&gt;如果SYN比期望的序列号大，那么是合法的SYN，服务端会从TIME_WAIT转变为SYN_RECV，继续连接。&lt;/p&gt;
+&lt;p&gt;如果SYN比期望的小，说明是不合法的，直接返回RST&lt;/p&gt;
+&lt;h4 id=&#34;挥手时收到乱序的fin包会发生什么&#34;&gt;挥手时收到乱序的FIN包会发生什么&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ccabc2f21b014c6c9118cd29ae11c18c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5bCP5p6XY29kaW5n,size_20,color_FFFFFF,t_70,g_se,x_16&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;比如这里期望是seq=y+1，但是收到的却是y+100，说明中间有个数据报延迟了，此时会放入乱序队列，不会进入TIME_WAIT状态。直到收到符合这个FIN的前面的数据报。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/4effcf2a9e7e4adeb892da98ee21694b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5bCP5p6XY29kaW5n,size_20,color_FFFFFF,t_70,g_se,x_16&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;客户端崩溃&#34;&gt;客户端崩溃&lt;/h4&gt;
+&lt;p&gt;如果客户端崩溃，还没开启keep-alive，那么服务端将会一直处于ESTABLISDED状态。&lt;/p&gt;
+&lt;p&gt;如果是进程崩溃，操作系统是能感知到并发送FIN报文进行四次挥手的。但是宕机的话并不会。&lt;/p&gt;
+&lt;p&gt;如果客户端宕机并立刻重启，就会恢复RST重置连接。&lt;/p&gt;
+&lt;p&gt;如果宕机没有重启，服务端重发次数多次之后就断开。&lt;/p&gt;
+&lt;h4 id=&#34;拔掉网线tcp连接还存在&#34;&gt;拔掉网线TCP连接还存在&lt;/h4&gt;
+&lt;h4 id=&#34;如果服务端没有listen客户端发起连接&#34;&gt;如果服务端没有listen，客户端发起连接&lt;/h4&gt;
+&lt;p&gt;此时服务端会返回RST报文&lt;/p&gt;
+&lt;h4 id=&#34;如果没有accept客户端发起连接&#34;&gt;如果没有accept，客户端发起连接&lt;/h4&gt;
+&lt;p&gt;是可以完成建立TCP连接的，因为建立连接的时候不需要accept参与，它的目的只是在完成三次握手后，从全连接队列中取出一条连接。&lt;/p&gt;
+&lt;h2 id=&#34;udp协议&#34;&gt;UDP协议&lt;/h2&gt;
+&lt;p&gt;UDP不提供复杂的控制机制，利用IP协议提供无连接的通信。&lt;/p&gt;
+&lt;p&gt;UDP头部很简单：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3hpYW9saW5jb2Rlci9JbWFnZUhvc3QyLyVFOCVBRSVBMSVFNyVBRSU5NyVFNiU5QyVCQSVFNyVCRCU5MSVFNyVCQiU5Qy9UQ1AtJUU0JUI4JTg5JUU2JUFDJUExJUU2JThGJUExJUU2JTg5JThCJUU1JTkyJThDJUU1JTlCJTlCJUU2JUFDJUExJUU2JThDJUE1JUU2JTg5JThCLzEyLmpwZw?x-oss-process=image/format,png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;udp和tcp的区别&#34;&gt;UDP和TCP的区别&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP面向连接，在传输数据之前需要先建立连接。
+UDP不需要连接，直接传输数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP只能点对点
+UDP支持一对一、一对多、多对多&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可靠性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP是可靠交付，数据可以无差错不丢失不重复按序到达。
+UDP尽最大努力交付，不保证可靠交付。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;拥塞控制、流量控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP有这些机制来保证数据传输安全性
+UDP没有&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首部开销&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP首部开销大
+UDP首部开销小&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分片不同&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP如果大于MSS，会在传输层分片，接收端会组装，中途如果丢失了一个分片，会重传&lt;/p&gt;
+&lt;p&gt;DSP如果大于MTU，会在IP层分片，接收端在IP层组装完。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;IP层就能分片，但是TCP之所以还要采用MSS分片，是因为如果只采用IP分片，一个分片丢失整个IP报文都要重传，但是TCP的重发以MSS为单位，提高重传效率。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;udp和tcp的应用场景&#34;&gt;UDP和TCP的应用场景&lt;/h3&gt;
+&lt;p&gt;TCP常用于对保证数据可靠性的场景，比如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FTP文件传输&lt;/li&gt;
+&lt;li&gt;HTTP/HTTPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;UDP主要用于简单高效的随时发送数据，但是对可靠性要求不高的场景，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS、SNMP&lt;/li&gt;
+&lt;li&gt;音视频通信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tips&#34;&gt;tips&lt;/h3&gt;
+&lt;h4 id=&#34;udp和tcp可以绑定同一端口&#34;&gt;UDP和TCP可以绑定同一端口&lt;/h4&gt;
+&lt;p&gt;在IP包头的协议号字段就知道是TCP还是UDP了，所以绑定同一端口号不会冲突。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/network/port/tcp%E5%92%8Cudp%E6%A8%A1%E5%9D%97.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;不过多个TCP不能绑定同一端口号&lt;/p&gt;
 &lt;h2 id=&#34;代理服务器&#34;&gt;代理服务器&lt;/h2&gt;
 &lt;p&gt;客户机和目标服务器之间通常需要一些中转服务器进行代理中转访问。&lt;/p&gt;
 &lt;h3 id=&#34;正向代理&#34;&gt;正向代理&lt;/h3&gt;
@@ -11782,11 +12422,297 @@ cwnd &amp;lt; ssthresh: 拥塞避免&lt;/p&gt;
 &lt;p&gt;反向代理由服务端设置，代理服务器接收客户端的连接，然后转发给目标服务器，获得结果后返回给客户端，对外表现就像是目标服务器一样。
 客户端并不清楚具体的服务器。很多大型网站都使用反向代理，用户访问该网站，会访问相同地域的反向代理服务器，从而节约时间。以及做负载均衡的nginx、CDN等等。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643559177/TCP-IP-16.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;http通信&#34;&gt;HTTP通信&lt;/h2&gt;
+&lt;h2 id=&#34;http&#34;&gt;HTTP&lt;/h2&gt;
+&lt;h3 id=&#34;http概念&#34;&gt;HTTP概念&lt;/h3&gt;
+&lt;p&gt;HTTP是超文本传输协议（HyperText Transfer Protoco）&lt;/p&gt;
+&lt;h3 id=&#34;http状态码&#34;&gt;HTTP状态码&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.engine.wang/assets/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png&#34; alt=&#34;HTTP状态码&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;http字段&#34;&gt;HTTP字段&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Host&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;域名，比如 &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Content-Length&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;回应的数据长度&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Connection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Connection: keep-alive
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;客户端要求服务器的TCP持久连接，从而可以复用。HTTP1.1默认都是这个。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Content-Type&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;回应的数据格式，比如&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Content-Type: text/html; charset=utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;Content-Encoding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;压缩方法，比如：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Accept-Encoding: gzip, deflate
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;http缓存技术&#34;&gt;HTTP缓存技术&lt;/h3&gt;
+&lt;p&gt;包括强制缓存和协商缓存。&lt;/p&gt;
+&lt;p&gt;如果浏览器本地缓存没过期，显示&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Status Code: 200 (from disk cache)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就是强制缓存。&lt;/p&gt;
+&lt;p&gt;协商缓存是与服务器协商后，来决定是否使用本地缓存，如果HTTP响应码为304，就使用本地缓存。&lt;/p&gt;
 &lt;h3 id=&#34;http请求&#34;&gt;HTTP请求&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643611443/TCP-IP-18.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;http的keep-alive&#34;&gt;HTTP的Keep-Alive&lt;/h3&gt;
+&lt;p&gt;前面我们说了TCP的Keep-Alive&lt;/p&gt;
+&lt;p&gt;HTTP如果每次都是建立TCP-请求资源-应答资源-释放TCP，然后多次这样，效率就很低。HTTP通过在请求的头部加入：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Connection: Keep-Alive
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;来开启HTTP keep-alive，服务器恢复的响应也会加这个。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/b3fa409edd8aa1dea830af2a69fc8a31.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从而可以连接一次TCP然后多次请求资源。如果长期不用的话，超过一定的时间就会自动断开。&lt;/p&gt;
+&lt;p&gt;HTTP/1.1开始就默认开启了这个选项。&lt;/p&gt;
+&lt;h3 id=&#34;http11&#34;&gt;HTTP/1.1&lt;/h3&gt;
+&lt;p&gt;相比于HTTP/1.0，HTTP/1.1采用了长连接的方式，减少再次连接所需的时间。可以连续发送请求而不用收到回复再发下一个请求。&lt;/p&gt;
+&lt;p&gt;它同时还有三个特点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;无状态传输，可以减轻服务器负担，但是由于失去记忆能力，如果是连续的请求，则每次都要重新鉴权，所以一般采用cookies的方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;明文传输，便于debug，但是容易泄露信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP1.1最严重的问题是安全问题，由于通信使用明文（不加密），也不验证通信方的身份和不证明报文的完整性，可以通过HTTPS的方式解决。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;https&#34;&gt;HTTPS&lt;/h3&gt;
+&lt;p&gt;HTTPS在HTTP的基础上增加了SSL/TLS安全协议，从而使得报文可以加密传输。建立连接时还多了一步SSL/TLS的握手过程。HTTP端口号是80，HTTPS是443。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP/19-HTTPS%E4%B8%8EHTTP.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;HTTPS需要向CA申请数字证书，保证服务器身份可信&lt;/p&gt;
+&lt;p&gt;HTTPS通过在HTTP与TCP之间加入SSL/TLS协议层，通过&lt;strong&gt;信息加密、校验机制、身份证书&lt;/strong&gt;解决了HTTP的风险。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过混合加密的方式达到信息加密的目的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HTTPS使用对称加密和非对称加密的混合加密方式&lt;/p&gt;
+&lt;p&gt;通信建立之前通过非对称加密交换会话秘钥，会生成公钥和私钥，公钥可以任意分发，私钥保密。&lt;/p&gt;
+&lt;p&gt;在通信过程之中通过对称加密来加密明文数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过摘要算法实现完整性，防止被篡改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对内容进行摘要算法（比如哈希函数）运算算出指纹，是不可逆推导的过程，如果内容被篡改了就会被检验出来&lt;/p&gt;
+&lt;p&gt;通常采用私钥加密这个哈希值，然后用公钥解密。私钥保存在服务端，公钥被发送给客户端，如果客户端收到的信息能被公钥解密就说明信息是完整的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器公钥放入数字证书，防止被冒充&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了防止公私钥都被伪造了，就需要将公钥注册到一个公共机构，CA（数字证书认证机构），服务器公钥放在CA颁发的数字证书中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP/22-%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;举个例子，家长签字，老师能辨别出家长的字迹（摘要算法），但是如果能模仿家长的字迹，那么也可以混淆，所以老师还保存了家长的公钥，家长的私钥无法获取，也就是说如果修改了签名，老师将无法解密，说明内容被篡改了。但如果公钥也是伪造的呢？为了解决这个问题，需要一个权威机构来存储所有的公钥（CA）&lt;/p&gt;
+&lt;h3 id=&#34;https的通信&#34;&gt;HTTPS的通信&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/HTTP/23-HTTPS%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;tls握手&#34;&gt;TLS握手&lt;/h4&gt;
+&lt;p&gt;首先TLS握手是在TCP三次握手之后才进行的，因为要先建立可靠的TCP连接。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;客户端发送&lt;code&gt;ClientHello&lt;/code&gt;加密通信请求，发送
+①客户端的SSL/TLS版本
+②客户端生成的随机数&lt;code&gt;Client Random&lt;/code&gt;（用于后面的会话秘钥的生成）
+③客户端支持的加密算法（比如RSA）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端收到请求后发出&lt;code&gt;ServerHello&lt;/code&gt;响应，发送
+①确认SSL/TLS版本
+②服务端生成的随机数&lt;code&gt;Server Random&lt;/code&gt;（也用于后面的会话秘钥的生成）
+③确认加密算法（比如RSA）
+④服务器的数字证书&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端的回应
+首先通过CA公钥检查服务器的数字证书的真实性，如果没有问题，就从数字证书中取出服务器公钥，用于加密报文。发送：
+①一个随机数（pre-master key），会被公钥加密
+②加密算法改变通知，表明之后的消息都会用会话秘钥加密
+③客户端握手结束通知，表示握手阶段结束&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务端最后回应
+通过协商的加密算法计算出会话秘钥，发送：
+① 加密算法改变通知，表明之后的消息都会用会话秘钥加密
+② 服务端握手结束通知&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之后客户端和服务端就进入了加密通信，相较于HTTP，HTTPS的每次通信都会用会话秘钥加密内容&lt;/p&gt;
+&lt;p&gt;还有一种情况就是中间人服务器，类似于代理那种，客户端的请求被假基站劫持并转发给了中间人服务器，然后这个服务器跟目标服务器沟通，这样中间的信息就会被窃取。中间人服务器跟客户端TLS握手时的证书是自己伪造的，会被浏览器识破，但是如果用户还是相信了这个安全证书，那么HTTPS通信依然会被劫持。&lt;/p&gt;
+&lt;h4 id=&#34;两种加密方式&#34;&gt;两种加密方式&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;RSA加密&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;传统TLS握手都采用RSA算法实现密钥交换。
+客户端先生成随机密钥，使用服务端的公钥加密之后传给服务端。然后服务端用它的私钥（非对称加密，公钥解私钥，私钥解公钥）来解密出这个密钥。&lt;/p&gt;
+&lt;p&gt;但是RSA有个很严重的问题，那就是如果私钥泄露了，之前的消息都会被解密，也就是不具有前向安全性。更好的方式是ECDHE加密，涉及到密码学的知识，这里就不深入了&lt;/p&gt;
+&lt;h4 id=&#34;一些关于https的小总结&#34;&gt;一些关于HTTPS的小总结&lt;/h4&gt;
+&lt;p&gt;相比于HTTP，HTTPS在建立连接的时候，多了TLS握手的过程，内容传输的时候进行了对称加密。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TSL和SSL的区别&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以视为一个东西&lt;/p&gt;
+&lt;h3 id=&#34;http2&#34;&gt;HTTP/2&lt;/h3&gt;
+&lt;p&gt;HTTP/2基于HTTPS，安全性有保障&lt;/p&gt;
+&lt;p&gt;还增加了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;头部压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果同时发送多个请求，头部重复部分会被压缩，通过静态表、Huffman编码等，将体积压缩了一半。HPACK算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;二进制格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;报文不再采用纯文本形式，而是二进制格式，对计算机更友好&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据包不按顺序发送，连续的数据包可能是不同的回应，每个回应的所有数据包称为一个数据流，数据流对应一个独一无二的编号，规定客户端发送的为奇数，服务端发送的为偶数。&lt;/p&gt;
+&lt;p&gt;客户端还可以指定数据流的优先级，服务端会优先响应优先级高的请求&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多路复用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;多个Stram复用一条TCP连接从而达到并发，不需要按照顺序一一回应&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器主动推送资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如客户端访问HTML时，服务器直接主动推送css文件，从而减少消息传递次数。&lt;/p&gt;
+&lt;p&gt;nginx可以这样设置：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;location /test.html {
+  http2_push /test.css;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;网络优化&#34;&gt;网络优化&lt;/h2&gt;
+&lt;h3 id=&#34;http11优化&#34;&gt;HTTP/1.1优化&lt;/h3&gt;
+&lt;p&gt;优化思路：&lt;/p&gt;
+&lt;h4 id=&#34;1-尽量避免http请求&#34;&gt;1. 尽量避免HTTP请求&lt;/h4&gt;
+&lt;p&gt;通过HTTP缓存技术，缓存之前请求的资源，下次再访问这个资源的时候直接读取本地。当然缓存是有过期时间的，在第一次获取的时候响应头部会附一个时间，如果本地超时就说明缓存过期，重新请求。&lt;/p&gt;
+&lt;p&gt;另外重新请求的时候还会附带一个当前资源的唯一摘要etag，服务器的资源如果变动了就返回这个资源，如果没有变动就返回304。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/http1.1%E4%BC%98%E5%8C%96/%E7%BC%93%E5%AD%98etag.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;2-减少请求次数&#34;&gt;2. 减少请求次数&lt;/h4&gt;
+&lt;p&gt;措施包括：减少重定向请求、合并请求、延迟发送请求&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;减少重定向请求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如访问某个服务器，资源迁移了，代理服务器将资源所在的服务器地址返回给客户端，然后客户端再发起请求，这样就造成了额外的重定向请求。&lt;/p&gt;
+&lt;p&gt;所以重定向的工作应该交给代理服务器，代理服务器直接帮客户端向源服务器发起请求，再把结果返回给客户端。这样客户端就可以减少HTTP请求次数。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/http1.1%E4%BC%98%E5%8C%96/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;重定向的工作可以交给代理服务器：
+&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/http1.1%E4%BC%98%E5%8C%96/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E5%AE%9A%E5%90%91.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;代理服务器可以记录重定向规则，进一步减少请求数量&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/http1.1%E4%BC%98%E5%8C%96/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E5%AE%9A%E5%90%912.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;合并请求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将多个访问小文件的请求合并为一个大的请求。减少了重复的HTTP头部和TCP握手和慢启动的时间。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/http1.1%E4%BC%98%E5%8C%96/css%E7%B2%BE%E7%81%B5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;比如服务端用webpack打包各种资源，也是这样的优化。&lt;/p&gt;
+&lt;p&gt;还可以将图像直接用base64编码到HTML，可以直接解码渲染图片而不需要请求。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;延迟发送&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如请求资源的时候先请求一部分数据，而不是一次请求完。&lt;/p&gt;
+&lt;h4 id=&#34;3-减少http响应数据的大小&#34;&gt;3. 减少HTTP响应数据的大小&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;无损压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;首先是去除换行符空格这种完全不破坏信息的方式。&lt;/p&gt;
+&lt;p&gt;gzip、br（谷歌的brotli算法）是几个比较常见的无损压缩方式，head中一般有：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Accept-Encoding: gzip, deflate, br
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;有损压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有损压缩的数据会牺牲一些原始数据来减少数据量
+可以通过HTTP请求头部的q来告知期望的资源质量：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Accept: audio/*; q=0.2, audio/basic
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;图片的压缩可以采用webp格式，将比png小很多&lt;/p&gt;
+&lt;p&gt;音视频则是可以通过增量数据表达后面的帧，就可以减少很多数据。&lt;/p&gt;
+&lt;h3 id=&#34;https优化&#34;&gt;HTTPS优化&lt;/h3&gt;
+&lt;p&gt;由于HTTPS比HTTP多了一个TLS握手过程来保障安全性，就更需要优化网络了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.xiaolincoding.com/gh/xiaolincoder/ImageHost4@main/%E7%BD%91%E7%BB%9C/https%E4%BC%98%E5%8C%96/%E4%BC%98%E5%8C%96https%E6%8F%90%E7%BA%B2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里主要是TLS协议握手的过程与握手后的加密报文传输需要被优化。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;硬件优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HTTPS协议是计算密集型，所以需要优化CPU，尤其是支持AES-NI的CPU，这样可以在指令级别优化AES算法的计算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;软件优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如升级系统内核、软件版本等&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;协议优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;采用ECDHE密钥交换而不是RSA，会减少一个RTT。&lt;/p&gt;
+&lt;p&gt;对称加密算法，如果安全性要求不高可以选用AES_128_GCM&lt;/p&gt;
+&lt;p&gt;TLS升级&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;证书优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;传输应该用ECDSA，长度更短。验证用OCSP，向CA发送查询，CA返回证书有效状态。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;会话复用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不应该用id保存，这样服务端保存的东西太多，而且负载均衡之后访问的不一定是同一台服务器。
+更好的是用session ticket，类似于HTTP cookies，保存在客户端。&lt;/p&gt;
+&lt;p&gt;TLS1.3会在重连的时候直接把ticket和HTTP请求一同发给服务器，重连不需要额外的时间成本，称为pre-shared key&lt;/p&gt;
+&lt;h3 id=&#34;tcp优化&#34;&gt;TCP优化&lt;/h3&gt;
+&lt;h4 id=&#34;三次握手的性能优化&#34;&gt;三次握手的性能优化&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;调整SYN报文和SYN/ACK报文的重传次数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端和服务端默认重传5次左右，如果内网通讯可以调低重传次数提高效率，网络非常繁忙不稳定的时候调高重传次数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调整SYN半连接队列/acept全连接队列的长度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果SYN半连接队列溢出情况比较严重可以调整SYN队列大小。
+如果accept队列溢出严重可以通过backlog和somaxconn等参数提高队列大小。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;绕过三次握手&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Linux3.7引入的TCP Fast Open，第一次三次握手之后会存一个Cookie，之后连接就不需要再三次握手了，客户端直接发送SYN和数据以及Cookie，如果服务端检测到Cookie有效，就在SYN-ACK中也附带数据，相当于直接可以传输。&lt;/p&gt;
+&lt;h4 id=&#34;shutdown和close&#34;&gt;shutdown和close&lt;/h4&gt;
+&lt;p&gt;主动关闭报文的方式有RST和FIN，其中如果收到RST就直接暴力关闭，FIN是通过&lt;code&gt;shutdown&lt;/code&gt;和&lt;code&gt;close&lt;/code&gt;关闭的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;close&lt;/code&gt;是完全关闭两个方向的连接，&lt;code&gt;shutdown&lt;/code&gt;只关闭单方向的连接。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;close&lt;/code&gt;客户端收到第二次握手后直接返回RST，然后释放连接。是粗暴的关闭，没有经历完整的四次挥手。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/3b5f1897d2d74028aaf4d552fbce1a74.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shutdown&lt;/code&gt;则是单方向的关闭，经历了完整的四次挥手。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/71f5646ec58849e5921adc08bb6789d4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;四次挥手的性能优化&#34;&gt;四次挥手的性能优化&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;调整FIN报文重传次数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调整FIN_WAIT2的时间与孤儿连接的上限个数（仅适用于close）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也就是关闭主动方收到第一个ACK，但是被动方还没发送FIN，此时主动方在FIN_WAIT2状态，此时就是孤儿连接。如果在一定的时间内没收到就会直接关闭。如果占用资源过多，可以调整时间和降低孤儿连接上限。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调整TIME_WAIT的上限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Linux 提供了 tcp_max_tw_buckets 参数，当 TIME_WAIT 的连接数量超过该参数时，新关闭的连接就不再经历 TIME_WAIT 而直接关闭&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复用TIME_WAIT的连接（仅适用于客户端）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;tcp数据传输的性能优化&#34;&gt;TCP数据传输的性能优化&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;扩大窗口大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调整发送和接收缓冲区的范围&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开接收缓冲区动态调节&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调整内存范围&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;tcp应答&#34;&gt;TCP应答&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;https://res.cloudinary.com/dbmkzs2ez/image/upload/v1643698156/HTTP%E7%8A%B6%E6%80%81%E7%A0%81.png&#34; alt=&#34;HTTP状态码&#34;&gt;&lt;/p&gt;
+&lt;p&gt;301和302的区别：
+301是永久转移，302是临时转移。
+会返回一个Location，然后跳转到新的Location&lt;/p&gt;
+&lt;p&gt;301：要永久更换了，比如换了个域名，返回的是新页面的内容&lt;/p&gt;
+&lt;p&gt;302：资源暂时失效，返回一个临时页，过段时间会换回来，容易遇到流量劫持&lt;/p&gt;
 </content>
             
             
