@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Fri, 05 May 2023 11:17:45 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 11 May 2023 02:55:33 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
@@ -207,7 +207,7 @@ prometheus, version 2.40.6 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;branch: H
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl -OL https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
-$ tar -zxvf prometheus-2.40.6.linux-amd64.tar.gz -C .
+$ tar -zxvf node_exporter-1.5.0.linux-amd64.tar.gz -C .
 $ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; node_exporter-1.5.0.linux-amd64
 $ sudo cp /node_exporter /usr/local/bin/
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;

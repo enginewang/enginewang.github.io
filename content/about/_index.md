@@ -24,17 +24,17 @@ draft: false
 
 ## 我部署的一些其他的有趣的东西
 
-- [chat.engine.wang](https://chat.engine.wang)
+- [chatgpt.engine.wang](https://chatgpt.engine.wang)
 
-ChatGPT私有站，国内裸连，接的openai plus账号的api key，秒回答，用户只有几十个亲友，体验可能是国内最好的。如果你能看到这里，就送你激活码：engine，自用即可，请勿宣传
+ChatGPT私有站，接的自己的openai plus账号的api key，秒回答，用户只有几十个亲友，体验可能是国内最好的。如果你能看到这里，就送你激活码：chatgpt，自用即可，请勿宣传
 
 - ChatGPT 微信机器人
 
-微信号：chatgptbot2023
+微信号：chatgptbot2023，加好友时请备注是从我的博客来的
 
 - [drive.engine.wang](https://drive.engine.wang)
 
-基于Cloudreve的私有网盘，支持aria2离线下载
+基于Cloudreve的私有网盘，支持aria2离线下载，超高容量
 
 - [gitlab.engine.wang](https://gitlab.engine.wang)
 
@@ -58,7 +58,7 @@ diffusion图片生成，已加载二次元风格，算力是一块RTX3060
 
 - [app.jryy.site](https://app.jryy.site)
 
-嘉人有约，目前活动处于停止状态，今年年底会开启新的活动
+嘉人有约，目前活动处于停止状态，今年年底会开启新的一期
 
 
 
@@ -66,14 +66,16 @@ diffusion图片生成，已加载二次元风格，算力是一块RTX3060
 ## 技术能力
 
 - **计算机基础**：数据结构与算法、计算机网络、组成原理、操作系统、软件工程等计算机基础扎实。
-- **编程语言**：熟悉Go语言, 熟悉map、slice、channel等数据结构、net/http、sync、gmp、gc等原理，熟练使用gin、echo、gorm、go-micro。熟悉Python，了解Django、Scrapy、Selenium、Pytorch。
-- **Linux**：熟练使用Linux及常用命令，有Linux下开发部署的经验，熟悉git、Docker，了解k8s。
+- **编程语言**：熟悉Go语言, 熟悉map、slice、channel等数据结构、net/http、sync、gmp、gc等原理，熟练使用gin、echo、gorm、go-micro。熟悉Python，熟练使用Django、Flask、Scrapy、Selenium、Pytorch、numpy等。
+- **Linux**：熟练使用Linux及常用命令，有Linux下开发部署的大量经验，熟悉git、Docker，对k8s有一定的了解。
 - **计算机网络**：熟悉计算机网络OSI七层模型，熟悉TCP/IP、UDP、HTTP/HTTPS、DNS等协议。
 - **数据库**：熟悉MySQL，了解MySQL索引、事务、MVCC等原理。熟悉Redis、MongoDB等NoSQL，了解Redis的数据结构和底层原理。了解缓存高并发场景，如缓存穿透、缓存击穿、缓存雪崩等。
 - **分布式与微服务**：了解分布式理论，了解CAP、RPC、注册中心、链路追踪、熔断、限流等原理。
 - **前端**：了解HTML/css/javascript和Vue/Vuex/Vue-Router等前端开发技术，有多个全栈项目的经验。
 - **Data&Ai**：了解数据分析、数据挖掘、凸优化、经典的机器学习和深度学习算法并有一定的实践。
 - **英语**：CET-6，习惯使用Google，有较强的搜索能力，能基本无障碍阅读技术相关英文资料。
+- **游戏**：对Unity和虚幻4引擎有一定的了解和实践
+- **设计与审美**：熟悉Adobe全家桶，尤其是精通PS、Pr等，具有很强的审美能力
 
 ## 项目列表
 

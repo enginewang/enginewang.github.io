@@ -57,7 +57,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2023-04-30T23:23:02+08:00",
-        "dateModified": "2023-05-02T10:49:42+08:00",
+        "dateModified": "2023-05-11T02:50:41+08:00",
         "url": "https://blog.engine.wang/posts/prometheus-grafana-deploy/",
         "headline": "Prometheus + Grafana 监控系统搭建",
         "description": "前言 想对实验室的服务器搭建监控系统进行外部网页监控，目前比较主流的选择就是Prometheus + Grafana，先看最终效果： 服务器常规性能监控： GPU监控： D……",
@@ -107,7 +107,7 @@
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202304302257736.png" />
 <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2023-04-30T23:23:02&#43;08:00" />
-    <meta property="article:modified_time" content="2023-05-02T10:49:42&#43;08:00" />
+    <meta property="article:modified_time" content="2023-05-11T02:50:41&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -445,7 +445,7 @@ prometheus, version 2.40.6 <span class="o">(</span>branch: HEAD, revision: e1506
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ curl -OL https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
-$ tar -zxvf prometheus-2.40.6.linux-amd64.tar.gz -C .
+$ tar -zxvf node_exporter-1.5.0.linux-amd64.tar.gz -C .
 $ <span class="nb">cd</span> node_exporter-1.5.0.linux-amd64
 $ sudo cp /node_exporter /usr/local/bin/
 </code></pre></td></tr></table></div>

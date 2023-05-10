@@ -112,7 +112,7 @@ Node Exporter可以监控CPU、内存、磁盘等各项性能指标
 
 ```bash
 $ curl -OL https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
-$ tar -zxvf prometheus-2.40.6.linux-amd64.tar.gz -C .
+$ tar -zxvf node_exporter-1.5.0.linux-amd64.tar.gz -C .
 $ cd node_exporter-1.5.0.linux-amd64
 $ sudo cp /node_exporter /usr/local/bin/
 ```
