@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 03 Jun 2023 08:51:21 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 03 Jun 2023 16:38:18 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.engine.wang/rss.xml" />
         
@@ -648,7 +648,7 @@ server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/">实战</category>
                                 
                             
                         
@@ -3048,7 +3048,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -3956,7 +3956,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -4464,7 +4464,7 @@ a + f(b+c) + b = 2(a + s(b+c) + b)
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -5372,7 +5372,7 @@ answer = [10,55,45,25,25]
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/">算法</category>
                                 
                             
                         
@@ -8625,7 +8625,7 @@ kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Runn
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/">实战</category>
                                 
                             
                         
@@ -16935,7 +16935,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/">理论</category>
                                 
                             
                         
@@ -17099,7 +17099,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/">理论</category>
                                 
                             
                         
@@ -17282,7 +17282,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+                                    <category domain="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/">理论</category>
                                 
                             
                         

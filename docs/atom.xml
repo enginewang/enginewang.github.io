@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-06-03T08:51:20&#43;08:00</updated>
+    <updated>2023-06-03T16:38:18&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">KubeSphere 入门和安装</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/kubesphere-start/" />
             <id>https://blog.engine.wang/posts/kubesphere-start/</id>
-            <updated>2023-06-03T08:51:15&#43;08:00</updated>
+            <updated>2023-06-03T16:35:53&#43;08:00</updated>
             <published>2023-05-10T08:49:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -639,7 +639,7 @@ server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -2088,7 +2088,7 @@ $ vim /root/.aria2c/aria2.conf
             <title type="text">算法笔记（回溯法）</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/leetcode-notes-backtrack/" />
             <id>https://blog.engine.wang/posts/leetcode-notes-backtrack/</id>
-            <updated>2023-05-02T10:40:02&#43;08:00</updated>
+            <updated>2023-06-03T16:34:25&#43;08:00</updated>
             <published>2023-01-30T19:11:03&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3051,7 +3051,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -3079,7 +3079,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
             <title type="text">算法笔记（二叉树篇）</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/leetcode-notes-binarytree/" />
             <id>https://blog.engine.wang/posts/leetcode-notes-binarytree/</id>
-            <updated>2023-02-15T19:12:39&#43;08:00</updated>
+            <updated>2023-06-03T16:34:28&#43;08:00</updated>
             <published>2023-01-06T21:09:39&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -3962,7 +3962,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -3990,7 +3990,7 @@ go删除列表的特定元素比较麻烦，这里多加一个哈希表来表示
             <title type="text">算法笔记（链表篇）</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/leetcode-notes-linkedlist/" />
             <id>https://blog.engine.wang/posts/leetcode-notes-linkedlist/</id>
-            <updated>2023-02-15T19:12:45&#43;08:00</updated>
+            <updated>2023-06-03T16:34:30&#43;08:00</updated>
             <published>2022-12-10T17:19:49&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -4473,7 +4473,7 @@ a + f(b+c) + b = 2(a + s(b+c) + b)
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -4501,7 +4501,7 @@ a + f(b+c) + b = 2(a + s(b+c) + b)
             <title type="text">算法笔记（数组篇）</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/leetcode-notes-array/" />
             <id>https://blog.engine.wang/posts/leetcode-notes-array/</id>
-            <updated>2023-02-15T19:12:53&#43;08:00</updated>
+            <updated>2023-06-03T16:34:23&#43;08:00</updated>
             <published>2022-11-27T17:19:49&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -5384,7 +5384,7 @@ answer = [10,55,45,25,25]
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%AE%97%E6%B3%95/" term="算法" label="算法" />
                             
                         
                     
@@ -7893,7 +7893,7 @@ Docker是最著名的容器引擎，容器的管理和调度则是Kubernetes&lt;
             <title type="text">通过kubeadm搭建Kubernetes集群</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/k8s-kubeadm-setup/" />
             <id>https://blog.engine.wang/posts/k8s-kubeadm-setup/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-06-03T16:35:43&#43;08:00</updated>
             <published>2022-08-09T14:33:59&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -8664,7 +8664,7 @@ kubernetes-dashboard   kubernetes-dashboard-5dff5767b9-rtkc6        1/1     Runn
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E5%AE%9E%E6%88%98/" term="实战" label="实战" />
                             
                         
                     
@@ -14259,7 +14259,7 @@ MIMO（Multiple Input Multiple Output，多进多出）
             <title type="text">凸优化（五）算法</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-5/" />
             <id>https://blog.engine.wang/posts/convex-5/</id>
-            <updated>2023-05-02T10:50:18&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2022-01-11T01:09:12&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -14677,7 +14677,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（四）对偶</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-4/" />
             <id>https://blog.engine.wang/posts/convex-4/</id>
-            <updated>2023-05-02T10:50:20&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2022-01-09T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15074,7 +15074,7 @@ $v = -3.15, v = 0.22, v = 1.89, v = 4.04$&lt;/p&gt;
             <title type="text">凸优化（三）凸优化问题</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-3/" />
             <id>https://blog.engine.wang/posts/convex-3/</id>
-            <updated>2023-05-02T10:50:22&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2022-01-06T21:25:05&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15382,7 +15382,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（二）凸函数</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-2/" />
             <id>https://blog.engine.wang/posts/convex-2/</id>
-            <updated>2023-05-02T10:50:24&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2022-01-03T20:22:23&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -15797,7 +15797,7 @@ $$&lt;/p&gt;
             <title type="text">凸优化（一）绪论与凸集</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/convex-1/" />
             <id>https://blog.engine.wang/posts/convex-1/</id>
-            <updated>2023-05-02T10:50:26&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2021-12-27T21:10:31&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -16711,7 +16711,7 @@ R + R &amp;gt; N：&lt;/p&gt;
             <title type="text">浅谈深度学习模型的可解释性</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/talk-about-model-interpreter/" />
             <id>https://blog.engine.wang/posts/talk-about-model-interpreter/</id>
-            <updated>2023-05-02T10:50:43&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2021-11-01T23:41:33&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -16873,7 +16873,7 @@ $$&lt;/p&gt;
             <title type="text">Google三驾马车（三）—— Bigtable</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/bigtable/" />
             <id>https://blog.engine.wang/posts/bigtable/</id>
-            <updated>2023-05-02T10:48:52&#43;08:00</updated>
+            <updated>2023-06-03T16:35:06&#43;08:00</updated>
             <published>2021-10-27T00:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -17049,7 +17049,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
                             
                         
                     
@@ -17083,7 +17083,7 @@ Bigtable按行key对数据进行排序，行范围动态分区，每个行的范
             <title type="text">Google三驾马车（二）—— MapReduce</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/mapreduce/" />
             <id>https://blog.engine.wang/posts/mapreduce/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-06-03T16:35:01&#43;08:00</updated>
             <published>2021-10-18T20:21:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -17216,7 +17216,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
                             
                         
                     
@@ -17250,7 +17250,7 @@ MapReduce有一个备份任务的机制，就是当MapReduce即将完成的时�
             <title type="text">Google三驾马车（一）—— Google File System</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/gfs/" />
             <id>https://blog.engine.wang/posts/gfs/</id>
-            <updated>2023-02-02T22:58:40&#43;08:00</updated>
+            <updated>2023-06-03T16:35:04&#43;08:00</updated>
             <published>2021-10-11T18:00:18&#43;08:00</published>
             <author>
                     <name>王毅诚</name>
@@ -17402,7 +17402,7 @@ master和chunkserver都可以在几秒内启动&lt;/p&gt;
                             
                             
                             
-                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                                <category scheme="https://blog.engine.wang/categories/%E7%90%86%E8%AE%BA/" term="理论" label="理论" />
                             
                         
                     
@@ -19797,7 +19797,7 @@ Wait会阻塞当前的goroutine，直到WaitGroup的计数值为0，写在需要
             <title type="text">生存分析基础</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/survival-analysis-basic/" />
             <id>https://blog.engine.wang/posts/survival-analysis-basic/</id>
-            <updated>2023-05-02T10:50:02&#43;08:00</updated>
+            <updated>2023-06-03T16:33:58&#43;08:00</updated>
             <published>2020-12-23T15:23:00&#43;08:00</published>
             <author>
                     <name>王毅诚</name>

@@ -2,7 +2,7 @@
 title: "KubeSphere 入门和安装"
 date: 2023-05-10T08:49:00+08:00
 draft: false
-categories: ["技术"]
+categories: ["实战"]
 tags: ["Kubernetes", "云原生", "分布式", "KubeSphere"]
 ---
 

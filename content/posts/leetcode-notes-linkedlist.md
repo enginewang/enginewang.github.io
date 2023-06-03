@@ -2,7 +2,7 @@
 title: "算法笔记（链表篇）"
 date: 2022-12-10T17:19:49+08:00
 draft: false
-categories: ["技术"]
+categories: ["算法"]
 tags: ["算法", "LeetCode"]
 ---
 
