@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">王毅诚的博客</title>
     <subtitle type="html">这里是王毅诚的博客，分享技术文章和生活经历</subtitle>
-    <updated>2023-05-11T02:55:33&#43;08:00</updated>
+    <updated>2023-06-03T08:51:20&#43;08:00</updated>
     <id>https://blog.engine.wang/</id>
     <link rel="alternate" type="text/html" href="https://blog.engine.wang/" />
     <link rel="self" type="application/atom&#43;xml" href="https://blog.engine.wang/atom.xml" />
@@ -16,6 +16,665 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.91.1">Hugo</generator>
+        <entry>
+            <title type="text">KubeSphere 入门和安装</title>
+            <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/kubesphere-start/" />
+            <id>https://blog.engine.wang/posts/kubesphere-start/</id>
+            <updated>2023-06-03T08:51:15&#43;08:00</updated>
+            <published>2023-05-10T08:49:00&#43;08:00</published>
+            <author>
+                    <name>王毅诚</name>
+                    <uri>https://engine.wang/</uri>
+                    <email>engine74396@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">KubeSphere是什么 KubeSphere是国内的青云开发的一款开源的，在 Kubernetes 之上构建的面向云原生应用的分布式操作系统。有非常完善的界面，对开发运维非常友好。……</summary>
+            
+                <content type="html">&lt;h2 id=&#34;kubesphere是什么&#34;&gt;KubeSphere是什么&lt;/h2&gt;
+&lt;p&gt;KubeSphere是国内的青云开发的一款开源的，在 Kubernetes 之上构建的面向云原生应用的分布式操作系统。有非常完善的界面，对开发运维非常友好。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.kubesphere.io/images/docs/v3.3/zh-cn/introduction/what-is-kubesphere/kubesphere-feature-overview.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;单节点体验版&#34;&gt;单节点体验版&lt;/h2&gt;
+&lt;h3 id=&#34;方案介绍&#34;&gt;方案介绍&lt;/h3&gt;
+&lt;p&gt;一台机子直接搭建KubeSphere+Kubernetes，适用于尝鲜，实际使用还是建议集群，要不然发挥不了k8s的作用。&lt;/p&gt;
+&lt;h3 id=&#34;具体操作&#34;&gt;具体操作&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;【注意】除了硬件最低配置至少为2核CPU、4G内存、40G存储之外，如果hostname包含大写字母也会有问题，需要修改hostname，不能包含大写字母&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 改成自己的hostname&lt;/span&gt;
+$ sudo vim /etc/hostname
+$ sudo vim /etc/hosts
+&lt;span class=&#34;c1&#34;&gt;# 重启&lt;/span&gt;
+$ sudo systemctl reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;需要安装一些依赖项：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt-get -y install socat conntrack ebtables ipset
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;记得关闭防火墙&lt;/p&gt;
+&lt;p&gt;下载KubeKey:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl -sfL https://get-kk.kubesphere.io &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;VERSION&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;v3.0.7 sh -
+$ chmod +x kk
+$ ./kk create cluster --with-kubernetes v1.22.12 --with-kubesphere v3.3.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;【注意】众所周知的原因，很多时候本地比如安装包、docker git等操作的时候会出现网络问题。推荐的一种方式是路由器挂梯子然后让linux走代理，具体方式不便叙述。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;单节点偏向于试用，不适合实际的部署，就不细说了。&lt;/p&gt;
+&lt;h2 id=&#34;多节点安装&#34;&gt;多节点安装&lt;/h2&gt;
+&lt;h3 id=&#34;方案介绍-1&#34;&gt;方案介绍&lt;/h3&gt;
+&lt;p&gt;这是相对个人而言比较通用的一种方案，高可用方案一般最少也要6台机器，实在是没这个财力。&lt;/p&gt;
+&lt;p&gt;我目前只有两个节点，采用简单的一个master，两个worker的方案，其中master自己也可以作为worker调度pod&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;节点&lt;/th&gt;
+&lt;th&gt;配置&lt;/th&gt;
+&lt;th&gt;角色&lt;/th&gt;
+&lt;th&gt;ip&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;16核32G&lt;/td&gt;
+&lt;td&gt;control-plane,master,worker&lt;/td&gt;
+&lt;td&gt;192.168.50.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;node1&lt;/td&gt;
+&lt;td&gt;4核16G&lt;/td&gt;
+&lt;td&gt;worker&lt;/td&gt;
+&lt;td&gt;192.168.50.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;配置root和ssh&#34;&gt;配置root和ssh&lt;/h3&gt;
+&lt;p&gt;建议所有的机子都用root账号，没有的话可以先配置一下root账号的密码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;并且允许ssh root登录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo vim /etc/ssh/sshd_config
+&lt;span class=&#34;c1&#34;&gt;# 修改为：PermitRootLogin yes&lt;/span&gt;
+$ service sshd restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;每台机子也都安装一下那几个软件。&lt;/p&gt;
+&lt;p&gt;确保每台机子都能ping通其他的机子，都能通过root ssh登录其他机子。&lt;/p&gt;
+&lt;h3 id=&#34;编写cluster-config&#34;&gt;编写cluster config&lt;/h3&gt;
+&lt;p&gt;创建 cluster config&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;./kk create config --with-kubesphere v3.3.2
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;配置该yaml config文件，主要是上面这部分，注意最好都用root账号，ip均为内网ip&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  hosts:
+  - &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;name: master, address: 192.168.50.2, internalAddress: 192.168.50.2, user: root, password: &lt;span class=&#34;s2&#34;&gt;&amp;#34;xxx&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+  - &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;name: node1, address: 192.168.50.31, internalAddress: 192.168.50.31, user: root, password: &lt;span class=&#34;s2&#34;&gt;&amp;#34;xxx&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+  roleGroups:
+    etcd:
+    - master
+    control-plane:
+    - master
+    worker:
+    - master
+    - node1
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过该配置创建Kubesphere和Kubernetes，大约需要等接近十分钟。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./kk create cluster -f cluster-cfg.yaml
+
+
+ _   __      _          _   __
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; / /     &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; / /
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ / _   _&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;__   ___&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ /  ___ _   _
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;    &lt;span class=&#34;se&#34;&gt;\|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;_ &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;/ _ &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;   &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;/ _ &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  __/ &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt; __/ &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;/&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_,_&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;_.__/ &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;/&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;__&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\_&lt;/span&gt;_, &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+                                    __/ &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+                                   &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;___/
+
+21:27:57 CST &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;GreetingsModule&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Greetings
+21:27:58 CST message: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;node1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+Greetings, KubeKey!
+21:27:58 CST message: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+Greetings, KubeKey!
+21:27:58 CST success: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;node1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+21:27:58 CST success: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+21:27:58 CST &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;NodePreCheckModule&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; A pre-check on nodes
+21:27:58 CST success: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+21:27:58 CST success: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;node1&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+21:27:58 CST &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;ConfirmModule&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; Display confirmation form
++--------+------+------+---------+----------+-------+-------+---------+-----------+--------+--------+------------+------------+-------------+------------------+--------------+
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; name   &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; curl &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; openssl &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ebtables &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; socat &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ipset &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ipvsadm &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; conntrack &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; chrony &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; docker &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; containerd &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; nfs client &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ceph client &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; glusterfs client &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt;         &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
++--------+------+------+---------+----------+-------+-------+---------+-----------+--------+--------+------------+------------+-------------+------------------+--------------+
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; master &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y        &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y     &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;         &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y         &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 23.0.1 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 1.6.18     &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y          &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;             &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;                  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; CST 21:27:58 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; node1  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y        &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y     &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;         &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; y         &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 24.0.2 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 1.6.21     &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;            &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;             &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;                  &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; CST 21:27:58 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
++--------+------+------+---------+----------+-------+-------+---------+-----------+--------+--------+------------+------------+-------------+------------------+--------------+
+
+This is a simple check of your environment.
+Before installation, ensure that your machines meet all requirements specified at
+https://github.com/kubesphere/kubekey#requirements-and-recommendations
+
+Continue this installation? &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;yes/no&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;: yes
+
+...中间省略
+
+
+&lt;span class=&#34;c1&#34;&gt;#####################################################&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;##              Welcome to KubeSphere!           ###&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#####################################################&lt;/span&gt;
+
+Console: http://192.168.50.2:30880
+Account: admin
+Password: P@88w0rd
+NOTES：
+  1. After you log into the console, please check the
+     monitoring status of service components in
+     &lt;span class=&#34;s2&#34;&gt;&amp;#34;Cluster Management&amp;#34;&lt;/span&gt;. If any service is not
+     ready, please &lt;span class=&#34;nb&#34;&gt;wait&lt;/span&gt; patiently &lt;span class=&#34;k&#34;&gt;until&lt;/span&gt; all components
+     are up and running.
+  2. Please change the default password after login.
+
+&lt;span class=&#34;c1&#34;&gt;#####################################################&lt;/span&gt;
+https://kubesphere.io             2023-05-29 21:36:54
+&lt;span class=&#34;c1&#34;&gt;#####################################################&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;安装后启用可拔插组件&#34;&gt;安装后启用可拔插组件&lt;/h2&gt;
+&lt;p&gt;KubeSphere提供了一些可拔插的组件，有很多非常好用，这里尽量都启用一下：&lt;/p&gt;
+&lt;p&gt;在定制资源定义搜索&lt;code&gt;clusterconfiguration&lt;/code&gt;，ks-installer右边选择编辑yaml来修改。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启用store&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;多节点安装的yaml config，将store修改为true&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;openpitrix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;store&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;启用DevOps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;跟上面类似，修改这里即可：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;devops&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;启用events和logging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;events&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;logging&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;logsidecar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replicas&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;启用serviceMesh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;servicemesh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;istio&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;components&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;cni&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ingressGateways&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;- &lt;span class=&#34;nt&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;          &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;istio-ingressgateway&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后保存配置，等待一段时间即可。&lt;/p&gt;
+&lt;p&gt;查看更新进度：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl logs -n kubesphere-system &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;kubectl get pod -n kubesphere-system -l &lt;span class=&#34;s1&#34;&gt;&amp;#39;app in (ks-install, ks-installer)&amp;#39;&lt;/span&gt; -o &lt;span class=&#34;nv&#34;&gt;jsonpath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;{.items[0].metadata.name}&amp;#39;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; -f
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;配置内网穿透https与域名&#34;&gt;配置内网穿透、https与域名&lt;/h2&gt;
+&lt;p&gt;局域网ip+端口可以正常访问搭建的Kubesphere了，但是如果在外面使用会很不方便，而且ip和端口比较难记，因为没有公网ip，考虑采用frp内网穿透+nginx转发来配置。&lt;/p&gt;
+&lt;p&gt;frpc配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master_kubesphere&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; tcp
+&lt;span class=&#34;nv&#34;&gt;local_ip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 192.168.50.2
+&lt;span class=&#34;nv&#34;&gt;local_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;30880&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;remote_port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;30880&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;买号域名，搞好证书，由于Kubesphere有很多api，有些还采用了wss，所以nginx还需要做很多额外的配置，否则很多地方会出问题，下面是我的配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;  1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;  9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 90
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 91
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 92
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 93
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 94
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 95
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 96
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 97
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 98
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 99
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;100
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;101
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;102
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;103
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;104
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; ssl&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    server_name kubesphere.engine.wang&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_certificate /home/ubuntu/nginx/cert/kubesphere.engine.wang.crt&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_certificate_key /home/ubuntu/nginx/cert/kubesphere.engine.wang.key&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_session_timeout 5m&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    ssl_prefer_server_ciphers on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    client_max_body_size 1024m&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    location / &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_set_header HOST &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-Proto &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Real-IP &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /wsapp &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;Upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /api/v1/watch &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;Upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /apis/apps &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;Upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /apis/app.k8s.io/v1beta1/watch &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;Upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /apis/apps/v1/namespaces &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_redirect off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Host http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-Proto &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+	location /apis/batch/v1/watch &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;Upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /apis &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_redirect off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header Host http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Real-IP &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /kapis/resources.kubesphere.io/v1alpha2/namespaces &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_redirect off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header        Host &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$server_port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header        X-Real-IP &lt;span class=&#34;nv&#34;&gt;$remote_addr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header        X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_connect_timeout  3600s&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_read_timeout  3600s&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_send_timeout  3600s&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    location /kapis/resources.kubesphere.io/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_redirect off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Host &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$server_port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    X-Forwarded-Proto &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+    location /kapis/terminal.kubesphere.io/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        proxy_http_version 1.1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_redirect off&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_pass http://10.0.16.14:30880&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Host &lt;span class=&#34;nv&#34;&gt;$host&lt;/span&gt;:&lt;span class=&#34;nv&#34;&gt;$server_port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Upgrade &lt;span class=&#34;nv&#34;&gt;$http_upgrade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    X-Forwarded-Proto &lt;span class=&#34;nv&#34;&gt;$scheme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    Connection &lt;span class=&#34;s2&#34;&gt;&amp;#34;upgrade&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        proxy_set_header    X-Forwarded-For &lt;span class=&#34;nv&#34;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+     listen 80&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+     server_name kubesphere.engine.wang&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+     &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;301&lt;/span&gt; https://&lt;span class=&#34;nv&#34;&gt;$host$request_uri&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打开&lt;code&gt;https://kubesphere.engine.wang&lt;/code&gt;，即可进入我搭建的Kubesphere了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202306030724302.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wyc-1257430317.cos.ap-shanghai.myqcloud.com/202306030726348.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一些初始操作&#34;&gt;一些初始操作&lt;/h2&gt;
+&lt;p&gt;新建企业空间，新建用户并分配给企业空间，做权限隔离&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/categories/%E6%8A%80%E6%9C%AF/" term="技术" label="技术" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/kubernetes/" term="Kubernetes" label="Kubernetes" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/" term="云原生" label="云原生" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" term="分布式" label="分布式" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://blog.engine.wang/tags/kubesphere/" term="KubeSphere" label="KubeSphere" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">Prometheus &#43; Grafana 监控系统搭建</title>
             <link rel="alternate" type="text/html" href="https://blog.engine.wang/posts/prometheus-grafana-deploy/" />
